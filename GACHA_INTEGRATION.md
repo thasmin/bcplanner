@@ -22,11 +22,6 @@ This document explains the Battle Cats gacha roll prediction functionality that 
   - Indexed by cat ID
   - Includes all forms of each cat
 
-- **`gacha.json`** - Event configurations
-  - List of all gacha events
-  - Cat pools for each event
-  - Event names and metadata
-
 ## How It Works
 
 ### 1. Seed-Based RNG
@@ -81,9 +76,6 @@ rollMultiple(seed: number, event: GachaEvent, count: number): RollResult[]
 
 // Load cat database
 loadCatDatabase(): Promise<CatDatabase>
-
-// Load gacha events
-loadGachaEvents(): Promise<GachaData>
 
 // Create event configuration
 createGachaEvent(

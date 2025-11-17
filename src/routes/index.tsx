@@ -7,7 +7,6 @@ import {
 	createGachaEvent,
 	getEventOptions,
 	loadCatDatabase,
-	loadGachaEvents,
 } from "../data/gacha-data";
 
 export const Route = createFileRoute("/")({ component: App });
@@ -37,16 +36,9 @@ function App() {
 		staleTime: Infinity, // Never refetch
 	});
 
-	// Load gacha events
-	const gachaEventsQuery = useQuery({
-		queryKey: ["gachaEvents"],
-		queryFn: loadGachaEvents,
-		staleTime: Infinity, // Never refetch
-	});
-
 	// Set default event when events load
-	const eventOptions = gachaEventsQuery.data
-		? getEventOptions(gachaEventsQuery.data)
+	const eventOptions = catDatabaseQuery.data
+		? getEventOptions(catDatabaseQuery.data.events)
 		: [];
 
 	useEffect(() => {
@@ -57,12 +49,10 @@ function App() {
 
 	// Calculate rolls when seed or event changes
 	useEffect(() => {
-		if (!catDatabaseQuery.data || !gachaEventsQuery.data || !selectedEvent)
-			return;
+		if (!catDatabaseQuery.data || !selectedEvent) return;
 
 		const catDatabase = catDatabaseQuery.data;
-		const gachaEvents = gachaEventsQuery.data;
-		const eventData = gachaEvents[selectedEvent];
+		const eventData = catDatabase.events[selectedEvent];
 
 		if (!eventData) {
 			console.error(`Event ${selectedEvent} not found`);
@@ -80,14 +70,7 @@ function App() {
 		}));
 
 		setRolls(resultsWithNames);
-	}, [
-		debouncedSeed,
-		selectedEvent,
-		catDatabaseQuery.data,
-		gachaEventsQuery.data,
-	]);
-
-	const isLoading = catDatabaseQuery.isLoading || gachaEventsQuery.isLoading;
+	}, [debouncedSeed, selectedEvent, catDatabaseQuery.data]);
 
 	const seedInputId = useId();
 	const eventInputId = useId();
@@ -99,7 +82,7 @@ function App() {
 				<h1 className="text-2xl font-bold">Battle Cats Roll Planner</h1>
 			</div>
 
-			{isLoading && (
+			{catDatabaseQuery.isLoading && (
 				<div className="text-gray-600">Loading cat database...</div>
 			)}
 

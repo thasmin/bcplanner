@@ -14,7 +14,8 @@ export interface CatInfo {
 
 export interface CatDatabase {
 	cats: Record<number, CatInfo>;
-	[key: string]: unknown;
+	gacha: Record<string, GachaPoolData>;
+	events: Record<string, EventData>;
 }
 
 export interface GachaPoolData {
@@ -26,22 +27,17 @@ export interface GachaPoolData {
 }
 
 export interface EventData {
-	key: string;
 	id: number;
-	startDate: string;
-	endDate: string;
+	start_on: string;
+	end_on: string;
 	name: string;
-	rates: {
-		rare: number;
-		supa: number;
-		uber: number;
-		legend: number;
-	};
-	guaranteed: boolean;
-	stepUp: boolean;
-	version: string;
-	cats: number[];
-	seriesId?: number;
+	rare: number;
+	supa: number;
+	uber: number;
+	legend: number;
+	guaranteed?: boolean;
+	step_up: boolean;
+	platinum?: "platinum";
 }
 
 export interface EventsData {
@@ -66,14 +62,6 @@ export async function loadCatDatabase(): Promise<CatDatabase> {
 }
 
 /**
- * Load gacha events from JSON
- */
-export async function loadGachaEvents(): Promise<EventsData> {
-	const response = await fetch("/data/events.json");
-	return response.json() as Promise<EventsData>;
-}
-
-/**
  * Create a GachaEvent from event data and cat database
  */
 export function createGachaEvent(
@@ -90,7 +78,11 @@ export function createGachaEvent(
 		[Rarity.Legend]: [],
 	};
 
-	for (const catId of eventData.cats) {
+	const cats = catDatabase.gacha[eventData.id]?.cats;
+	if (!cats) {
+		console.warn(`No gacha pool found for event ID ${eventData.id}`);
+	}
+	for (const catId of cats) {
 		const cat = catDatabase.cats[catId];
 		if (cat && cat.rarity !== undefined) {
 			const raritySlots = slots[cat.rarity as Rarity];
@@ -102,9 +94,10 @@ export function createGachaEvent(
 
 	// Use rates from event data
 	const rates = {
-		rare: eventData.rates.rare,
-		supa: eventData.rates.supa,
-		uber: eventData.rates.uber,
+		rare: eventData.rare,
+		supa: eventData.supa,
+		uber: eventData.uber,
+		legend: eventData.legend,
 	};
 
 	return {
@@ -120,16 +113,17 @@ export function createGachaEvent(
 export function getEventOptions(eventsData: EventsData): EventOption[] {
 	const today = new Date().toISOString().split("T")[0]; // YYYY-MM-DD format
 
-	const events = Object.values(eventsData)
-		.filter((event) => event.endDate >= today) // Only active or future events
-		.sort((a, b) => b.startDate.localeCompare(a.startDate)) // Latest first
+	const events = Object.entries(eventsData)
+		.map(([key, event]) => ({ ...event, key }))
+		.filter((event) => event.end_on >= today) // Only active or future events
+		.sort((a, b) => b.start_on.localeCompare(a.start_on)) // Latest first
 		.map((event) => ({
 			key: event.key,
 			id: event.id,
 			name: event.name,
-			displayName: `${event.startDate} - ${event.endDate}: ${event.name}`,
-			startDate: event.startDate,
-			endDate: event.endDate,
+			displayName: `${event.start_on} - ${event.end_on}: ${event.name}`,
+			startDate: event.start_on,
+			endDate: event.end_on,
 		}));
 	return events.filter(
 		(event, index) => events.findIndex((e) => e.name === event.name) === index,
