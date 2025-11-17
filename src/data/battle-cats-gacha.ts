@@ -56,6 +56,8 @@ export interface RollResult {
 	score: number;
 	/** Track (0 = A, 1 = B) */
 	track?: number;
+	/** Is this a guaranteed uber roll? */
+	isGuaranteed?: boolean;
 }
 
 // ============================================================================
@@ -176,22 +178,21 @@ function selectCat(
 export function rollOnce(
 	seed: number,
 	event: GachaEvent,
-): { result: RollResult; nextSeed: number } {
-	// Step 1: Advance seed and get rarity
-	const raritySeed = advanceSeed(seed) >>> 0; // Ensure unsigned
-	const rarityFruitValue = raritySeed >>> 0;
+): { result: RollResult; nextSeed: number; rarityFruitSeed: number } {
+	// Step 1: Use current seed for rarity (BEFORE advancing)
+	const rarityFruitValue = seed >>> 0; // Use seed BEFORE advancement
 	const score = ((rarityFruitValue % BASE) + BASE) % BASE; // Ensure positive modulo
 	const rarity = determineRarity(score, event.rates);
 
-	// Step 2: Advance seed again and get slot
-	const slotSeed = advanceSeed(raritySeed) >>> 0; // Ensure unsigned
+	// Step 2: Advance seed for slot
+	const slotSeed = advanceSeed(seed) >>> 0; // Ensure unsigned
 	const slotFruitValue = slotSeed >>> 0;
 	const { catId, slot } = selectCat(slotFruitValue, rarity, event);
 
 	return {
 		result: {
 			rollNumber: 0, // Will be set by rollMultiple
-			seed: raritySeed,
+			seed: rarityFruitValue, // Store the rarity seed (before advancement) for display
 			rarity,
 			rarityName: rarityToString(rarity),
 			catId,
@@ -199,6 +200,7 @@ export function rollOnce(
 			score,
 		},
 		nextSeed: slotSeed,
+		rarityFruitSeed: seed, // The seed BEFORE any advancement
 	};
 }
 
@@ -232,41 +234,106 @@ export function rollMultiple(
  * Rolls both tracks (A and B) simultaneously
  * Track A and Track B represent parallel timelines that you can switch between
  * using guaranteed rolls
+ *
+ * Ruby logic:
+ * a_fruit = roll_fruit!  // uses S0, advances to S1
+ * b_fruit = roll_fruit   // uses S1
+ * a_cat = roll_cat!(a_fruit) // rarity from S0, slot from S1, advances to S2
+ * b_cat = roll_cat(b_fruit)  // rarity from S1, slot from S2
  */
 export function rollBoth(
 	seed: number,
 	event: GachaEvent,
-): { trackA: RollResult; trackB: RollResult; nextSeed: number } {
-	// First roll determines Track A
-	const { result: trackA, nextSeed: afterA } = rollOnce(seed, event);
-	trackA.track = 0;
+): {
+	trackA: RollResult;
+	trackB: RollResult;
+	nextSeed: number;
+	rarityFruitA: number;
+	rarityFruitB: number;
+} {
+	// a_fruit = roll_fruit! - uses current seed S0, then advances
+	const rarityFruitA = seed >>> 0;
+	const scoreA = ((rarityFruitA % BASE) + BASE) % BASE;
+	const rarityA = determineRarity(scoreA, event.rates);
 
-	// Use the same initial seed to determine Track B's rarity
-	// but advance from the Track A's final seed for Track B's slot
-	const raritySeed = advanceSeed(seed) >>> 0;
-	const score = ((raritySeed % BASE) + BASE) % BASE;
-	const rarity = determineRarity(score, event.rates);
+	// Seed advances to S1 after getting a_fruit
+	const seedAfterARarity = advanceSeed(seed) >>> 0;
 
-	// For track B, we use the seed after Track A completed
-	const slotSeed = advanceSeed(afterA) >>> 0;
-	const { catId, slot } = selectCat(slotSeed, rarity, event);
+	// b_fruit = roll_fruit - uses S1 (no advancement)
+	const rarityFruitB = seedAfterARarity >>> 0;
+	const scoreB = ((rarityFruitB % BASE) + BASE) % BASE;
+	const rarityB = determineRarity(scoreB, event.rates);
+
+	// a_cat slot uses roll_fruit! - uses S1, advances to S2
+	const slotSeedA = seedAfterARarity;
+	const { catId: catIdA, slot: slotA } = selectCat(slotSeedA, rarityA, event);
+	const seedAfterASlot = advanceSeed(seedAfterARarity) >>> 0;
+
+	// b_cat slot uses roll_fruit - uses S2 (no advancement)
+	const slotSeedB = seedAfterASlot;
+	const { catId: catIdB, slot: slotB } = selectCat(slotSeedB, rarityB, event);
+
+	const trackA: RollResult = {
+		rollNumber: 0,
+		seed: rarityFruitA,
+		rarity: rarityA,
+		rarityName: rarityToString(rarityA),
+		catId: catIdA,
+		slot: slotA,
+		score: scoreA,
+		track: 0,
+	};
 
 	const trackB: RollResult = {
 		rollNumber: 0,
-		seed: raritySeed,
-		rarity,
-		rarityName: rarityToString(rarity),
-		catId,
-		slot,
-		score,
+		seed: rarityFruitB,
+		rarity: rarityB,
+		rarityName: rarityToString(rarityB),
+		catId: catIdB,
+		slot: slotB,
+		score: scoreB,
 		track: 1,
 	};
 
 	return {
 		trackA,
 		trackB,
-		nextSeed: afterA, // Continue from Track A's seed
+		nextSeed: seedAfterASlot, // S2
+		rarityFruitA, // S0
+		rarityFruitB, // S1
 	};
+}
+
+/**
+ * Creates a guaranteed Uber roll using the rarity seed from a given roll
+ */
+function createGuaranteedRoll(
+	raritySeed: number,
+	event: GachaEvent,
+	track: number,
+	rollNumber: number,
+): RollResult {
+	// Guaranteed roll always gives an Uber
+	const { catId, slot } = selectCat(raritySeed, Rarity.Uber, event);
+
+	return {
+		rollNumber,
+		seed: raritySeed,
+		rarity: Rarity.Uber,
+		rarityName: rarityToString(Rarity.Uber),
+		catId,
+		slot,
+		score: 0, // Not applicable for guaranteed rolls
+		track,
+		isGuaranteed: true,
+	};
+}
+
+export interface BothTracksRoll {
+	trackA: RollResult;
+	trackB: RollResult;
+	guaranteedA?: RollResult;
+	guaranteedB?: RollResult;
 }
 
 /**
@@ -277,16 +344,63 @@ export function rollMultipleBothTracks(
 	initialSeed: number,
 	event: GachaEvent,
 	count: number = 100,
-): Array<[RollResult, RollResult]> {
-	const results: Array<[RollResult, RollResult]> = [];
+	hasGuaranteed: boolean = false,
+	isStepUp: boolean = false,
+): BothTracksRoll[] {
+	const results: BothTracksRoll[] = [];
+	const allRolls: Array<[RollResult, RollResult, number, number]> = []; // [trackA, trackB, rarityFruitA, rarityFruitB]
 	let currentSeed = initialSeed;
 
+	// First pass: generate all rolls
 	for (let i = 0; i < count; i++) {
-		const { trackA, trackB, nextSeed } = rollBoth(currentSeed, event);
+		const { trackA, trackB, nextSeed, rarityFruitA, rarityFruitB } = rollBoth(
+			currentSeed,
+			event,
+		);
 		trackA.rollNumber = i + 1;
 		trackB.rollNumber = i + 1;
-		results.push([trackA, trackB]);
+		allRolls.push([trackA, trackB, rarityFruitA, rarityFruitB]);
 		currentSeed = nextSeed;
+	}
+
+	// Second pass: calculate guaranteed rolls
+	const guaranteedRolls = isStepUp ? 15 : 10;
+
+	for (let i = 0; i < allRolls.length; i++) {
+		const [trackA, trackB] = allRolls[i];
+		const roll: BothTracksRoll = { trackA, trackB };
+
+		if (hasGuaranteed) {
+			// Follow the track for guaranteed_rolls - 1 steps
+			const lastIndex = i + guaranteedRolls - 1;
+
+			if (lastIndex < allRolls.length && lastIndex > 0) {
+				// Ruby: guaranteed switches to the opposite track
+				// So Track A's guaranteed uses Track B's seed, and vice versa
+				// Use the seed from one roll before the last (lastIndex - 1)
+				const seedIndex = lastIndex;
+				const seedRarityFruitA = allRolls[seedIndex][3];
+				const seedRarityFruitB = allRolls[seedIndex + 1]?.[2];
+
+				// Swap the tracks: Track A uses Track B's seed
+				roll.guaranteedA = createGuaranteedRoll(
+					seedRarityFruitA,
+					event,
+					0,
+					trackA.rollNumber,
+				);
+
+				if (seedRarityFruitB)
+					roll.guaranteedB = createGuaranteedRoll(
+						seedRarityFruitB,
+						event,
+						1,
+						trackB.rollNumber,
+					);
+			}
+		}
+
+		results.push(roll);
 	}
 
 	return results;

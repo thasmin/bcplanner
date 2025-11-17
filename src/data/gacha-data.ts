@@ -37,7 +37,7 @@ export interface EventData {
 	legend: number;
 	guaranteed?: boolean;
 	step_up: boolean;
-	platinum?: "platinum";
+	platinum?: "platinum" | "legend";
 }
 
 export interface EventsData {
@@ -117,14 +117,22 @@ export function getEventOptions(eventsData: EventsData): EventOption[] {
 		.map(([key, event]) => ({ ...event, key }))
 		.filter((event) => event.end_on >= today) // Only active or future events
 		.sort((a, b) => b.start_on.localeCompare(a.start_on)) // Latest first
-		.map((event) => ({
-			key: event.key,
-			id: event.id,
-			name: event.name,
-			displayName: `${event.start_on} - ${event.end_on}: ${event.name}`,
-			startDate: event.start_on,
-			endDate: event.end_on,
-		}));
+		.map((event) => {
+			let suffix = "";
+			if (event.step_up) {
+				suffix = " [Step Up]";
+			} else if (event.guaranteed) {
+				suffix = " [Guaranteed]";
+			}
+			return {
+				key: event.key,
+				id: event.id,
+				name: event.name,
+				displayName: `${event.start_on} - ${event.end_on}: ${event.name}${suffix}`,
+				startDate: event.start_on,
+				endDate: event.end_on,
+			};
+		});
 	return events.filter(
 		(event, index) => events.findIndex((e) => e.name === event.name) === index,
 	); // Remove duplicates by name
