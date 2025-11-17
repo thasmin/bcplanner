@@ -2,7 +2,10 @@ import { useQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import { Cat } from "lucide-react";
 import { useEffect, useId, useState } from "react";
-import { type RollResult, rollMultiple } from "../data/battle-cats-gacha";
+import {
+	type RollResult,
+	rollMultipleBothTracks,
+} from "../data/battle-cats-gacha";
 import {
 	createGachaEvent,
 	getEventOptions,
@@ -22,10 +25,12 @@ function useDebounce<T>(value: T, delay: number): T {
 	return debouncedValue;
 }
 
+type RollWithName = RollResult & { catName?: string };
+
 function App() {
 	const [seed, setSeed] = useState(2428617162);
 	const [selectedEvent, setSelectedEvent] = useState<string>("");
-	const [rolls, setRolls] = useState<RollResult[]>([]);
+	const [rolls, setRolls] = useState<Array<[RollWithName, RollWithName]>>([]);
 
 	const debouncedSeed = useDebounce(seed, 500);
 
@@ -61,13 +66,21 @@ function App() {
 
 		const event = createGachaEvent(eventData, catDatabase);
 
-		const results = rollMultiple(debouncedSeed, event, 100);
+		const results = rollMultipleBothTracks(debouncedSeed, event, 100);
 
-		// Add cat names to results
-		const resultsWithNames = results.map((roll) => ({
-			...roll,
-			catName: catDatabase.cats[roll.catId]?.name?.[0] || "Unknown",
-		}));
+		// Add cat names to results for both tracks
+		const resultsWithNames = results.map(
+			([trackA, trackB]): [RollWithName, RollWithName] => [
+				{
+					...trackA,
+					catName: catDatabase.cats[trackA.catId]?.name?.[0] || "Unknown",
+				},
+				{
+					...trackB,
+					catName: catDatabase.cats[trackB.catId]?.name?.[0] || "Unknown",
+				},
+			],
+		);
 
 		setRolls(resultsWithNames);
 	}, [debouncedSeed, selectedEvent, catDatabaseQuery.data]);
@@ -136,66 +149,90 @@ function App() {
 			<div className="bg-white rounded-lg shadow overflow-hidden">
 				<div className="px-6 py-4 bg-gray-50 border-b border-gray-200">
 					<h2 className="text-lg font-semibold text-gray-900">
-						Next 100 Rolls
+						Next 100 Rolls (Track A and Track B)
 					</h2>
+					<p className="text-sm text-gray-600 mt-1">
+						Use a guaranteed roll (typically every 10 rolls) to switch between
+						tracks
+					</p>
 				</div>
 				<div className="overflow-x-auto">
 					<table className="min-w-full divide-y divide-gray-200">
 						<thead className="bg-gray-50">
 							<tr>
-								<th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+								<th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
 									#
 								</th>
-								<th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+								<th
+									colSpan={2}
+									className="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border-l border-r border-gray-300 bg-blue-50"
+								>
+									Track A
+								</th>
+								<th
+									colSpan={2}
+									className="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border-r border-gray-300 bg-green-50"
+								>
+									Track B
+								</th>
+							</tr>
+							<tr>
+								<th className="px-4 py-2"></th>
+								<th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-l border-gray-300">
 									Cat Name
 								</th>
-								<th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+								<th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-r border-gray-300">
 									Rarity
 								</th>
-								<th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-									Cat ID
+								<th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+									Cat Name
 								</th>
-								<th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-									Score
+								<th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-r border-gray-300">
+									Rarity
 								</th>
 							</tr>
 						</thead>
 						<tbody className="bg-white divide-y divide-gray-200">
-							{rolls.map((roll) => (
-								<tr
-									key={roll.rollNumber}
-									className={
-										roll.rarityName === "Uber" || roll.rarityName === "Legend"
-											? "bg-yellow-50"
-											: ""
-									}
-								>
-									<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-										{roll.rollNumber}
+							{rolls.map(([trackA, trackB]) => (
+								<tr key={trackA.rollNumber}>
+									<td className="px-4 py-3 whitespace-nowrap text-sm font-medium text-gray-900">
+										{trackA.rollNumber}
 									</td>
-									<td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-										{(roll as RollResult & { catName?: string }).catName}
+									<td className="px-4 py-3 whitespace-nowrap text-sm text-gray-900 border-l border-gray-200">
+										{trackA.catName}
 									</td>
-									<td className="px-6 py-4 whitespace-nowrap text-sm">
+									<td className="px-4 py-3 whitespace-nowrap text-sm border-r border-gray-200">
 										<span
 											className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
-												roll.rarityName === "Uber"
+												trackA.rarityName === "Uber"
 													? "bg-yellow-100 text-yellow-800"
-													: roll.rarityName === "Legend"
+													: trackA.rarityName === "Legend"
 														? "bg-purple-100 text-purple-800"
-														: roll.rarityName === "Super Rare"
+														: trackA.rarityName === "Super Rare"
 															? "bg-blue-100 text-blue-800"
 															: "bg-gray-100 text-gray-800"
 											}`}
 										>
-											{roll.rarityName}
+											{trackA.rarityName}
 										</span>
 									</td>
-									<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-										{roll.catId}
+									<td className="px-4 py-3 whitespace-nowrap text-sm text-gray-900">
+										{trackB.catName}
 									</td>
-									<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-										{roll.score}
+									<td className="px-4 py-3 whitespace-nowrap text-sm border-r border-gray-200">
+										<span
+											className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
+												trackB.rarityName === "Uber"
+													? "bg-yellow-100 text-yellow-800"
+													: trackB.rarityName === "Legend"
+														? "bg-purple-100 text-purple-800"
+														: trackB.rarityName === "Super Rare"
+															? "bg-blue-100 text-blue-800"
+															: "bg-gray-100 text-gray-800"
+											}`}
+										>
+											{trackB.rarityName}
+										</span>
 									</td>
 								</tr>
 							))}
@@ -205,23 +242,48 @@ function App() {
 			</div>
 
 			{rolls.length > 0 && (
-				<div className="mt-6 bg-white rounded-lg shadow p-6">
-					<h3 className="text-lg font-semibold mb-4">Statistics</h3>
-					<div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-						{["Rare", "Super Rare", "Uber", "Legend"].map((rarity) => {
-							const count = rolls.filter((r) => r.rarityName === rarity).length;
-							const percentage = ((count / rolls.length) * 100).toFixed(1);
-							return (
-								<div key={rarity} className="text-center">
-									<div className="text-2xl font-bold text-gray-900">
-										{count}
+				<div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+					<div className="bg-white rounded-lg shadow p-6">
+						<h3 className="text-lg font-semibold mb-4">Track A Statistics</h3>
+						<div className="grid grid-cols-2 gap-4">
+							{["Rare", "Super Rare", "Uber", "Legend"].map((rarity) => {
+								const count = rolls.filter(
+									([trackA]) => trackA.rarityName === rarity,
+								).length;
+								const percentage = ((count / rolls.length) * 100).toFixed(1);
+								return (
+									<div key={rarity} className="text-center">
+										<div className="text-2xl font-bold text-gray-900">
+											{count}
+										</div>
+										<div className="text-sm text-gray-600">
+											{rarity} ({percentage}%)
+										</div>
 									</div>
-									<div className="text-sm text-gray-600">
-										{rarity} ({percentage}%)
+								);
+							})}
+						</div>
+					</div>
+					<div className="bg-white rounded-lg shadow p-6">
+						<h3 className="text-lg font-semibold mb-4">Track B Statistics</h3>
+						<div className="grid grid-cols-2 gap-4">
+							{["Rare", "Super Rare", "Uber", "Legend"].map((rarity) => {
+								const count = rolls.filter(
+									([, trackB]) => trackB.rarityName === rarity,
+								).length;
+								const percentage = ((count / rolls.length) * 100).toFixed(1);
+								return (
+									<div key={rarity} className="text-center">
+										<div className="text-2xl font-bold text-gray-900">
+											{count}
+										</div>
+										<div className="text-sm text-gray-600">
+											{rarity} ({percentage}%)
+										</div>
 									</div>
-								</div>
-							);
-						})}
+								);
+							})}
+						</div>
 					</div>
 				</div>
 			)}

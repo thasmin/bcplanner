@@ -54,6 +54,8 @@ export interface RollResult {
 	slot: number;
 	/** Score used for rarity determination (0-9999) */
 	score: number;
+	/** Track (0 = A, 1 = B) */
+	track?: number;
 }
 
 // ============================================================================
@@ -220,6 +222,70 @@ export function rollMultiple(
 		const { result, nextSeed } = rollOnce(currentSeed, event);
 		result.rollNumber = i + 1;
 		results.push(result);
+		currentSeed = nextSeed;
+	}
+
+	return results;
+}
+
+/**
+ * Rolls both tracks (A and B) simultaneously
+ * Track A and Track B represent parallel timelines that you can switch between
+ * using guaranteed rolls
+ */
+export function rollBoth(
+	seed: number,
+	event: GachaEvent,
+): { trackA: RollResult; trackB: RollResult; nextSeed: number } {
+	// First roll determines Track A
+	const { result: trackA, nextSeed: afterA } = rollOnce(seed, event);
+	trackA.track = 0;
+
+	// Use the same initial seed to determine Track B's rarity
+	// but advance from the Track A's final seed for Track B's slot
+	const raritySeed = advanceSeed(seed) >>> 0;
+	const score = ((raritySeed % BASE) + BASE) % BASE;
+	const rarity = determineRarity(score, event.rates);
+
+	// For track B, we use the seed after Track A completed
+	const slotSeed = advanceSeed(afterA) >>> 0;
+	const { catId, slot } = selectCat(slotSeed, rarity, event);
+
+	const trackB: RollResult = {
+		rollNumber: 0,
+		seed: raritySeed,
+		rarity,
+		rarityName: rarityToString(rarity),
+		catId,
+		slot,
+		score,
+		track: 1,
+	};
+
+	return {
+		trackA,
+		trackB,
+		nextSeed: afterA, // Continue from Track A's seed
+	};
+}
+
+/**
+ * Simulates multiple rolls showing both Track A and Track B
+ * This allows you to see what happens if you switch tracks with a guaranteed roll
+ */
+export function rollMultipleBothTracks(
+	initialSeed: number,
+	event: GachaEvent,
+	count: number = 100,
+): Array<[RollResult, RollResult]> {
+	const results: Array<[RollResult, RollResult]> = [];
+	let currentSeed = initialSeed;
+
+	for (let i = 0; i < count; i++) {
+		const { trackA, trackB, nextSeed } = rollBoth(currentSeed, event);
+		trackA.rollNumber = i + 1;
+		trackB.rollNumber = i + 1;
+		results.push([trackA, trackB]);
 		currentSeed = nextSeed;
 	}
 
