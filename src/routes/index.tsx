@@ -192,9 +192,9 @@ function App() {
 					<p className="text-sm text-gray-600 mt-1">
 						{rolls.some((r) => r.guaranteedA) ? (
 							<>
-								Guaranteed Uber rolls available. Using a guaranteed roll advances
-								you {isStepUp ? "14" : "10"} rolls and switches to the opposite
-								track.
+								Guaranteed Uber rolls available. Using a guaranteed roll
+								advances you {isStepUp ? "14" : "10"} rolls and switches to the
+								opposite track.
 							</>
 						) : (
 							<>
@@ -253,7 +253,8 @@ function App() {
 						<tbody className="bg-white divide-y divide-gray-200">
 							{rolls.map((roll) => {
 								const guaranteedRolls = isStepUp ? 15 : 10;
-								const lastRollNumber = roll.trackA.rollNumber + guaranteedRolls - 1;
+								const lastRollNumber =
+									roll.trackA.rollNumber + guaranteedRolls - 1;
 
 								// Based on Ruby: next_index = last.sequence - (last.track ^ 1)
 								// For track A (0): next = last - 1, switch to B
@@ -289,9 +290,7 @@ function App() {
 												<div className="font-medium text-amber-700">
 													{roll.guaranteedA.catName}
 												</div>
-												<div className="text-gray-500 mt-1">
-													→ {nextFromA}B
-												</div>
+												<div className="text-gray-500 mt-1">→ {nextFromA}B</div>
 											</td>
 										)}
 										<td className="px-2 py-3 whitespace-nowrap text-sm text-gray-900">
@@ -317,9 +316,7 @@ function App() {
 												<div className="font-medium text-amber-700">
 													{roll.guaranteedB.catName}
 												</div>
-												<div className="text-gray-500 mt-1">
-													→ {nextFromB}A
-												</div>
+												<div className="text-gray-500 mt-1">→ {nextFromB}A</div>
 											</td>
 										)}
 									</tr>
