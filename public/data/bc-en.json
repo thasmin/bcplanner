@@ -142795,9 +142795,8 @@
         31
       ],
       "series_id": 37,
-      "name": "The return of the classic Evangelion collab capsule set!",
-      "rate": "no_legend",
-      "similarity": 81
+      "name": "New Legend and Uber Rare units added to EVANGELION Collab Capsules!",
+      "rate": "regular"
     },
     "999": {
       "cats": [
@@ -142869,9 +142868,8 @@
         31
       ],
       "series_id": 44,
-      "name": "New unit Eva Unit-13 added! ★ Tap banner for info!",
-      "rate": "no_legend",
-      "similarity": 81
+      "name": "New Legend Rare added to EVANGELION 2nd Strike Collab Capsules!",
+      "rate": "regular"
     },
     "1000": {
       "cats": [
@@ -143177,9 +143175,8 @@
         31
       ],
       "series_id": 33,
-      "name": "New unit Tetsukachi resists 3 enemy types! ★ Tap banner for more info!",
-      "rate": "regular",
-      "similarity": 98
+      "name": "Conjurer hero Komori joins the fight! ★Tap for details!",
+      "rate": "regular"
     },
     "1005": {
       "cats": [
@@ -143249,9 +143246,8 @@
         31
       ],
       "series_id": 33,
-      "name": "New unit Tetsukachi resists 3 enemy types! ★ Tap banner for more info!",
-      "rate": "regular",
-      "similarity": 98
+      "name": "Conjurer hero Komori joins the fight! ★Tap for details!",
+      "rate": "regular"
     },
     "1006": {
       "cats": [
@@ -143719,8 +143715,7 @@
       ],
       "series_id": 21,
       "name": "Get an Uber Rare Cat!! 100% Uber drop Rate in the PLATINUM CAPSULES!",
-      "rate": "platinum",
-      "similarity": 99
+      "rate": "platinum"
     },
     "1009": {
       "cats": [
@@ -143869,8 +143864,7 @@
       ],
       "series_id": 46,
       "name": "Get a Guaranteed Uber or Legend Rare from the Legend Capsules!",
-      "rate": "legend",
-      "similarity": 99
+      "rate": "legend"
     },
     "1010": {
       "cats": [
@@ -144704,9 +144698,8 @@
         31
       ],
       "series_id": 37,
-      "name": "The return of the classic Evangelion collab capsule set!",
-      "rate": "no_legend",
-      "similarity": 81
+      "name": "New Legend and Uber Rare units added to EVANGELION Collab Capsules!",
+      "rate": "regular"
     },
     "1020": {
       "cats": [
@@ -144770,9 +144763,8 @@
         31
       ],
       "series_id": 44,
-      "name": "New unit Eva Unit-13 added! ★ Tap banner for info!",
-      "rate": "no_legend",
-      "similarity": 81
+      "name": "New Legend Rare added to EVANGELION 2nd Strike Collab Capsules!",
+      "rate": "regular"
     }
   },
   "events": {
@@ -165091,6 +165083,166 @@
       "supa": 2500,
       "uber": 500,
       "legend": 30
+    },
+    "2025-12-05_1019": {
+      "start_on": "2025-12-05",
+      "end_on": "2025-12-22",
+      "version": "140701",
+      "name": "New Legend and Uber Rare units added to EVANGELION Collab Capsules!",
+      "id": 1019,
+      "rare": 6970,
+      "supa": 2500,
+      "uber": 500,
+      "legend": 30
+    },
+    "2025-12-05_1020": {
+      "start_on": "2025-12-05",
+      "end_on": "2025-12-22",
+      "version": "140701",
+      "name": "New Legend Rare added to EVANGELION 2nd Strike Collab Capsules!",
+      "id": 1020,
+      "rare": 6970,
+      "supa": 2500,
+      "uber": 500,
+      "legend": 30
+    },
+    "2025-12-05_942": {
+      "start_on": "2025-12-05",
+      "end_on": "2025-12-09",
+      "version": "140701",
+      "name": "Conjurer Dynasaurus Cat joins the fight! ★Tap banner for info!",
+      "id": 942,
+      "rare": 6970,
+      "supa": 2500,
+      "uber": 500,
+      "legend": 30
+    },
+    "2025-12-09_1019": {
+      "start_on": "2025-12-09",
+      "end_on": "2025-12-22",
+      "version": "140701",
+      "name": "New Legend and Uber Rare units added to EVANGELION Collab Capsules!",
+      "id": 1019,
+      "rare": 6970,
+      "supa": 2500,
+      "uber": 500,
+      "guaranteed": true,
+      "legend": 30
+    },
+    "2025-12-09_1020": {
+      "start_on": "2025-12-09",
+      "end_on": "2025-12-22",
+      "version": "140701",
+      "name": "New Legend Rare added to EVANGELION 2nd Strike Collab Capsules!",
+      "id": 1020,
+      "rare": 6970,
+      "supa": 2500,
+      "uber": 500,
+      "guaranteed": true,
+      "legend": 30
+    },
+    "2025-12-09_946": {
+      "start_on": "2025-12-09",
+      "end_on": "2025-12-12",
+      "version": "140701",
+      "name": "Hanasaka Cat with Conjurer evolved form joins! ★Tap banner for info!",
+      "id": 946,
+      "rare": 6970,
+      "supa": 2500,
+      "uber": 500,
+      "guaranteed": true,
+      "legend": 30
+    },
+    "2025-12-12_1005": {
+      "start_on": "2025-12-12",
+      "end_on": "2025-12-15",
+      "version": "140701",
+      "name": "Conjurer hero Komori joins the fight! ★Tap for details!",
+      "id": 1005,
+      "rare": 6970,
+      "supa": 2500,
+      "uber": 500,
+      "guaranteed": true,
+      "legend": 30
+    },
+    "2025-12-12_1008": {
+      "start_on": "2025-12-12",
+      "end_on": "2030-01-01",
+      "version": "140701",
+      "name": "Get an Uber Rare Cat!! 100% Uber drop Rate in the PLATINUM CAPSULES!",
+      "id": 1008,
+      "rare": 0,
+      "supa": 0,
+      "uber": 10000,
+      "platinum": "platinum"
+    },
+    "2025-12-12_1009": {
+      "start_on": "2025-12-12",
+      "end_on": "2030-01-01",
+      "version": "140701",
+      "name": "Get a Guaranteed Uber or Legend Rare from the Legend Capsules!",
+      "id": 1009,
+      "rare": 0,
+      "supa": 0,
+      "uber": 9500,
+      "legend": 500,
+      "platinum": "legend"
+    },
+    "2025-12-12_1019": {
+      "start_on": "2025-12-12",
+      "end_on": "2025-12-22",
+      "version": "140701",
+      "name": "New Legend and Uber Rare units added to EVANGELION Collab Capsules!",
+      "id": 1019,
+      "rare": 6970,
+      "supa": 2500,
+      "uber": 500,
+      "guaranteed": true,
+      "legend": 30
+    },
+    "2025-12-12_1020": {
+      "start_on": "2025-12-12",
+      "end_on": "2025-12-22",
+      "version": "140701",
+      "name": "New Legend Rare added to EVANGELION 2nd Strike Collab Capsules!",
+      "id": 1020,
+      "rare": 6970,
+      "supa": 2500,
+      "uber": 500,
+      "guaranteed": true,
+      "legend": 30
+    },
+    "2025-12-15_1019": {
+      "start_on": "2025-12-15",
+      "end_on": "2025-12-22",
+      "version": "150000",
+      "name": "New Legend and Uber Rare units added to EVANGELION Collab Capsules!",
+      "id": 1019,
+      "rare": 6970,
+      "supa": 2500,
+      "uber": 500,
+      "legend": 30
+    },
+    "2025-12-15_1020": {
+      "start_on": "2025-12-15",
+      "end_on": "2025-12-22",
+      "version": "150000",
+      "name": "New Legend Rare added to EVANGELION 2nd Strike Collab Capsules!",
+      "id": 1020,
+      "rare": 6970,
+      "supa": 2500,
+      "uber": 500,
+      "legend": 30
+    },
+    "2025-12-15_940": {
+      "start_on": "2025-12-15",
+      "end_on": "2025-12-29",
+      "version": "150000",
+      "name": "Limited Xmas Girls, featuring new True Forms! ★ Tap banner for info!",
+      "id": 940,
+      "rare": 7000,
+      "supa": 2500,
+      "uber": 500
     }
   }
 }
