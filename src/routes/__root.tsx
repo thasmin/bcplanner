@@ -35,7 +35,6 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 					{children}
 				</QueryClientProvider>
 				<TanStackDevtools
-					config={{ position: "bottom-right" }}
 					plugins={[
 						{
 							name: "Tanstack Router",

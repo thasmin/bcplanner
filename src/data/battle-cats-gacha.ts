@@ -58,6 +58,10 @@ export interface RollResult {
 	track?: number;
 	/** Is this a guaranteed uber roll? */
 	isGuaranteed?: boolean;
+	/** Will this roll switch tracks */
+	switchTracks?: boolean;
+	/** If switched from another cat ID */
+	switchedFromCatId?: number;
 }
 
 // ============================================================================
@@ -185,7 +189,7 @@ export function rollOnce(
 	const { catId, slot } = selectCat(nextSeed, rarity, event);
 	return {
 		result: {
-			rollNumber: 0, // Will be set by rollMultiple
+			rollNumber: 0, // Will be set by caller
 			seed,
 			rarity,
 			rarityName: rarityToString(rarity),
@@ -214,10 +218,26 @@ export function rollMultiple(
 	let currentSeed = initialSeed;
 
 	for (let i = 0; i < count; i++) {
-		const { result, nextSeed } = rollOnce(currentSeed, event);
+		let { result, nextSeed } = rollOnce(currentSeed, event);
 		result.rollNumber = i + 1;
+		// detect track switches
+		const prev = results.at(-1);
+		if (
+			prev &&
+			result.rarity === Rarity.Rare &&
+			prev.rarity === Rarity.Rare &&
+			result.catId === prev.catId
+		) {
+			console.log("detected track switch on roll", i + 1, prev, result);
+			const switchedResult = rollOnce(advanceSeed(currentSeed), event);
+			result = switchedResult.result;
+			result.rollNumber = i + 1;
+			result.switchTracks = true;
+			result.switchedFromCatId = prev.catId;
+			nextSeed = switchedResult.nextSeed;
+		}
 		results.push(result);
-		currentSeed = nextSeed;
+		currentSeed = advanceSeed(nextSeed);
 	}
 
 	return results;
@@ -280,44 +300,35 @@ export interface BothTracksRoll {
  * This allows you to see what happens if you switch tracks with a guaranteed roll
  */
 export function rollMultipleBothTracks(
-	initialSeed: number,
+	seed: number,
 	event: GachaEvent,
 	count: number = 100,
 	hasGuaranteed: boolean = false,
 	isStepUp: boolean = false,
 ): BothTracksRoll[] {
 	const results: BothTracksRoll[] = [];
-	const allRolls: Array<[RollResult, RollResult]> = []; // [trackA, trackB, rarityFruitA, rarityFruitB]
-	let currentSeed = initialSeed;
-
-	// First pass: generate all rolls
-	for (let i = 0; i < count; i++) {
-		const { trackA, trackB, nextSeed } = rollBoth(currentSeed, event);
-		trackA.rollNumber = i + 1;
-		trackB.rollNumber = i + 1;
-		allRolls.push([trackA, trackB]);
-		currentSeed = nextSeed;
-	}
+	const trackARolls = rollMultiple(advanceSeed(seed), event, count);
+	const trackBRolls = rollMultiple(seed, event, count);
 
 	// Second pass: calculate guaranteed rolls
 	const guaranteedRolls = isStepUp ? 15 : 10;
 
-	for (let i = 0; i < allRolls.length; i++) {
-		const [trackA, trackB] = allRolls[i];
+	for (let i = 0; i < count; i++) {
+		const trackA = trackARolls[i];
+		const trackB = trackBRolls[i];
 		const roll: BothTracksRoll = { trackA, trackB };
 
 		if (hasGuaranteed) {
 			// Follow the track for guaranteed_rolls - 1 steps
 			const lastIndex = i + guaranteedRolls - 1;
 
-			if (lastIndex < allRolls.length && lastIndex > 0) {
+			if (lastIndex < count && lastIndex > 0) {
 				// Ruby: guaranteed switches to the opposite track
 				// So Track A's guaranteed uses Track B's seed, and vice versa
 				// Use the seed from one roll before the last (lastIndex - 1)
 				const seedIndex = lastIndex;
-				const seedA = allRolls[seedIndex + 1]?.[0].seed;
-				const seedB = allRolls[seedIndex + 1]?.[1].seed;
-
+				const seedA = trackARolls[seedIndex + 1]?.seed;
+				const seedB = trackBRolls[seedIndex + 2]?.seed;
 				// Swap the tracks: Track A uses Track B's seed
 				if (seedA) {
 					roll.guaranteedA = createGuaranteedRoll(
