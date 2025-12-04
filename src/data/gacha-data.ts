@@ -116,24 +116,27 @@ export function getEventOptions(eventsData: EventsData): EventOption[] {
 	const events = Object.entries(eventsData)
 		.map(([key, event]) => ({ ...event, key }))
 		.filter((event) => event.end_on >= today) // Only active or future events
-		.sort((a, b) => b.start_on.localeCompare(a.start_on)) // Latest first
+		.sort((a, b) => a.start_on.localeCompare(b.start_on)) // Latest first
 		.map((event) => {
 			let suffix = "";
-			if (event.step_up) {
-				suffix = " [Step Up]";
-			} else if (event.guaranteed) {
-				suffix = " [Guaranteed]";
-			}
+			if (event.platinum === "platinum") suffix = " [Platinum]";
+			else if (event.platinum === "legend") suffix = " [Legend]";
+			else if (event.step_up) suffix = " [Step Up]";
+			else if (event.guaranteed) suffix = " [Guaranteed]";
 			return {
 				key: event.key,
 				id: event.id,
 				name: event.name,
-				displayName: `${event.start_on} - ${event.end_on}: ${event.name}${suffix}`,
+				platinum: event.platinum,
+				displayName: `${event.start_on} - ${event.end_on}:${suffix} ${event.name}`,
 				startDate: event.start_on,
 				endDate: event.end_on,
 			};
 		});
-	return events.filter(
-		(event, index) => events.findIndex((e) => e.name === event.name) === index,
-	); // Remove duplicates by name
+	// remove all but the most recent platinum/legend events
+	return events.filter((event, index) => {
+		if (!event.platinum) return true;
+		if (events[index + 2].platinum) return false;
+		return true;
+	});
 }

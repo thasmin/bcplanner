@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
+import clsx from "clsx";
 import { Cat } from "lucide-react";
 import { useEffect, useId, useState } from "react";
 import {
@@ -23,6 +24,20 @@ function useDebounce<T>(value: T, delay: number): T {
 	}, [value, delay]);
 
 	return debouncedValue;
+}
+
+function getRarityBgClass(rarityName: string) {
+	if (rarityName === "Uber") return "bg-yellow-50";
+	if (rarityName === "Legend") return "bg-purple-50";
+	if (rarityName === "Super Rare") return "bg-blue-50";
+	return "";
+}
+
+function getRarityColors(rarityName: string) {
+	if (rarityName === "Uber") return "bg-yellow-100 text-yellow-800";
+	if (rarityName === "Legend") return "bg-purple-100 text-purple-800";
+	if (rarityName === "Super Rare") return "bg-blue-100 text-blue-800";
+	return "bg-gray-100 text-gray-800";
 }
 
 type RollWithName = RollResult & { catName?: string };
@@ -197,10 +212,7 @@ function App() {
 								opposite track.
 							</>
 						) : (
-							<>
-								Track A and Track B show alternate timelines. Use a guaranteed
-								roll (when available) to switch between tracks.
-							</>
+							"Track A and Track B show alternate timelines. Use a guaranteed roll to switch between tracks."
 						)}
 					</p>
 				</div>
@@ -213,13 +225,13 @@ function App() {
 								</th>
 								<th
 									colSpan={rolls.some((r) => r.guaranteedA) ? 3 : 2}
-									className="px-3 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border-l border-r border-gray-300 bg-blue-50"
+									className="px-3 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border-l border-gray-300 bg-blue-50"
 								>
 									Track A
 								</th>
 								<th
 									colSpan={rolls.some((r) => r.guaranteedB) ? 3 : 2}
-									className="px-3 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border-r border-gray-300 bg-green-50"
+									className="px-3 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border-l border-gray-300 bg-green-50"
 								>
 									Track B
 								</th>
@@ -233,18 +245,18 @@ function App() {
 									Rarity
 								</th>
 								{rolls.some((r) => r.guaranteedA) && (
-									<th className="px-2 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-r border-gray-300">
+									<th className="px-2 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
 										Guaranteed
 									</th>
 								)}
-								<th className="px-2 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+								<th className="px-2 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-l border-gray-300">
 									Cat
 								</th>
 								<th className="px-2 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
 									Rarity
 								</th>
 								{rolls.some((r) => r.guaranteedB) && (
-									<th className="px-2 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-r border-gray-300">
+									<th className="px-2 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
 										Guaranteed
 									</th>
 								)}
@@ -267,10 +279,20 @@ function App() {
 										<td className="px-3 py-3 whitespace-nowrap text-sm font-medium text-gray-900">
 											{roll.trackA.rollNumber}
 										</td>
-										<td className="px-2 py-3 whitespace-nowrap text-sm text-gray-900 border-l border-gray-200">
+										<td
+											className={clsx(
+												"px-2 py-3 whitespace-nowrap text-sm text-gray-900 border-l border-gray-200",
+												getRarityBgClass(roll.trackA.rarityName),
+											)}
+										>
 											{roll.trackA.catName}
 										</td>
-										<td className="px-2 py-3 whitespace-nowrap text-sm">
+										<td
+											className={clsx(
+												"px-2 py-3 whitespace-nowrap text-sm",
+												getRarityBgClass(roll.trackA.rarityName),
+											)}
+										>
 											<span
 												className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
 													roll.trackA.rarityName === "Uber"
@@ -286,33 +308,48 @@ function App() {
 											</span>
 										</td>
 										{roll.guaranteedA && (
-											<td className="px-2 py-3 whitespace-nowrap text-xs text-gray-700 border-r border-gray-200">
+											<td
+												className={clsx(
+													"px-2 py-3 whitespace-nowrap text-xs text-gray-700",
+													getRarityBgClass(roll.guaranteedA.rarityName),
+												)}
+											>
 												<div className="font-medium text-amber-700">
 													{roll.guaranteedA.catName}
 												</div>
 												<div className="text-gray-500 mt-1">→ {nextFromA}B</div>
 											</td>
 										)}
-										<td className="px-2 py-3 whitespace-nowrap text-sm text-gray-900">
+
+										<td
+											className={clsx(
+												"px-2 py-3 whitespace-nowrap text-sm text-gray-900 border-l border-gray-300",
+												getRarityBgClass(roll.trackB.rarityName),
+											)}
+										>
 											{roll.trackB.catName}
 										</td>
-										<td className="px-2 py-3 whitespace-nowrap text-sm">
+										<td
+											className={clsx(
+												"px-2 py-3 whitespace-nowrap text-sm",
+												getRarityBgClass(roll.trackB.rarityName),
+											)}
+										>
 											<span
-												className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
-													roll.trackB.rarityName === "Uber"
-														? "bg-yellow-100 text-yellow-800"
-														: roll.trackB.rarityName === "Legend"
-															? "bg-purple-100 text-purple-800"
-															: roll.trackB.rarityName === "Super Rare"
-																? "bg-blue-100 text-blue-800"
-																: "bg-gray-100 text-gray-800"
-												}`}
+												className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${getRarityColors(
+													roll.trackB.rarityName,
+												)}`}
 											>
 												{roll.trackB.rarityName}
 											</span>
 										</td>
 										{roll.guaranteedB && (
-											<td className="px-2 py-3 whitespace-nowrap text-xs text-gray-700 border-r border-gray-200">
+											<td
+												className={clsx(
+													"px-2 py-3 whitespace-nowrap text-xs text-gray-700",
+													getRarityBgClass(roll.guaranteedB.rarityName),
+												)}
+											>
 												<div className="font-medium text-amber-700">
 													{roll.guaranteedB.catName}
 												</div>
