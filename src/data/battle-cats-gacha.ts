@@ -42,8 +42,10 @@ export interface GachaEvent {
 export interface RollResult {
 	/** Roll number (1-indexed) */
 	rollNumber: number;
-	/** Seed used for this roll */
-	seed: number;
+	/** Rarity seed used for this roll (determines the cat's rarity) */
+	raritySeed: number;
+	/** Slot seed used for this roll (determines which specific cat from the rarity pool) */
+	slotSeed: number;
 	/** Rarity of the cat */
 	rarity: Rarity;
 	/** Rarity name */
@@ -225,21 +227,29 @@ function rerollCat(
 
 /**
  * Simulates a single gacha roll
+ *
+ * @param raritySeed - The seed used to determine rarity
+ * @param event - The gacha event configuration
+ * @param lastCatId - The cat ID from the previous roll (for duplicate detection)
+ * @returns The roll result and the slot seed (which becomes the next roll's rarity seed)
  */
 export function rollOnce(
-	seed: number,
+	raritySeed: number,
 	event: GachaEvent,
 	lastCatId?: number,
-): { result: RollResult; nextSeed: number } {
-	const score = seed % BASE;
+): { result: RollResult; slotSeed: number } {
+	// Use rarity seed to determine the cat's rarity
+	const score = raritySeed % BASE;
 	const rarity = determineRarity(score, event.rates);
-	const nextSeed = advanceSeed(seed);
-	let { catId, slot } = selectCat(nextSeed, rarity, event);
+
+	// Advance to get slot seed, which determines which specific cat from that rarity
+	const slotSeed = advanceSeed(raritySeed);
+	let { catId, slot } = selectCat(slotSeed, rarity, event);
 
 	// Check for duplicates and reroll if necessary
 	let switchedFromCatId: number | undefined;
 	if (catId === lastCatId) {
-		const rerollResult = rerollCat(nextSeed, catId, slot, rarity, event);
+		const rerollResult = rerollCat(slotSeed, catId, slot, rarity, event);
 		if (rerollResult) {
 			switchedFromCatId = catId;
 			catId = rerollResult.catId;
@@ -249,7 +259,8 @@ export function rollOnce(
 
 	const result: RollResult = {
 		rollNumber: 0, // Will be set by caller
-		seed,
+		raritySeed,
+		slotSeed,
 		rarity,
 		rarityName: rarityToString(rarity),
 		catId,
@@ -259,51 +270,61 @@ export function rollOnce(
 		switchedFromCatId,
 	};
 
-	return { result, nextSeed };
+	// The slot seed becomes the next roll's rarity seed
+	return { result, slotSeed };
 }
 
 /**
  * Simulates multiple gacha rolls
  *
- * @param initialSeed - The starting seed
+ * @param initialRaritySeed - The starting rarity seed
  * @param event - The gacha event configuration
  * @param count - Number of rolls to simulate (default: 100)
  * @returns Array of roll results
  */
 export function rollMultiple(
-	initialSeed: number,
+	initialRaritySeed: number,
 	event: GachaEvent,
 	count: number = 100,
 ): RollResult[] {
 	const results: RollResult[] = [];
-	let currentSeed = initialSeed;
+	let raritySeed = initialRaritySeed;
 
 	let lastCatId: number | undefined;
 	for (let i = 0; i < count; i++) {
-		const { result, nextSeed } = rollOnce(currentSeed, event, lastCatId);
+		// Roll once using the current rarity seed
+		const { result, slotSeed } = rollOnce(raritySeed, event, lastCatId);
 		result.rollNumber = i + 1;
 		lastCatId = result.catId;
 		results.push(result);
-		currentSeed = advanceSeed(nextSeed);
+
+		// Advance from slot seed to get next rarity seed
+		raritySeed = advanceSeed(slotSeed);
 	}
 
 	return results;
 }
 
 /**
- * Creates a guaranteed Uber roll using the rarity seed from a given roll
+ * Creates a guaranteed Uber roll using a rarity seed
+ *
+ * @param raritySeed - The seed to use for selecting the guaranteed uber
+ * @param event - The gacha event configuration
+ * @param track - Which track this guaranteed appears on (0 = A, 1 = B)
+ * @param rollNumber - The position number for this roll
  */
 function createGuaranteedRoll(
-	seed: number,
+	raritySeed: number,
 	event: GachaEvent,
 	track: number,
 	rollNumber: number,
 ): RollResult {
-	// Guaranteed roll always gives an Uber
-	const { catId, slot } = selectCat(seed, Rarity.Uber, event);
+	// Guaranteed roll always gives an Uber, using the rarity seed directly as slot seed
+	const { catId, slot } = selectCat(raritySeed, Rarity.Uber, event);
 	return {
 		rollNumber,
-		seed,
+		raritySeed,
+		slotSeed: raritySeed, // For guaranteed rolls, rarity seed is used as slot seed
 		rarity: Rarity.Uber,
 		rarityName: rarityToString(Rarity.Uber),
 		catId,
@@ -323,18 +344,33 @@ interface BothTracksRoll {
 
 /**
  * Simulates multiple rolls showing both Track A and Track B
- * This allows you to see what happens if you switch tracks with a guaranteed roll
+ *
+ * Track A and Track B represent two parallel timelines from the same initial seed:
+ * - Track A uses the "odd" seed sequence: S1, S3, S5, S7, ...
+ * - Track B uses the "even" seed sequence: S2, S4, S6, S8, ...
+ *
+ * This allows you to see what happens if you switch tracks with a guaranteed roll.
+ *
+ * @param initialSeed - The starting seed (S0)
+ * @param event - The gacha event configuration
+ * @param count - Number of positions to simulate
+ * @param hasGuaranteed - Whether this event has guaranteed uber rolls
+ * @param isStepUp - Whether this is a step-up event (15 rolls vs 10 rolls)
  */
 export function rollMultipleBothTracks(
-	seed: number,
+	initialSeed: number,
 	event: GachaEvent,
 	count: number = 100,
 	hasGuaranteed: boolean = false,
 	isStepUp: boolean = false,
 ): BothTracksRoll[] {
 	const results: BothTracksRoll[] = [];
-	const trackARolls = rollMultiple(advanceSeed(seed), event, count);
-	const trackBRolls = rollMultiple(seed, event, count + 1).slice(1);
+
+	// Track A starts with S1 (one advance from S0), uses odd sequence
+	const trackARolls = rollMultiple(advanceSeed(initialSeed), event, count);
+
+	// Track B starts with S0 but wastes first roll, effectively using even sequence
+	const trackBRolls = rollMultiple(initialSeed, event, count + 1).slice(1);
 
 	// Second pass: calculate guaranteed rolls
 	const guaranteedRolls = isStepUp ? 15 : 10;
@@ -345,25 +381,38 @@ export function rollMultipleBothTracks(
 		const roll: BothTracksRoll = { trackA, trackB };
 
 		if (hasGuaranteed) {
-			const lastIndex = i + guaranteedRolls - 1;
+			// The guaranteed uber appears after rolling guaranteedRolls times
+			// For a 10-roll starting at position i, the last roll is at i + 9
+			const lastRollIndex = i + guaranteedRolls - 1;
 
-			if (lastIndex < count && lastIndex > 0) {
-				const seedIndex = lastIndex;
+			if (lastRollIndex < count && lastRollIndex > 0) {
+				// The guaranteed uber uses a rarity seed that's one position after the last roll
+				const guaranteedSeedIndex = lastRollIndex + 1;
 
-				const seedA = trackARolls[seedIndex + 1]?.seed;
-				if (seedA) {
+				// Track A's guaranteed: uses Track A's rarity seed, appears on Track B
+				const guaranteedRaritySeedA =
+					trackARolls[guaranteedSeedIndex]?.raritySeed;
+				if (guaranteedRaritySeedA) {
 					roll.guaranteedA = createGuaranteedRoll(
-						seedA,
+						guaranteedRaritySeedA,
 						event,
 						1, // Guaranteed appears on Track B (opposite of Track A)
 						trackA.rollNumber,
 					);
 				}
 
-				const seedB = trackBRolls[seedIndex + 1]?.seed;
-				if (seedB) {
+				// Track B's guaranteed: due to offset, uses different seed pattern
+				// Position 1 (i=0): uses trackARolls[guaranteedSeedIndex]
+				// Position 2 (i=1): uses trackARolls[guaranteedSeedIndex - 1]
+				// Position 3+ (i>=2): uses trackARolls[guaranteedSeedIndex]
+				const guaranteedRaritySeedB =
+					i === 1
+						? trackARolls[guaranteedSeedIndex - 1]?.raritySeed
+						: trackARolls[guaranteedSeedIndex]?.raritySeed;
+
+				if (guaranteedRaritySeedB) {
 					roll.guaranteedB = createGuaranteedRoll(
-						seedB,
+						guaranteedRaritySeedB,
 						event,
 						0, // Guaranteed appears on Track A (opposite of Track B)
 						trackB.rollNumber,
