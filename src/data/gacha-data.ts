@@ -69,14 +69,10 @@ export function createGachaEvent(
 	catDatabase: CatDatabase,
 ): GachaEvent {
 	// Group cats by rarity
-	const slots: GachaEvent["slots"] = {
-		[Rarity.Normal]: [],
-		[Rarity.Special]: [],
-		[Rarity.Rare]: [],
-		[Rarity.SuperRare]: [],
-		[Rarity.Uber]: [],
-		[Rarity.Legend]: [],
-	};
+	const slots = Object.fromEntries(
+		[Rarity.Normal, Rarity.Special, Rarity.Rare, Rarity.SuperRare, Rarity.Uber, Rarity.Legend]
+			.map(r => [r, []])
+	) as GachaEvent["slots"];
 
 	const cats = catDatabase.gacha[eventData.id]?.cats;
 	if (!cats) {
@@ -108,6 +104,17 @@ export function createGachaEvent(
 }
 
 /**
+ * Get suffix for event display name based on event properties
+ */
+function getEventSuffix(event: EventData): string {
+	if (event.platinum === "platinum") return " [Platinum]";
+	if (event.platinum === "legend") return " [Legend]";
+	if (event.step_up) return " [Step Up]";
+	if (event.guaranteed) return " [Guaranteed]";
+	return "";
+}
+
+/**
  * Get list of events for dropdown (active or future events only)
  */
 export function getEventOptions(eventsData: EventsData): EventOption[] {
@@ -117,22 +124,15 @@ export function getEventOptions(eventsData: EventsData): EventOption[] {
 		.map(([key, event]) => ({ ...event, key }))
 		.filter((event) => event.end_on >= today) // Only active or future events
 		.sort((a, b) => a.start_on.localeCompare(b.start_on)) // Latest first
-		.map((event) => {
-			let suffix = "";
-			if (event.platinum === "platinum") suffix = " [Platinum]";
-			else if (event.platinum === "legend") suffix = " [Legend]";
-			else if (event.step_up) suffix = " [Step Up]";
-			else if (event.guaranteed) suffix = " [Guaranteed]";
-			return {
-				key: event.key,
-				id: event.id,
-				name: event.name,
-				platinum: event.platinum,
-				displayName: `${event.start_on} - ${event.end_on}:${suffix} ${event.name}`,
-				startDate: event.start_on,
-				endDate: event.end_on,
-			};
-		});
+		.map((event) => ({
+			key: event.key,
+			id: event.id,
+			name: event.name,
+			platinum: event.platinum,
+			displayName: `${event.start_on} - ${event.end_on}:${getEventSuffix(event)} ${event.name}`,
+			startDate: event.start_on,
+			endDate: event.end_on,
+		}));
 	// remove all but the most recent platinum/legend events
 	return events.filter((event, index) => {
 		if (!event.platinum) return true;

@@ -87,11 +87,8 @@ export function advanceSeed(seed: number): number {
  * XOR shift operation with modulo to keep within 32-bit unsigned range
  */
 function xorShift(seed: number, direction: "<<" | ">>", bits: number): number {
-	if (direction === "<<") {
-		return ((seed ^ (seed << bits)) >>> 0) % UINT32_MAX;
-	} else {
-		return ((seed ^ (seed >>> bits)) >>> 0) % UINT32_MAX;
-	}
+	const shifted = direction === "<<" ? seed << bits : seed >>> bits;
+	return ((seed ^ shifted) >>> 0) % UINT32_MAX;
 }
 
 /**
@@ -118,35 +115,23 @@ const BASE = 10000;
  */
 function determineRarity(score: number, rates: GachaEvent["rates"]): Rarity {
 	const { rare, supa, uber } = rates;
-	const rareSupa = rare + supa;
-	const rareSupaUber = rareSupa + uber;
-
-	if (score < rare) {
-		return Rarity.Rare;
-	} else if (score < rareSupa) {
-		return Rarity.SuperRare;
-	} else if (score < rareSupaUber) {
-		return Rarity.Uber;
-	} else {
-		return Rarity.Legend;
-	}
+	if (score < rare) return Rarity.Rare;
+	if (score < rare + supa) return Rarity.SuperRare;
+	if (score < rare + supa + uber) return Rarity.Uber;
+	return Rarity.Legend;
 }
 
+const RARITY_NAMES = [
+	"Normal",
+	"Special",
+	"Rare",
+	"Super Rare",
+	"Uber",
+	"Legend",
+];
+
 function rarityToString(rarity: Rarity): string {
-	switch (rarity) {
-		case Rarity.Normal:
-			return "Normal";
-		case Rarity.Special:
-			return "Special";
-		case Rarity.Rare:
-			return "Rare";
-		case Rarity.SuperRare:
-			return "Super Rare";
-		case Rarity.Uber:
-			return "Uber";
-		case Rarity.Legend:
-			return "Legend";
-	}
+	return RARITY_NAMES[rarity];
 }
 
 // ============================================================================
@@ -343,6 +328,57 @@ interface BothTracksRoll {
 }
 
 /**
+ * Calculates guaranteed rolls for both tracks at a given position
+ */
+function calculateGuaranteedRolls(
+	position: number,
+	trackARolls: RollResult[],
+	guaranteedRolls: number,
+	count: number,
+	event: GachaEvent,
+): { guaranteedA?: RollResult; guaranteedB?: RollResult } {
+	const lastRollIndex = position + guaranteedRolls - 1;
+
+	if (lastRollIndex >= count || lastRollIndex <= 0) {
+		return {};
+	}
+
+	const guaranteedSeedIndex = lastRollIndex + 1;
+	const result: { guaranteedA?: RollResult; guaranteedB?: RollResult } = {};
+
+	// Track A's guaranteed: uses Track A's rarity seed, appears on Track B
+	const guaranteedRaritySeedA = trackARolls[guaranteedSeedIndex]?.raritySeed;
+	if (guaranteedRaritySeedA) {
+		result.guaranteedA = createGuaranteedRoll(
+			guaranteedRaritySeedA,
+			event,
+			1, // Guaranteed appears on Track B (opposite of Track A)
+			trackARolls[position].rollNumber,
+		);
+	}
+
+	// Track B's guaranteed: due to offset, uses different seed pattern
+	// Position 1 (i=0): uses trackARolls[guaranteedSeedIndex]
+	// Position 2 (i=1): uses trackARolls[guaranteedSeedIndex - 1]
+	// Position 3+ (i>=2): uses trackARolls[guaranteedSeedIndex]
+	const guaranteedRaritySeedB =
+		position === 1
+			? trackARolls[guaranteedSeedIndex - 1]?.raritySeed
+			: trackARolls[guaranteedSeedIndex]?.raritySeed;
+
+	if (guaranteedRaritySeedB) {
+		result.guaranteedB = createGuaranteedRoll(
+			guaranteedRaritySeedB,
+			event,
+			0, // Guaranteed appears on Track A (opposite of Track B)
+			trackARolls[position].rollNumber,
+		);
+	}
+
+	return result;
+}
+
+/**
  * Simulates multiple rolls showing both Track A and Track B
  *
  * Track A and Track B represent two parallel timelines from the same initial seed:
@@ -376,52 +412,15 @@ export function rollMultipleBothTracks(
 	const guaranteedRolls = isStepUp ? 15 : 10;
 
 	for (let i = 0; i < count; i++) {
-		const trackA = trackARolls[i];
-		const trackB = trackBRolls[i];
-		const roll: BothTracksRoll = { trackA, trackB };
+		const guaranteed = hasGuaranteed
+			? calculateGuaranteedRolls(i, trackARolls, guaranteedRolls, count, event)
+			: {};
 
-		if (hasGuaranteed) {
-			// The guaranteed uber appears after rolling guaranteedRolls times
-			// For a 10-roll starting at position i, the last roll is at i + 9
-			const lastRollIndex = i + guaranteedRolls - 1;
-
-			if (lastRollIndex < count && lastRollIndex > 0) {
-				// The guaranteed uber uses a rarity seed that's one position after the last roll
-				const guaranteedSeedIndex = lastRollIndex + 1;
-
-				// Track A's guaranteed: uses Track A's rarity seed, appears on Track B
-				const guaranteedRaritySeedA =
-					trackARolls[guaranteedSeedIndex]?.raritySeed;
-				if (guaranteedRaritySeedA) {
-					roll.guaranteedA = createGuaranteedRoll(
-						guaranteedRaritySeedA,
-						event,
-						1, // Guaranteed appears on Track B (opposite of Track A)
-						trackA.rollNumber,
-					);
-				}
-
-				// Track B's guaranteed: due to offset, uses different seed pattern
-				// Position 1 (i=0): uses trackARolls[guaranteedSeedIndex]
-				// Position 2 (i=1): uses trackARolls[guaranteedSeedIndex - 1]
-				// Position 3+ (i>=2): uses trackARolls[guaranteedSeedIndex]
-				const guaranteedRaritySeedB =
-					i === 1
-						? trackARolls[guaranteedSeedIndex - 1]?.raritySeed
-						: trackARolls[guaranteedSeedIndex]?.raritySeed;
-
-				if (guaranteedRaritySeedB) {
-					roll.guaranteedB = createGuaranteedRoll(
-						guaranteedRaritySeedB,
-						event,
-						0, // Guaranteed appears on Track A (opposite of Track B)
-						trackB.rollNumber,
-					);
-				}
-			}
-		}
-
-		results.push(roll);
+		results.push({
+			trackA: trackARolls[i],
+			trackB: trackBRolls[i],
+			...guaranteed,
+		});
 	}
 
 	return results;
