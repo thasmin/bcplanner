@@ -78,7 +78,7 @@ export function advanceSeed(seed: number): number {
 	seed = xorShift(seed, "<<", 13);
 	seed = xorShift(seed, ">>", 17);
 	seed = xorShift(seed, "<<", 15);
-	return seed >>> 0; // Ensure unsigned
+	return seed;
 }
 
 /**
@@ -172,6 +172,53 @@ function selectCat(
 	return { catId, slot };
 }
 
+/**
+ * Rerolls a duplicate cat by advancing the seed and removing occupied slots
+ *
+ * This mirrors the algorithm in lib/battle-cats-rolls/gacha.rb:183-216
+ *
+ * The algorithm works by:
+ * 1. Creating a copy of the rarity pool
+ * 2. Advancing the seed and removing the previous slot from the pool
+ * 3. Calculating a new slot position in the shrunk pool
+ * 4. Repeating until a different cat is found
+ *
+ * @param slotSeed - The seed value used for slot selection
+ * @param originalCatId - The cat ID that was duplicated
+ * @param originalSlot - The original slot index
+ * @param rarity - The rarity of the cat
+ * @param event - The gacha event configuration
+ * @returns The rerolled cat info, or null if no different cat could be found
+ */
+function rerollCat(
+	slotSeed: number,
+	originalCatId: number,
+	originalSlot: number,
+	rarity: Rarity,
+	event: GachaEvent,
+): { catId: number; slot: number; steps: number } | null {
+	const originalPool = event.slots[rarity] || [];
+	if (originalPool.length === 0) return null;
+	const rerollingSlots = [...originalPool];
+
+	let currentSeed = slotSeed;
+	let slot = originalSlot;
+	const duplicateCount = originalPool.filter(
+		(id) => id === originalCatId,
+	).length;
+
+	for (let steps = 1; steps <= duplicateCount; steps++) {
+		currentSeed = advanceSeed(currentSeed);
+		rerollingSlots.splice(slot, 1);
+		if (rerollingSlots.length === 0) return null;
+		slot = currentSeed % rerollingSlots.length;
+		const newCatId = rerollingSlots[slot];
+		if (newCatId !== originalCatId) return { catId: newCatId, slot, steps };
+	}
+
+	return null;
+}
+
 // ============================================================================
 // Main Gacha Roll Function
 // ============================================================================
@@ -182,23 +229,37 @@ function selectCat(
 export function rollOnce(
 	seed: number,
 	event: GachaEvent,
+	lastCatId?: number,
 ): { result: RollResult; nextSeed: number } {
 	const score = seed % BASE;
 	const rarity = determineRarity(score, event.rates);
 	const nextSeed = advanceSeed(seed);
-	const { catId, slot } = selectCat(nextSeed, rarity, event);
-	return {
-		result: {
-			rollNumber: 0, // Will be set by caller
-			seed,
-			rarity,
-			rarityName: rarityToString(rarity),
-			catId,
-			slot,
-			score,
-		},
-		nextSeed,
+	let { catId, slot } = selectCat(nextSeed, rarity, event);
+
+	// Check for duplicates and reroll if necessary (version 8.6 behavior)
+	let switchedFromCatId: number | undefined;
+	if (catId === lastCatId) {
+		const rerollResult = rerollCat(nextSeed, catId, slot, rarity, event);
+		if (rerollResult) {
+			switchedFromCatId = catId;
+			catId = rerollResult.catId;
+			slot = rerollResult.slot;
+		}
+	}
+
+	const result: RollResult = {
+		rollNumber: 0, // Will be set by caller
+		seed,
+		rarity,
+		rarityName: rarityToString(rarity),
+		catId,
+		slot,
+		score,
+		switchTracks: switchedFromCatId !== undefined,
+		switchedFromCatId,
 	};
+
+	return { result, nextSeed };
 }
 
 /**
@@ -217,51 +278,16 @@ export function rollMultiple(
 	const results: RollResult[] = [];
 	let currentSeed = initialSeed;
 
+	let lastCatId: number | undefined;
 	for (let i = 0; i < count; i++) {
-		let { result, nextSeed } = rollOnce(currentSeed, event);
+		const { result, nextSeed } = rollOnce(currentSeed, event, lastCatId);
 		result.rollNumber = i + 1;
-		// detect track switches
-		const prev = results.at(-1);
-		if (
-			prev &&
-			result.rarity === Rarity.Rare &&
-			prev.rarity === Rarity.Rare &&
-			result.catId === prev.catId
-		) {
-			console.log("detected track switch on roll", i + 1, prev, result);
-			const switchedResult = rollOnce(advanceSeed(currentSeed), event);
-			result = switchedResult.result;
-			result.rollNumber = i + 1;
-			result.switchTracks = true;
-			result.switchedFromCatId = prev.catId;
-			nextSeed = switchedResult.nextSeed;
-		}
+		lastCatId = result.catId;
 		results.push(result);
 		currentSeed = advanceSeed(nextSeed);
 	}
 
 	return results;
-}
-
-/**
- * Rolls both tracks (A and B) simultaneously
- */
-export function rollBoth(
-	seed: number,
-	event: GachaEvent,
-): {
-	trackA: RollResult;
-	trackB: RollResult;
-	nextSeed: number;
-} {
-	const nextSeed = advanceSeed(seed);
-	const { result: trackB, nextSeed: seedPlusTwo } = rollOnce(nextSeed, event);
-	const { result: trackC } = rollOnce(seedPlusTwo, event);
-	return {
-		trackA: trackB,
-		trackB: trackC,
-		nextSeed: seedPlusTwo, // S2
-	};
 }
 
 /**
@@ -288,7 +314,7 @@ function createGuaranteedRoll(
 	};
 }
 
-export interface BothTracksRoll {
+interface BothTracksRoll {
 	trackA: RollResult;
 	trackB: RollResult;
 	guaranteedA?: RollResult;

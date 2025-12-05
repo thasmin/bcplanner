@@ -26,7 +26,8 @@ function useDebounce<T>(value: T, delay: number): T {
 	return debouncedValue;
 }
 
-function getRarityBgClass(rarityName: string) {
+function getRarityBgClass(rarityName?: string) {
+	if (!rarityName) return "";
 	if (rarityName === "Uber") return "bg-yellow-50";
 	if (rarityName === "Legend") return "bg-purple-50";
 	if (rarityName === "Super Rare") return "bg-blue-50";
@@ -40,7 +41,10 @@ function getRarityColors(rarityName: string) {
 	return "bg-gray-100 text-gray-800";
 }
 
-type RollWithName = RollResult & { catName?: string };
+type RollWithName = RollResult & {
+	catName?: string;
+	switchedFromCatName?: string;
+};
 type BothTracksRollWithNames = {
 	trackA: RollWithName;
 	trackB: RollWithName;
@@ -103,10 +107,18 @@ function App() {
 				trackA: {
 					...roll.trackA,
 					catName: catDatabase.cats[roll.trackA.catId]?.name?.[0] || "Unknown",
+					switchedFromCatName: roll.trackA.switchTracks
+						? catDatabase.cats[roll.trackA.switchedFromCatId ?? -1]
+								?.name?.[0] || "Unknown"
+						: undefined,
 				},
 				trackB: {
 					...roll.trackB,
 					catName: catDatabase.cats[roll.trackB.catId]?.name?.[0] || "Unknown",
+					switchedFromCatName: roll.trackB.switchTracks
+						? catDatabase.cats[roll.trackB.switchedFromCatId ?? -1]
+								?.name?.[0] || "Unknown"
+						: undefined,
 				},
 			};
 
@@ -285,7 +297,13 @@ function App() {
 												getRarityBgClass(roll.trackA.rarityName),
 											)}
 										>
-											{roll.trackA.catName}
+											<div>{roll.trackA.catName}</div>
+											{roll.trackA.switchTracks && (
+												<div className="text-xs">
+													(switch from {roll.trackA.switchedFromCatName} to{" "}
+													{roll.trackA.rollNumber + 1}B)
+												</div>
+											)}
 										</td>
 										<td
 											className={clsx(
@@ -307,17 +325,23 @@ function App() {
 												{roll.trackA.rarityName}
 											</span>
 										</td>
-										{roll.guaranteedA && (
+										{rolls.some((r) => r.guaranteedA) && (
 											<td
 												className={clsx(
 													"px-2 py-3 whitespace-nowrap text-xs text-gray-700",
-													getRarityBgClass(roll.guaranteedA.rarityName),
+													getRarityBgClass("Uber"),
 												)}
 											>
-												<div className="font-medium text-amber-700">
-													{roll.guaranteedA.catName}
-												</div>
-												<div className="text-gray-500 mt-1">→ {nextFromA}B</div>
+												{roll.guaranteedA && (
+													<>
+														<div className="font-medium text-amber-700">
+															{roll.guaranteedA?.catName}
+														</div>
+														<div className="text-gray-500 mt-1">
+															→ {nextFromA}B
+														</div>
+													</>
+												)}
 											</td>
 										)}
 
@@ -343,17 +367,23 @@ function App() {
 												{roll.trackB.rarityName}
 											</span>
 										</td>
-										{roll.guaranteedB && (
+										{rolls.some((r) => r.guaranteedB) && (
 											<td
 												className={clsx(
 													"px-2 py-3 whitespace-nowrap text-xs text-gray-700",
-													getRarityBgClass(roll.guaranteedB.rarityName),
+													getRarityBgClass("Uber"),
 												)}
 											>
-												<div className="font-medium text-amber-700">
-													{roll.guaranteedB.catName}
-												</div>
-												<div className="text-gray-500 mt-1">→ {nextFromB}A</div>
+												{roll.guaranteedB && (
+													<>
+														<div className="font-medium text-amber-700">
+															{roll.guaranteedB.catName}
+														</div>
+														<div className="text-gray-500 mt-1">
+															→ {nextFromB}A
+														</div>
+													</>
+												)}
 											</td>
 										)}
 									</tr>
@@ -363,73 +393,6 @@ function App() {
 					</table>
 				</div>
 			</div>
-
-			{rolls.length > 0 && (
-				<div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
-					<div className="bg-white rounded-lg shadow p-6">
-						<h3 className="text-lg font-semibold mb-4">Track A Statistics</h3>
-						<div className="grid grid-cols-2 gap-4">
-							{["Rare", "Super Rare", "Uber", "Legend"].map((rarity) => {
-								const count = rolls.filter(
-									(roll) => roll.trackA.rarityName === rarity,
-								).length;
-								const percentage = ((count / rolls.length) * 100).toFixed(1);
-								return (
-									<div key={rarity} className="text-center">
-										<div className="text-2xl font-bold text-gray-900">
-											{count}
-										</div>
-										<div className="text-sm text-gray-600">
-											{rarity} ({percentage}%)
-										</div>
-									</div>
-								);
-							})}
-						</div>
-						{rolls.some((r) => r.guaranteedA) && (
-							<div className="mt-4 pt-4 border-t border-gray-200">
-								<div className="text-center">
-									<div className="text-xl font-bold text-amber-600">
-										{rolls.filter((r) => r.guaranteedA).length}
-									</div>
-									<div className="text-sm text-gray-600">Guaranteed Ubers</div>
-								</div>
-							</div>
-						)}
-					</div>
-					<div className="bg-white rounded-lg shadow p-6">
-						<h3 className="text-lg font-semibold mb-4">Track B Statistics</h3>
-						<div className="grid grid-cols-2 gap-4">
-							{["Rare", "Super Rare", "Uber", "Legend"].map((rarity) => {
-								const count = rolls.filter(
-									(roll) => roll.trackB.rarityName === rarity,
-								).length;
-								const percentage = ((count / rolls.length) * 100).toFixed(1);
-								return (
-									<div key={rarity} className="text-center">
-										<div className="text-2xl font-bold text-gray-900">
-											{count}
-										</div>
-										<div className="text-sm text-gray-600">
-											{rarity} ({percentage}%)
-										</div>
-									</div>
-								);
-							})}
-						</div>
-						{rolls.some((r) => r.guaranteedB) && (
-							<div className="mt-4 pt-4 border-t border-gray-200">
-								<div className="text-center">
-									<div className="text-xl font-bold text-amber-600">
-										{rolls.filter((r) => r.guaranteedB).length}
-									</div>
-									<div className="text-sm text-gray-600">Guaranteed Ubers</div>
-								</div>
-							</div>
-						)}
-					</div>
-				</div>
-			)}
 		</div>
 	);
 }
