@@ -236,7 +236,7 @@ export function rollOnce(
 	const nextSeed = advanceSeed(seed);
 	let { catId, slot } = selectCat(nextSeed, rarity, event);
 
-	// Check for duplicates and reroll if necessary (version 8.6 behavior)
+	// Check for duplicates and reroll if necessary
 	let switchedFromCatId: number | undefined;
 	if (catId === lastCatId) {
 		const rerollResult = rerollCat(nextSeed, catId, slot, rarity, event);
@@ -334,7 +334,7 @@ export function rollMultipleBothTracks(
 ): BothTracksRoll[] {
 	const results: BothTracksRoll[] = [];
 	const trackARolls = rollMultiple(advanceSeed(seed), event, count);
-	const trackBRolls = rollMultiple(seed, event, count);
+	const trackBRolls = rollMultiple(seed, event, count + 1).slice(1);
 
 	// Second pass: calculate guaranteed rolls
 	const guaranteedRolls = isStepUp ? 15 : 10;
@@ -345,33 +345,30 @@ export function rollMultipleBothTracks(
 		const roll: BothTracksRoll = { trackA, trackB };
 
 		if (hasGuaranteed) {
-			// Follow the track for guaranteed_rolls - 1 steps
 			const lastIndex = i + guaranteedRolls - 1;
 
 			if (lastIndex < count && lastIndex > 0) {
-				// Ruby: guaranteed switches to the opposite track
-				// So Track A's guaranteed uses Track B's seed, and vice versa
-				// Use the seed from one roll before the last (lastIndex - 1)
 				const seedIndex = lastIndex;
+
 				const seedA = trackARolls[seedIndex + 1]?.seed;
-				const seedB = trackBRolls[seedIndex + 2]?.seed;
-				// Swap the tracks: Track A uses Track B's seed
 				if (seedA) {
 					roll.guaranteedA = createGuaranteedRoll(
 						seedA,
 						event,
-						0,
+						1, // Guaranteed appears on Track B (opposite of Track A)
 						trackA.rollNumber,
 					);
 				}
 
-				if (seedB)
+				const seedB = trackBRolls[seedIndex + 1]?.seed;
+				if (seedB) {
 					roll.guaranteedB = createGuaranteedRoll(
 						seedB,
 						event,
-						1,
+						0, // Guaranteed appears on Track A (opposite of Track B)
 						trackB.rollNumber,
 					);
+				}
 			}
 		}
 

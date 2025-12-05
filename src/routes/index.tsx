@@ -220,11 +220,13 @@ function App() {
 						{rolls.some((r) => r.guaranteedA) ? (
 							<>
 								Guaranteed Uber rolls available. Using a guaranteed roll
-								advances you {isStepUp ? "14" : "10"} rolls and switches to the
-								opposite track.
+								advances you {isStepUp ? "15" : "10"} rolls and switches to the
+								opposite track. If the last roll before the guaranteed has a
+								duplicate (reroll), the track switches twice and returns to the
+								original track.
 							</>
 						) : (
-							"Track A and Track B show alternate timelines. Use a guaranteed roll to switch between tracks."
+							"Track A and Track B show alternate timelines. Duplicate cats are automatically rerolled and switch tracks."
 						)}
 					</p>
 				</div>
@@ -277,14 +279,30 @@ function App() {
 						<tbody className="bg-white divide-y divide-gray-200">
 							{rolls.map((roll) => {
 								const guaranteedRolls = isStepUp ? 15 : 10;
+								// Last roll in the sequence before guaranteed triggers
 								const lastRollNumber =
 									roll.trackA.rollNumber + guaranteedRolls - 1;
+								const lastRollIndex = lastRollNumber - 1; // Convert to 0-indexed
 
-								// Based on Ruby: next_index = last.sequence - (last.track ^ 1)
-								// For track A (0): next = last - 1, switch to B
-								// For track B (1): next = last - 0, switch to A
-								const nextFromA = lastRollNumber - 1;
-								const nextFromB = lastRollNumber;
+								// Check if the last roll (that triggers the guaranteed) has a duplicate switch
+								const lastRoll = rolls[lastRollIndex];
+								const trackASwitchesOnLast = lastRoll?.trackA.switchTracks ?? false;
+								const trackBSwitchesOnLast = lastRoll?.trackB.switchTracks ?? false;
+
+								// Landing position after using the guaranteed
+								// If you start at 1A and do a 10-roll: 1,2,3,4,5,6,7,8,9,10 then land at 11
+								// Normally: Track A → Track B, Track B → Track A
+								// But if the last roll has a duplicate:
+								//   - Duplicate causes one track switch
+								//   - Guaranteed causes another track switch
+								//   - Double switch = returns to original track
+								const nextPositionFromA = lastRollNumber + 1;
+								const nextTrackFromA = trackASwitchesOnLast ? "A" : "B"; // Double switch stays on A
+								const nextFromA = `${nextPositionFromA}${nextTrackFromA}`;
+
+								const nextPositionFromB = lastRollNumber + 1;
+								const nextTrackFromB = trackBSwitchesOnLast ? "B" : "A"; // Double switch stays on B
+								const nextFromB = `${nextPositionFromB}${nextTrackFromB}`;
 
 								return (
 									<tr key={roll.trackA.rollNumber}>
@@ -299,9 +317,9 @@ function App() {
 										>
 											<div>{roll.trackA.catName}</div>
 											{roll.trackA.switchTracks && (
-												<div className="text-xs">
-													(switch from {roll.trackA.switchedFromCatName} to{" "}
-													{roll.trackA.rollNumber + 1}B)
+												<div className="text-xs text-orange-600">
+													⚠️ Rerolled from {roll.trackA.switchedFromCatName}
+													<div>→ {roll.trackA.rollNumber + 1}B</div>
 												</div>
 											)}
 										</td>
@@ -338,7 +356,7 @@ function App() {
 															{roll.guaranteedA?.catName}
 														</div>
 														<div className="text-gray-500 mt-1">
-															→ {nextFromA}B
+															→ {nextFromA}
 														</div>
 													</>
 												)}
@@ -351,7 +369,13 @@ function App() {
 												getRarityBgClass(roll.trackB.rarityName),
 											)}
 										>
-											{roll.trackB.catName}
+											<div>{roll.trackB.catName}</div>
+											{roll.trackB.switchTracks && (
+												<div className="text-xs text-orange-600">
+													⚠️ Rerolled from {roll.trackB.switchedFromCatName}
+													<div>→ {roll.trackB.rollNumber + 1}A</div>
+												</div>
+											)}
 										</td>
 										<td
 											className={clsx(
@@ -380,7 +404,7 @@ function App() {
 															{roll.guaranteedB.catName}
 														</div>
 														<div className="text-gray-500 mt-1">
-															→ {nextFromB}A
+															→ {nextFromB}
 														</div>
 													</>
 												)}
