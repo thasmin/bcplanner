@@ -4,6 +4,7 @@ import clsx from "clsx";
 import { Cat } from "lucide-react";
 import { useEffect, useId, useState } from "react";
 import {
+	type BothTracksRoll,
 	type RollResult,
 	rollMultipleBothTracks,
 } from "../data/battle-cats-gacha";
@@ -45,7 +46,10 @@ type RollWithName = RollResult & {
 	catName?: string;
 	switchedFromCatName?: string;
 };
-type BothTracksRollWithNames = {
+type BothTracksRollWithNames = Omit<
+	BothTracksRoll,
+	"trackA" | "trackB" | "guaranteedA" | "guaranteedB"
+> & {
 	trackA: RollWithName;
 	trackB: RollWithName;
 	guaranteedA?: RollWithName;
@@ -128,6 +132,7 @@ function App() {
 					catName:
 						catDatabase.cats[roll.guaranteedA.catId]?.name?.[0] || "Unknown",
 				};
+				result.nextAfterGuaranteedA = roll.nextAfterGuaranteedA;
 			}
 
 			if (roll.guaranteedB) {
@@ -136,6 +141,7 @@ function App() {
 					catName:
 						catDatabase.cats[roll.guaranteedB.catId]?.name?.[0] || "Unknown",
 				};
+				result.nextAfterGuaranteedB = roll.nextAfterGuaranteedB;
 			}
 
 			return result;
@@ -278,32 +284,6 @@ function App() {
 						</thead>
 						<tbody className="bg-white divide-y divide-gray-200">
 							{rolls.map((roll) => {
-								const guaranteedRolls = isStepUp ? 15 : 10;
-								// Last roll in the sequence before guaranteed triggers
-								const lastRollNumber =
-									roll.trackA.rollNumber + guaranteedRolls - 1;
-								const lastRollIndex = lastRollNumber - 1; // Convert to 0-indexed
-
-								// Check if the last roll (that triggers the guaranteed) has a duplicate switch
-								const lastRoll = rolls[lastRollIndex];
-								const trackASwitchesOnLast = lastRoll?.trackA.switchTracks ?? false;
-								const trackBSwitchesOnLast = lastRoll?.trackB.switchTracks ?? false;
-
-								// Landing position after using the guaranteed
-								// If you start at 1A and do a 10-roll: 1,2,3,4,5,6,7,8,9,10 then land at 11
-								// Normally: Track A → Track B, Track B → Track A
-								// But if the last roll has a duplicate:
-								//   - Duplicate causes one track switch
-								//   - Guaranteed causes another track switch
-								//   - Double switch = returns to original track
-								const nextPositionFromA = lastRollNumber + 1;
-								const nextTrackFromA = trackASwitchesOnLast ? "A" : "B"; // Double switch stays on A
-								const nextFromA = `${nextPositionFromA}${nextTrackFromA}`;
-
-								const nextPositionFromB = lastRollNumber + 1;
-								const nextTrackFromB = trackBSwitchesOnLast ? "B" : "A"; // Double switch stays on B
-								const nextFromB = `${nextPositionFromB}${nextTrackFromB}`;
-
 								return (
 									<tr key={roll.trackA.rollNumber}>
 										<td className="px-3 py-3 whitespace-nowrap text-sm font-medium text-gray-900">
@@ -356,7 +336,7 @@ function App() {
 															{roll.guaranteedA?.catName}
 														</div>
 														<div className="text-gray-500 mt-1">
-															→ {nextFromA}
+															→ {roll.nextAfterGuaranteedA}
 														</div>
 													</>
 												)}
@@ -404,7 +384,7 @@ function App() {
 															{roll.guaranteedB.catName}
 														</div>
 														<div className="text-gray-500 mt-1">
-															→ {nextFromB}
+															→ {roll.nextAfterGuaranteedB}
 														</div>
 													</>
 												)}

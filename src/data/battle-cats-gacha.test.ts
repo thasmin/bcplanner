@@ -106,28 +106,33 @@ describe("Battle Cats Gacha", () => {
 			hasGuaranteed,
 			isStepUp,
 		);
-		const guaranteedRolls = isStepUp ? 15 : 10;
 
-		// For position 1, after 10 rolls (1-10), should land at 11
-		const roll1 = results[0];
-		const lastRollNumber = 1 + guaranteedRolls - 1; // Should be 10
-		const expectedLandingPosition = lastRollNumber + 1; // Should be 11
-		const lastRoll = results[lastRollNumber - 1];
+		expect(results[0].trackA.catId).toBe(412);
+		expect(results[0].guaranteedA?.catId).toBe(549);
+		expect(results[0].nextAfterGuaranteedA).toBe("11B");
 
-		expect(lastRollNumber).toBe(10);
-		expect(expectedLandingPosition).toBe(11);
+		expect(results[1].trackA.catId).toBe(48);
+		expect(results[1].guaranteedA?.catId).toBe(488);
+		expect(results[1].nextAfterGuaranteedA).toBe("12B");
 
-		// Track for guaranteed should switch (unless there's a duplicate on roll 10)
-		if (roll1.guaranteedA) {
-			// Should be track 1 (B) unless roll 10A has a duplicate
-			const expectedTrack = lastRoll.trackA.switchTracks ? 0 : 1;
-			expect(roll1.guaranteedA.track).toBe(expectedTrack);
-		}
+		expect(results[7].trackA.catId).toBe(38);
+		expect(results[7].guaranteedA?.catId).toBe(549);
+		expect(results[7].nextAfterGuaranteedA).toBe("19A");
 
-		if (roll1.guaranteedB) {
-			// Should be track 0 (A) unless roll 10B has a duplicate
-			const expectedTrack = lastRoll.trackB.switchTracks ? 1 : 0;
-			expect(roll1.guaranteedB.track).toBe(expectedTrack);
-		}
+		expect(results[8].trackA.catId).toBe(148);
+		expect(results[8].guaranteedA?.catId).toBe(489);
+		expect(results[8].nextAfterGuaranteedA).toBe("20A");
+
+		expect(results[0].trackB.catId).toBe(496);
+		expect(results[0].guaranteedB?.catId).toBe(549);
+		expect(results[0].nextAfterGuaranteedB).toBe("12A");
+
+		expect(results[6].trackB.catId).toBe(39);
+		expect(results[6].guaranteedB?.catId).toBe(488);
+		expect(results[6].nextAfterGuaranteedB).toBe("18B");
+
+		expect(results[7].trackB.catId).toBe(53);
+		expect(results[7].guaranteedB?.catId).toBe(417);
+		expect(results[7].nextAfterGuaranteedB).toBe("19B");
 	});
 });

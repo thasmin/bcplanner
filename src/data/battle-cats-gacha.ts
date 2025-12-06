@@ -76,7 +76,7 @@ const UINT32_MAX = 0x100000000;
  * Advances the seed using XORShift32 algorithm
  * This is the core RNG used by Battle Cats
  */
-export function advanceSeed(seed: number): number {
+function advanceSeed(seed: number): number {
 	seed = xorShift(seed, "<<", 13);
 	seed = xorShift(seed, ">>", 17);
 	seed = xorShift(seed, "<<", 15);
@@ -320,62 +320,15 @@ function createGuaranteedRoll(
 	};
 }
 
-interface BothTracksRoll {
+export interface BothTracksRoll {
 	trackA: RollResult;
 	trackB: RollResult;
 	guaranteedA?: RollResult;
 	guaranteedB?: RollResult;
-}
-
-/**
- * Calculates guaranteed rolls for both tracks at a given position
- */
-function calculateGuaranteedRolls(
-	position: number,
-	trackARolls: RollResult[],
-	guaranteedRolls: number,
-	count: number,
-	event: GachaEvent,
-): { guaranteedA?: RollResult; guaranteedB?: RollResult } {
-	const lastRollIndex = position + guaranteedRolls - 1;
-
-	if (lastRollIndex >= count || lastRollIndex <= 0) {
-		return {};
-	}
-
-	const guaranteedSeedIndex = lastRollIndex + 1;
-	const result: { guaranteedA?: RollResult; guaranteedB?: RollResult } = {};
-
-	// Track A's guaranteed: uses Track A's rarity seed, appears on Track B
-	const guaranteedRaritySeedA = trackARolls[guaranteedSeedIndex]?.raritySeed;
-	if (guaranteedRaritySeedA) {
-		result.guaranteedA = createGuaranteedRoll(
-			guaranteedRaritySeedA,
-			event,
-			1, // Guaranteed appears on Track B (opposite of Track A)
-			trackARolls[position].rollNumber,
-		);
-	}
-
-	// Track B's guaranteed: due to offset, uses different seed pattern
-	// Position 1 (i=0): uses trackARolls[guaranteedSeedIndex]
-	// Position 2 (i=1): uses trackARolls[guaranteedSeedIndex - 1]
-	// Position 3+ (i>=2): uses trackARolls[guaranteedSeedIndex]
-	const guaranteedRaritySeedB =
-		position === 1
-			? trackARolls[guaranteedSeedIndex - 1]?.raritySeed
-			: trackARolls[guaranteedSeedIndex]?.raritySeed;
-
-	if (guaranteedRaritySeedB) {
-		result.guaranteedB = createGuaranteedRoll(
-			guaranteedRaritySeedB,
-			event,
-			0, // Guaranteed appears on Track A (opposite of Track B)
-			trackARolls[position].rollNumber,
-		);
-	}
-
-	return result;
+	/** Next position after using guaranteed from track A (e.g., "11B") */
+	nextAfterGuaranteedA?: string;
+	/** Next position after using guaranteed from track B (e.g., "11A") */
+	nextAfterGuaranteedB?: string;
 }
 
 /**
@@ -411,15 +364,69 @@ export function rollMultipleBothTracks(
 	// Second pass: calculate guaranteed rolls
 	const guaranteedRolls = isStepUp ? 15 : 10;
 
+	function calculateGuaranteed(
+		initialSeed: number,
+		initialCatId: number,
+		rolls: number,
+		event: GachaEvent,
+	) {
+		let seed = initialSeed;
+		let lastCatId: number | undefined = initialCatId;
+		let switches = 0;
+		lastCatId = undefined;
+		for (let j = 0; j < rolls; j++) {
+			const roll = rollOnce(seed, event, lastCatId);
+			seed = advanceSeed(roll.slotSeed);
+			if (roll.result.switchTracks) {
+				switches += 1;
+				seed = advanceSeed(seed);
+			}
+			lastCatId = roll.result.catId;
+		}
+		return { roll: createGuaranteedRoll(seed, event, 1, rolls), switches };
+	}
+
 	for (let i = 0; i < count; i++) {
-		const guaranteed = hasGuaranteed
-			? calculateGuaranteedRolls(i, trackARolls, guaranteedRolls, count, event)
-			: {};
+		let guaranteedA:
+			| { roll: RollResult | undefined; switches: number }
+			| undefined;
+		let guaranteedB:
+			| { roll: RollResult | undefined; switches: number }
+			| undefined;
+		let nextAfterGuaranteedA: string | undefined;
+		let nextAfterGuaranteedB: string | undefined;
+		if (hasGuaranteed) {
+			guaranteedA = calculateGuaranteed(
+				trackARolls[i].raritySeed,
+				trackARolls[i].catId,
+				guaranteedRolls,
+				event,
+			);
+			guaranteedB = calculateGuaranteed(
+				trackBRolls[i].raritySeed,
+				trackBRolls[i].catId,
+				guaranteedRolls,
+				event,
+			);
+
+			const seedsUsedA = guaranteedRolls * 2 + guaranteedA.switches;
+			const slotsForwardA = Math.ceil(seedsUsedA / 2) + 1;
+			const nextTrackA = (0 + guaranteedA.switches) % 2 === 0 ? "B" : "A";
+			nextAfterGuaranteedA = `${i + slotsForwardA}${nextTrackA}`;
+
+			const seedsUsedB = guaranteedRolls * 2 + guaranteedB.switches + 1;
+			const slotsForwardB = Math.ceil(seedsUsedB / 2) + 1;
+			const nextTrackB = (0 + guaranteedB.switches) % 2 === 0 ? "A" : "B";
+			nextAfterGuaranteedB = `${i + slotsForwardB}${nextTrackB}`;
+		}
 
 		results.push({
 			trackA: trackARolls[i],
 			trackB: trackBRolls[i],
-			...guaranteed,
+			guaranteedA: guaranteedA?.roll,
+			guaranteedB: guaranteedB?.roll,
+			nextAfterGuaranteedA,
+			nextAfterGuaranteedB,
 		});
 	}
 
