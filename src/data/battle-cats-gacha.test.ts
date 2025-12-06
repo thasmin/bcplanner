@@ -134,5 +134,13 @@ describe("Battle Cats Gacha", () => {
 		expect(results[7].trackB.catId).toBe(53);
 		expect(results[7].guaranteedB?.catId).toBe(417);
 		expect(results[7].nextAfterGuaranteedB).toBe("19B");
+
+		// detect switch on row 17
+		expect(results[15].trackA.catId).toBe(147);
+		expect(results[15].guaranteedA?.catId).toBe(415);
+		expect(results[15].nextAfterGuaranteedA).toBe("27A");
+		expect(results[16].trackA.catId).toBe(377);
+		expect(results[16].guaranteedA?.catId).toBe(488);
+		expect(results[16].nextAfterGuaranteedA).toBe("28A");
 	});
 });

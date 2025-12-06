@@ -397,26 +397,36 @@ export function rollMultipleBothTracks(
 		let nextAfterGuaranteedB: string | undefined;
 		if (hasGuaranteed) {
 			guaranteedA = calculateGuaranteed(
-				trackARolls[i].raritySeed,
+				!trackARolls[i].switchTracks
+					? trackARolls[i].raritySeed
+					: advanceSeed(trackARolls[i].raritySeed),
 				trackARolls[i].catId,
 				guaranteedRolls,
 				event,
 			);
 			guaranteedB = calculateGuaranteed(
-				trackBRolls[i].raritySeed,
+				!trackBRolls[i].switchTracks
+					? trackBRolls[i].raritySeed
+					: advanceSeed(trackBRolls[i].raritySeed),
 				trackBRolls[i].catId,
 				guaranteedRolls,
 				event,
 			);
 
-			const seedsUsedA = guaranteedRolls * 2 + guaranteedA.switches;
+			const addForSwitchA = trackARolls[i].switchTracks ? 1 : 0;
+			const seedsUsedA =
+				guaranteedRolls * 2 + guaranteedA.switches + addForSwitchA;
 			const slotsForwardA = Math.ceil(seedsUsedA / 2) + 1;
-			const nextTrackA = (0 + guaranteedA.switches) % 2 === 0 ? "B" : "A";
+			const nextTrackA =
+				(0 + guaranteedA.switches + addForSwitchA) % 2 === 0 ? "B" : "A";
 			nextAfterGuaranteedA = `${i + slotsForwardA}${nextTrackA}`;
 
-			const seedsUsedB = guaranteedRolls * 2 + guaranteedB.switches + 1;
+			const addForSwitchB = trackBRolls[i].switchTracks ? 1 : 0;
+			const seedsUsedB =
+				guaranteedRolls * 2 + guaranteedB.switches + 1 + addForSwitchB;
 			const slotsForwardB = Math.ceil(seedsUsedB / 2) + 1;
-			const nextTrackB = (0 + guaranteedB.switches) % 2 === 0 ? "A" : "B";
+			const nextTrackB =
+				(0 + guaranteedB.switches + addForSwitchB) % 2 === 0 ? "A" : "B";
 			nextAfterGuaranteedB = `${i + slotsForwardB}${nextTrackB}`;
 		}
 

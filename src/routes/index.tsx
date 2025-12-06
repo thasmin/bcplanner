@@ -295,10 +295,13 @@ function App() {
 												getRarityBgClass(roll.trackA.rarityName),
 											)}
 										>
-											<div>{roll.trackA.catName}</div>
+											<div>
+												{roll.trackA.catName} ({roll.trackA.catId})
+											</div>
 											{roll.trackA.switchTracks && (
 												<div className="text-xs text-orange-600">
-													⚠️ Rerolled from {roll.trackA.switchedFromCatName}
+													Rerolled from {roll.trackA.switchedFromCatName} (
+													{roll.trackA.switchedFromCatId})
 													<div>→ {roll.trackA.rollNumber + 1}B</div>
 												</div>
 											)}
@@ -333,7 +336,8 @@ function App() {
 												{roll.guaranteedA && (
 													<>
 														<div className="font-medium text-amber-700">
-															{roll.guaranteedA?.catName}
+															{roll.guaranteedA?.catName} (
+															{roll.guaranteedA?.catId})
 														</div>
 														<div className="text-gray-500 mt-1">
 															→ {roll.nextAfterGuaranteedA}
@@ -349,10 +353,13 @@ function App() {
 												getRarityBgClass(roll.trackB.rarityName),
 											)}
 										>
-											<div>{roll.trackB.catName}</div>
+											<div>
+												{roll.trackB.catName} ({roll.trackB.catId})
+											</div>
 											{roll.trackB.switchTracks && (
 												<div className="text-xs text-orange-600">
-													⚠️ Rerolled from {roll.trackB.switchedFromCatName}
+													⚠Rerolled from {roll.trackB.switchedFromCatName} (
+													{roll.trackB.switchedFromCatId})
 													<div>→ {roll.trackB.rollNumber + 1}A</div>
 												</div>
 											)}
@@ -381,7 +388,8 @@ function App() {
 												{roll.guaranteedB && (
 													<>
 														<div className="font-medium text-amber-700">
-															{roll.guaranteedB.catName}
+															{roll.guaranteedB.catName} (
+															{roll.guaranteedB.catId})
 														</div>
 														<div className="text-gray-500 mt-1">
 															→ {roll.nextAfterGuaranteedB}
