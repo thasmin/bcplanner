@@ -331,6 +331,28 @@ export interface BothTracksRoll {
 	nextAfterGuaranteedB?: string;
 }
 
+function calculateGuaranteed(
+	initialSeed: number,
+	initialCatId: number,
+	rolls: number,
+	event: GachaEvent,
+) {
+	let seed = initialSeed;
+	let lastCatId: number | undefined = initialCatId;
+	let switches = 0;
+	lastCatId = undefined;
+	for (let j = 0; j < rolls; j++) {
+		const roll = rollOnce(seed, event, lastCatId);
+		seed = advanceSeed(roll.slotSeed);
+		if (roll.result.switchTracks) {
+			switches += 1;
+			seed = advanceSeed(seed);
+		}
+		lastCatId = roll.result.catId;
+	}
+	return { roll: createGuaranteedRoll(seed, event, 1, rolls), switches };
+}
+
 /**
  * Simulates multiple rolls showing both Track A and Track B
  *
@@ -363,28 +385,6 @@ export function rollMultipleBothTracks(
 
 	// Second pass: calculate guaranteed rolls
 	const guaranteedRolls = isStepUp ? 15 : 10;
-
-	function calculateGuaranteed(
-		initialSeed: number,
-		initialCatId: number,
-		rolls: number,
-		event: GachaEvent,
-	) {
-		let seed = initialSeed;
-		let lastCatId: number | undefined = initialCatId;
-		let switches = 0;
-		lastCatId = undefined;
-		for (let j = 0; j < rolls; j++) {
-			const roll = rollOnce(seed, event, lastCatId);
-			seed = advanceSeed(roll.slotSeed);
-			if (roll.result.switchTracks) {
-				switches += 1;
-				seed = advanceSeed(seed);
-			}
-			lastCatId = roll.result.catId;
-		}
-		return { roll: createGuaranteedRoll(seed, event, 1, rolls), switches };
-	}
 
 	for (let i = 0; i < count; i++) {
 		let guaranteedA:
