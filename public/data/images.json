@@ -1,0 +1,3407 @@
+Found 851 cats
+[
+  {
+    "name": "Cat Units",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/3/3e/Cat_units_icon.png/85px-Cat_units_icon.png"
+  },
+  {
+    "name": "Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/a/af/Uni000_s00.png/89px-Uni000_s00.png"
+  },
+  {
+    "name": "Tank Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/8/89/Uni001_s00.png/89px-Uni001_s00.png"
+  },
+  {
+    "name": "Axe Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/3/38/Uni002_s00.png/89px-Uni002_s00.png"
+  },
+  {
+    "name": "Gross Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/e/e3/Uni003_s00.png/89px-Uni003_s00.png"
+  },
+  {
+    "name": "Cow Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/2d/Uni004_s00.png/89px-Uni004_s00.png"
+  },
+  {
+    "name": "Bird Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/77/Uni005_s00.png/89px-Uni005_s00.png"
+  },
+  {
+    "name": "Fish Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/23/Uni006_s00.png/89px-Uni006_s00.png"
+  },
+  {
+    "name": "Lizard Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/9/98/Uni007_s00.png/89px-Uni007_s00.png"
+  },
+  {
+    "name": "Titan Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/28/Uni008_s00.png/89px-Uni008_s00.png"
+  },
+  {
+    "name": "Superfeline",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/5/54/Uni643_s00.png/89px-Uni643_s00.png"
+  },
+  {
+    "name": "The Cat God",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/2f/God_cat_homemade.png/60px-God_cat_homemade.png"
+  },
+  {
+    "name": "Ninja Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/9/92/Uni018_s00.png/89px-Uni018_s00.png"
+  },
+  {
+    "name": "Sumo Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/a/a0/Uni021_s00.png/89px-Uni021_s00.png"
+  },
+  {
+    "name": "Samurai Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/b/b8/Uni020_s00.png/89px-Uni020_s00.png"
+  },
+  {
+    "name": "Zombie Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/f/ff/Uni019_s00.png/89px-Uni019_s00.png"
+  },
+  {
+    "name": "Cats in a Box",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/1/16/Uni014_s00.png/89px-Uni014_s00.png"
+  },
+  {
+    "name": "Boogie Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/d/d3/Uni022_s00.png/89px-Uni022_s00.png"
+  },
+  {
+    "name": "Bondage Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/2f/Uni012_s00.png/89px-Uni012_s00.png"
+  },
+  {
+    "name": "Dom Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/6/67/Uni013_s00.png/89px-Uni013_s00.png"
+  },
+  {
+    "name": "Kung Fu Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/c/c3/Uni010_s00.png/89px-Uni010_s00.png"
+  },
+  {
+    "name": "Actress Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/b/b2/Uni009_s00.png/89px-Uni009_s00.png"
+  },
+  {
+    "name": "Skirt Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/7e/Uni023_s00.png/89px-Uni023_s00.png"
+  },
+  {
+    "name": "Panties Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/5/59/Uni015_s00.png/89px-Uni015_s00.png"
+  },
+  {
+    "name": "Mr.",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/b/b8/Uni011_s00.png/89px-Uni011_s00.png"
+  },
+  {
+    "name": "Valkyrie Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/3/39/Uni024_s00.png/89px-Uni024_s00.png"
+  },
+  {
+    "name": "Bahamut Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/a/ac/Uni025_s00.png/89px-Uni025_s00.png"
+  },
+  {
+    "name": "Cat God the Great",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/28/Uni437_s00.png/89px-Uni437_s00.png"
+  },
+  {
+    "name": "Filibuster Cat X",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/f/f5/Uni462_s00.png/89px-Uni462_s00.png"
+  },
+  {
+    "name": "Jagando Jr.",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/f/f2/Uni622_c00.png/89px-Uni622_c00.png"
+  },
+  {
+    "name": "Ururun Wolf",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/3/3b/Uni130_s00.png/89px-Uni130_s00.png"
+  },
+  {
+    "name": "Li'l Nyandam",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/5/53/Uni172_s00.png/89px-Uni172_s00.png"
+  },
+  {
+    "name": "Red Riding Mina",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/22/Uni268_s00.png/89px-Uni268_s00.png"
+  },
+  {
+    "name": "Miyamoku Musashi",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/8/8e/Uni323_s00.png/89px-Uni323_s00.png"
+  },
+  {
+    "name": "Mecha-Bun",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/b/b4/Uni426_s00.png/89px-Uni426_s00.png"
+  },
+  {
+    "name": "Idi:N",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/b/b4/Uni568_s00.png/89px-Uni568_s00.png"
+  },
+  {
+    "name": "Dogumaru",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/8/82/Uni464_s00.png/89px-Uni464_s00.png"
+  },
+  {
+    "name": "Urs &amp; Fenrir",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/28/Uni532_s00.png/89px-Uni532_s00.png"
+  },
+  {
+    "name": "Elder Mask Doron",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/7a/Uni613_s00.png/89px-Uni613_s00.png"
+  },
+  {
+    "name": "Elder Beast Naala",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/9/98/Uni653_s00.png/89px-Uni653_s00.png"
+  },
+  {
+    "name": "Ancient Egg: N000",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/3/37/Uni691_s00.png/89px-Uni691_s00.png"
+  },
+  {
+    "name": "Master of Life Dr. Nova",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/1/1b/Uni771_c00.png/89px-Uni771_c00.png"
+  },
+  {
+    "name": "Master of Mind Soractes",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/29/Uni728_c00.png/89px-Uni728_c00.png"
+  },
+  {
+    "name": "Master of Logic Newton",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/0/0e/Uni801_c00.png/89px-Uni801_c00.png"
+  },
+  {
+    "name": "Hermit Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/0/0d/Uni352_s00.png/89px-Uni352_s00.png"
+  },
+  {
+    "name": "Masked Yulala",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/3/3e/Uni383_s00.png/89px-Uni383_s00.png"
+  },
+  {
+    "name": "Master Uril",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/0/0b/Uni554_s00.png/89px-Uni554_s00.png"
+  },
+  {
+    "name": "Moneko",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/f/f7/Uni016_s00.png/89px-Uni016_s00.png"
+  },
+  {
+    "name": "Tricycle Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/f/f6/Uni017_s00.png/89px-Uni017_s00.png"
+  },
+  {
+    "name": "Bean Cats",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/26/Uni123_s00.png/89px-Uni123_s00.png"
+  },
+  {
+    "name": "Flower Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/3/3b/Uni127_s00.png/89px-Uni127_s00.png"
+  },
+  {
+    "name": "Crazed Moneko",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/9/9f/Uni418_c00.png/89px-Uni418_c00.png"
+  },
+  {
+    "name": "Ancient Egg: N001",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/b/bb/Uni656_s00.png/89px-Uni656_s00.png"
+  },
+  {
+    "name": "Ancient Egg: N003",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/22/Uni669_s00.png/89px-Uni669_s00.png"
+  },
+  {
+    "name": "Ancient Egg: N004",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/3/3d/Uni685_s00.png/89px-Uni685_s00.png"
+  },
+  {
+    "name": "Ancient Egg: N005",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/4/4a/Uni700_s00.png/89px-Uni700_s00.png"
+  },
+  {
+    "name": "Ancient Egg: N006",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/4/41/Uni720_s00.png/89px-Uni720_s00.png"
+  },
+  {
+    "name": "Catburger",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/b/b6/Uni213_s00.png/89px-Uni213_s00.png"
+  },
+  {
+    "name": "Coin Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/1/11/Uni375_c00.png/89px-Uni375_c00.png"
+  },
+  {
+    "name": "Gold Brick Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/4/40/Uni610_s00.png/89px-Uni610_s00.png"
+  },
+  {
+    "name": "Lieutenant Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/2c/Uni776_c00.png/89px-Uni776_c00.png"
+  },
+  {
+    "name": "832-1",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/24/Uni832_c00.png/89px-Uni832_c00.png"
+  },
+  {
+    "name": "833-1",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/e/ec/Uni833_c00.png/89px-Uni833_c00.png"
+  },
+  {
+    "name": "834-1",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/6/6a/Uni834_c00.png/89px-Uni834_c00.png"
+  },
+  {
+    "name": "835-1",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/5/5d/Uni835_c00.png/89px-Uni835_c00.png"
+  },
+  {
+    "name": "Crazed Baozi Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/28/Uni285_c00.png/89px-Uni285_c00.png"
+  },
+  {
+    "name": "Nekondo",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/4/48/Uni139_s00.png/89px-Uni139_s00.png"
+  },
+  {
+    "name": "Capsule Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/e/e0/Uni028_c00.png/89px-Uni028_c00.png"
+  },
+  {
+    "name": "Cat Bros",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/4/41/Uni108_c00.png/89px-Uni108_c00.png"
+  },
+  {
+    "name": "Squish Ball Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/8/8d/Uni140_c00.png/89px-Uni140_c00.png"
+  },
+  {
+    "name": "Li'l Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/4/42/Uni209_s00.png/89px-Uni209_s00.png"
+  },
+  {
+    "name": "Li'l Tank Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/4/4c/Uni210_s00.png/89px-Uni210_s00.png"
+  },
+  {
+    "name": "Li'l Axe Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/79/Uni211_s00.png/89px-Uni211_s00.png"
+  },
+  {
+    "name": "Li'l Gross Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/c/c3/Uni245_s00.png/89px-Uni245_s00.png"
+  },
+  {
+    "name": "Li'l Cow Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/4/4b/Uni246_s00.png/89px-Uni246_s00.png"
+  },
+  {
+    "name": "Li'l Bird Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/23/Uni247_s00.png/89px-Uni247_s00.png"
+  },
+  {
+    "name": "Li'l Fish Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/7e/Uni311_s00.png/89px-Uni311_s00.png"
+  },
+  {
+    "name": "Li'l Lizard Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/8/8b/Uni312_s00.png/89px-Uni312_s00.png"
+  },
+  {
+    "name": "Li'l Titan Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/b/bd/Uni313_s00.png/89px-Uni313_s00.png"
+  },
+  {
+    "name": "Farmer Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/7e/Uni381_c00.png/89px-Uni381_c00.png"
+  },
+  {
+    "name": "Kabuto Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/25/Uni615_c00.png/89px-Uni615_c00.png"
+  },
+  {
+    "name": "Kuwagata Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/b/b1/Uni616_c00.png/89px-Uni616_c00.png"
+  },
+  {
+    "name": "Ancient Egg: N202",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/9/97/Uni670_s00.png/89px-Uni670_s00.png"
+  },
+  {
+    "name": "Ancient Egg: N206",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/7c/Uni765_s00.png/89px-Uni765_s00.png"
+  },
+  {
+    "name": "Catburger",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/b/b6/Uni213_s00.png/89px-Uni213_s00.png"
+  },
+  {
+    "name": "Maneki Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/72/Uni342_c00.png/89px-Uni342_c00.png"
+  },
+  {
+    "name": "Million-Dollar Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/8/82/Uni635_c00.png/89px-Uni635_c00.png"
+  },
+  {
+    "name": "Consultant Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/7c/Uni822_c00.png/89px-Uni822_c00.png"
+  },
+  {
+    "name": "Firecracker Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/0/0b/Uni646_c00.png/89px-Uni646_c00.png"
+  },
+  {
+    "name": "Baozi Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/6/6a/Uni202_c00.png/89px-Uni202_c00.png"
+  },
+  {
+    "name": "Blue Shinobi",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/21/Uni082_c00.png/89px-Uni082_c00.png"
+  },
+  {
+    "name": "Ancient Egg: N204",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/6/6a/Uni730_s00.png/89px-Uni730_s00.png"
+  },
+  {
+    "name": "Secret Crush Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/0/0f/Uni650_c00.png/89px-Uni650_c00.png"
+  },
+  {
+    "name": "Tomboy Lion Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/f/f0/Uni651_c00.png/89px-Uni651_c00.png"
+  },
+  {
+    "name": "Chalkboard Eraser Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/d/de/Uni652_c00.png/89px-Uni652_c00.png"
+  },
+  {
+    "name": "Class Rep Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/f/f5/Uni696_c00.png/89px-Uni696_c00.png"
+  },
+  {
+    "name": "Undead Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/9/97/Uni248_s00.png/89px-Uni248_s00.png"
+  },
+  {
+    "name": "Ancient Egg: N201",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/77/Uni665_s00.png/89px-Uni665_s00.png"
+  },
+  {
+    "name": "Ancient Egg: N203",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/8/8a/Uni713_s00.png/89px-Uni713_s00.png"
+  },
+  {
+    "name": "Ancient Egg: N205",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/7a/Uni757_s00.png/89px-Uni757_s00.png"
+  },
+  {
+    "name": "Maneki Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/72/Uni342_c00.png/89px-Uni342_c00.png"
+  },
+  {
+    "name": "Million-Dollar Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/8/82/Uni635_c00.png/89px-Uni635_c00.png"
+  },
+  {
+    "name": "Meditation Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/6/67/Uni689_c00.png/89px-Uni689_c00.png"
+  },
+  {
+    "name": "Medal King",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/3/35/Uni726_c00.png/89px-Uni726_c00.png"
+  },
+  {
+    "name": "831-1",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/c/c1/Uni831_c00.png/89px-Uni831_c00.png"
+  },
+  {
+    "name": "Gummy Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/76/Uni479_s00.png/89px-Uni479_s00.png"
+  },
+  {
+    "name": "Gacha Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/8/8c/Uni558_c00.png/89px-Uni558_c00.png"
+  },
+  {
+    "name": "Wafer Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/5/59/Uni608_c00.png/89px-Uni608_c00.png"
+  },
+  {
+    "name": "Principal Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/7d/Uni735_c00.png/89px-Uni735_c00.png"
+  },
+  {
+    "name": "Choco Capsule",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/7f/Uni784_c00.png/89px-Uni784_c00.png"
+  },
+  {
+    "name": "Stealth Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/77/Uni788_c00.png/89px-Uni788_c00.png"
+  },
+  {
+    "name": "Manager Cat &amp; Clerk Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/f/f7/Uni823_c00.png/89px-Uni823_c00.png"
+  },
+  {
+    "name": "Cat Boy",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/9/9f/Uni542_c00.png/89px-Uni542_c00.png"
+  },
+  {
+    "name": "Trash Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/1/1a/Uni740_c00.png/89px-Uni740_c00.png"
+  },
+  {
+    "name": "Stealth Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/77/Uni788_c00.png/89px-Uni788_c00.png"
+  },
+  {
+    "name": "Masked Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/a/a8/Uni029_c00.png/89px-Uni029_c00.png"
+  },
+  {
+    "name": "Maiko Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/e/eb/Uni045_c00.png/89px-Uni045_c00.png"
+  },
+  {
+    "name": "Toy Machine Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/f/ff/Uni062_c00.png/89px-Uni062_c00.png"
+  },
+  {
+    "name": "God",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/4/46/Uni141_c00.png/89px-Uni141_c00.png"
+  },
+  {
+    "name": "Kerihime",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/70/Uni026_s00.png/89px-Uni026_s00.png"
+  },
+  {
+    "name": "Cat Princess",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/c/cb/Uni027_c00.png/89px-Uni027_c00.png"
+  },
+  {
+    "name": "Type 10",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/4/4f/Uni054_c00.png/89px-Uni054_c00.png"
+  },
+  {
+    "name": "Clone Elle",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/4/45/Uni101_c00.png/89px-Uni101_c00.png"
+  },
+  {
+    "name": "Red Marron",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/6/6e/Uni102_c00.png/89px-Uni102_c00.png"
+  },
+  {
+    "name": "Cabaret Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/c/ce/Uni103_s00.png/89px-Uni103_s00.png"
+  },
+  {
+    "name": "Healer",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/a/a8/Uni120_s00.png/89px-Uni120_s00.png"
+  },
+  {
+    "name": "Merc",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/2c/Uni121_s00.png/89px-Uni121_s00.png"
+  },
+  {
+    "name": "Titi",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/76/Uni191_s00.png/89px-Uni191_s00.png"
+  },
+  {
+    "name": "Hikakin",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/1/15/Uni133_s00.png/89px-Uni133_s00.png"
+  },
+  {
+    "name": "Tutorial Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/0/06/Uni142_c00.png/89px-Uni142_c00.png"
+  },
+  {
+    "name": "Yamaoka Minori",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/c/c8/Uni192_c00.png/89px-Uni192_c00.png"
+  },
+  {
+    "name": "Nakamura Kanae",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/72/Uni193_c00.png/89px-Uni193_c00.png"
+  },
+  {
+    "name": "Nubobo",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/6/64/Uni157_c00.png/89px-Uni157_c00.png"
+  },
+  {
+    "name": "Hoshi Grandmarnier",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/28/Uni165_c00.png/89px-Uni165_c00.png"
+  },
+  {
+    "name": "Shouchikubai Shiratori",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/a/a2/Uni166_c00.png/89px-Uni166_c00.png"
+  },
+  {
+    "name": "Hikaru Saotome",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/a/a5/Uni163_c00.png/89px-Uni163_c00.png"
+  },
+  {
+    "name": "Sho Ayanokoji",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/4/40/Uni162_c00.png/89px-Uni162_c00.png"
+  },
+  {
+    "name": "Hitomi Saionji",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/8/8b/Uni164_c00.png/89px-Uni164_c00.png"
+  },
+  {
+    "name": "Meowla Meowla",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/9/94/Uni175_c00.png/89px-Uni175_c00.png"
+  },
+  {
+    "name": "Sardine",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/6/65/Uni766_c00.png/89px-Uni766_c00.png"
+  },
+  {
+    "name": "Squid",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/8/8c/Uni767_c00.png/89px-Uni767_c00.png"
+  },
+  {
+    "name": "Tasmanian Giant Crab",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/6/67/Uni813_c00.png/89px-Uni813_c00.png"
+  },
+  {
+    "name": "Cuckoo Crew 12",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/d/df/Uni182_c00.png/89px-Uni182_c00.png"
+  },
+  {
+    "name": "Mob Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/d/df/Uni178_c00.png/89px-Uni178_c00.png"
+  },
+  {
+    "name": "Yuki Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/72/Uni181_c00.png/89px-Uni181_c00.png"
+  },
+  {
+    "name": "Mr. Ninja",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/d/df/Uni184_c00.png/89px-Uni184_c00.png"
+  },
+  {
+    "name": "Felyne",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/d/d9/Uni204_c00.png/89px-Uni204_c00.png"
+  },
+  {
+    "name": "Sheria - Kirin",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/3/3a/Uni205_c00.png/89px-Uni205_c00.png"
+  },
+  {
+    "name": "Rathalos",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/9/98/Uni206_c00.png/89px-Uni206_c00.png"
+  },
+  {
+    "name": "Rathian",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/b/b4/Uni207_c00.png/89px-Uni207_c00.png"
+  },
+  {
+    "name": "Kirin Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/3/37/Uni208_c00.png/89px-Uni208_c00.png"
+  },
+  {
+    "name": "Oden",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/e/e8/Uni231_c00.png/89px-Uni231_c00.png"
+  },
+  {
+    "name": "Golem",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/c/c2/Uni256_s00.png/89px-Uni256_s00.png"
+  },
+  {
+    "name": "White Swordsman Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/c/c0/Uni434_c00.png/89px-Uni434_c00.png"
+  },
+  {
+    "name": "Li'l Clops Cat Egg",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/5/5b/Uni567_s00.png/89px-Uni567_s00.png"
+  },
+  {
+    "name": "Nyamusu",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/3/3e/Uni262_c00.png/89px-Uni262_c00.png"
+  },
+  {
+    "name": "Pochi",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/6/67/Uni263_c00.png/89px-Uni263_c00.png"
+  },
+  {
+    "name": "Kuromi",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/0/00/Uni264_c00.png/89px-Uni264_c00.png"
+  },
+  {
+    "name": "Setsuko",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/1/1d/Uni265_c00.png/89px-Uni265_c00.png"
+  },
+  {
+    "name": "Nebaaru-kun",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/3/3d/Uni266_c00.png/89px-Uni266_c00.png"
+  },
+  {
+    "name": "Tanky",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/c/cd/Uni278_c00.png/89px-Uni278_c00.png"
+  },
+  {
+    "name": "White Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/4/48/Uni279_c00.png/89px-Uni279_c00.png"
+  },
+  {
+    "name": "Fortressy",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/0/09/Uni280_c00.png/89px-Uni280_c00.png"
+  },
+  {
+    "name": "Li'l Homura",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/a/a4/Uni300_s00.png/89px-Uni300_s00.png"
+  },
+  {
+    "name": "Neko Hakase",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/3/34/Uni309_c00.png/89px-Uni309_c00.png"
+  },
+  {
+    "name": "CPAC",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/c/c8/Uni317_c00.png/89px-Uni317_c00.png"
+  },
+  {
+    "name": "Nazousagi",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/28/Uni321_c00.png/89px-Uni321_c00.png"
+  },
+  {
+    "name": "Happy 100",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/f/f7/Uni328_c00.png/89px-Uni328_c00.png"
+  },
+  {
+    "name": "Gudetama Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/9/99/Uni347_s00.png/89px-Uni347_s00.png"
+  },
+  {
+    "name": "Nora",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/5/52/Uni356_c00.png/89px-Uni356_c00.png"
+  },
+  {
+    "name": "Saber the Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/7f/Uni369_s00.png/89px-Uni369_s00.png"
+  },
+  {
+    "name": "Li'l Sakura",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/6/62/Uni374_c00.png/89px-Uni374_c00.png"
+  },
+  {
+    "name": "Shirou the Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/3/34/Uni457_c00.png/89px-Uni457_c00.png"
+  },
+  {
+    "name": "Satori Hikami &amp; Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/c/c5/Uni384_c00.png/89px-Uni384_c00.png"
+  },
+  {
+    "name": "Honeyto-kun",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/a/ab/Uni398_c00.png/89px-Uni398_c00.png"
+  },
+  {
+    "name": "Imoto",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/2b/Uni400_c00.png/89px-Uni400_c00.png"
+  },
+  {
+    "name": "Gendo &amp; Fuyutsuki Cats",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/f/fa/Uni403_c00.png/89px-Uni403_c00.png"
+  },
+  {
+    "name": "Kaworu &amp; Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/e/ee/Uni405_s00.png/89px-Uni405_s00.png"
+  },
+  {
+    "name": "Rei Uzumasa &amp; Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/6/65/Uni425_c00.png/89px-Uni425_c00.png"
+  },
+  {
+    "name": "Nekokkuma",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/d/df/Uni433_c00.png/89px-Uni433_c00.png"
+  },
+  {
+    "name": "Kitarou",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/8/80/Uni453_c00.png/89px-Uni453_c00.png"
+  },
+  {
+    "name": "Medama-Oyaji",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/4/42/Uni454_c00.png/89px-Uni454_c00.png"
+  },
+  {
+    "name": "Rosary Angel",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/9/93/Uni474_s00.png/89px-Uni474_s00.png"
+  },
+  {
+    "name": "Wakamiko Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/78/Uni475_c00.png/89px-Uni475_c00.png"
+  },
+  {
+    "name": "Cat Devil",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/2e/Uni476_c00.png/89px-Uni476_c00.png"
+  },
+  {
+    "name": "Nekonosuke",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/8/8c/Uni477_c00.png/89px-Uni477_c00.png"
+  },
+  {
+    "name": "Heavenly Jack",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/e/e2/Uni557_c00.png/89px-Uni557_c00.png"
+  },
+  {
+    "name": "Shakurel Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/5/5d/Uni497_c00.png/89px-Uni497_c00.png"
+  },
+  {
+    "name": "Shakurel Lion",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/e/e6/Uni498_c00.png/89px-Uni498_c00.png"
+  },
+  {
+    "name": "Shakurel Tiger",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/3/31/Uni499_c00.png/89px-Uni499_c00.png"
+  },
+  {
+    "name": "Shakurel Panda",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/a/ad/Uni500_c00.png/89px-Uni500_c00.png"
+  },
+  {
+    "name": "Chun-Li Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/e/e4/Uni509_c00.png/89px-Uni509_c00.png"
+  },
+  {
+    "name": "Yakisoba Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/1/12/Uni541_c00.png/89px-Uni541_c00.png"
+  },
+  {
+    "name": "Fatherly Cat (Shopkeeper)",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/7f/Uni504_c00.png/89px-Uni504_c00.png"
+  },
+  {
+    "name": "Panda Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/b/b3/Uni606_c00.png/89px-Uni606_c00.png"
+  },
+  {
+    "name": "Cat Giraffe Modoki",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/9/92/Uni626_c00.png/89px-Uni626_c00.png"
+  },
+  {
+    "name": "Catnip Tricky",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/e/e5/Uni627_c00.png/89px-Uni627_c00.png"
+  },
+  {
+    "name": "Catnip Dragon",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/4/46/Uni628_c00.png/89px-Uni628_c00.png"
+  },
+  {
+    "name": "Sora &amp; Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/c/c7/Uni637_c00.png/89px-Uni637_c00.png"
+  },
+  {
+    "name": "Ann &amp; Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/5/59/Uni640_c00.png/89px-Uni640_c00.png"
+  },
+  {
+    "name": "Chika Amatori &amp; Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/3/3d/Uni679_c00.png/89px-Uni679_c00.png"
+  },
+  {
+    "name": "Felix the Cat Duke Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/29/Uni744_c00.png/89px-Uni744_c00.png"
+  },
+  {
+    "name": "Dotty Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/1/1d/Uni745_c00.png/89px-Uni745_c00.png"
+  },
+  {
+    "name": "Kaoru Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/e/ed/Uni753_c00.png/89px-Uni753_c00.png"
+  },
+  {
+    "name": "Li'l Baki",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/6/6e/Uni795_c00.png/89px-Uni795_c00.png"
+  },
+  {
+    "name": "Baki Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/9/92/Uni796_c00.png/89px-Uni796_c00.png"
+  },
+  {
+    "name": "Kaioh Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/4/45/Uni797_c00.png/89px-Uni797_c00.png"
+  },
+  {
+    "name": "Doppo Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/1/17/Uni798_c00.png/89px-Uni798_c00.png"
+  },
+  {
+    "name": "Tails Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/1/12/Uni808_c00.png/89px-Uni808_c00.png"
+  },
+  {
+    "name": "Bun Bun Monger Prototype",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/4/49/Uni901_s00.png/89px-Uni901_s00.png"
+  },
+  {
+    "name": "New Year Momo",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/8/88/Uni905_c00.png/89px-Uni905_c00.png"
+  },
+  {
+    "name": "Momo",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/e/ee/Uni904_c00.png/89px-Uni904_c00.png"
+  },
+  {
+    "name": "Neko-Musume Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/a/a2/Uni913_c00.png/89px-Uni913_c00.png"
+  },
+  {
+    "name": "Cat Bros",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/2e/Uni10390_c00.png/89px-Uni10390_c00.png"
+  },
+  {
+    "name": "Kabuto Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/e/e7/Uni10391_c00.png/89px-Uni10391_c00.png"
+  },
+  {
+    "name": "Kuwagata Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/d/de/Uni10392_c00.png/89px-Uni10392_c00.png"
+  },
+  {
+    "name": "Corodragon",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/1/1d/Uni10393_c00.png/89px-Uni10393_c00.png"
+  },
+  {
+    "name": "Undies Cat Jr.",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/4/46/Uni10398_c00.png/89px-Uni10398_c00.png"
+  },
+  {
+    "name": "Mallet Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/d/d8/Uni10399_c00.png/89px-Uni10399_c00.png"
+  },
+  {
+    "name": "Manga Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/5/59/Uni10371_c00.png/89px-Uni10371_c00.png"
+  },
+  {
+    "name": "Manga Boogie Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/4/48/Uni10372_c00.png/89px-Uni10372_c00.png"
+  },
+  {
+    "name": "Manga Darabotchgogogo Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/a/a3/Uni10373_c00.png/89px-Uni10373_c00.png"
+  },
+  {
+    "name": "Pogo Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/b/b5/Uni037_s00.png/89px-Uni037_s00.png"
+  },
+  {
+    "name": "Wheel Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/1/1b/Uni038_s00.png/89px-Uni038_s00.png"
+  },
+  {
+    "name": "Salon Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/7e/Uni041_s00.png/89px-Uni041_s00.png"
+  },
+  {
+    "name": "Jurassic Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/1/10/Uni046_s00.png/89px-Uni046_s00.png"
+  },
+  {
+    "name": "Viking Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/c/c9/Uni047_s00.png/89px-Uni047_s00.png"
+  },
+  {
+    "name": "Pirate Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/a/a3/Uni048_s00.png/89px-Uni048_s00.png"
+  },
+  {
+    "name": "Thief Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/2f/Uni049_s00.png/89px-Uni049_s00.png"
+  },
+  {
+    "name": "Bishop Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/9/9e/Uni050_s00.png/89px-Uni050_s00.png"
+  },
+  {
+    "name": "Fortune Teller Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/9/94/Uni051_s00.png/89px-Uni051_s00.png"
+  },
+  {
+    "name": "Shaman Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/c/ca/Uni052_s00.png/89px-Uni052_s00.png"
+  },
+  {
+    "name": "Witch Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/d/d0/Uni055_s00.png/89px-Uni055_s00.png"
+  },
+  {
+    "name": "Archer Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/e/e1/Uni056_s00.png/89px-Uni056_s00.png"
+  },
+  {
+    "name": "Swordsman Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/79/Uni058_s00.png/89px-Uni058_s00.png"
+  },
+  {
+    "name": "Cat Gunslinger",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/b/b7/Uni145_s00.png/89px-Uni145_s00.png"
+  },
+  {
+    "name": "Stilts Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/9/96/Uni146_s00.png/89px-Uni146_s00.png"
+  },
+  {
+    "name": "Tin Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/5/5d/Uni147_s00.png/89px-Uni147_s00.png"
+  },
+  {
+    "name": "Rocker Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/f/f3/Uni148_s00.png/89px-Uni148_s00.png"
+  },
+  {
+    "name": "Mer-Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/c/ca/Uni149_s00.png/89px-Uni149_s00.png"
+  },
+  {
+    "name": "Psychocat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/1/1a/Uni197_s00.png/89px-Uni197_s00.png"
+  },
+  {
+    "name": "Onmyoji Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/1/1e/Uni198_s00.png/89px-Uni198_s00.png"
+  },
+  {
+    "name": "Gardener Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/b/b3/Uni308_s00.png/89px-Uni308_s00.png"
+  },
+  {
+    "name": "Welterweight Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/1/14/Uni325_s00.png/89px-Uni325_s00.png"
+  },
+  {
+    "name": "Rover Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/a/af/Uni376_s00.png/89px-Uni376_s00.png"
+  },
+  {
+    "name": "Matador Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/9/94/Uni495_s00.png/89px-Uni495_s00.png"
+  },
+  {
+    "name": "Wushu Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/d/d5/Uni523_s00.png/89px-Uni523_s00.png"
+  },
+  {
+    "name": "Sports Day Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/0/06/Uni063_s00.png/89px-Uni063_s00.png"
+  },
+  {
+    "name": "Salaryman Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/3/37/Uni070_s00.png/89px-Uni070_s00.png"
+  },
+  {
+    "name": "Reindeer Fish Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/29/Uni074_s00.png/89px-Uni074_s00.png"
+  },
+  {
+    "name": "Adult Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/c/cc/Uni079_s00.png/89px-Uni079_s00.png"
+  },
+  {
+    "name": "Evil Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/f/fa/Uni080_s00.png/89px-Uni080_s00.png"
+  },
+  {
+    "name": "Doll Cats",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/e/e3/Uni081_s00.png/89px-Uni081_s00.png"
+  },
+  {
+    "name": "Maiden Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/b/bd/Uni100_s00.png/89px-Uni100_s00.png"
+  },
+  {
+    "name": "Koi Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/8/83/Uni104_s00.png/89px-Uni104_s00.png"
+  },
+  {
+    "name": "Madam Bride",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/76/Uni109_s00.png/89px-Uni109_s00.png"
+  },
+  {
+    "name": "Vacation Queen",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/c/c4/Uni122_s00.png/89px-Uni122_s00.png"
+  },
+  {
+    "name": "Vengeful Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/4/45/Uni128_s00.png/89px-Uni128_s00.png"
+  },
+  {
+    "name": "Kung Fu Cat X",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/0/01/Uni132_s00.png/89px-Uni132_s00.png"
+  },
+  {
+    "name": "Bronze Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/8/8b/Uni060_s00.png/89px-Uni060_s00.png"
+  },
+  {
+    "name": "Space Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/a/ae/Uni078_s00.png/89px-Uni078_s00.png"
+  },
+  {
+    "name": "Rope Jump Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/0/09/Uni088_s00.png/89px-Uni088_s00.png"
+  },
+  {
+    "name": "Clockwork Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/5/5c/Uni126_s00.png/89px-Uni126_s00.png"
+  },
+  {
+    "name": "Hoop Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/0/09/Uni154_s00.png/89px-Uni154_s00.png"
+  },
+  {
+    "name": "Drumcorps Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/26/Uni201_s00.png/89px-Uni201_s00.png"
+  },
+  {
+    "name": "Volley Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/2b/Uni379_s00.png/89px-Uni379_s00.png"
+  },
+  {
+    "name": "Primordial Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/3/34/Uni452_s00.png/89px-Uni452_s00.png"
+  },
+  {
+    "name": "Aku Researcher",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/c/cf/Uni621_s00.png/89px-Uni621_s00.png"
+  },
+  {
+    "name": "Curling Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/0/04/Uni324_s00.png/89px-Uni324_s00.png"
+  },
+  {
+    "name": "Glass Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/79/Uni382_s00.png/89px-Uni382_s00.png"
+  },
+  {
+    "name": "Lone Cat and Kitten",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/d/d9/Uni442_s00.png/89px-Uni442_s00.png"
+  },
+  {
+    "name": "Mightycat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/2b/Uni507_c00.png/89px-Uni507_c00.png"
+  },
+  {
+    "name": "Teacher BearCat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/4/46/Uni531_s00.png/89px-Uni531_s00.png"
+  },
+  {
+    "name": "Stone Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/e/ea/Uni581_c00.png/89px-Uni581_c00.png"
+  },
+  {
+    "name": "Pied Piper Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/8/85/Uni623_s00.png/89px-Uni623_s00.png"
+  },
+  {
+    "name": "Calligraphy Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/5/52/Uni630_c00.png/89px-Uni630_c00.png"
+  },
+  {
+    "name": "Jetpack Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/a/ae/Uni708_c00.png/89px-Uni708_c00.png"
+  },
+  {
+    "name": "Medusa Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/9/93/Uni521_s00.png/89px-Uni521_s00.png"
+  },
+  {
+    "name": "Slime Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/5/5e/Uni527_s00.png/89px-Uni527_s00.png"
+  },
+  {
+    "name": "Cossack Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/71/Uni528_s00.png/89px-Uni528_s00.png"
+  },
+  {
+    "name": "Rugby Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/1/1f/Uni539_s00.png/89px-Uni539_s00.png"
+  },
+  {
+    "name": "Phantom Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/4/4a/Uni545_s00.png/89px-Uni545_s00.png"
+  },
+  {
+    "name": "Bakery Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/a/a6/Uni553_s00.png/89px-Uni553_s00.png"
+  },
+  {
+    "name": "Maize Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/78/Uni718_c00.png/89px-Uni718_c00.png"
+  },
+  {
+    "name": "Bowler Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/0/02/Uni780_c00.png/89px-Uni780_c00.png"
+  },
+  {
+    "name": "Carpenter Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/7e/Uni819_c00.png/89px-Uni819_c00.png"
+  },
+  {
+    "name": "Ancient Egg: N101",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/4/49/Uni658_s00.png/89px-Uni658_s00.png"
+  },
+  {
+    "name": "Ancient Egg: N102",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/d/db/Uni659_s00.png/89px-Uni659_s00.png"
+  },
+  {
+    "name": "Ancient Egg: N103",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/77/Uni663_s00.png/89px-Uni663_s00.png"
+  },
+  {
+    "name": "Ancient Egg: N104",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/0/07/Uni664_s00.png/89px-Uni664_s00.png"
+  },
+  {
+    "name": "Ancient Egg: N105",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/3/3f/Uni675_s00.png/89px-Uni675_s00.png"
+  },
+  {
+    "name": "Ancient Egg: N106",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/8/85/Uni676_s00.png/89px-Uni676_s00.png"
+  },
+  {
+    "name": "Ancient Egg: N107",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/d/d2/Uni697_s00.png/89px-Uni697_s00.png"
+  },
+  {
+    "name": "Ancient Egg: N109",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/f/fd/Uni707_s00.png/89px-Uni707_s00.png"
+  },
+  {
+    "name": "Ancient Egg: N110",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/1/1d/Uni717_s00.png/89px-Uni717_s00.png"
+  },
+  {
+    "name": "Ancient Egg: N112",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/9/97/Uni724_s00.png/89px-Uni724_s00.png"
+  },
+  {
+    "name": "Marshmallow Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/f/f3/Uni176_c00.png/89px-Uni176_c00.png"
+  },
+  {
+    "name": "Cat Kart R",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/1/1f/Uni183_s00.png/89px-Uni183_s00.png"
+  },
+  {
+    "name": "Pumpcat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/4/41/Uni227_s00.png/89px-Uni227_s00.png"
+  },
+  {
+    "name": "A Gift of Cats",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/78/Uni244_c00.png/89px-Uni244_c00.png"
+  },
+  {
+    "name": "Awa-Odori Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/f/fd/Uni282_s00.png/89px-Uni282_s00.png"
+  },
+  {
+    "name": "Food Stall Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/22/Uni303_s00.png/89px-Uni303_s00.png"
+  },
+  {
+    "name": "Killer Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/8/86/Uni319_s00.png/89px-Uni319_s00.png"
+  },
+  {
+    "name": "Killer Tank Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/b/b5/Uni695_c00.png/89px-Uni695_c00.png"
+  },
+  {
+    "name": "Eggy Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/3/3f/Uni329_s00.png/89px-Uni329_s00.png"
+  },
+  {
+    "name": "Slug Jockey Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/5/54/Uni343_c00.png/89px-Uni343_c00.png"
+  },
+  {
+    "name": "Cat Bros",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/8/8f/Uni501_c00.png/89px-Uni501_c00.png"
+  },
+  {
+    "name": "Killer Gross Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/d/d2/Uni785_c00.png/89px-Uni785_c00.png"
+  },
+  {
+    "name": "Droid Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/e/e9/Uni077_s00.png/89px-Uni077_s00.png"
+  },
+  {
+    "name": "Swordsman",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/b/b2/Uni064_c00.png/89px-Uni064_c00.png"
+  },
+  {
+    "name": "Cow Princess",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/e/e1/Uni065_c00.png/89px-Uni065_c00.png"
+  },
+  {
+    "name": "Li'l Gau",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/9/9f/Uni067_s00.png/89px-Uni067_s00.png"
+  },
+  {
+    "name": "Celesse",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/3/30/Uni110_c00.png/89px-Uni110_c00.png"
+  },
+  {
+    "name": "Nono",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/5/5d/Uni111_s00.png/89px-Uni111_s00.png"
+  },
+  {
+    "name": "Olga",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/d/d9/Uni112_c00.png/89px-Uni112_c00.png"
+  },
+  {
+    "name": "Norn",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/20/Uni113_c00.png/89px-Uni113_c00.png"
+  },
+  {
+    "name": "Yoichi",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/6/62/Uni114_c00.png/89px-Uni114_c00.png"
+  },
+  {
+    "name": "Serum",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/8/8c/Uni115_c00.png/89px-Uni115_c00.png"
+  },
+  {
+    "name": "Fuu",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/26/Uni116_c00.png/89px-Uni116_c00.png"
+  },
+  {
+    "name": "Dragon League Swordsman",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/8/84/Uni156_c00.png/89px-Uni156_c00.png"
+  },
+  {
+    "name": "Yankee Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/c/cd/Uni167_c00.png/89px-Uni167_c00.png"
+  },
+  {
+    "name": "Takuya &amp; Yuki",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/73/Uni179_s00.png/89px-Uni179_s00.png"
+  },
+  {
+    "name": "Redhead Yuki Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/b/b0/Uni340_s00.png/89px-Uni340_s00.png"
+  },
+  {
+    "name": "Kano &amp; Souma",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/4/4c/Uni483_c00.png/89px-Uni483_c00.png"
+  },
+  {
+    "name": "Souma Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/c/c8/Uni428_c00.png/89px-Uni428_c00.png"
+  },
+  {
+    "name": "HYAKUTARO",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/c/ca/Uni214_c00.png/89px-Uni214_c00.png"
+  },
+  {
+    "name": "MARCO",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/2f/Uni215_c00.png/89px-Uni215_c00.png"
+  },
+  {
+    "name": "TARMA",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/9/99/Uni216_c00.png/89px-Uni216_c00.png"
+  },
+  {
+    "name": "ERI",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/d/d6/Uni217_c00.png/89px-Uni217_c00.png"
+  },
+  {
+    "name": "FIO",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/9/98/Uni218_c00.png/89px-Uni218_c00.png"
+  },
+  {
+    "name": "MARS PEOPLE",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/73/Uni221_c00.png/89px-Uni221_c00.png"
+  },
+  {
+    "name": "Junior God of Light - Valkyrie",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/0/0e/Uni232_c00.png/89px-Uni232_c00.png"
+  },
+  {
+    "name": "Junior God Brynhildr",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/4/4d/Uni233_c00.png/89px-Uni233_c00.png"
+  },
+  {
+    "name": "Junior God Suruzu",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/b/b2/Uni234_c00.png/89px-Uni234_c00.png"
+  },
+  {
+    "name": "Castle Guard",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/5/59/Uni249_s00.png/89px-Uni249_s00.png"
+  },
+  {
+    "name": "Castle Horseman",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/4/4a/Uni250_s00.png/89px-Uni250_s00.png"
+  },
+  {
+    "name": "Ashura",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/1/13/Uni251_s00.png/89px-Uni251_s00.png"
+  },
+  {
+    "name": "Battle Balloon",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/3/31/Uni252_s00.png/89px-Uni252_s00.png"
+  },
+  {
+    "name": "Dragon Rider",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/1/1d/Uni253_s00.png/89px-Uni253_s00.png"
+  },
+  {
+    "name": "Pretty Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/2b/Uni254_s00.png/89px-Uni254_s00.png"
+  },
+  {
+    "name": "Cyclops",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/c/ce/Uni255_s00.png/89px-Uni255_s00.png"
+  },
+  {
+    "name": "Funghi",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/8/82/Uni277_c00.png/89px-Uni277_c00.png"
+  },
+  {
+    "name": "Futenyan",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/6/68/Uni281_c00.png/89px-Uni281_c00.png"
+  },
+  {
+    "name": "Li'l Madoka",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/5/5d/Uni299_s00.png/89px-Uni299_s00.png"
+  },
+  {
+    "name": "Kyubey Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/3/35/Uni301_c00.png/89px-Uni301_c00.png"
+  },
+  {
+    "name": "Madoka Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/8/8a/Uni294_c00.png/89px-Uni294_c00.png"
+  },
+  {
+    "name": "Homura Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/5/58/Uni295_c00.png/89px-Uni295_c00.png"
+  },
+  {
+    "name": "Sayaka Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/b/b3/Uni296_c00.png/89px-Uni296_c00.png"
+  },
+  {
+    "name": "Mami Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/c/c7/Uni297_c00.png/89px-Uni297_c00.png"
+  },
+  {
+    "name": "Kyoko Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/7e/Uni298_c00.png/89px-Uni298_c00.png"
+  },
+  {
+    "name": "PIKOTARO",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/f/f5/Uni315_c00.png/89px-Uni315_c00.png"
+  },
+  {
+    "name": "Hiroshi Mihara",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/f/fd/Uni320_s00.png/89px-Uni320_s00.png"
+  },
+  {
+    "name": "Gudetama Plate",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/d/d8/Uni348_c00.png/89px-Uni348_c00.png"
+  },
+  {
+    "name": "Cat Slave Chocolate",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/f/fc/Uni353_s00.png/89px-Uni353_s00.png"
+  },
+  {
+    "name": "Li'l Shirou",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/e/e4/Uni373_c00.png/89px-Uni373_c00.png"
+  },
+  {
+    "name": "Sakura the Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/9/9b/Uni370_s00.png/89px-Uni370_s00.png"
+  },
+  {
+    "name": "Rin the Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/0/06/Uni371_c00.png/89px-Uni371_c00.png"
+  },
+  {
+    "name": "Illya the Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/77/Uni372_c00.png/89px-Uni372_c00.png"
+  },
+  {
+    "name": "Archer the Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/f/fb/Uni458_c00.png/89px-Uni458_c00.png"
+  },
+  {
+    "name": "Rider the Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/7a/Uni459_c00.png/89px-Uni459_c00.png"
+  },
+  {
+    "name": "Akio Yabe",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/1/15/Uni385_s00.png/89px-Uni385_s00.png"
+  },
+  {
+    "name": "Sairi Nijitani",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/5/50/Uni386_c00.png/89px-Uni386_c00.png"
+  },
+  {
+    "name": "Misaki Konno",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/9/9c/Uni387_c00.png/89px-Uni387_c00.png"
+  },
+  {
+    "name": "Ren Katagiri",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/a/a0/Uni388_c00.png/89px-Uni388_c00.png"
+  },
+  {
+    "name": "Karin Nekozuka",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/0/01/Uni389_c00.png/89px-Uni389_c00.png"
+  },
+  {
+    "name": "Mentori",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/8/81/Uni399_c00.png/89px-Uni399_c00.png"
+  },
+  {
+    "name": "Shinji &amp; Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/0/00/Uni402_s00.png/89px-Uni402_s00.png"
+  },
+  {
+    "name": "Giraffe Unit-01",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/0/0f/Uni404_c00.png/89px-Uni404_c00.png"
+  },
+  {
+    "name": "Rei Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/d/d4/Uni406_c00.png/89px-Uni406_c00.png"
+  },
+  {
+    "name": "Asuka Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/5/55/Uni407_c00.png/89px-Uni407_c00.png"
+  },
+  {
+    "name": "Mari Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/1/18/Uni408_c00.png/89px-Uni408_c00.png"
+  },
+  {
+    "name": "Kaworu Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/a/a3/Uni552_c00.png/89px-Uni552_c00.png"
+  },
+  {
+    "name": "Pokota",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/b/bb/Uni419_c00.png/89px-Uni419_c00.png"
+  },
+  {
+    "name": "Ovis",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/3/3e/Uni420_c00.png/89px-Uni420_c00.png"
+  },
+  {
+    "name": "Coco",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/b/b3/Uni421_c00.png/89px-Uni421_c00.png"
+  },
+  {
+    "name": "Moe Uzumasa &amp; Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/72/Uni422_c00.png/89px-Uni422_c00.png"
+  },
+  {
+    "name": "Saki Matsuga &amp; Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/8/8c/Uni423_c00.png/89px-Uni423_c00.png"
+  },
+  {
+    "name": "Misa Ono &amp; Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/e/ea/Uni424_c00.png/89px-Uni424_c00.png"
+  },
+  {
+    "name": "Betakkuma",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/6/64/Uni432_c00.png/89px-Uni432_c00.png"
+  },
+  {
+    "name": "Neko-Musume",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/c/c1/Uni480_c00.png/89px-Uni480_c00.png"
+  },
+  {
+    "name": "Prince Yamato",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/3/37/Uni473_s00.png/89px-Uni473_s00.png"
+  },
+  {
+    "name": "Maji Cat &amp; Cat Tour Group",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/9/98/Uni465_c00.png/89px-Uni465_c00.png"
+  },
+  {
+    "name": "HAPPI",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/6/6f/Uni492_s00.png/89px-Uni492_s00.png"
+  },
+  {
+    "name": "2D Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/5/55/Uni503_c00.png/89px-Uni503_c00.png"
+  },
+  {
+    "name": "Ryu Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/e/ef/Uni508_c00.png/89px-Uni508_c00.png"
+  },
+  {
+    "name": "Akuma Giraffe",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/a/ab/Uni518_c00.png/89px-Uni518_c00.png"
+  },
+  {
+    "name": "Balrog Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/e/e0/Uni577_c00.png/89px-Uni577_c00.png"
+  },
+  {
+    "name": "Vega Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/b/b1/Uni578_c00.png/89px-Uni578_c00.png"
+  },
+  {
+    "name": "Sagat Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/a/ad/Uni579_c00.png/89px-Uni579_c00.png"
+  },
+  {
+    "name": "M. Bison Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/f/f7/Uni580_c00.png/89px-Uni580_c00.png"
+  },
+  {
+    "name": "Sorakara",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/8/88/Uni524_c00.png/89px-Uni524_c00.png"
+  },
+  {
+    "name": "Miku Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/78/Uni538_c00.png/89px-Uni538_c00.png"
+  },
+  {
+    "name": "Luka Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/4/4a/Uni562_c00.png/89px-Uni562_c00.png"
+  },
+  {
+    "name": "Neko Rin",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/a/a0/Uni592_c00.png/89px-Uni592_c00.png"
+  },
+  {
+    "name": "Neko Len",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/3/30/Uni593_c00.png/89px-Uni593_c00.png"
+  },
+  {
+    "name": "U.F.O. Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/6/6d/Uni540_c00.png/89px-Uni540_c00.png"
+  },
+  {
+    "name": "Ranma Cat (M)",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/6/63/Uni604_c00.png/89px-Uni604_c00.png"
+  },
+  {
+    "name": "Akane Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/1/16/Uni605_c00.png/89px-Uni605_c00.png"
+  },
+  {
+    "name": "Godzilla Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/b/b7/Uni611_c00.png/89px-Uni611_c00.png"
+  },
+  {
+    "name": "Nana &amp; Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/c/c9/Uni638_c00.png/89px-Uni638_c00.png"
+  },
+  {
+    "name": "Emilia &amp; Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/2b/Uni639_c00.png/89px-Uni639_c00.png"
+  },
+  {
+    "name": "Osamu Mikumo &amp; Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/8/87/Uni677_c00.png/89px-Uni677_c00.png"
+  },
+  {
+    "name": "Yuma Kuga &amp; Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/3/3e/Uni678_c00.png/89px-Uni678_c00.png"
+  },
+  {
+    "name": "Kamen Rider Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/d/db/Uni701_c00.png/89px-Uni701_c00.png"
+  },
+  {
+    "name": "Cat Godzilla",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/9/97/Uni702_c00.png/89px-Uni702_c00.png"
+  },
+  {
+    "name": "Evangelion Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/2e/Uni703_c00.png/89px-Uni703_c00.png"
+  },
+  {
+    "name": "Ultraman Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/3/37/Uni704_c00.png/89px-Uni704_c00.png"
+  },
+  {
+    "name": "Mollyanna Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/8/87/Uni742_c00.png/89px-Uni742_c00.png"
+  },
+  {
+    "name": "Madhead",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/1/10/Uni743_c00.png/89px-Uni743_c00.png"
+  },
+  {
+    "name": "Kenshin Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/a/aa/Uni752_c00.png/89px-Uni752_c00.png"
+  },
+  {
+    "name": "Sonic Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/c/ca/Uni807_c00.png/89px-Uni807_c00.png"
+  },
+  {
+    "name": "Shadow Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/8/84/Uni809_c00.png/89px-Uni809_c00.png"
+  },
+  {
+    "name": "Hip Hop Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/f/fb/Uni032_s00.png/89px-Uni032_s00.png"
+  },
+  {
+    "name": "Sushi Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/c/cb/Uni061_s00.png/89px-Uni061_s00.png"
+  },
+  {
+    "name": "Nerd Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/24/Uni035_s00.png/89px-Uni035_s00.png"
+  },
+  {
+    "name": "Kotatsu Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/7b/Uni033_s00.png/89px-Uni033_s00.png"
+  },
+  {
+    "name": "Apple Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/9/90/Uni039_s00.png/89px-Uni039_s00.png"
+  },
+  {
+    "name": "Swimmer Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/25/Uni036_s00.png/89px-Uni036_s00.png"
+  },
+  {
+    "name": "Bath Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/e/e0/Uni040_s00.png/89px-Uni040_s00.png"
+  },
+  {
+    "name": "Delinquent Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/5/50/Uni031_s00.png/89px-Uni031_s00.png"
+  },
+  {
+    "name": "Bodhisattva Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/5/50/Uni030_s00.png/89px-Uni030_s00.png"
+  },
+  {
+    "name": "Juliet Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/3/34/Uni150_s00.png/89px-Uni150_s00.png"
+  },
+  {
+    "name": "Weightlifter Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/c/c2/Uni151_s00.png/89px-Uni151_s00.png"
+  },
+  {
+    "name": "Figure Skating Cats",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/27/Uni152_s00.png/89px-Uni152_s00.png"
+  },
+  {
+    "name": "Cat Toaster",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/f/f2/Uni153_s00.png/89px-Uni153_s00.png"
+  },
+  {
+    "name": "Surfer Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/23/Uni199_s00.png/89px-Uni199_s00.png"
+  },
+  {
+    "name": "Vaulter Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/3/35/Uni307_s00.png/89px-Uni307_s00.png"
+  },
+  {
+    "name": "Fencer Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/c/cc/Uni377_s00.png/89px-Uni377_s00.png"
+  },
+  {
+    "name": "Nymph Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/8/82/Uni522_s00.png/89px-Uni522_s00.png"
+  },
+  {
+    "name": "Gold Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/c/c5/Uni129_s00.png/89px-Uni129_s00.png"
+  },
+  {
+    "name": "Metal Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/a/a5/Uni200_c00.png/89px-Uni200_c00.png"
+  },
+  {
+    "name": "Neneko",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/0/00/Uni131_c00.png/89px-Uni131_c00.png"
+  },
+  {
+    "name": "Cat Base Mini",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/1/16/Uni144_s00.png/89px-Uni144_s00.png"
+  },
+  {
+    "name": "Freshman Cat Jobs",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/b/ba/Uni237_s00.png/89px-Uni237_s00.png"
+  },
+  {
+    "name": "Rich Cat III",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/f/f5/Uni238_s00.png/89px-Uni238_s00.png"
+  },
+  {
+    "name": "Sniper the Recruit",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/1/16/Uni239_s00.png/89px-Uni239_s00.png"
+  },
+  {
+    "name": "Driller Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/2b/Uni443_s00.png/89px-Uni443_s00.png"
+  },
+  {
+    "name": "Piledriver Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/1/14/Uni444_s00.png/89px-Uni444_s00.png"
+  },
+  {
+    "name": "Cutter Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/21/Uni445_s00.png/89px-Uni445_s00.png"
+  },
+  {
+    "name": "Backhoe Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/9/95/Uni446_s00.png/89px-Uni446_s00.png"
+  },
+  {
+    "name": "Miter Saw Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/a/a6/Uni447_s00.png/89px-Uni447_s00.png"
+  },
+  {
+    "name": "Years-End Neneko",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/3/39/Uni314_s00.png/89px-Uni314_s00.png"
+  },
+  {
+    "name": "Valentine's Neneko",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/1/15/Uni589_s00.png/89px-Uni589_s00.png"
+  },
+  {
+    "name": "Easter Neneko",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/d/d6/Uni332_s00.png/89px-Uni332_s00.png"
+  },
+  {
+    "name": "Sunny Neneko",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/6/66/Uni276_s00.png/89px-Uni276_s00.png"
+  },
+  {
+    "name": "Suntan Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/d/db/Uni565_s00.png/89px-Uni565_s00.png"
+  },
+  {
+    "name": "Lifeguard Cats",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/9/92/Uni566_s00.png/89px-Uni566_s00.png"
+  },
+  {
+    "name": "Gloomy Neneko",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/4/4f/Uni228_s00.png/89px-Uni228_s00.png"
+  },
+  {
+    "name": "Mummy Sumo",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/a/a7/Uni773_c00.png/89px-Uni773_c00.png"
+  },
+  {
+    "name": "Good-Luck Ebisu",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/a/a8/Uni520_c00.png/89px-Uni520_c00.png"
+  },
+  {
+    "name": "Brainwashed Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/a/a8/Uni629_s00.png/89px-Uni629_s00.png"
+  },
+  {
+    "name": "Brainwashed Tank Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/b/be/Uni636_s00.png/89px-Uni636_s00.png"
+  },
+  {
+    "name": "Brainwashed Axe Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/5/57/Uni645_s00.png/89px-Uni645_s00.png"
+  },
+  {
+    "name": "Brainwashed Gross Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/4/4d/Uni654_s00.png/89px-Uni654_s00.png"
+  },
+  {
+    "name": "Brainwashed Cow Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/5/55/Uni662_s00.png/89px-Uni662_s00.png"
+  },
+  {
+    "name": "Brainwashed Bird Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/e/ec/Uni667_s00.png/89px-Uni667_s00.png"
+  },
+  {
+    "name": "Brainwashed Fish Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/9/91/Uni684_s00.png/89px-Uni684_s00.png"
+  },
+  {
+    "name": "Brainwashed Lizard Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/6/61/Uni688_s00.png/89px-Uni688_s00.png"
+  },
+  {
+    "name": "Brainwashed Titan Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/c/c4/Uni694_s00.png/89px-Uni694_s00.png"
+  },
+  {
+    "name": "Crazed Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/4/42/Uni091_s00.png/89px-Uni091_s00.png"
+  },
+  {
+    "name": "Crazed Tank Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/6/60/Uni092_s00.png/89px-Uni092_s00.png"
+  },
+  {
+    "name": "Crazed Axe Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/3/37/Uni093_s00.png/89px-Uni093_s00.png"
+  },
+  {
+    "name": "Crazed Gross Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/a/af/Uni094_s00.png/89px-Uni094_s00.png"
+  },
+  {
+    "name": "Crazed Cow Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/9/98/Uni095_s00.png/89px-Uni095_s00.png"
+  },
+  {
+    "name": "Crazed Bird Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/75/Uni096_s00.png/89px-Uni096_s00.png"
+  },
+  {
+    "name": "Crazed Fish Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/7a/Uni097_s00.png/89px-Uni097_s00.png"
+  },
+  {
+    "name": "Crazed Lizard Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/3/3f/Uni098_s00.png/89px-Uni098_s00.png"
+  },
+  {
+    "name": "Crazed Titan Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/b/b6/Uni099_s00.png/89px-Uni099_s00.png"
+  },
+  {
+    "name": "Catway",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/3/3b/Uni260_s00.png/89px-Uni260_s00.png"
+  },
+  {
+    "name": "Catornado",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/9/9d/Uni267_s00.png/89px-Uni267_s00.png"
+  },
+  {
+    "name": "Express Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/0/09/Uni284_s00.png/89px-Uni284_s00.png"
+  },
+  {
+    "name": "Cheerleader Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/8/89/Uni273_s00.png/89px-Uni273_s00.png"
+  },
+  {
+    "name": "Little Leaguer Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/d/d7/Uni287_s00.png/89px-Uni287_s00.png"
+  },
+  {
+    "name": "Ancient Egg: N108",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/73/Uni706_s00.png/89px-Uni706_s00.png"
+  },
+  {
+    "name": "Ancient Egg: N111",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/4/4f/Uni716_s00.png/89px-Uni716_s00.png"
+  },
+  {
+    "name": "Sleeping Beauty Punt",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/4/41/Uni069_s00.png/89px-Uni069_s00.png"
+  },
+  {
+    "name": "Reaper",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/6/69/Uni068_s00.png/89px-Uni068_s00.png"
+  },
+  {
+    "name": "Yurinchi",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/4/4c/Uni160_s00.png/89px-Uni160_s00.png"
+  },
+  {
+    "name": "Hina",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/3/3c/Uni486_c00.png/89px-Uni486_c00.png"
+  },
+  {
+    "name": "Aura",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/9/96/Uni117_c00.png/89px-Uni117_c00.png"
+  },
+  {
+    "name": "Rei",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/5/51/Uni118_c00.png/89px-Uni118_c00.png"
+  },
+  {
+    "name": "Alois",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/e/e5/Uni189_c00.png/89px-Uni189_c00.png"
+  },
+  {
+    "name": "Citrouille",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/f/ff/Uni190_c00.png/89px-Uni190_c00.png"
+  },
+  {
+    "name": "Orthos",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/c/cd/Uni344_s00.png/89px-Uni344_s00.png"
+  },
+  {
+    "name": "Baby Mola",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/c/c8/Uni173_s00.png/89px-Uni173_s00.png"
+  },
+  {
+    "name": "Otaku Geek Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/4/4f/Uni429_c00.png/89px-Uni429_c00.png"
+  },
+  {
+    "name": "SV-001",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/e/ec/Uni219_c00.png/89px-Uni219_c00.png"
+  },
+  {
+    "name": "ALLEN O'NEIL",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/79/Uni220_c00.png/89px-Uni220_c00.png"
+  },
+  {
+    "name": "Goddess of Abundance - Freya",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/d/d8/Uni235_c00.png/89px-Uni235_c00.png"
+  },
+  {
+    "name": "Kyubey",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/3/3d/Uni293_c00.png/89px-Uni293_c00.png"
+  },
+  {
+    "name": "Belial",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/72/Uni327_c00.png/89px-Uni327_c00.png"
+  },
+  {
+    "name": "Gudegude Pudding",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/3/34/Uni349_c00.png/89px-Uni349_c00.png"
+  },
+  {
+    "name": "Kotomine &amp; Gilgamesh Cats",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/b/ba/Uni460_c00.png/89px-Uni460_c00.png"
+  },
+  {
+    "name": "Aoi Hayakawa",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/6/61/Uni390_s00.png/89px-Uni390_s00.png"
+  },
+  {
+    "name": "Mizuki Tachibana",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/e/ed/Uni391_s00.png/89px-Uni391_s00.png"
+  },
+  {
+    "name": "Hijiri Rokudo",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/c/c7/Uni392_s00.png/89px-Uni392_s00.png"
+  },
+  {
+    "name": "Rei Ayanami",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/6/65/Uni409_s00.png/89px-Uni409_s00.png"
+  },
+  {
+    "name": "Asuka Langley",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/25/Uni410_s00.png/89px-Uni410_s00.png"
+  },
+  {
+    "name": "Mari Illustrious",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/e/e4/Uni411_c00.png/89px-Uni411_c00.png"
+  },
+  {
+    "name": "Misato Katsuragi",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/20/Uni489_c00.png/89px-Uni489_c00.png"
+  },
+  {
+    "name": "Ritsuko Akagi",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/f/fa/Uni490_c00.png/89px-Uni490_c00.png"
+  },
+  {
+    "name": "Rei Ayanami (???)",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/8/8f/Uni491_c00.png/89px-Uni491_c00.png"
+  },
+  {
+    "name": "Fiendish Nero",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/77/Uni472_s00.png/89px-Uni472_s00.png"
+  },
+  {
+    "name": "Holy Knight Alibaba",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/1/17/Uni556_s00.png/89px-Uni556_s00.png"
+  },
+  {
+    "name": "C. Honda",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/d/d5/Uni576_c00.png/89px-Uni576_c00.png"
+  },
+  {
+    "name": "Zangief Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/8/89/Uni828_c00.png/89px-Uni828_c00.png"
+  },
+  {
+    "name": "Jamie Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/a/a0/Uni829_c00.png/89px-Uni829_c00.png"
+  },
+  {
+    "name": "MEIKO &amp; Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/f/f1/Uni561_c00.png/89px-Uni561_c00.png"
+  },
+  {
+    "name": "KAITO &amp; Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/d/dd/Uni591_c00.png/89px-Uni591_c00.png"
+  },
+  {
+    "name": "Happosai",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/0/03/Uni601_c00.png/89px-Uni601_c00.png"
+  },
+  {
+    "name": "Ukyo Kuonji (GR)",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/e/eb/Uni602_c00.png/89px-Uni602_c00.png"
+  },
+  {
+    "name": "Tatewaki Kuno (Gi)",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/74/Uni603_c00.png/89px-Uni603_c00.png"
+  },
+  {
+    "name": "Genma Saotome (Panda)",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/e/e9/Uni672_c00.png/89px-Uni672_c00.png"
+  },
+  {
+    "name": "Li'l Kaoru",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/8/82/Uni750_c00.png/89px-Uni750_c00.png"
+  },
+  {
+    "name": "Li'l Yahiko",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/e/ed/Uni751_c00.png/89px-Uni751_c00.png"
+  },
+  {
+    "name": "Ogre Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/4/48/Uni794_c00.png/89px-Uni794_c00.png"
+  },
+  {
+    "name": "Ice Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/c/c9/Uni042_s00.png/89px-Uni042_s00.png"
+  },
+  {
+    "name": "Cat Machine",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/f/fe/Uni043_s00.png/89px-Uni043_s00.png"
+  },
+  {
+    "name": "Lesser Demon Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/b/b5/Uni044_s00.png/89px-Uni044_s00.png"
+  },
+  {
+    "name": "Marauder Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/c/ce/Uni057_s00.png/89px-Uni057_s00.png"
+  },
+  {
+    "name": "Baby Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/4/40/Uni059_u00.png/89px-Uni059_u00.png"
+  },
+  {
+    "name": "Nurse Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/9/9e/Uni143_s00.png/89px-Uni143_s00.png"
+  },
+  {
+    "name": "Cat Clan Heroes",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/6/68/Uni427_s00.png/89px-Uni427_s00.png"
+  },
+  {
+    "name": "Lasvoss",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/c/cb/Uni519_s00.png/89px-Uni519_s00.png"
+  },
+  {
+    "name": "Summoner Satoru",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/8/87/Uni617_s00.png/89px-Uni617_s00.png"
+  },
+  {
+    "name": "Cat Tengu",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/9/9c/Uni668_s00.png/89px-Uni668_s00.png"
+  },
+  {
+    "name": "Dynasaurus Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/c/cd/Uni763_c00.png/89px-Uni763_c00.png"
+  },
+  {
+    "name": "Nekoluga",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/a/aa/Uni034_s00.png/89px-Uni034_s00.png"
+  },
+  {
+    "name": "Asiluga",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/8/8b/Uni168_s00.png/89px-Uni168_s00.png"
+  },
+  {
+    "name": "Kubiluga",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/b/b2/Uni169_s00.png/89px-Uni169_s00.png"
+  },
+  {
+    "name": "Tecoluga",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/0/0d/Uni170_s00.png/89px-Uni170_s00.png"
+  },
+  {
+    "name": "Balaluga",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/22/Uni171_s00.png/89px-Uni171_s00.png"
+  },
+  {
+    "name": "Togeluga",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/b/bf/Uni240_s00.png/89px-Uni240_s00.png"
+  },
+  {
+    "name": "Nobiluga",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/c/c8/Uni436_s00.png/89px-Uni436_s00.png"
+  },
+  {
+    "name": "Papaluga",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/5/53/Uni546_s00.png/89px-Uni546_s00.png"
+  },
+  {
+    "name": "Furiluga",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/6/6a/Uni625_s00.png/89px-Uni625_s00.png"
+  },
+  {
+    "name": "Kaoluga",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/7f/Uni712_c00.png/89px-Uni712_c00.png"
+  },
+  {
+    "name": "Mamoluga",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/e/e5/Uni781_c00.png/89px-Uni781_c00.png"
+  },
+  {
+    "name": "Sanada Yukimura",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/8/86/Uni071_s00.png/89px-Uni071_s00.png"
+  },
+  {
+    "name": "Maeda Keiji",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/9/9c/Uni072_s00.png/89px-Uni072_s00.png"
+  },
+  {
+    "name": "Oda Nobunaga",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/c/c8/Uni073_u00.png/89px-Uni073_u00.png"
+  },
+  {
+    "name": "Date Masamune",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/1/1e/Uni124_s00.png/89px-Uni124_s00.png"
+  },
+  {
+    "name": "Takeda Shingen",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/b/b6/Uni125_s00.png/89px-Uni125_s00.png"
+  },
+  {
+    "name": "Uesugi Kenshin",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/b/bc/Uni158_u00.png/89px-Uni158_u00.png"
+  },
+  {
+    "name": "Imagawa Yoshimoto",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/3/3c/Uni338_s00.png/89px-Uni338_s00.png"
+  },
+  {
+    "name": "Narita Kaihime",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/6/6a/Uni496_s00.png/89px-Uni496_s00.png"
+  },
+  {
+    "name": "Shiro Amakusa",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/c/c9/Uni618_s00.png/89px-Uni618_s00.png"
+  },
+  {
+    "name": "Hattori Hanzo",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/1/13/Uni649_s00.png/89px-Uni649_s00.png"
+  },
+  {
+    "name": "Akechi Mitsuhide",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/5/56/Uni754_c00.png/89px-Uni754_c00.png"
+  },
+  {
+    "name": "Windy",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/6/6f/Uni075_u00.png/89px-Uni075_u00.png"
+  },
+  {
+    "name": "Thundia",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/2b/Uni076_u00.png/89px-Uni076_u00.png"
+  },
+  {
+    "name": "Kuu",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/8/86/Uni105_s00.png/89px-Uni105_s00.png"
+  },
+  {
+    "name": "Kai",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/5/55/Uni106_s00.png/89px-Uni106_s00.png"
+  },
+  {
+    "name": "Coppermine",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/f/f1/Uni107_s00.png/89px-Uni107_s00.png"
+  },
+  {
+    "name": "Kalisa",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/f/f9/Uni159_s00.png/89px-Uni159_s00.png"
+  },
+  {
+    "name": "Twinstars",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/4/4a/Uni351_s00.png/89px-Uni351_s00.png"
+  },
+  {
+    "name": "Myrcia",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/9/92/Uni502_s00.png/89px-Uni502_s00.png"
+  },
+  {
+    "name": "Lilin",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/3/3d/Uni619_s00.png/89px-Uni619_s00.png"
+  },
+  {
+    "name": "Huntress Terun",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/f/f2/Uni647_s00.png/89px-Uni647_s00.png"
+  },
+  {
+    "name": "Pegasa",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/79/Uni733_c00.png/89px-Uni733_c00.png"
+  },
+  {
+    "name": "830-1",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/c/c0/Uni830_c00.png/89px-Uni830_c00.png"
+  },
+  {
+    "name": "Sodom",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/3/35/Uni083_s00.png/89px-Uni083_s00.png"
+  },
+  {
+    "name": "Megidora",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/7b/Uni084_s00.png/89px-Uni084_s00.png"
+  },
+  {
+    "name": "Vars",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/e/e9/Uni085_s00.png/89px-Uni085_s00.png"
+  },
+  {
+    "name": "Kamukura",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/c/cc/Uni086_s00.png/89px-Uni086_s00.png"
+  },
+  {
+    "name": "Raiden",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/2c/Uni087_s00.png/89px-Uni087_s00.png"
+  },
+  {
+    "name": "Dioramos",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/7b/Uni177_u00.png/89px-Uni177_u00.png"
+  },
+  {
+    "name": "Ganglion",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/6/67/Uni396_s00.png/89px-Uni396_s00.png"
+  },
+  {
+    "name": "Relentless Gladios",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/d/d7/Uni505_s00.png/89px-Uni505_s00.png"
+  },
+  {
+    "name": "Hevijak the Wicked",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/0/04/Uni620_s00.png/89px-Uni620_s00.png"
+  },
+  {
+    "name": "Sea Serpent Daliasan",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/3/30/Uni660_s00.png/89px-Uni660_s00.png"
+  },
+  {
+    "name": "Gunduros",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/8/85/Uni760_c00.png/89px-Uni760_c00.png"
+  },
+  {
+    "name": "Urashima Taro",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/79/Uni134_s00.png/89px-Uni134_s00.png"
+  },
+  {
+    "name": "The Grateful Crane",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/7c/Uni135_u00.png/89px-Uni135_u00.png"
+  },
+  {
+    "name": "Momotaro",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/5/5b/Uni136_s00.png/89px-Uni136_s00.png"
+  },
+  {
+    "name": "Kasa Jizo",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/c/c6/Uni137_u00.png/89px-Uni137_u00.png"
+  },
+  {
+    "name": "Princess Kaguya",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/f/f3/Uni138_u00.png/89px-Uni138_u00.png"
+  },
+  {
+    "name": "Kachi-Kachi",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/9/93/Uni203_s00.png/89px-Uni203_s00.png"
+  },
+  {
+    "name": "Sarukani",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/9/92/Uni322_s00.png/89px-Uni322_s00.png"
+  },
+  {
+    "name": "Kintaro",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/e/e8/Uni525_s00.png/89px-Uni525_s00.png"
+  },
+  {
+    "name": "Shitakiri Sparrow",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/3/37/Uni633_s00.png/89px-Uni633_s00.png"
+  },
+  {
+    "name": "Issun Boshi",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/3/38/Uni692_s00.png/89px-Uni692_s00.png"
+  },
+  {
+    "name": "Hanasaka Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/f/f8/Uni769_c00.png/89px-Uni769_c00.png"
+  },
+  {
+    "name": "Akira",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/7a/Uni194_s00.png/89px-Uni194_s00.png"
+  },
+  {
+    "name": "Mekako Saionji",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/29/Uni195_s00.png/89px-Uni195_s00.png"
+  },
+  {
+    "name": "Catman",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/d/d1/Uni196_s00.png/89px-Uni196_s00.png"
+  },
+  {
+    "name": "The White Rabbit",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/29/Uni212_u00.png/89px-Uni212_u00.png"
+  },
+  {
+    "name": "Warlock and Pierre",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/0/00/Uni226_s00.png/89px-Uni226_s00.png"
+  },
+  {
+    "name": "Hayabusa",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/9/91/Uni261_s00.png/89px-Uni261_s00.png"
+  },
+  {
+    "name": "Detective Vigler",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/a/a4/Uni431_u00.png/89px-Uni431_u00.png"
+  },
+  {
+    "name": "Sharpshooter Saki",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/4/4d/Uni533_s00.png/89px-Uni533_s00.png"
+  },
+  {
+    "name": "White Knight Cyclops",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/c/c9/Uni634_s00.png/89px-Uni634_s00.png"
+  },
+  {
+    "name": "Thunder Jack",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/1/1a/Uni698_s00.png/89px-Uni698_s00.png"
+  },
+  {
+    "name": "Mech Patrol Axel",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/e/e4/Uni774_c00.png/89px-Uni774_c00.png"
+  },
+  {
+    "name": "Thunder God Zeus",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/23/Uni257_s00.png/89px-Uni257_s00.png"
+  },
+  {
+    "name": "Anubis the Protector",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/77/Uni258_s00.png/89px-Uni258_s00.png"
+  },
+  {
+    "name": "Radiant Aphrodite",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/8/87/Uni259_s00.png/89px-Uni259_s00.png"
+  },
+  {
+    "name": "Shining Amaterasu",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/8/85/Uni271_s00.png/89px-Uni271_s00.png"
+  },
+  {
+    "name": "Splendid Ganesha",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/a/a2/Uni272_s00.png/89px-Uni272_s00.png"
+  },
+  {
+    "name": "Wrathful Poseidon",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/8/80/Uni316_s00.png/89px-Uni316_s00.png"
+  },
+  {
+    "name": "Empress Chronos",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/0/0d/Uni439_s00.png/89px-Uni439_s00.png"
+  },
+  {
+    "name": "Hades the Punisher",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/5/51/Uni534_s00.png/89px-Uni534_s00.png"
+  },
+  {
+    "name": "Lucifer the Fallen",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/9/9d/Uni642_s00.png/89px-Uni642_s00.png"
+  },
+  {
+    "name": "Lightmother Aset",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/b/b2/Uni723_s00.png/89px-Uni723_s00.png"
+  },
+  {
+    "name": "Victorious Skanda",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/c/c5/Uni811_c00.png/89px-Uni811_c00.png"
+  },
+  {
+    "name": "Mighty Kat-A-Pult",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/f/f7/Uni304_u00.png/89px-Uni304_u00.png"
+  },
+  {
+    "name": "Mighty Drednot",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/0/01/Uni305_u00.png/89px-Uni305_u00.png"
+  },
+  {
+    "name": "Mighty Bomburr",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/4/48/Uni306_u00.png/89px-Uni306_u00.png"
+  },
+  {
+    "name": "Mighty Rekon Korps",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/9/98/Uni355_s00.png/89px-Uni355_s00.png"
+  },
+  {
+    "name": "Mighty Thermae D-Lux",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/8/8e/Uni417_s00.png/89px-Uni417_s00.png"
+  },
+  {
+    "name": "Mighty Aethur Ltd.",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/e/e8/Uni594_s00.png/89px-Uni594_s00.png"
+  },
+  {
+    "name": "Mighty Deth-Troy-R",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/3/3e/Uni632_s00.png/89px-Uni632_s00.png"
+  },
+  {
+    "name": "Mighty Carrowsell",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/3/34/Uni674_s00.png/89px-Uni674_s00.png"
+  },
+  {
+    "name": "Mighty Sphinx Korps",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/4/42/Uni715_s00.png/89px-Uni715_s00.png"
+  },
+  {
+    "name": "Mighty Morta-Loncha",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/22/Uni799_c00.png/89px-Uni799_c00.png"
+  },
+  {
+    "name": "Trickster Himeyuri",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/3/3f/Uni334_s00.png/89px-Uni334_s00.png"
+  },
+  {
+    "name": "Sea Maiden Ruri",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/0/04/Uni335_s00.png/89px-Uni335_s00.png"
+  },
+  {
+    "name": "Queen Reika",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/7f/Uni336_s00.png/89px-Uni336_s00.png"
+  },
+  {
+    "name": "Wolfchild Deale",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/e/e0/Uni357_s00.png/89px-Uni357_s00.png"
+  },
+  {
+    "name": "Graveflower Verbena",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/7d/Uni358_s00.png/89px-Uni358_s00.png"
+  },
+  {
+    "name": "Adventurer Kanna",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/74/Uni607_s00.png/89px-Uni607_s00.png"
+  },
+  {
+    "name": "Spectral Goth Vega",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/8/85/Uni682_s00.png/89px-Uni682_s00.png"
+  },
+  {
+    "name": "Ninja Girl Tomoe",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/1/1c/Uni725_c00.png/89px-Uni725_c00.png"
+  },
+  {
+    "name": "Sorceress Sidmi",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/a/ad/Uni824_c00.png/89px-Uni824_c00.png"
+  },
+  {
+    "name": "Bora",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/d/d7/Uni359_u00.png/89px-Uni359_u00.png"
+  },
+  {
+    "name": "Mizli",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/b/be/Uni360_u00.png/89px-Uni360_u00.png"
+  },
+  {
+    "name": "Aer",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/3/33/Uni361_u00.png/89px-Uni361_u00.png"
+  },
+  {
+    "name": "Voli",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/d/d4/Uni401_s00.png/89px-Uni401_s00.png"
+  },
+  {
+    "name": "Gravi",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/6/65/Uni569_s00.png/89px-Uni569_s00.png"
+  },
+  {
+    "name": "Yamii",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/b/b3/Uni631_s00.png/89px-Uni631_s00.png"
+  },
+  {
+    "name": "Bliza",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/3/30/Uni655_s00.png/89px-Uni655_s00.png"
+  },
+  {
+    "name": "Tekachi",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/d/d8/Uni719_c00.png/89px-Uni719_c00.png"
+  },
+  {
+    "name": "Komori",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/9/96/Uni817_c00.png/89px-Uni817_c00.png"
+  },
+  {
+    "name": "Sweet Aphrodite",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/70/Uni587_c00.png/89px-Uni587_c00.png"
+  },
+  {
+    "name": "First-Love Myrcia",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/b/bf/Uni588_c00.png/89px-Uni588_c00.png"
+  },
+  {
+    "name": "Sweet Love Mekako",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/4/4a/Uni644_s00.png/89px-Uni644_s00.png"
+  },
+  {
+    "name": "Lovestruck Lesser Demon",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/d/d2/Uni648_c00.png/89px-Uni648_c00.png"
+  },
+  {
+    "name": "White Butler Vigler",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/d/d7/Uni693_c00.png/89px-Uni693_c00.png"
+  },
+  {
+    "name": "Frozen Rose Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/c/c3/Uni736_c00.png/89px-Uni736_c00.png"
+  },
+  {
+    "name": "The Amazing Catman",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/9/9f/Uni786_c00.png/89px-Uni786_c00.png"
+  },
+  {
+    "name": "Springtime Kenshin",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/b/b0/Uni330_s00.png/89px-Uni330_s00.png"
+  },
+  {
+    "name": "Bunny &amp; Canard",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/1/18/Uni331_s00.png/89px-Uni331_s00.png"
+  },
+  {
+    "name": "Blooming Kamukura",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/79/Uni595_s00.png/89px-Uni595_s00.png"
+  },
+  {
+    "name": "Rabbit Satoru",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/1/19/Uni699_c00.png/89px-Uni699_c00.png"
+  },
+  {
+    "name": "Floral Kalisa",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/e/e5/Uni737_c00.png/89px-Uni737_c00.png"
+  },
+  {
+    "name": "Chronos the Bride",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/4/4d/Uni661_c00.png/89px-Uni661_c00.png"
+  },
+  {
+    "name": "Betrothed Balaluga",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/5/50/Uni711_c00.png/89px-Uni711_c00.png"
+  },
+  {
+    "name": "Cake Machine",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/24/Uni756_c00.png/89px-Uni756_c00.png"
+  },
+  {
+    "name": "Seashore Kai",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/3/31/Uni354_c00.png/89px-Uni354_c00.png"
+  },
+  {
+    "name": "Waverider Kuu",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/6/6a/Uni438_c00.png/89px-Uni438_c00.png"
+  },
+  {
+    "name": "Seabreeze Coppermine",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/c/c8/Uni494_c00.png/89px-Uni494_c00.png"
+  },
+  {
+    "name": "Summerluga",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/3/3e/Uni564_s00.png/89px-Uni564_s00.png"
+  },
+  {
+    "name": "Coastal Explorer Kanna",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/b/b9/Uni714_c00.png/89px-Uni714_c00.png"
+  },
+  {
+    "name": "Seaside Pegasa",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/3/32/Uni820_c00.png/89px-Uni820_c00.png"
+  },
+  {
+    "name": "Tropical Kalisa",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/3/37/Uni274_c00.png/89px-Uni274_c00.png"
+  },
+  {
+    "name": "Midsummer Rabbit",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/4/4b/Uni275_s00.png/89px-Uni275_s00.png"
+  },
+  {
+    "name": "Squirtgun Saki",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/8/82/Uni563_s00.png/89px-Uni563_s00.png"
+  },
+  {
+    "name": "Kaguya of the Coast",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/6/6c/Uni614_s00.png/89px-Uni614_s00.png"
+  },
+  {
+    "name": "Night Beach Lilin",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/2d/Uni666_c00.png/89px-Uni666_c00.png"
+  },
+  {
+    "name": "Music Fest Thundia",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/c/c2/Uni759_c00.png/89px-Uni759_c00.png"
+  },
+  {
+    "name": "Hallowindy",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/c/c4/Uni229_c00.png/89px-Uni229_c00.png"
+  },
+  {
+    "name": "Spooky Thundia",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/9/9f/Uni230_c00.png/89px-Uni230_c00.png"
+  },
+  {
+    "name": "Lilith Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/3/3b/Uni302_s00.png/89px-Uni302_s00.png"
+  },
+  {
+    "name": "Skull Rider Vars",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/4/49/Uni570_s00.png/89px-Uni570_s00.png"
+  },
+  {
+    "name": "Count Yukimura",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/a/ac/Uni683_s00.png/89px-Uni683_s00.png"
+  },
+  {
+    "name": "Pumpkin Sodom",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/b/b2/Uni772_c00.png/89px-Uni772_c00.png"
+  },
+  {
+    "name": "Frosty Kai",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/3/34/Uni241_s00.png/89px-Uni241_s00.png"
+  },
+  {
+    "name": "Santa Kuu",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/d/d9/Uni242_c00.png/89px-Uni242_c00.png"
+  },
+  {
+    "name": "Holy Coppermine",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/1/1f/Uni243_c00.png/89px-Uni243_c00.png"
+  },
+  {
+    "name": "Yuletide Nurse",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/6/6c/Uni310_s00.png/89px-Uni310_s00.png"
+  },
+  {
+    "name": "Snow Angel Twinstars",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/9/9f/Uni526_c00.png/89px-Uni526_c00.png"
+  },
+  {
+    "name": "Keiji Claus",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/2e/Uni584_s00.png/89px-Uni584_s00.png"
+  },
+  {
+    "name": "Reindeer Terun",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/a/ac/Uni687_c00.png/89px-Uni687_c00.png"
+  },
+  {
+    "name": "Winter General Kaihime",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/5/51/Uni777_c00.png/89px-Uni777_c00.png"
+  },
+  {
+    "name": "Pai-Pai",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/1/12/Uni283_s00.png/89px-Uni283_s00.png"
+  },
+  {
+    "name": "Strike Unit R.E.I.",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/9/9c/Uni286_s00.png/89px-Uni286_s00.png"
+  },
+  {
+    "name": "Sakura Sonic",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/5/5a/Uni397_u00.png/89px-Uni397_u00.png"
+  },
+  {
+    "name": "Hell Warden Emma",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/a/a5/Uni559_s00.png/89px-Uni559_s00.png"
+  },
+  {
+    "name": "Goddess of Light Sirius",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/28/Uni686_c00.png/89px-Uni686_c00.png"
+  },
+  {
+    "name": "Baby Gao",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/1/1c/Uni269_c00.png/89px-Uni269_c00.png"
+  },
+  {
+    "name": "Miko Mitama",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/f/f8/Uni318_c00.png/89px-Uni318_c00.png"
+  },
+  {
+    "name": "D'artanyan",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/c/ce/Uni380_c00.png/89px-Uni380_c00.png"
+  },
+  {
+    "name": "Kasli the Scourge",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/5/56/Uni529_c00.png/89px-Uni529_c00.png"
+  },
+  {
+    "name": "Baby Garu",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/0/0d/Uni585_c00.png/89px-Uni585_c00.png"
+  },
+  {
+    "name": "Iz the Dancer",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/24/Uni641_c00.png/89px-Uni641_c00.png"
+  },
+  {
+    "name": "Child of Destiny Phono",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/4/41/Uni690_c00.png/89px-Uni690_c00.png"
+  },
+  {
+    "name": "Celestial Child Luna",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/6/61/Uni779_c00.png/89px-Uni779_c00.png"
+  },
+  {
+    "name": "Shadow Gao",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/9/99/Uni333_c00.png/89px-Uni333_c00.png"
+  },
+  {
+    "name": "Dark Mitama",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/27/Uni378_c00.png/89px-Uni378_c00.png"
+  },
+  {
+    "name": "D'arktanyan",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/3/3c/Uni441_c00.png/89px-Uni441_c00.png"
+  },
+  {
+    "name": "Kasli the Bane",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/4/4f/Uni543_c00.png/89px-Uni543_c00.png"
+  },
+  {
+    "name": "Dark Aegis Garu",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/73/Uni609_c00.png/89px-Uni609_c00.png"
+  },
+  {
+    "name": "Iz the Dancer of Grief",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/4/42/Uni657_c00.png/89px-Uni657_c00.png"
+  },
+  {
+    "name": "King of Doom Phono",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/5/59/Uni705_c00.png/89px-Uni705_c00.png"
+  },
+  {
+    "name": "Netherworld Nymph Lunacia",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/f/f6/Uni787_c00.png/89px-Uni787_c00.png"
+  },
+  {
+    "name": "Princess Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/2d/Uni612_c00.png/89px-Uni612_c00.png"
+  },
+  {
+    "name": "Li'l Valkyrie",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/c/c0/Uni435_c00.png/89px-Uni435_c00.png"
+  },
+  {
+    "name": "Li'l Valkyrie Dark",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/28/Uni484_c00.png/89px-Uni484_c00.png"
+  },
+  {
+    "name": "Trixi the Merc",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/22/Uni758_c00.png/89px-Uni758_c00.png"
+  },
+  {
+    "name": "Koneko",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/0/07/Uni783_c00.png/89px-Uni783_c00.png"
+  },
+  {
+    "name": "Agent Staal",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/c/c6/Uni810_c00.png/89px-Uni810_c00.png"
+  },
+  {
+    "name": "836-1",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/9/93/Uni836_c00.png/89px-Uni836_c00.png"
+  },
+  {
+    "name": "Evangelist Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/d/d5/Uni053_c00.png/89px-Uni053_c00.png"
+  },
+  {
+    "name": "Chicken Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/2c/Uni155_c00.png/89px-Uni155_c00.png"
+  },
+  {
+    "name": "Cheetah Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/9/95/Uni673_f00.png/89px-Uni673_f00.png"
+  },
+  {
+    "name": "Nimue",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/a/a6/Uni089_c00.png/89px-Uni089_c00.png"
+  },
+  {
+    "name": "Monkey King",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/3/31/Uni090_c00.png/89px-Uni090_c00.png"
+  },
+  {
+    "name": "PPT48",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/23/Uni066_s00.png/89px-Uni066_s00.png"
+  },
+  {
+    "name": "Crazed Princess Punt",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/8/84/Uni161_s00.png/89px-Uni161_s00.png"
+  },
+  {
+    "name": "HMS Princess",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/9/98/Uni337_s00.png/89px-Uni337_s00.png"
+  },
+  {
+    "name": "Calette",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/0/09/Uni485_c00.png/89px-Uni485_c00.png"
+  },
+  {
+    "name": "Herme",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/e/ec/Uni530_c00.png/89px-Uni530_c00.png"
+  },
+  {
+    "name": "Wyvern",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/d/d9/Uni119_s00.png/89px-Uni119_s00.png"
+  },
+  {
+    "name": "Hearscht",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/d/db/Uni185_s00.png/89px-Uni185_s00.png"
+  },
+  {
+    "name": "Cornelia",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/74/Uni186_c00.png/89px-Uni186_c00.png"
+  },
+  {
+    "name": "Juvens",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/e/e0/Uni187_s00.png/89px-Uni187_s00.png"
+  },
+  {
+    "name": "Mystica",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/6/6f/Uni188_s00.png/89px-Uni188_s00.png"
+  },
+  {
+    "name": "Michelia",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/d/db/Uni345_s00.png/89px-Uni345_s00.png"
+  },
+  {
+    "name": "Todomeki",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/a/ae/Uni346_c00.png/89px-Uni346_c00.png"
+  },
+  {
+    "name": "Eyewaltz",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/9/93/Uni506_s00.png/89px-Uni506_s00.png"
+  },
+  {
+    "name": "Taitenki",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/4/40/Uni768_c00.png/89px-Uni768_c00.png"
+  },
+  {
+    "name": "Mola King",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/6/64/Uni174_s00.png/89px-Uni174_s00.png"
+  },
+  {
+    "name": "Mystery Girl Yuki",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/c/c7/Uni180_s00.png/89px-Uni180_s00.png"
+  },
+  {
+    "name": "Crazed Yuki",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/3/33/Uni270_s00.png/89px-Uni270_s00.png"
+  },
+  {
+    "name": "Lost World Yuki",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/d/db/Uni341_s00.png/89px-Uni341_s00.png"
+  },
+  {
+    "name": "Benevolent Souma",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/6/6b/Uni482_s00.png/89px-Uni482_s00.png"
+  },
+  {
+    "name": "HUGE HERMIT",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/f/f9/Uni222_s00.png/89px-Uni222_s00.png"
+  },
+  {
+    "name": "JUPITER KING",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/25/Uni223_s00.png/89px-Uni223_s00.png"
+  },
+  {
+    "name": "DONALD MORDEN",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/27/Uni224_s00.png/89px-Uni224_s00.png"
+  },
+  {
+    "name": "HI-DO",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/5/5b/Uni225_s00.png/89px-Uni225_s00.png"
+  },
+  {
+    "name": "SOL DAE ROKKER",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/c/c9/Uni727_c00.png/89px-Uni727_c00.png"
+  },
+  {
+    "name": "God of War - Odin",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/f/f2/Uni236_c00.png/89px-Uni236_c00.png"
+  },
+  {
+    "name": "Madoka Kaname",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/5/53/Uni288_s00.png/89px-Uni288_s00.png"
+  },
+  {
+    "name": "Homura Akemi",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/9/9c/Uni289_s00.png/89px-Uni289_s00.png"
+  },
+  {
+    "name": "Sayaka Miki",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/9/90/Uni290_c00.png/89px-Uni290_c00.png"
+  },
+  {
+    "name": "Mami Tomoe",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/a/a0/Uni291_c00.png/89px-Uni291_c00.png"
+  },
+  {
+    "name": "Kyoko Sakura",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/c/c6/Uni292_c00.png/89px-Uni292_c00.png"
+  },
+  {
+    "name": "Bebe",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/6/6a/Uni440_s00.png/89px-Uni440_s00.png"
+  },
+  {
+    "name": "Madoka Cat &amp; Homura",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/27/Uni778_c00.png/89px-Uni778_c00.png"
+  },
+  {
+    "name": "Mobius",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/f/f9/Uni326_c00.png/89px-Uni326_c00.png"
+  },
+  {
+    "name": "Nisetama Army",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/4/49/Uni350_c00.png/89px-Uni350_c00.png"
+  },
+  {
+    "name": "Gude-Cat Machine",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/0/03/Uni430_c00.png/89px-Uni430_c00.png"
+  },
+  {
+    "name": "Saber",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/77/Uni362_s00.png/89px-Uni362_s00.png"
+  },
+  {
+    "name": "Rin Tohsaka",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/6/61/Uni363_c00.png/89px-Uni363_c00.png"
+  },
+  {
+    "name": "Illyasviel",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/a/a9/Uni364_c00.png/89px-Uni364_c00.png"
+  },
+  {
+    "name": "Archer",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/5/5e/Uni365_c00.png/89px-Uni365_c00.png"
+  },
+  {
+    "name": "Lancer",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/a/aa/Uni366_c00.png/89px-Uni366_c00.png"
+  },
+  {
+    "name": "Rider",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/8/89/Uni367_c00.png/89px-Uni367_c00.png"
+  },
+  {
+    "name": "Gilgamesh",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/a/a6/Uni368_c00.png/89px-Uni368_c00.png"
+  },
+  {
+    "name": "Sakura Matou",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/0/0f/Uni456_s00.png/89px-Uni456_s00.png"
+  },
+  {
+    "name": "Saki Nijima",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/8/8a/Uni393_s00.png/89px-Uni393_s00.png"
+  },
+  {
+    "name": "Subaru Hoshi",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/0/0e/Uni394_s00.png/89px-Uni394_s00.png"
+  },
+  {
+    "name": "Miyabi Oyama",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/2a/Uni395_s00.png/89px-Uni395_s00.png"
+  },
+  {
+    "name": "EVA Unit-00",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/9/91/Uni412_c00.png/89px-Uni412_c00.png"
+  },
+  {
+    "name": "EVA Unit-01",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/2a/Uni413_s00.png/89px-Uni413_s00.png"
+  },
+  {
+    "name": "EVA Unit-02",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/6/66/Uni414_s00.png/89px-Uni414_s00.png"
+  },
+  {
+    "name": "EVA Unit-08",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/c/c1/Uni487_c00.png/89px-Uni487_c00.png"
+  },
+  {
+    "name": "Shinji Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/1/19/Uni415_c00.png/89px-Uni415_c00.png"
+  },
+  {
+    "name": "Moon Operators",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/a/a8/Uni416_c00.png/89px-Uni416_c00.png"
+  },
+  {
+    "name": "AAA Wunder",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/b/ba/Uni488_s00.png/89px-Uni488_s00.png"
+  },
+  {
+    "name": "Night Oracle Rei",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/3/3c/Uni547_c00.png/89px-Uni547_c00.png"
+  },
+  {
+    "name": "The 4th Angel",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/f/f4/Uni548_c00.png/89px-Uni548_c00.png"
+  },
+  {
+    "name": "The 6th Angel",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/d/d9/Uni549_c00.png/89px-Uni549_c00.png"
+  },
+  {
+    "name": "The 9th Angel",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/d/d4/Uni551_c00.png/89px-Uni551_c00.png"
+  },
+  {
+    "name": "The 10th Angel",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/5/51/Uni550_c00.png/89px-Uni550_c00.png"
+  },
+  {
+    "name": "One-Eyed Asuka",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/8/89/Uni709_c00.png/89px-Uni709_c00.png"
+  },
+  {
+    "name": "EVA Unit-13",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/c/c1/Uni710_c00.png/89px-Uni710_c00.png"
+  },
+  {
+    "name": "Mass Production EVA",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/7c/Uni814_c00.png/89px-Uni814_c00.png"
+  },
+  {
+    "name": "Super Zeus",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/6/65/Uni467_s00.png/89px-Uni467_s00.png"
+  },
+  {
+    "name": "Holy Phoenix",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/3/3d/Uni468_s00.png/89px-Uni468_s00.png"
+  },
+  {
+    "name": "Super Devil",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/e/ef/Uni469_s00.png/89px-Uni469_s00.png"
+  },
+  {
+    "name": "Satanmaria",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/26/Uni470_c00.png/89px-Uni470_c00.png"
+  },
+  {
+    "name": "Heracrist",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/f/f3/Uni471_s00.png/89px-Uni471_s00.png"
+  },
+  {
+    "name": "Shaman Khan",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/3/33/Uni555_c00.png/89px-Uni555_c00.png"
+  },
+  {
+    "name": "Heavenly God Super Zeus",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/5/52/Uni762_c00.png/89px-Uni762_c00.png"
+  },
+  {
+    "name": "Ryu",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/e/e4/Uni511_s00.png/89px-Uni511_s00.png"
+  },
+  {
+    "name": "Chun-Li",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/0/0c/Uni512_c00.png/89px-Uni512_c00.png"
+  },
+  {
+    "name": "Guile",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/3/30/Uni513_c00.png/89px-Uni513_c00.png"
+  },
+  {
+    "name": "Zangief",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/6/6c/Uni514_c00.png/89px-Uni514_c00.png"
+  },
+  {
+    "name": "Blanka",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/b/bd/Uni515_c00.png/89px-Uni515_c00.png"
+  },
+  {
+    "name": "Dhalsim",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/9/99/Uni516_c00.png/89px-Uni516_c00.png"
+  },
+  {
+    "name": "Ken",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/73/Uni517_s00.png/89px-Uni517_s00.png"
+  },
+  {
+    "name": "E. Honda",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/25/Uni571_c00.png/89px-Uni571_c00.png"
+  },
+  {
+    "name": "Balrog",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/d/d2/Uni572_c00.png/89px-Uni572_c00.png"
+  },
+  {
+    "name": "Vega",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/76/Uni573_c00.png/89px-Uni573_c00.png"
+  },
+  {
+    "name": "Sagat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/d/df/Uni574_c00.png/89px-Uni574_c00.png"
+  },
+  {
+    "name": "M. Bison",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/75/Uni575_c00.png/89px-Uni575_c00.png"
+  },
+  {
+    "name": "Sakura",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/6/6e/Uni680_c00.png/89px-Uni680_c00.png"
+  },
+  {
+    "name": "Luke",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/9/92/Uni681_c00.png/89px-Uni681_c00.png"
+  },
+  {
+    "name": "Cammy",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/a/ae/Uni826_c00.png/89px-Uni826_c00.png"
+  },
+  {
+    "name": "Juri",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/1/19/Uni827_c00.png/89px-Uni827_c00.png"
+  },
+  {
+    "name": "Hatsune Miku",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/c/ca/Uni535_c00.png/89px-Uni535_c00.png"
+  },
+  {
+    "name": "Sakura Miku",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/3/3e/Uni536_c00.png/89px-Uni536_c00.png"
+  },
+  {
+    "name": "Kagamine Rin &amp; Len",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/73/Uni537_c00.png/89px-Uni537_c00.png"
+  },
+  {
+    "name": "Megurine Luka",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/4/4f/Uni560_c00.png/89px-Uni560_c00.png"
+  },
+  {
+    "name": "Hatsune Miku: MM2020 Osaka",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/9/94/Uni582_c00.png/89px-Uni582_c00.png"
+  },
+  {
+    "name": "Hatsune Miku: MM2020 Tokyo",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/f/f3/Uni583_c00.png/89px-Uni583_c00.png"
+  },
+  {
+    "name": "Snow Miku 2021",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/a/aa/Uni590_c00.png/89px-Uni590_c00.png"
+  },
+  {
+    "name": "Hatsune Miku XVI",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/1/19/Uni722_c00.png/89px-Uni722_c00.png"
+  },
+  {
+    "name": "Ranma Saotome (M)",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/f/f1/Uni596_c00.png/89px-Uni596_c00.png"
+  },
+  {
+    "name": "Akane Tendo",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/b/b0/Uni597_c00.png/89px-Uni597_c00.png"
+  },
+  {
+    "name": "Ryoga Hibiki (Pig)",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/6/62/Uni598_c00.png/89px-Uni598_c00.png"
+  },
+  {
+    "name": "Shampoo (Cat)",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/9/9a/Uni599_c00.png/89px-Uni599_c00.png"
+  },
+  {
+    "name": "Mousse (Duck)",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/4/43/Uni600_c00.png/89px-Uni600_c00.png"
+  },
+  {
+    "name": "Ranma Saotome (Leotard)",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/1/18/Uni671_c00.png/89px-Uni671_c00.png"
+  },
+  {
+    "name": "Kunio-kun",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/26/Uni624_c00.png/89px-Uni624_c00.png"
+  },
+  {
+    "name": "High School Kingpin Riki",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/a/a5/Uni721_c00.png/89px-Uni721_c00.png"
+  },
+  {
+    "name": "Voluptuous Peony - Daji",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/3/31/Uni741_c00.png/89px-Uni741_c00.png"
+  },
+  {
+    "name": "Kenshin Himura",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/9/90/Uni746_c00.png/89px-Uni746_c00.png"
+  },
+  {
+    "name": "Sanosuke Sagara",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/9/92/Uni747_c00.png/89px-Uni747_c00.png"
+  },
+  {
+    "name": "Aoshi Shinomori",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/a/a0/Uni748_c00.png/89px-Uni748_c00.png"
+  },
+  {
+    "name": "Hajime Saito",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/d/d8/Uni749_c00.png/89px-Uni749_c00.png"
+  },
+  {
+    "name": "Baki Hanma",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/4/42/Uni789_c00.png/89px-Uni789_c00.png"
+  },
+  {
+    "name": "Retsu Kaioh",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/1/1b/Uni790_c00.png/89px-Uni790_c00.png"
+  },
+  {
+    "name": "Kaoru Hanayama",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/f/fc/Uni791_c00.png/89px-Uni791_c00.png"
+  },
+  {
+    "name": "Katsumi Orochi",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/3/34/Uni792_c00.png/89px-Uni792_c00.png"
+  },
+  {
+    "name": "Jack Hammer",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/6/63/Uni793_c00.png/89px-Uni793_c00.png"
+  },
+  {
+    "name": "Sonic",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/77/Uni803_c00.png/89px-Uni803_c00.png"
+  },
+  {
+    "name": "Tails",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/6/69/Uni804_c00.png/89px-Uni804_c00.png"
+  },
+  {
+    "name": "Knuckles",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/b/bf/Uni805_c00.png/89px-Uni805_c00.png"
+  },
+  {
+    "name": "Shadow",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/4/49/Uni806_c00.png/89px-Uni806_c00.png"
+  },
+  {
+    "name": "Cat Maid",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/c/cb/Uni912_c00.png/89px-Uni912_c00.png"
+  },
+  {
+    "name": "Mimiluga",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/4/47/Uni915_c00.png/89px-Uni915_c00.png"
+  },
+  {
+    "name": "Honda Tadakatsu",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/f/fc/Uni902_c00.png/89px-Uni902_c00.png"
+  },
+  {
+    "name": "Wise Empress Nobel",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/b/b0/Uni910_c00.png/89px-Uni910_c00.png"
+  },
+  {
+    "name": "Nuclear Dragon King Berius",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/5/57/Uni907_c00.png/89px-Uni907_c00.png"
+  },
+  {
+    "name": "Issun Boushi",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/5/50/Uni908_c00.png/89px-Uni908_c00.png"
+  },
+  {
+    "name": "Type-Monshiro",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/2/28/Uni903_c00.png/89px-Uni903_c00.png"
+  },
+  {
+    "name": "Battle God Odin",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/72/Uni911_c00.png/89px-Uni911_c00.png"
+  },
+  {
+    "name": "Entangled Wooden Horse Javelins",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/c/c5/Uni909_c00.png/89px-Uni909_c00.png"
+  },
+  {
+    "name": "Karasu-Tengu Tenten",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/3/32/Uni917_c00.png/89px-Uni917_c00.png"
+  },
+  {
+    "name": "Hatsuyume Mikan",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/f/f7/Uni906_c00.png/89px-Uni906_c00.png"
+  },
+  {
+    "name": "Natsu Mikan",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/4/46/Uni916_c00.png/89px-Uni916_c00.png"
+  },
+  {
+    "name": "Kitaro Cat &amp; Nezumi-Otoko Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/d/df/Uni914_c00.png/89px-Uni914_c00.png"
+  },
+  {
+    "name": "Wonder MOMOCO",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/a/ab/Uni455_c00.png/89px-Uni455_c00.png"
+  },
+  {
+    "name": "Legeluga",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/4/4b/Uni461_c00.png/89px-Uni461_c00.png"
+  },
+  {
+    "name": "Musashi Miyamoto",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/e/e1/Uni448_s00.png/89px-Uni448_s00.png"
+  },
+  {
+    "name": "Headmistress Jeanne",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/a/a2/Uni449_c00.png/89px-Uni449_c00.png"
+  },
+  {
+    "name": "High Lord Babel",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/8/83/Uni450_s00.png/89px-Uni450_s00.png"
+  },
+  {
+    "name": "Ushiwakamaru",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/9/97/Uni451_c00.png/89px-Uni451_c00.png"
+  },
+  {
+    "name": "Doktor Heaven",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/6/62/Uni481_c00.png/89px-Uni481_c00.png"
+  },
+  {
+    "name": "Gaia the Creator",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/6/6f/Uni493_c00.png/89px-Uni493_c00.png"
+  },
+  {
+    "name": "Mighty Kristul Muu",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/7/7d/Uni463_c00.png/89px-Uni463_c00.png"
+  },
+  {
+    "name": "Kyosaka Nanaho",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/a/a8/Uni544_c00.png/89px-Uni544_c00.png"
+  },
+  {
+    "name": "Lumina",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/1/1a/Uni478_c00.png/89px-Uni478_c00.png"
+  },
+  {
+    "name": "Daybreaker Izanagi",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/3/33/Uni731_c00.png/89px-Uni731_c00.png"
+  },
+  {
+    "name": "Izanami of Dusk",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/0/0c/Uni738_c00.png/89px-Uni738_c00.png"
+  },
+  {
+    "name": "Emperor Cat",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/a/ab/Uni586_c00.png/89px-Uni586_c00.png"
+  },
+  {
+    "name": "Black Zeus",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/1/1b/Uni466_c00.png/89px-Uni466_c00.png"
+  },
+  {
+    "name": "Akuma",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/5/57/Uni510_c00.png/89px-Uni510_c00.png"
+  },
+  {
+    "name": "Moonshade Kaworu",
+    "imageUrl": "https://static.wikitide.net/battlecatswiki/thumb/1/18/Uni815_c00.png/89px-Uni815_c00.png"
+  }
+]
