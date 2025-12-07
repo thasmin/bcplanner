@@ -44,11 +44,7 @@ async function loadCatDatabase(): Promise<CatDatabase> {
 async function loadCatImages(): Promise<CatImage[]> {
 	const response = await fetch("/data/images.json");
 	if (!response.ok) throw new Error("Failed to load cat images");
-	const text = await response.text();
-	// Skip the first line which contains "Found X cats"
-	const lines = text.split("\n");
-	const jsonText = lines.slice(1).join("\n");
-	return JSON.parse(jsonText);
+	return response.json();
 }
 
 function Dictionary() {
