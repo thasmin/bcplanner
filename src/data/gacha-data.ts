@@ -70,8 +70,14 @@ export function createGachaEvent(
 ): GachaEvent {
 	// Group cats by rarity
 	const slots = Object.fromEntries(
-		[Rarity.Normal, Rarity.Special, Rarity.Rare, Rarity.SuperRare, Rarity.Uber, Rarity.Legend]
-			.map(r => [r, []])
+		[
+			Rarity.Normal,
+			Rarity.Special,
+			Rarity.Rare,
+			Rarity.SuperRare,
+			Rarity.Uber,
+			Rarity.Legend,
+		].map((r) => [r, []]),
 	) as GachaEvent["slots"];
 
 	const cats = catDatabase.gacha[eventData.id]?.cats;
@@ -100,6 +106,11 @@ export function createGachaEvent(
 		id: eventData.id,
 		slots,
 		rates,
+		guaranteedUberRolls: eventData.step_up
+			? 15
+			: eventData.guaranteed
+				? 10
+				: undefined,
 	};
 }
 

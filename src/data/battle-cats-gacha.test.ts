@@ -1,10 +1,6 @@
 import { describe, expect, test } from "bun:test";
 import path from "node:path";
-import {
-	rollMultiple,
-	rollMultipleBothTracks,
-	rollOnce,
-} from "./battle-cats-gacha";
+import { rollTracks } from "./battle-cats-gacha";
 import { type CatDatabase, createGachaEvent } from "./gacha-data";
 
 async function loadCatDatabaseForTest(): Promise<CatDatabase> {
@@ -14,7 +10,7 @@ async function loadCatDatabaseForTest(): Promise<CatDatabase> {
 }
 
 describe("Battle Cats Gacha", () => {
-	test("rollOnce with seed 2428617162", async () => {
+	test("rollTracks", async () => {
 		const catDatabase = await loadCatDatabaseForTest();
 		const eventData = catDatabase.events["2025-12-09_1020"];
 
@@ -25,122 +21,38 @@ describe("Battle Cats Gacha", () => {
 		const event = createGachaEvent(eventData, catDatabase);
 		const seed = 2428617162;
 
-		const { result } = rollOnce(seed, event);
+		const { trackA, trackB } = rollTracks(event, seed, 20);
 
-		expect(result.catId).toBe(37);
-	});
+		expect(trackA[0].catId).toBe(412);
+		expect(trackA[0].guaranteedUberId).toBe(549);
+		expect(trackA[1].catId).toBe(48);
+		expect(trackA[1].guaranteedUberId).toBe(488);
+		expect(trackA[2].catId).toBe(42);
 
-	test("rollMultiple with seed 2428617162", async () => {
-		const catDatabase = await loadCatDatabaseForTest();
-		const eventData = catDatabase.events["2025-12-09_1020"];
+		expect(trackB[0].catId).toBe(496);
+		expect(trackB[1].catId).toBe(48);
+		expect(trackB[2].catId).toBe(51);
 
-		if (!eventData) {
-			throw new Error("Event 2025-12-09_1020 not found");
-		}
+		// detect switch on track A
+		expect(trackA[7].catId).toBe(38);
+		expect(trackA[7].guaranteedUberId).toBe(549);
+		expect(trackA[7].nextAfterGuaranteed).toBe("19A");
+		expect(trackA[15].catId).toBe(147);
+		expect(trackA[15].guaranteedUberId).toBe(415);
+		expect(trackA[15].nextAfterGuaranteed).toBe("27A");
+		expect(trackA[16].catId).toBe(377);
+		expect(trackA[16].guaranteedUberId).toBe(488);
+		expect(trackA[16].nextAfterGuaranteed).toBe("28A");
 
-		const event = createGachaEvent(eventData, catDatabase);
-		const seed = 2428617162;
-
-		const results = rollMultiple(seed, event, 3);
-
-		expect(results[1].catId).toBe(496);
-		expect(results[2].catId).toBe(48);
-	});
-
-	test("guaranteed 10 rolls with seed 2428617162 and event 2025-12-09_1020", async () => {
-		const catDatabase = await loadCatDatabaseForTest();
-		const eventData = catDatabase.events["2025-12-09_1020"];
-
-		if (!eventData) {
-			throw new Error("Event 2025-12-09_1020 not found");
-		}
-
-		const event = createGachaEvent(eventData, catDatabase);
-		const seed = 2428617162;
-		const hasGuaranteed = eventData.guaranteed === true || !!eventData.step_up;
-		const isStepUp = !!eventData.step_up;
-
-		const results = rollMultipleBothTracks(
-			seed,
-			event,
-			13,
-			hasGuaranteed,
-			isStepUp,
-		);
-
-		expect(results[0].trackA.catId).toBe(412);
-		expect(results[0].trackB.catId).toBe(496);
-		expect(results[0].guaranteedA?.catId).toBe(549);
-		expect(results[0].guaranteedB?.catId).toBe(549);
-		expect(results[0].guaranteedA?.isGuaranteed).toBe(true);
-		expect(results[0].guaranteedB?.isGuaranteed).toBe(true);
-
-		expect(results[1].trackA.catId).toBe(48);
-		expect(results[1].trackB.catId).toBe(48);
-		expect(results[1].guaranteedA?.catId).toBe(488);
-		expect(results[1].guaranteedB?.catId).toBe(549);
-
-		expect(results[2].trackA.catId).toBe(42);
-		expect(results[2].trackB.catId).toBe(51);
-		expect(results[2].guaranteedA?.catId).toBe(488);
-		expect(results[2].guaranteedB?.catId).toBe(488);
-	});
-
-	test("guaranteed landing position calculation", async () => {
-		const catDatabase = await loadCatDatabaseForTest();
-		const eventData = catDatabase.events["2025-12-09_1020"];
-
-		if (!eventData) {
-			throw new Error("Event 2025-12-09_1020 not found");
-		}
-
-		const event = createGachaEvent(eventData, catDatabase);
-		const seed = 2428617162;
-		const hasGuaranteed = eventData.guaranteed === true || !!eventData.step_up;
-		const isStepUp = !!eventData.step_up;
-
-		const results = rollMultipleBothTracks(
-			seed,
-			event,
-			20,
-			hasGuaranteed,
-			isStepUp,
-		);
-
-		expect(results[0].trackA.catId).toBe(412);
-		expect(results[0].guaranteedA?.catId).toBe(549);
-		expect(results[0].nextAfterGuaranteedA).toBe("11B");
-
-		expect(results[1].trackA.catId).toBe(48);
-		expect(results[1].guaranteedA?.catId).toBe(488);
-		expect(results[1].nextAfterGuaranteedA).toBe("12B");
-
-		expect(results[7].trackA.catId).toBe(38);
-		expect(results[7].guaranteedA?.catId).toBe(549);
-		expect(results[7].nextAfterGuaranteedA).toBe("19A");
-
-		expect(results[8].trackA.catId).toBe(148);
-		expect(results[8].guaranteedA?.catId).toBe(489);
-		expect(results[8].nextAfterGuaranteedA).toBe("20A");
-
-		expect(results[0].trackB.catId).toBe(496);
-		expect(results[0].guaranteedB?.catId).toBe(549);
-		expect(results[0].nextAfterGuaranteedB).toBe("12A");
-
-		expect(results[6].trackB.catId).toBe(39);
-		expect(results[6].guaranteedB?.catId).toBe(488);
-		expect(results[6].nextAfterGuaranteedB).toBe("18B");
-
-		expect(results[7].trackB.catId).toBe(53);
-		expect(results[7].guaranteedB?.catId).toBe(417);
-		expect(results[7].nextAfterGuaranteedB).toBe("19B");
-
-		// detect switch on row 17
-		expect(results[15].trackA.catId).toBe(147);
-		expect(results[15].guaranteedA?.catId).toBe(415);
-		expect(results[15].nextAfterGuaranteedA).toBe("27A");
-		expect(results[16].trackA.catId).toBe(377);
-		expect(results[16].guaranteedA?.catId).toBe(488);
-		expect(results[16].nextAfterGuaranteedA).toBe("28A");
+		// detect switch on track B
+		expect(trackB[7].catId).toBe(53);
+		expect(trackB[7].guaranteedUberId).toBe(417);
+		expect(trackB[7].nextAfterGuaranteed).toBe("19B");
+		expect(trackB[14].catId).toBe(53);
+		expect(trackB[14].guaranteedUberId).toBe(489);
+		expect(trackB[14].nextAfterGuaranteed).toBe("26B");
+		expect(trackB[15].catId).toBe(57);
+		expect(trackB[15].guaranteedUberId).toBe(711);
+		expect(trackB[15].nextAfterGuaranteed).toBe("27B");
 	});
 });

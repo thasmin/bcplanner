@@ -3,12 +3,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import clsx from "clsx";
 import { Cat } from "lucide-react";
 import { useEffect, useId, useState } from "react";
+import { Rarity, rollTracks } from "../data/battle-cats-gacha";
 import {
-	type BothTracksRoll,
-	type RollResult,
-	rollMultipleBothTracks,
-} from "../data/battle-cats-gacha";
-import {
+	type CatInfo,
 	createGachaEvent,
 	getEventOptions,
 	loadCatDatabase,
@@ -27,39 +24,31 @@ function useDebounce<T>(value: T, delay: number): T {
 	return debouncedValue;
 }
 
-function getRarityBgClass(rarityName?: string) {
-	if (!rarityName) return "";
-	if (rarityName === "Uber") return "bg-yellow-50";
-	if (rarityName === "Legend") return "bg-purple-50";
-	if (rarityName === "Super Rare") return "bg-blue-50";
+function rarityName(rarity: number) {
+	return (
+		["Normal", "Special", "Rare", "Super Rare", "Uber", "Legend"][rarity] ||
+		"Unknown"
+	);
+}
+
+function getRarityBgClass(rarity?: number) {
+	if (rarity === undefined) return "";
+	if (rarity === Rarity.SuperRare) return "bg-blue-50";
+	if (rarity === Rarity.Uber) return "bg-yellow-50";
+	if (rarity === Rarity.Legend) return "bg-purple-50";
 	return "";
 }
 
-function getRarityColors(rarityName: string) {
-	if (rarityName === "Uber") return "bg-yellow-100 text-yellow-800";
-	if (rarityName === "Legend") return "bg-purple-100 text-purple-800";
-	if (rarityName === "Super Rare") return "bg-blue-100 text-blue-800";
+function getRarityColors(rarity: number) {
+	if (rarity === Rarity.SuperRare) return "bg-blue-100 text-blue-800";
+	if (rarity === Rarity.Uber) return "bg-yellow-100 text-yellow-800";
+	if (rarity === Rarity.Legend) return "bg-purple-100 text-purple-800";
 	return "bg-gray-100 text-gray-800";
 }
-
-type RollWithName = RollResult & {
-	catName?: string;
-	switchedFromCatName?: string;
-};
-type BothTracksRollWithNames = Omit<
-	BothTracksRoll,
-	"trackA" | "trackB" | "guaranteedA" | "guaranteedB"
-> & {
-	trackA: RollWithName;
-	trackB: RollWithName;
-	guaranteedA?: RollWithName;
-	guaranteedB?: RollWithName;
-};
 
 function App() {
 	const [seed, setSeed] = useState(2428617162);
 	const [selectedEvent, setSelectedEvent] = useState<string>("");
-	const [rolls, setRolls] = useState<BothTracksRollWithNames[]>([]);
 
 	const debouncedSeed = useDebounce(seed, 500);
 
@@ -69,6 +58,32 @@ function App() {
 		queryFn: loadCatDatabase,
 		staleTime: Infinity, // Never refetch
 	});
+
+	interface CatRowData {
+		id: number;
+		rarity: number;
+		name: string;
+	}
+
+	function lookupCat(catId: number): CatRowData;
+	function lookupCat(catId: number | undefined): CatRowData | undefined;
+	function lookupCat(catId: number | undefined): CatRowData | undefined {
+		if (!catId) return undefined;
+		const cat =
+			catDatabaseQuery.data?.cats[catId] ||
+			({
+				id: catId,
+				name: ["Unknown"],
+				desc: [],
+				rarity: 0,
+				max_level: 0,
+			} as CatInfo);
+		return {
+			id: catId,
+			rarity: cat.rarity,
+			name: cat.name[0],
+		};
+	}
 
 	// Set default event when events load
 	const eventOptions = catDatabaseQuery.data
@@ -80,6 +95,32 @@ function App() {
 			setSelectedEvent(eventOptions[0].key);
 		}
 	}, [eventOptions, selectedEvent]);
+
+	const [tracks, setTracks] = useState<ReturnType<typeof rollTracks>>({
+		trackA: [],
+		trackB: [],
+	});
+	const trackRolls = tracks.trackA.map((rollA, index) => {
+		const rollB = tracks.trackB[index];
+		return {
+			index,
+			trackA: {
+				cat: lookupCat(rollA.catId),
+				guaranteedUberId: lookupCat(rollA.guaranteedUberId),
+				switchedFromCatId: lookupCat(rollA.switchedFromCatId),
+				nextAfterGuaranteed: rollA.nextAfterGuaranteed,
+			},
+			trackB: {
+				cat: lookupCat(rollB.catId),
+				guaranteedUber: lookupCat(rollB.guaranteedUberId),
+				switchedFromCat: lookupCat(rollB.switchedFromCatId),
+				nextAfterGuaranteed: rollB.nextAfterGuaranteed,
+			},
+		};
+	});
+
+	const eventData = catDatabaseQuery.data?.events[selectedEvent];
+	const eventHasGuaranteedUber = eventData?.step_up || eventData?.guaranteed;
 
 	// Calculate rolls when seed or event changes
 	useEffect(() => {
@@ -94,60 +135,7 @@ function App() {
 		}
 
 		const event = createGachaEvent(eventData, catDatabase);
-		const hasGuaranteed = eventData.guaranteed === true || !!eventData.step_up;
-		const stepUpValue = !!eventData.step_up;
-
-		const results = rollMultipleBothTracks(
-			debouncedSeed,
-			event,
-			100,
-			hasGuaranteed,
-			stepUpValue,
-		);
-
-		// Add cat names to results for both tracks
-		const resultsWithNames: BothTracksRollWithNames[] = results.map((roll) => {
-			const result: BothTracksRollWithNames = {
-				trackA: {
-					...roll.trackA,
-					catName: catDatabase.cats[roll.trackA.catId]?.name?.[0] || "Unknown",
-					switchedFromCatName: roll.trackA.switchTracks
-						? catDatabase.cats[roll.trackA.switchedFromCatId ?? -1]
-								?.name?.[0] || "Unknown"
-						: undefined,
-				},
-				trackB: {
-					...roll.trackB,
-					catName: catDatabase.cats[roll.trackB.catId]?.name?.[0] || "Unknown",
-					switchedFromCatName: roll.trackB.switchTracks
-						? catDatabase.cats[roll.trackB.switchedFromCatId ?? -1]
-								?.name?.[0] || "Unknown"
-						: undefined,
-				},
-			};
-
-			if (roll.guaranteedA) {
-				result.guaranteedA = {
-					...roll.guaranteedA,
-					catName:
-						catDatabase.cats[roll.guaranteedA.catId]?.name?.[0] || "Unknown",
-				};
-				result.nextAfterGuaranteedA = roll.nextAfterGuaranteedA;
-			}
-
-			if (roll.guaranteedB) {
-				result.guaranteedB = {
-					...roll.guaranteedB,
-					catName:
-						catDatabase.cats[roll.guaranteedB.catId]?.name?.[0] || "Unknown",
-				};
-				result.nextAfterGuaranteedB = roll.nextAfterGuaranteedB;
-			}
-
-			return result;
-		});
-
-		setRolls(resultsWithNames);
+		setTracks(rollTracks(event, debouncedSeed, 100));
 	}, [debouncedSeed, selectedEvent, catDatabaseQuery.data]);
 
 	// Derive isStepUp from current event data
@@ -223,7 +211,7 @@ function App() {
 						Next 100 Rolls (Track A and Track B)
 					</h2>
 					<p className="text-sm text-gray-600 mt-1">
-						{rolls.some((r) => r.guaranteedA) ? (
+						{eventHasGuaranteedUber ? (
 							<>
 								Guaranteed Uber rolls available. Using a guaranteed roll
 								advances you {isStepUp ? "15" : "10"} rolls and switches to the
@@ -244,13 +232,13 @@ function App() {
 									#
 								</th>
 								<th
-									colSpan={rolls.some((r) => r.guaranteedA) ? 3 : 2}
+									colSpan={eventHasGuaranteedUber ? 3 : 2}
 									className="px-3 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border-l border-gray-300 bg-blue-50"
 								>
 									Track A
 								</th>
 								<th
-									colSpan={rolls.some((r) => r.guaranteedB) ? 3 : 2}
+									colSpan={eventHasGuaranteedUber ? 3 : 2}
 									className="px-3 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border-l border-gray-300 bg-green-50"
 								>
 									Track B
@@ -264,7 +252,7 @@ function App() {
 								<th className="px-2 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
 									Rarity
 								</th>
-								{rolls.some((r) => r.guaranteedA) && (
+								{eventHasGuaranteedUber && (
 									<th className="px-2 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
 										Guaranteed
 									</th>
@@ -275,7 +263,7 @@ function App() {
 								<th className="px-2 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
 									Rarity
 								</th>
-								{rolls.some((r) => r.guaranteedB) && (
+								{eventHasGuaranteedUber && (
 									<th className="px-2 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
 										Guaranteed
 									</th>
@@ -283,64 +271,60 @@ function App() {
 							</tr>
 						</thead>
 						<tbody className="bg-white divide-y divide-gray-200">
-							{rolls.map((roll) => {
+							{trackRolls.map((tr, ndx) => {
 								return (
-									<tr key={roll.trackA.rollNumber}>
+									<tr key={trackRolls[ndx].index}>
 										<td className="px-3 py-3 whitespace-nowrap text-sm font-medium text-gray-900">
-											{roll.trackA.rollNumber}
+											{ndx + 1}
 										</td>
 										<td
 											className={clsx(
 												"px-2 py-3 whitespace-nowrap text-sm text-gray-900 border-l border-gray-200",
-												getRarityBgClass(roll.trackA.rarityName),
+												getRarityBgClass(tr.trackA.cat.rarity),
 											)}
 										>
-											<div>
-												{roll.trackA.catName} ({roll.trackA.catId})
-											</div>
-											{roll.trackA.switchTracks && (
+											{tr.trackA.cat.name}
+											{tr.trackA.switchedFromCatId && (
 												<div className="text-xs text-orange-600">
-													Rerolled from {roll.trackA.switchedFromCatName} (
-													{roll.trackA.switchedFromCatId})
-													<div>→ {roll.trackA.rollNumber + 1}B</div>
+													Rerolled from {tr.trackA.switchedFromCatId.name}
+													<div>→ {ndx + 2}B</div>
 												</div>
 											)}
 										</td>
 										<td
 											className={clsx(
 												"px-2 py-3 whitespace-nowrap text-sm",
-												getRarityBgClass(roll.trackA.rarityName),
+												getRarityBgClass(tr.trackA.cat.rarity),
 											)}
 										>
 											<span
 												className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
-													roll.trackA.rarityName === "Uber"
+													tr.trackA.cat.rarity === Rarity.Uber
 														? "bg-yellow-100 text-yellow-800"
-														: roll.trackA.rarityName === "Legend"
+														: tr.trackA.cat.rarity === Rarity.Legend
 															? "bg-purple-100 text-purple-800"
-															: roll.trackA.rarityName === "Super Rare"
+															: tr.trackA.cat.rarity === Rarity.SuperRare
 																? "bg-blue-100 text-blue-800"
 																: "bg-gray-100 text-gray-800"
 												}`}
 											>
-												{roll.trackA.rarityName}
+												{rarityName(tr.trackA.cat.rarity)}
 											</span>
 										</td>
-										{rolls.some((r) => r.guaranteedA) && (
+										{eventHasGuaranteedUber && (
 											<td
 												className={clsx(
 													"px-2 py-3 whitespace-nowrap text-xs text-gray-700",
-													getRarityBgClass("Uber"),
+													getRarityBgClass(Rarity.Uber),
 												)}
 											>
-												{roll.guaranteedA && (
+												{tr.trackA.guaranteedUberId && (
 													<>
 														<div className="font-medium text-amber-700">
-															{roll.guaranteedA?.catName} (
-															{roll.guaranteedA?.catId})
+															{tr.trackA.guaranteedUberId.name}
 														</div>
 														<div className="text-gray-500 mt-1">
-															→ {roll.nextAfterGuaranteedA}
+															→ {tr.trackA.nextAfterGuaranteed}
 														</div>
 													</>
 												)}
@@ -350,49 +334,46 @@ function App() {
 										<td
 											className={clsx(
 												"px-2 py-3 whitespace-nowrap text-sm text-gray-900 border-l border-gray-300",
-												getRarityBgClass(roll.trackB.rarityName),
+												getRarityBgClass(tr.trackB.cat.rarity),
 											)}
 										>
-											<div>
-												{roll.trackB.catName} ({roll.trackB.catId})
-											</div>
-											{roll.trackB.switchTracks && (
+											<div>{tr.trackB.cat.name}</div>
+											{tr.trackB.switchedFromCat && (
 												<div className="text-xs text-orange-600">
-													⚠Rerolled from {roll.trackB.switchedFromCatName} (
-													{roll.trackB.switchedFromCatId})
-													<div>→ {roll.trackB.rollNumber + 1}A</div>
+													Rerolled from {tr.trackB.switchedFromCat.name}
+													<div>→ {tr.index + 2}A</div>
 												</div>
 											)}
 										</td>
 										<td
 											className={clsx(
 												"px-2 py-3 whitespace-nowrap text-sm",
-												getRarityBgClass(roll.trackB.rarityName),
+												getRarityBgClass(tr.trackB.cat.rarity),
 											)}
 										>
 											<span
 												className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${getRarityColors(
-													roll.trackB.rarityName,
+													tr.trackB.cat.rarity,
 												)}`}
 											>
-												{roll.trackB.rarityName}
+												{rarityName(tr.trackB.cat.rarity)}
 											</span>
 										</td>
-										{rolls.some((r) => r.guaranteedB) && (
+										{eventHasGuaranteedUber && (
 											<td
 												className={clsx(
 													"px-2 py-3 whitespace-nowrap text-xs text-gray-700",
-													getRarityBgClass("Uber"),
+													getRarityBgClass(Rarity.Uber),
 												)}
 											>
-												{roll.guaranteedB && (
+												{tr.trackB.guaranteedUber && (
 													<>
 														<div className="font-medium text-amber-700">
-															{roll.guaranteedB.catName} (
-															{roll.guaranteedB.catId})
+															{tr.trackB.guaranteedUber.name} (
+															{tr.trackB.guaranteedUber.id})
 														</div>
 														<div className="text-gray-500 mt-1">
-															→ {roll.nextAfterGuaranteedB}
+															→ {tr.trackB.nextAfterGuaranteed}
 														</div>
 													</>
 												)}
