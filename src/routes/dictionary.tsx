@@ -104,6 +104,7 @@ function Dictionary() {
 	const filteredCats = catsArray.filter((cat) => {
 		const matchesSearch =
 			searchTerm === "" ||
+			cat.id === searchTerm ||
 			cat.name.some((name) =>
 				name.toLowerCase().includes(searchTerm.toLowerCase()),
 			);
