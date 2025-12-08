@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
-import { BookOpen } from "lucide-react";
-import { useId, useState } from "react";
+import { BookOpen, X } from "lucide-react";
+import { useEffect, useId, useRef, useState } from "react";
 
 export const Route = createFileRoute("/dictionary")({ component: Dictionary });
 
@@ -47,11 +47,32 @@ async function loadCatImages(): Promise<CatImage[]> {
 	return response.json();
 }
 
+interface CatWithId {
+	id: string;
+	name: string[];
+	desc: string[];
+	rarity: number;
+}
+
+function getCatStageImagePath(catId: string, stageIndex: number): string {
+	const paddedId = catId.padStart(4, "0");
+	return `/catImages/cat_${paddedId}_${stageIndex}.png`;
+}
+
 function Dictionary() {
 	const [searchTerm, setSearchTerm] = useState("");
 	const [rarityFilter, setRarityFilter] = useState<number | "all">("all");
+	const [selectedCat, setSelectedCat] = useState<CatWithId | null>(null);
+	const dialogRef = useRef<HTMLDialogElement>(null);
 	const searchInputId = useId();
 	const rarityInputId = useId();
+
+	useEffect(() => {
+		const dialog = dialogRef.current;
+		if (!dialog) return;
+		if (selectedCat) dialog.showModal();
+		else dialog.close();
+	}, [selectedCat]);
 
 	const catDatabaseQuery = useQuery({
 		queryKey: ["catDatabase"],
@@ -175,9 +196,11 @@ function Dictionary() {
 				{filteredCats.map((cat) => {
 					const imageUrl = imageMap.get(cat.name[0]);
 					return (
-						<div
+						<button
+							type="button"
 							key={cat.id}
-							className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
+							className="text-left bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow cursor-pointer"
+							onClick={() => setSelectedCat(cat)}
 						>
 							<div className="flex items-start p-4">
 								<div className="flex-shrink-0 w-24 h-24 bg-gray-100 rounded-lg flex items-center justify-center mr-4">
@@ -219,7 +242,7 @@ function Dictionary() {
 									)}
 								</div>
 							</div>
-						</div>
+						</button>
 					);
 				})}
 			</div>
@@ -229,6 +252,97 @@ function Dictionary() {
 					No cats found matching your search criteria.
 				</div>
 			)}
+
+			<dialog
+				ref={dialogRef}
+				closedby="any"
+				className="backdrop:bg-black backdrop:opacity-80 bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-auto p-0 m-auto"
+				onClose={() => setSelectedCat(null)}
+			>
+				{selectedCat && (
+					<>
+						<div className="sticky top-0 bg-white border-b border-gray-200 p-4 flex justify-between items-start">
+							<div>
+								<h2 className="text-2xl font-bold text-gray-900">
+									{selectedCat.name[0]}
+								</h2>
+								<div className="flex items-center gap-2 mt-2">
+									<span className="text-sm text-gray-500">
+										ID: {selectedCat.id}
+									</span>
+									<span
+										className={`inline-block px-2 py-1 text-xs font-semibold rounded-full border ${getRarityColors(
+											selectedCat.rarity,
+										)}`}
+									>
+										{rarityName(selectedCat.rarity)}
+									</span>
+								</div>
+							</div>
+							<button
+								type="button"
+								onClick={() => setSelectedCat(null)}
+								className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+								aria-label="Close"
+							>
+								<X className="w-6 h-6" />
+							</button>
+						</div>
+
+						<div className="p-6">
+							<h3 className="text-lg font-semibold text-gray-900 mb-4">
+								Evolution Stages
+							</h3>
+
+							<div className="flex flex-col gap-4">
+								{selectedCat.name.map((_name, stageIndex) => {
+									const imagePath = getCatStageImagePath(
+										selectedCat.id,
+										stageIndex,
+									);
+									const stageName =
+										selectedCat.name[stageIndex] || `Stage ${stageIndex}`;
+									const stageDesc = selectedCat.desc[stageIndex];
+
+									return (
+										<div
+											key={_name}
+											className="bg-gray-50 rounded-lg p-4 flex gap-4"
+										>
+											<div className="flex-shrink-0 w-32 h-32 bg-white rounded-lg flex items-center justify-center overflow-hidden">
+												<img
+													src={imagePath}
+													alt={stageName}
+													className="max-w-full max-h-full object-contain"
+													onError={(e) => {
+														const target = e.target as HTMLImageElement;
+														target.style.display = "none";
+														const parent = target.parentElement;
+														if (parent) {
+															parent.innerHTML =
+																'<div class="text-gray-400 text-xs">No image</div>';
+														}
+													}}
+												/>
+											</div>
+											<div className="flex-1 min-w-0">
+												<h4 className="text-lg font-semibold text-gray-900 mb-2">
+													{stageName}
+												</h4>
+												{stageDesc && (
+													<p className="text-sm text-gray-600 leading-relaxed">
+														{stageDesc}
+													</p>
+												)}
+											</div>
+										</div>
+									);
+								})}
+							</div>
+						</div>
+					</>
+				)}
+			</dialog>
 		</div>
 	);
 }
