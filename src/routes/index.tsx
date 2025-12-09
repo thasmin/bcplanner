@@ -10,6 +10,7 @@ import {
 	getEventOptions,
 	loadCatDatabase,
 } from "../data/gacha-data";
+import { tierList } from "../utils";
 
 export const Route = createFileRoute("/")({ component: App });
 
@@ -44,6 +45,15 @@ function getRarityColors(rarity: number) {
 	if (rarity === Rarity.Uber) return "bg-yellow-100 text-yellow-800";
 	if (rarity === Rarity.Legend) return "bg-purple-100 text-purple-800";
 	return "bg-gray-100 text-gray-800";
+}
+
+function getCatTierRank(catId: number): string | undefined {
+	for (const tier of tierList) {
+		if (tier.cats.includes(catId)) {
+			return tier.rank;
+		}
+	}
+	return undefined;
 }
 
 function App() {
@@ -283,7 +293,14 @@ function App() {
 												getRarityBgClass(tr.trackA.cat.rarity),
 											)}
 										>
-											{tr.trackA.cat.name}
+											<div className="flex items-center gap-2">
+												<span>{tr.trackA.cat.name}</span>
+												{getCatTierRank(tr.trackA.cat.id) && (
+													<span className="px-1.5 py-0.5 text-xs font-semibold rounded bg-indigo-100 text-indigo-800">
+														{getCatTierRank(tr.trackA.cat.id)}
+													</span>
+												)}
+											</div>
 											{tr.trackA.switchedFromCatId && (
 												<div className="text-xs text-orange-600">
 													Rerolled from {tr.trackA.switchedFromCatId.name}
@@ -337,7 +354,14 @@ function App() {
 												getRarityBgClass(tr.trackB.cat.rarity),
 											)}
 										>
-											<div>{tr.trackB.cat.name}</div>
+											<div className="flex items-center gap-2">
+												<span>{tr.trackB.cat.name}</span>
+												{getCatTierRank(tr.trackB.cat.id) && (
+													<span className="px-1.5 py-0.5 text-xs font-semibold rounded bg-indigo-100 text-indigo-800">
+														{getCatTierRank(tr.trackB.cat.id)}
+													</span>
+												)}
+											</div>
 											{tr.trackB.switchedFromCat && (
 												<div className="text-xs text-orange-600">
 													Rerolled from {tr.trackB.switchedFromCat.name}
