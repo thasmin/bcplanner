@@ -3,7 +3,7 @@ import { useEffect, useRef } from "react";
 import { getCatStageImagePath } from "@/utils";
 
 export interface CatWithId {
-	id: string;
+	id: string | number;
 	name: string[];
 	desc: string[];
 	rarity: number;

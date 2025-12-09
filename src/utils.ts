@@ -1,7 +1,7 @@
 export function getCatStageImagePath(
-	catId: string,
+	catId: string | number,
 	stageIndex: number,
 ): string {
-	const paddedId = catId.padStart(4, "0");
+	const paddedId = `${catId}`.padStart(4, "0");
 	return `/catImages/cat_${paddedId}_${stageIndex}.png`;
 }
