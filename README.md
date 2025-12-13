@@ -1,301 +1,141 @@
-Welcome to your new TanStack app! 
+# CatPlanner
 
-# Getting Started
+A strategic planning tool for **The Battle Cats** mobile game. Plan your gacha rolls, discover upcoming Uber cats, browse the complete cat encyclopedia, and view tier rankings - all with a beautiful, modern interface.
 
-To run this application:
+## What is Battle Cats?
+
+[The Battle Cats](https://en.wikipedia.org/wiki/The_Battle_Cats) is a popular tower defense mobile game by PONOS. Players collect various cat units through a gacha system to battle across hundreds of stages. The game uses a deterministic seed-based system for gacha rolls, making it possible to predict future pulls.
+
+## Features
+
+### 🎲 Roll Planner
+Predict your next 100 gacha rolls based on your seed number. The planner shows:
+- Dual-track (A/B) roll predictions
+- Cat names and rarities with color coding
+- Guaranteed Uber mechanics for eligible events
+- Duplicate reroll detection and track switching
+- Quick seed navigation to jump to any roll
+
+### 👑 Uber Planner
+Find the best opportunities to get Uber-rarity cats across all active events. This strategic tool:
+- Scans all current guaranteed Uber events
+- Shows which rolls will give you Ubers on each track
+- Helps optimize your cat food spending
+- Displays tier rankings to prioritize the best cats
+
+### 📖 Cat Dictionary
+Browse and search the complete database of Battle Cats units:
+- 800+ cats with images, descriptions, and stats
+- Filter by rarity (Normal, Special, Rare, Super Rare, Uber, Legend)
+- Search by name or ID
+- Detailed cat information in interactive dialogs
+
+### 🏆 Tier Lists
+View community-curated tier rankings for strategic planning:
+- General tier list for standard gameplay
+- Special event tier lists (e.g., EVANGELION collab)
+- Visual rankings from SS to F tier
+- Click any cat for detailed information
+
+## How It Works
+
+The Battle Cats uses a deterministic **XORShift32** random number generator for its gacha system. This means that if you know your seed, you can predict every future roll with 100% accuracy.
+
+Each roll uses two RNG advances:
+1. **Rarity determination** - Decides if you get Rare/Super Rare/Uber/Legend
+2. **Cat selection** - Picks which specific cat from that rarity pool
+
+The algorithm is reverse-engineered from the game and matches in-game results perfectly.
+
+## Getting Started
+
+### Prerequisites
+- [Bun](https://bun.sh/) (recommended) or Node.js
+
+### Installation
 
 ```bash
+# Clone the repository
+git clone https://github.com/yourusername/catplanner.git
+cd catplanner
+
+# Install dependencies
 bun install
-bun --bun run start
 ```
 
-# Building For Production
-
-To build this application for production:
+### Development
 
 ```bash
-bun --bun run build
+# Start the development server
+bun run dev
 ```
 
-## Testing
+The app will be available at `http://localhost:6990`
 
-This project uses [Vitest](https://vitest.dev/) for testing. You can run the tests with:
+### Production Build
 
 ```bash
-bun --bun run test
+# Build for production
+bun run build
+
+# Preview the production build
+bun run serve
 ```
 
-## Styling
+## Finding Your Seed
 
-This project uses [Tailwind CSS](https://tailwindcss.com/) for styling.
+To use the Roll Planner and Uber Planner, you'll need your Battle Cats seed number. This typically requires:
+1. Using a seed tracking app or tool
+2. Comparing your recent rolls to known event data
+3. Using community resources like the Battle Cats Discord
 
+**Note:** This tool does not extract seeds from the game - you must obtain your seed through other means.
 
-## Linting & Formatting
+## Tech Stack
 
-This project uses [Biome](https://biomejs.dev/) for linting and formatting. The following scripts are available:
+- **Framework:** React + TanStack Router
+- **Runtime:** Bun
+- **Styling:** Tailwind CSS 4
+- **Data Fetching:** TanStack Query
+- **Build Tool:** Vite
+- **Linting/Formatting:** Biome
 
+## Project Structure
+
+```
+catplanner/
+├── src/
+│   ├── routes/          # Page components
+│   ├── components/      # Reusable UI components
+│   ├── data/           # Gacha algorithm & data loading
+│   └── utils.ts        # Helper functions
+├── public/
+│   └── data/           # Cat database and images
+└── GACHA_INTEGRATION.md # Technical documentation
+```
+
+## Development
+
+### Testing
 
 ```bash
-bun --bun run lint
-bun --bun run format
-bun --bun run check
+bun test
 ```
 
-
-
-## Routing
-This project uses [TanStack Router](https://tanstack.com/router). The initial setup is a file based router. Which means that the routes are managed as files in `src/routes`.
-
-### Adding A Route
-
-To add a new route to your application just add another a new file in the `./src/routes` directory.
-
-TanStack will automatically generate the content of the route file for you.
-
-Now that you have two routes you can use a `Link` component to navigate between them.
-
-### Adding Links
-
-To use SPA (Single Page Application) navigation you will need to import the `Link` component from `@tanstack/react-router`.
-
-```tsx
-import { Link } from "@tanstack/react-router";
-```
-
-Then anywhere in your JSX you can use it like so:
-
-```tsx
-<Link to="/about">About</Link>
-```
-
-This will create a link that will navigate to the `/about` route.
-
-More information on the `Link` component can be found in the [Link documentation](https://tanstack.com/router/v1/docs/framework/react/api/router/linkComponent).
-
-### Using A Layout
-
-In the File Based Routing setup the layout is located in `src/routes/__root.tsx`. Anything you add to the root route will appear in all the routes. The route content will appear in the JSX where you use the `<Outlet />` component.
-
-Here is an example layout that includes a header:
-
-```tsx
-import { Outlet, createRootRoute } from '@tanstack/react-router'
-import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
-
-import { Link } from "@tanstack/react-router";
-
-export const Route = createRootRoute({
-  component: () => (
-    <>
-      <header>
-        <nav>
-          <Link to="/">Home</Link>
-          <Link to="/about">About</Link>
-        </nav>
-      </header>
-      <Outlet />
-      <TanStackRouterDevtools />
-    </>
-  ),
-})
-```
-
-The `<TanStackRouterDevtools />` component is not required so you can remove it if you don't want it in your layout.
-
-More information on layouts can be found in the [Layouts documentation](https://tanstack.com/router/latest/docs/framework/react/guide/routing-concepts#layouts).
-
-
-## Data Fetching
-
-There are multiple ways to fetch data in your application. You can use TanStack Query to fetch data from a server. But you can also use the `loader` functionality built into TanStack Router to load the data for a route before it's rendered.
-
-For example:
-
-```tsx
-const peopleRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: "/people",
-  loader: async () => {
-    const response = await fetch("https://swapi.dev/api/people");
-    return response.json() as Promise<{
-      results: {
-        name: string;
-      }[];
-    }>;
-  },
-  component: () => {
-    const data = peopleRoute.useLoaderData();
-    return (
-      <ul>
-        {data.results.map((person) => (
-          <li key={person.name}>{person.name}</li>
-        ))}
-      </ul>
-    );
-  },
-});
-```
-
-Loaders simplify your data fetching logic dramatically. Check out more information in the [Loader documentation](https://tanstack.com/router/latest/docs/framework/react/guide/data-loading#loader-parameters).
-
-### React-Query
-
-React-Query is an excellent addition or alternative to route loading and integrating it into you application is a breeze.
-
-First add your dependencies:
+### Linting & Formatting
 
 ```bash
-bun install @tanstack/react-query @tanstack/react-query-devtools
+bun run lint    # Check for issues
+bun run format  # Format code
+bun run check   # Run both checks
 ```
 
-Next we'll need to create a query client and provider. We recommend putting those in `main.tsx`.
+## Credits
 
-```tsx
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+- Gacha algorithm reverse-engineered from [battle-cats-rolls](https://github.com/godfat/battle-cats-rolls) by godfat
+- The Battle Cats is developed by [PONOS](https://www.ponos.co.jp/)
+- This is a fan-made tool and is not affiliated with or endorsed by PONOS
 
-// ...
+## License
 
-const queryClient = new QueryClient();
-
-// ...
-
-if (!rootElement.innerHTML) {
-  const root = ReactDOM.createRoot(rootElement);
-
-  root.render(
-    <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
-    </QueryClientProvider>
-  );
-}
-```
-
-You can also add TanStack Query Devtools to the root route (optional).
-
-```tsx
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-
-const rootRoute = createRootRoute({
-  component: () => (
-    <>
-      <Outlet />
-      <ReactQueryDevtools buttonPosition="top-right" />
-      <TanStackRouterDevtools />
-    </>
-  ),
-});
-```
-
-Now you can use `useQuery` to fetch your data.
-
-```tsx
-import { useQuery } from "@tanstack/react-query";
-
-import "./App.css";
-
-function App() {
-  const { data } = useQuery({
-    queryKey: ["people"],
-    queryFn: () =>
-      fetch("https://swapi.dev/api/people")
-        .then((res) => res.json())
-        .then((data) => data.results as { name: string }[]),
-    initialData: [],
-  });
-
-  return (
-    <div>
-      <ul>
-        {data.map((person) => (
-          <li key={person.name}>{person.name}</li>
-        ))}
-      </ul>
-    </div>
-  );
-}
-
-export default App;
-```
-
-You can find out everything you need to know on how to use React-Query in the [React-Query documentation](https://tanstack.com/query/latest/docs/framework/react/overview).
-
-## State Management
-
-Another common requirement for React applications is state management. There are many options for state management in React. TanStack Store provides a great starting point for your project.
-
-First you need to add TanStack Store as a dependency:
-
-```bash
-bun install @tanstack/store
-```
-
-Now let's create a simple counter in the `src/App.tsx` file as a demonstration.
-
-```tsx
-import { useStore } from "@tanstack/react-store";
-import { Store } from "@tanstack/store";
-import "./App.css";
-
-const countStore = new Store(0);
-
-function App() {
-  const count = useStore(countStore);
-  return (
-    <div>
-      <button onClick={() => countStore.setState((n) => n + 1)}>
-        Increment - {count}
-      </button>
-    </div>
-  );
-}
-
-export default App;
-```
-
-One of the many nice features of TanStack Store is the ability to derive state from other state. That derived state will update when the base state updates.
-
-Let's check this out by doubling the count using derived state.
-
-```tsx
-import { useStore } from "@tanstack/react-store";
-import { Store, Derived } from "@tanstack/store";
-import "./App.css";
-
-const countStore = new Store(0);
-
-const doubledStore = new Derived({
-  fn: () => countStore.state * 2,
-  deps: [countStore],
-});
-doubledStore.mount();
-
-function App() {
-  const count = useStore(countStore);
-  const doubledCount = useStore(doubledStore);
-
-  return (
-    <div>
-      <button onClick={() => countStore.setState((n) => n + 1)}>
-        Increment - {count}
-      </button>
-      <div>Doubled - {doubledCount}</div>
-    </div>
-  );
-}
-
-export default App;
-```
-
-We use the `Derived` class to create a new store that is derived from another store. The `Derived` class has a `mount` method that will start the derived store updating.
-
-Once we've created the derived store we can use it in the `App` component just like we would any other store using the `useStore` hook.
-
-You can find out everything you need to know on how to use TanStack Store in the [TanStack Store documentation](https://tanstack.com/store/latest).
-
-# Demo files
-
-Files prefixed with `demo` can be safely deleted. They are there to provide a starting point for you to play around with the features you've installed.
-
-# Learn More
-
-You can learn more about all of the offerings from TanStack in the [TanStack documentation](https://tanstack.com).
+This project is open source and available for educational purposes. The Battle Cats and all related content are property of PONOS.
