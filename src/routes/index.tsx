@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import clsx from "clsx";
-import { Cat } from "lucide-react";
+import { Cat, Dices } from "lucide-react";
 import { useEffect, useId, useState } from "react";
 import RarityTag from "@/components/RarityTag";
 import { Rarity, rollTracks } from "../data/battle-cats-gacha";
@@ -15,22 +15,20 @@ import { getCatTierRank, getRarityBgClass, getRarityColors } from "../utils";
 
 export const Route = createFileRoute("/")({ component: App });
 
-function useDebounce<T>(value: T, delay: number): T {
-	const [debouncedValue, setDebouncedValue] = useState<T>(value);
-
-	useEffect(() => {
-		const handler = setTimeout(() => setDebouncedValue(value), delay);
-		return () => clearTimeout(handler);
-	}, [value, delay]);
-
-	return debouncedValue;
-}
+const useCatSeed = () => {
+	const defaultSeedStr = localStorage.getItem("catSeed");
+	const defaultSeed = defaultSeedStr ? +defaultSeedStr : 4255329801;
+	const [seed, setSeed] = useState(defaultSeed);
+	const updateSeed = (newSeed: number) => {
+		setSeed(newSeed);
+		localStorage.setItem("catSeed", newSeed.toString());
+	};
+	return [seed, updateSeed] as const;
+};
 
 function App() {
-	const [seed, setSeed] = useState(4255329801);
-	const [selectedEvent, setSelectedEvent] = useState<string>("");
-
-	const debouncedSeed = useDebounce(seed, 500);
+	const [seed, setSeed] = useCatSeed();
+	const [selectedEvent, setSelectedEvent] = useState("");
 
 	// Load cat database
 	const catDatabaseQuery = useQuery({
@@ -88,6 +86,7 @@ function App() {
 			index,
 			trackA: {
 				score: rollA.score,
+				nextSeed: rollA.nextSeed,
 				cat: lookupCat(rollA.catId),
 				guaranteedUberId: lookupCat(rollA.guaranteedUberId),
 				switchedFromCatId: lookupCat(rollA.switchedFromCatId),
@@ -95,6 +94,7 @@ function App() {
 			},
 			trackB: {
 				score: rollB.score,
+				nextSeed: rollB.nextSeed,
 				cat: lookupCat(rollB.catId),
 				guaranteedUber: lookupCat(rollB.guaranteedUberId),
 				switchedFromCat: lookupCat(rollB.switchedFromCatId),
@@ -119,8 +119,8 @@ function App() {
 		}
 
 		const event = createGachaEvent(eventData, catDatabase);
-		setTracks(rollTracks(event, debouncedSeed, 100));
-	}, [debouncedSeed, selectedEvent, catDatabaseQuery.data]);
+		setTracks(rollTracks(event, seed, 100));
+	}, [seed, selectedEvent, catDatabaseQuery.data]);
 
 	// Derive isStepUp from current event data
 	const isStepUp =
@@ -216,13 +216,13 @@ function App() {
 									#
 								</th>
 								<th
-									colSpan={eventHasGuaranteedUber ? 3 : 2}
+									colSpan={eventHasGuaranteedUber ? 4 : 3}
 									className="px-3 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border-l border-gray-300 bg-blue-50"
 								>
 									Track A
 								</th>
 								<th
-									colSpan={eventHasGuaranteedUber ? 3 : 2}
+									colSpan={eventHasGuaranteedUber ? 4 : 3}
 									className="px-3 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border-l border-gray-300 bg-green-50"
 								>
 									Track B
@@ -241,6 +241,8 @@ function App() {
 										Guaranteed
 									</th>
 								)}
+								<th></th>
+
 								<th className="px-2 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-l border-gray-300">
 									Cat
 								</th>
@@ -252,6 +254,7 @@ function App() {
 										Guaranteed
 									</th>
 								)}
+								<th></th>
 							</tr>
 						</thead>
 						<tbody className="bg-white divide-y divide-gray-200">
@@ -316,6 +319,19 @@ function App() {
 												)}
 											</td>
 										)}
+										<td
+											className={clsx(
+												"px-2 py-3 whitespace-nowrap text-xs text-gray-700",
+												getRarityBgClass(tr.trackA.cat.rarity),
+											)}
+										>
+											<button
+												type="button"
+												onClick={() => setSeed(tr.trackA.nextSeed)}
+											>
+												<Dices />
+											</button>
+										</td>
 
 										<td
 											className={clsx(
@@ -373,6 +389,19 @@ function App() {
 												)}
 											</td>
 										)}
+										<td
+											className={clsx(
+												"px-2 py-3 whitespace-nowrap text-xs text-gray-700",
+												getRarityBgClass(tr.trackB.cat.rarity),
+											)}
+										>
+											<button
+												type="button"
+												onClick={() => setSeed(tr.trackB.nextSeed)}
+											>
+												<Dices />
+											</button>
+										</td>
 									</tr>
 								);
 							})}
