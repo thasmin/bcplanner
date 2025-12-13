@@ -128,7 +128,7 @@ function getEventSuffix(event: EventData): string {
 /**
  * Get list of events for dropdown (active or future events only)
  */
-export function getEventOptions(eventsData: EventsData): EventOption[] {
+export function getEventOptions(eventsData: EventsData) {
 	const today = new Date().toISOString().split("T")[0]; // YYYY-MM-DD format
 
 	const events = Object.entries(eventsData)

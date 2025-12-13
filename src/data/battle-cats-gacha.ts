@@ -143,7 +143,8 @@ function createUberCat(event: GachaEvent, slotSeed: number) {
 	return pool[slot];
 }
 
-interface TrackRolls {
+export interface TrackRolls {
+	score: number;
 	catId: number;
 	switchedFromCatId?: number;
 	guaranteedUberId?: number;
@@ -182,7 +183,7 @@ function rollTrack(
 				rerolled.set(i, rerolledCat.seed);
 			}
 		}
-		rolls.push({ catId, switchedFromCatId });
+		rolls.push({ score: seeds[ndx] % BASE, catId, switchedFromCatId });
 	}
 
 	if (event.guaranteedUberRolls) {

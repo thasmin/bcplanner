@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { BookOpen, Home, ListOrdered, Menu, X } from "lucide-react";
+import { BookOpen, Crown, Home, ListOrdered, Menu, X } from "lucide-react";
 import { useState } from "react";
 
 export default function Header() {
@@ -74,6 +74,19 @@ export default function Header() {
 					>
 						<ListOrdered size={20} />
 						<span className="font-medium">Tier List</span>
+					</Link>
+
+					<Link
+						to="/uber-planner"
+						onClick={() => setIsOpen(false)}
+						className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-800 transition-colors mb-2"
+						activeProps={{
+							className:
+								"flex items-center gap-3 p-3 rounded-lg bg-cyan-600 hover:bg-cyan-700 transition-colors mb-2",
+						}}
+					>
+						<Crown size={20} />
+						<span className="font-medium">Uber Planner</span>
 					</Link>
 				</nav>
 			</aside>

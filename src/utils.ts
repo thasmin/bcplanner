@@ -1,9 +1,75 @@
+import { Rarity } from "./data/battle-cats-gacha";
+import type { CatDatabase, CatInfo } from "./data/gacha-data";
+
 export function getCatStageImagePath(
 	catId: string | number,
 	stageIndex: number,
 ): string {
 	const paddedId = `${catId}`.padStart(4, "0");
 	return `/catImages/cat_${paddedId}_${stageIndex}.png`;
+}
+
+export function rarityName(rarity: number) {
+	return (
+		["Normal", "Special", "Rare", "Super Rare", "Uber", "Legend"][rarity] ||
+		"Unknown"
+	);
+}
+
+export function getRarityBgClass(rarity?: number) {
+	if (rarity === undefined) return "";
+	if (rarity === Rarity.SuperRare) return "bg-blue-50";
+	if (rarity === Rarity.Uber) return "bg-yellow-50";
+	if (rarity === Rarity.Legend) return "bg-purple-50";
+	return "";
+}
+
+export function getRarityColors(rarity: number) {
+	if (rarity === Rarity.SuperRare) return "bg-blue-100 text-blue-800";
+	if (rarity === Rarity.Uber) return "bg-yellow-100 text-yellow-800";
+	if (rarity === Rarity.Legend) return "bg-purple-100 text-purple-800";
+	return "bg-gray-100 text-gray-800";
+}
+
+export interface CatRowData {
+	id: number;
+	rarity: number;
+	name: string;
+}
+
+export function lookupCat(catDatabase: CatDatabase, catId: number): CatRowData;
+export function lookupCat(
+	catDatabase: CatDatabase,
+	catId: number | undefined,
+): CatRowData | undefined;
+export function lookupCat(
+	catDatabase: CatDatabase,
+	catId: number | undefined,
+): CatRowData | undefined {
+	if (!catId) return undefined;
+	const cat =
+		catDatabase?.cats[catId] ||
+		({
+			id: catId,
+			name: ["Unknown"],
+			desc: [],
+			rarity: 0,
+			max_level: 0,
+		} as CatInfo);
+	return {
+		id: catId,
+		rarity: cat.rarity,
+		name: cat.name[0],
+	};
+}
+
+export function getCatTierRank(catId: number): string | undefined {
+	for (const tier of tierList) {
+		if (tier.cats.includes(catId)) {
+			return tier.rank;
+		}
+	}
+	return undefined;
 }
 
 export const tierList = [

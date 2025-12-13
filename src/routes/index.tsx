@@ -3,6 +3,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import clsx from "clsx";
 import { Cat } from "lucide-react";
 import { useEffect, useId, useState } from "react";
+import RarityTag from "@/components/RarityTag";
 import { Rarity, rollTracks } from "../data/battle-cats-gacha";
 import {
 	type CatInfo,
@@ -10,7 +11,7 @@ import {
 	getEventOptions,
 	loadCatDatabase,
 } from "../data/gacha-data";
-import { tierList } from "../utils";
+import { getCatTierRank, getRarityBgClass, getRarityColors } from "../utils";
 
 export const Route = createFileRoute("/")({ component: App });
 
@@ -25,39 +26,8 @@ function useDebounce<T>(value: T, delay: number): T {
 	return debouncedValue;
 }
 
-function rarityName(rarity: number) {
-	return (
-		["Normal", "Special", "Rare", "Super Rare", "Uber", "Legend"][rarity] ||
-		"Unknown"
-	);
-}
-
-function getRarityBgClass(rarity?: number) {
-	if (rarity === undefined) return "";
-	if (rarity === Rarity.SuperRare) return "bg-blue-50";
-	if (rarity === Rarity.Uber) return "bg-yellow-50";
-	if (rarity === Rarity.Legend) return "bg-purple-50";
-	return "";
-}
-
-function getRarityColors(rarity: number) {
-	if (rarity === Rarity.SuperRare) return "bg-blue-100 text-blue-800";
-	if (rarity === Rarity.Uber) return "bg-yellow-100 text-yellow-800";
-	if (rarity === Rarity.Legend) return "bg-purple-100 text-purple-800";
-	return "bg-gray-100 text-gray-800";
-}
-
-function getCatTierRank(catId: number): string | undefined {
-	for (const tier of tierList) {
-		if (tier.cats.includes(catId)) {
-			return tier.rank;
-		}
-	}
-	return undefined;
-}
-
 function App() {
-	const [seed, setSeed] = useState(2428617162);
+	const [seed, setSeed] = useState(4255329801);
 	const [selectedEvent, setSelectedEvent] = useState<string>("");
 
 	const debouncedSeed = useDebounce(seed, 500);
@@ -102,7 +72,9 @@ function App() {
 
 	useEffect(() => {
 		if (eventOptions.length > 0 && !selectedEvent) {
-			setSelectedEvent(eventOptions[0].key);
+			setSelectedEvent(
+				eventOptions.find((ev) => !ev.platinum)?.key ?? eventOptions[0].key,
+			);
 		}
 	}, [eventOptions, selectedEvent]);
 
@@ -115,12 +87,14 @@ function App() {
 		return {
 			index,
 			trackA: {
+				score: rollA.score,
 				cat: lookupCat(rollA.catId),
 				guaranteedUberId: lookupCat(rollA.guaranteedUberId),
 				switchedFromCatId: lookupCat(rollA.switchedFromCatId),
 				nextAfterGuaranteed: rollA.nextAfterGuaranteed,
 			},
 			trackB: {
+				score: rollB.score,
 				cat: lookupCat(rollB.catId),
 				guaranteedUber: lookupCat(rollB.guaranteedUberId),
 				switchedFromCat: lookupCat(rollB.switchedFromCatId),
@@ -314,19 +288,14 @@ function App() {
 												getRarityBgClass(tr.trackA.cat.rarity),
 											)}
 										>
-											<span
-												className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
-													tr.trackA.cat.rarity === Rarity.Uber
-														? "bg-yellow-100 text-yellow-800"
-														: tr.trackA.cat.rarity === Rarity.Legend
-															? "bg-purple-100 text-purple-800"
-															: tr.trackA.cat.rarity === Rarity.SuperRare
-																? "bg-blue-100 text-blue-800"
-																: "bg-gray-100 text-gray-800"
-												}`}
-											>
-												{rarityName(tr.trackA.cat.rarity)}
-											</span>
+											<RarityTag rarity={tr.trackA.cat.rarity} />
+											{tr.trackA.score > 9300 && (
+												<span
+													className={`ml-2 px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${getRarityColors(Rarity.Uber)}`}
+												>
+													FEST UBER
+												</span>
+											)}
 										</td>
 										{eventHasGuaranteedUber && (
 											<td
@@ -375,13 +344,14 @@ function App() {
 												getRarityBgClass(tr.trackB.cat.rarity),
 											)}
 										>
-											<span
-												className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${getRarityColors(
-													tr.trackB.cat.rarity,
-												)}`}
-											>
-												{rarityName(tr.trackB.cat.rarity)}
-											</span>
+											<RarityTag rarity={tr.trackB.cat.rarity} />
+											{tr.trackB.score > 9300 && (
+												<span
+													className={`ml-2 px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${getRarityColors(Rarity.Uber)}`}
+												>
+													FEST UBER
+												</span>
+											)}
 										</td>
 										{eventHasGuaranteedUber && (
 											<td

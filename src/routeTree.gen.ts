@@ -9,10 +9,16 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as UberPlannerRouteImport } from './routes/uber-planner'
 import { Route as TierlistRouteImport } from './routes/tierlist'
 import { Route as DictionaryRouteImport } from './routes/dictionary'
 import { Route as IndexRouteImport } from './routes/index'
 
+const UberPlannerRoute = UberPlannerRouteImport.update({
+  id: '/uber-planner',
+  path: '/uber-planner',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TierlistRoute = TierlistRouteImport.update({
   id: '/tierlist',
   path: '/tierlist',
@@ -33,34 +39,45 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/dictionary': typeof DictionaryRoute
   '/tierlist': typeof TierlistRoute
+  '/uber-planner': typeof UberPlannerRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/dictionary': typeof DictionaryRoute
   '/tierlist': typeof TierlistRoute
+  '/uber-planner': typeof UberPlannerRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/dictionary': typeof DictionaryRoute
   '/tierlist': typeof TierlistRoute
+  '/uber-planner': typeof UberPlannerRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/dictionary' | '/tierlist'
+  fullPaths: '/' | '/dictionary' | '/tierlist' | '/uber-planner'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/dictionary' | '/tierlist'
-  id: '__root__' | '/' | '/dictionary' | '/tierlist'
+  to: '/' | '/dictionary' | '/tierlist' | '/uber-planner'
+  id: '__root__' | '/' | '/dictionary' | '/tierlist' | '/uber-planner'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DictionaryRoute: typeof DictionaryRoute
   TierlistRoute: typeof TierlistRoute
+  UberPlannerRoute: typeof UberPlannerRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/uber-planner': {
+      id: '/uber-planner'
+      path: '/uber-planner'
+      fullPath: '/uber-planner'
+      preLoaderRoute: typeof UberPlannerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/tierlist': {
       id: '/tierlist'
       path: '/tierlist'
@@ -89,6 +106,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DictionaryRoute: DictionaryRoute,
   TierlistRoute: TierlistRoute,
+  UberPlannerRoute: UberPlannerRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
