@@ -1,7 +1,13 @@
 @import "tailwindcss";
 
+@theme {
+  --color-cat-yellow: #fbbf24;
+  --color-cat-orange: #f97316;
+  --color-cat-dark: #1e1b4b;
+}
+
 body {
-  @apply m-0;
+  @apply m-0 bg-gradient-to-br from-slate-50 via-amber-50/30 to-orange-50/40 min-h-screen;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -13,3 +19,35 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-slate-100 rounded-full;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-300 rounded-full hover:bg-slate-400;
+}
+
+/* Better focus states */
+input:focus, select:focus, button:focus-visible {
+  @apply outline-none ring-2 ring-amber-400/50 ring-offset-1;
+}
+
+/* Tier rank colors */
+.tier-ss { @apply bg-gradient-to-r from-amber-400 to-yellow-500 text-amber-950; }
+.tier-s-plus { @apply bg-gradient-to-r from-amber-300 to-amber-400 text-amber-900; }
+.tier-s { @apply bg-gradient-to-r from-yellow-300 to-amber-300 text-amber-900; }
+.tier-a-plus { @apply bg-gradient-to-r from-rose-300 to-pink-400 text-rose-950; }
+.tier-a { @apply bg-gradient-to-r from-rose-200 to-rose-300 text-rose-900; }
+.tier-b-plus { @apply bg-gradient-to-r from-violet-300 to-purple-400 text-violet-950; }
+.tier-b { @apply bg-gradient-to-r from-violet-200 to-violet-300 text-violet-900; }
+.tier-c-plus { @apply bg-gradient-to-r from-sky-300 to-cyan-400 text-sky-950; }
+.tier-c { @apply bg-gradient-to-r from-sky-200 to-sky-300 text-sky-900; }
+.tier-d { @apply bg-gradient-to-r from-slate-300 to-slate-400 text-slate-800; }
+.tier-f { @apply bg-gradient-to-r from-slate-200 to-slate-300 text-slate-700; }

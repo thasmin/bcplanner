@@ -132,24 +132,32 @@ function App() {
 	const eventInputId = useId();
 
 	return (
-		<div className="p-4 max-w-7xl mx-auto">
-			<div className="flex items-center gap-2 mb-6">
-				<Cat className="w-8 h-8" />
-				<h1 className="text-2xl font-bold">Battle Cats Roll Planner</h1>
+		<div className="p-4 md:p-6 max-w-7xl mx-auto">
+			<div className="flex items-center gap-3 mb-8">
+				<div className="p-3 bg-gradient-to-br from-amber-400 to-orange-500 rounded-2xl shadow-lg shadow-amber-500/20">
+					<Cat className="w-7 h-7 text-indigo-950" />
+				</div>
+				<div>
+					<h1 className="text-2xl md:text-3xl font-bold text-slate-800">Roll Planner</h1>
+					<p className="text-sm text-slate-500">Plan your gacha rolls strategically</p>
+				</div>
 			</div>
 
 			{catDatabaseQuery.isLoading && (
-				<div className="text-gray-600">Loading cat database...</div>
+				<div className="flex items-center gap-3 p-4 bg-amber-50 border border-amber-200 rounded-xl text-amber-700">
+					<div className="animate-spin w-5 h-5 border-2 border-amber-500 border-t-transparent rounded-full" />
+					Loading cat database...
+				</div>
 			)}
 
-			<div className="bg-white rounded-lg shadow p-6 mb-6">
-				<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+			<div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-200/50 p-6 mb-6">
+				<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 					<div>
 						<label
 							htmlFor={seedInputId}
-							className="block text-sm font-medium text-gray-700 mb-2"
+							className="block text-sm font-semibold text-slate-700 mb-2"
 						>
-							Seed:
+							Your Seed
 						</label>
 						<input
 							type="text"
@@ -159,7 +167,7 @@ function App() {
 							onChange={(e) =>
 								setSeed(+(e.target.value.match(/\d+/g)?.join("") ?? 0))
 							}
-							className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+							className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder:text-slate-400 transition-all duration-200 hover:border-slate-300"
 							placeholder="Enter seed number"
 						/>
 					</div>
@@ -167,16 +175,16 @@ function App() {
 					<div>
 						<label
 							htmlFor={eventInputId}
-							className="block text-sm font-medium text-gray-700 mb-2"
+							className="block text-sm font-semibold text-slate-700 mb-2"
 						>
-							Event:
+							Gacha Event
 						</label>
 						<select
 							value={selectedEvent}
 							id={eventInputId}
 							name="event-select"
 							onChange={(e) => setSelectedEvent(e.target.value)}
-							className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+							className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 transition-all duration-200 hover:border-slate-300 cursor-pointer"
 							disabled={eventOptions.length === 0}
 						>
 							{eventOptions.map((event) => (
@@ -189,12 +197,12 @@ function App() {
 				</div>
 			</div>
 
-			<div className="bg-white rounded-lg shadow overflow-hidden">
-				<div className="px-6 py-4 bg-gray-50 border-b border-gray-200">
-					<h2 className="text-lg font-semibold text-gray-900">
-						Next 100 Rolls (Track A and Track B)
+			<div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-200/50 overflow-hidden">
+				<div className="px-6 py-5 bg-gradient-to-r from-slate-50 to-slate-100/50 border-b border-slate-200">
+					<h2 className="text-lg font-bold text-slate-800">
+						Next 100 Rolls
 					</h2>
-					<p className="text-sm text-gray-600 mt-1">
+					<p className="text-sm text-slate-500 mt-1 leading-relaxed">
 						{eventHasGuaranteedUber ? (
 							<>
 								Guaranteed Uber rolls available. Using a guaranteed roll
@@ -209,59 +217,59 @@ function App() {
 					</p>
 				</div>
 				<div className="overflow-x-auto">
-					<table className="min-w-full divide-y divide-gray-200">
-						<thead className="bg-gray-50">
-							<tr>
-								<th className="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+					<table className="min-w-full">
+						<thead>
+							<tr className="bg-slate-50/80">
+								<th className="px-3 py-3 text-left text-xs font-bold text-slate-500 uppercase tracking-wider">
 									#
 								</th>
 								<th
 									colSpan={eventHasGuaranteedUber ? 4 : 3}
-									className="px-3 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border-l border-gray-300 bg-blue-50"
+									className="px-3 py-3 text-center text-xs font-bold text-blue-700 uppercase tracking-wider border-l border-slate-200 bg-blue-50/50"
 								>
 									Track A
 								</th>
 								<th
 									colSpan={eventHasGuaranteedUber ? 4 : 3}
-									className="px-3 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border-l border-gray-300 bg-green-50"
+									className="px-3 py-3 text-center text-xs font-bold text-emerald-700 uppercase tracking-wider border-l border-slate-200 bg-emerald-50/50"
 								>
 									Track B
 								</th>
 							</tr>
-							<tr>
+							<tr className="bg-slate-50/50 border-b border-slate-200">
 								<th className="px-3 py-2"></th>
-								<th className="px-2 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-l border-gray-300">
+								<th className="px-2 py-2 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider border-l border-slate-200">
 									Cat
 								</th>
-								<th className="px-2 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+								<th className="px-2 py-2 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">
 									Rarity
 								</th>
 								{eventHasGuaranteedUber && (
-									<th className="px-2 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+									<th className="px-2 py-2 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">
 										Guaranteed
 									</th>
 								)}
 								<th></th>
 
-								<th className="px-2 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-l border-gray-300">
+								<th className="px-2 py-2 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider border-l border-slate-200">
 									Cat
 								</th>
-								<th className="px-2 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+								<th className="px-2 py-2 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">
 									Rarity
 								</th>
 								{eventHasGuaranteedUber && (
-									<th className="px-2 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+									<th className="px-2 py-2 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">
 										Guaranteed
 									</th>
 								)}
 								<th></th>
 							</tr>
 						</thead>
-						<tbody className="bg-white divide-y divide-gray-200">
+						<tbody className="divide-y divide-slate-100">
 							{trackRolls.map((tr, ndx) => {
 								return (
-									<tr key={trackRolls[ndx].index}>
-										<td className="px-3 py-3 whitespace-nowrap text-sm font-medium text-gray-900">
+									<tr key={trackRolls[ndx].index} className="hover:bg-slate-50/50 transition-colors">
+										<td className="px-3 py-3 whitespace-nowrap text-sm font-bold text-slate-400">
 											{ndx + 1}
 										</td>
 										<td
@@ -328,8 +336,10 @@ function App() {
 											<button
 												type="button"
 												onClick={() => setSeed(tr.trackA.nextSeed)}
+												className="p-1.5 text-slate-400 hover:text-amber-600 hover:bg-amber-50 rounded-lg transition-all duration-200"
+												title="Jump to this seed"
 											>
-												<Dices />
+												<Dices size={18} />
 											</button>
 										</td>
 
@@ -398,8 +408,10 @@ function App() {
 											<button
 												type="button"
 												onClick={() => setSeed(tr.trackB.nextSeed)}
+												className="p-1.5 text-slate-400 hover:text-amber-600 hover:bg-amber-50 rounded-lg transition-all duration-200"
+												title="Jump to this seed"
 											>
-												<Dices />
+												<Dices size={18} />
 											</button>
 										</td>
 									</tr>

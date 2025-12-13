@@ -115,37 +115,42 @@ function Dictionary() {
 	});
 
 	return (
-		<div className="p-4 max-w-7xl mx-auto">
-			<div className="flex items-center gap-2 mb-6">
-				<BookOpen className="w-8 h-8" />
-				<h1 className="text-2xl font-bold">Cat Dictionary</h1>
+		<div className="p-4 md:p-6 max-w-7xl mx-auto">
+			<div className="flex items-center gap-3 mb-8">
+				<div className="p-3 bg-gradient-to-br from-emerald-400 to-teal-500 rounded-2xl shadow-lg shadow-emerald-500/20">
+					<BookOpen className="w-7 h-7 text-emerald-950" />
+				</div>
+				<div>
+					<h1 className="text-2xl md:text-3xl font-bold text-slate-800">Cat Dictionary</h1>
+					<p className="text-sm text-slate-500">Browse and discover all cats</p>
+				</div>
 			</div>
 
-			<div className="bg-white rounded-lg shadow p-6 mb-6">
-				<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+			<div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-200/50 p-6 mb-6">
+				<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 					<div>
 						<label
 							htmlFor={searchInputId}
-							className="block text-sm font-medium text-gray-700 mb-2"
+							className="block text-sm font-semibold text-slate-700 mb-2"
 						>
-							Search:
+							Search
 						</label>
 						<input
 							type="text"
 							id={searchInputId}
 							value={searchTerm}
 							onChange={(e) => setSearchTerm(e.target.value)}
-							className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-							placeholder="Search by name..."
+							className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder:text-slate-400 transition-all duration-200 hover:border-slate-300"
+							placeholder="Search by name or ID..."
 						/>
 					</div>
 
 					<div>
 						<label
 							htmlFor={rarityInputId}
-							className="block text-sm font-medium text-gray-700 mb-2"
+							className="block text-sm font-semibold text-slate-700 mb-2"
 						>
-							Rarity Filter:
+							Rarity Filter
 						</label>
 						<select
 							id={rarityInputId}
@@ -155,7 +160,7 @@ function Dictionary() {
 									e.target.value === "all" ? "all" : Number(e.target.value),
 								)
 							}
-							className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+							className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 transition-all duration-200 hover:border-slate-300 cursor-pointer"
 						>
 							<option value="all">All Rarities</option>
 							<option value="0">Normal</option>
@@ -168,8 +173,9 @@ function Dictionary() {
 					</div>
 				</div>
 
-				<div className="mt-4 text-sm text-gray-600">
-					Showing {filteredCats.length} of {catsArray.length} cats
+				<div className="mt-4 flex items-center gap-2 text-sm text-slate-500">
+					<span className="px-2 py-1 bg-slate-100 rounded-lg font-medium">{filteredCats.length}</span>
+					<span>of {catsArray.length} cats</span>
 				</div>
 			</div>
 
@@ -180,19 +186,19 @@ function Dictionary() {
 						<button
 							type="button"
 							key={cat.id}
-							className="text-left bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow cursor-pointer"
+							className="text-left bg-white/80 backdrop-blur-sm rounded-2xl shadow-md border border-slate-200/50 overflow-hidden hover:shadow-xl hover:scale-[1.02] hover:border-slate-300/50 transition-all duration-200 cursor-pointer group"
 							onClick={() => setSelectedCat(cat)}
 						>
 							<div className="flex items-start p-4">
-								<div className="flex-shrink-0 w-24 h-24 bg-gray-100 rounded-lg flex items-center justify-center mr-4">
+								<div className="flex-shrink-0 w-24 h-24 bg-gradient-to-br from-slate-50 to-slate-100 rounded-xl flex items-center justify-center mr-4 group-hover:from-amber-50 group-hover:to-orange-50 transition-all duration-200">
 									{imageUrl ? (
 										<img
 											src={imageUrl}
 											alt={cat.name[0]}
-											className="max-w-full max-h-full object-contain"
+											className="max-w-full max-h-full object-contain group-hover:scale-110 transition-transform duration-200"
 										/>
 									) : (
-										<div className="text-gray-400 text-xs text-center">
+										<div className="text-slate-300 text-xs text-center">
 											No image
 										</div>
 									)}
@@ -200,16 +206,16 @@ function Dictionary() {
 
 								<div className="flex-1 min-w-0">
 									<div className="flex items-start justify-between mb-2">
-										<h3 className="text-lg font-semibold text-gray-900 truncate">
+										<h3 className="text-lg font-bold text-slate-800 truncate">
 											{cat.name[0]}
 										</h3>
-										<span className="ml-2 text-xs text-gray-500 flex-shrink-0">
-											ID: {cat.id}
+										<span className="ml-2 text-xs text-slate-400 flex-shrink-0 font-mono">
+											#{cat.id}
 										</span>
 									</div>
 
 									<span
-										className={`inline-block px-2 py-1 text-xs font-semibold rounded-full border mb-2 ${getRarityColors(
+										className={`inline-block px-2.5 py-1 text-xs font-bold rounded-lg border mb-2 ${getRarityColors(
 											cat.rarity,
 										)}`}
 									>
@@ -217,7 +223,7 @@ function Dictionary() {
 									</span>
 
 									{cat.desc[0] && (
-										<p className="text-sm text-gray-600 line-clamp-3">
+										<p className="text-sm text-slate-500 line-clamp-2">
 											{cat.desc[0]}
 										</p>
 									)}
@@ -229,8 +235,10 @@ function Dictionary() {
 			</div>
 
 			{filteredCats.length === 0 && (
-				<div className="text-center py-12 text-gray-500">
-					No cats found matching your search criteria.
+				<div className="text-center py-16 text-slate-400">
+					<div className="text-4xl mb-3">🐱</div>
+					<p className="font-medium">No cats found</p>
+					<p className="text-sm">Try adjusting your search or filter</p>
 				</div>
 			)}
 
