@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Rarity } from "./data/battle-cats-gacha";
 import type { CatDatabase, CatInfo } from "./data/gacha-data";
 
@@ -63,11 +64,25 @@ export function lookupCat(
 	};
 }
 
+export const useCatSeed = () => {
+	const defaultSeedStr = localStorage.getItem("catSeed");
+	const defaultSeed = defaultSeedStr ? +defaultSeedStr : 4255329801;
+	const [seed, setSeed] = useState(defaultSeed);
+	const updateSeed = (newSeed: number) => {
+		setSeed(newSeed);
+		localStorage.setItem("catSeed", newSeed.toString());
+	};
+	return [seed, updateSeed] as const;
+};
+
 export function getCatTierRank(catId: number): string | undefined {
 	for (const tier of tierList) {
 		if (tier.cats.includes(catId)) {
 			return tier.rank;
 		}
+	}
+	for (const tier of evaTierList) {
+		if (tier.cats.includes(catId)) return tier.rank;
 	}
 	return undefined;
 }

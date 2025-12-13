@@ -9,7 +9,7 @@ import {
 	createGachaEvent,
 	loadCatDatabase,
 } from "../data/gacha-data";
-import { getCatTierRank, lookupCat } from "../utils";
+import { getCatTierRank, lookupCat, useCatSeed } from "../utils";
 
 export const Route = createFileRoute("/uber-planner")({ component: App });
 
@@ -41,7 +41,7 @@ type UberOptions = Record<
 >;
 
 function App() {
-	const [seed, setSeed] = useState(4255329801);
+	const [seed, setSeed] = useCatSeed();
 
 	// Load cat database
 	const catDatabaseQuery = useQuery({
@@ -113,8 +113,12 @@ function App() {
 					<Crown className="w-7 h-7 text-yellow-950" />
 				</div>
 				<div>
-					<h1 className="text-2xl md:text-3xl font-bold text-slate-800">Uber Planner</h1>
-					<p className="text-sm text-slate-500">Find guaranteed Uber cats across events</p>
+					<h1 className="text-2xl md:text-3xl font-bold text-slate-800">
+						Uber Planner
+					</h1>
+					<p className="text-sm text-slate-500">
+						Find guaranteed Uber cats across events
+					</p>
 				</div>
 			</div>
 
@@ -151,82 +155,98 @@ function App() {
 				{catDatabaseQuery.data && uberOptions.length === 0 && (
 					<div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-200/50 p-8 text-center">
 						<Sparkles className="w-12 h-12 text-slate-300 mx-auto mb-3" />
-						<p className="text-slate-500">No Uber cats found in the next 100 rolls for active events</p>
+						<p className="text-slate-500">
+							No Uber cats found in the next 100 rolls for active events
+						</p>
 					</div>
 				)}
-				{catDatabaseQuery.data && uberOptions.map((uberOption) => (
-					<div
-						key={uberOption.index}
-						className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-200/50 overflow-hidden"
-					>
-						<div className="px-5 py-3 bg-gradient-to-r from-amber-50 to-yellow-50 border-b border-amber-100">
-							<h2 className="font-bold text-lg text-amber-900 flex items-center gap-2">
-								<span className="px-2.5 py-1 bg-amber-500 text-white text-sm font-bold rounded-lg">
-									Roll {uberOption.index + 1}
-								</span>
-							</h2>
-						</div>
-						<div className="grid md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-slate-100">
-							<div className="p-4">
-								<h3 className="font-bold text-sm text-blue-600 uppercase tracking-wider mb-3">Track A</h3>
-								<div className="flex flex-col gap-2">
-									{uberOption.trackA.length === 0 && (
-										<div className="text-sm text-slate-400 py-2">
-											No Uber cats in this track
-										</div>
-									)}
-									{uberOption.trackA.map((cat) => (
-										<div
-											key={`${cat.cat.id}-${cat.event.start_on}`}
-											className="p-3 bg-gradient-to-br from-amber-50 to-yellow-50 border border-amber-200/50 rounded-xl"
-										>
-											<div className="flex items-center gap-2 flex-wrap mb-1">
-												<span className="font-bold text-slate-800">{cat.cat.name}</span>
-												<RarityTag rarity={cat.cat.rarity} />
-												{getCatTierRank(cat.cat.id) && (
-													<span className="px-2 py-0.5 text-xs font-bold rounded-lg bg-indigo-100 text-indigo-700">
-														Tier {getCatTierRank(cat.cat.id)}
-													</span>
-												)}
+				{catDatabaseQuery.data &&
+					uberOptions.map((uberOption) => (
+						<div
+							key={uberOption.index}
+							className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-200/50 overflow-hidden"
+						>
+							<div className="px-5 py-3 bg-gradient-to-r from-amber-50 to-yellow-50 border-b border-amber-100">
+								<h2 className="font-bold text-lg text-amber-900 flex items-center gap-2">
+									<span className="px-2.5 py-1 bg-amber-500 text-white text-sm font-bold rounded-lg">
+										Roll {uberOption.index + 1}
+									</span>
+								</h2>
+							</div>
+							<div className="grid md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-slate-100">
+								<div className="p-4">
+									<h3 className="font-bold text-sm text-blue-600 uppercase tracking-wider mb-3">
+										Track A
+									</h3>
+									<div className="flex flex-col gap-2">
+										{uberOption.trackA.length === 0 && (
+											<div className="text-sm text-slate-400 py-2">
+												No Uber cats in this track
 											</div>
-											<div className="text-sm text-slate-500">{cat.event.name}</div>
-										</div>
-									))}
+										)}
+										{uberOption.trackA.map((cat) => (
+											<div
+												key={`${cat.cat.id}-${cat.event.start_on}`}
+												className="p-3 bg-gradient-to-br from-amber-50 to-yellow-50 border border-amber-200/50 rounded-xl"
+											>
+												<div className="flex items-center gap-2 flex-wrap mb-1">
+													<span className="font-bold text-slate-800">
+														{cat.cat.name}
+													</span>
+													<RarityTag rarity={cat.cat.rarity} />
+													{getCatTierRank(cat.cat.id) && (
+														<span className="px-2 py-0.5 text-xs font-bold rounded-lg bg-indigo-100 text-indigo-700">
+															Tier {getCatTierRank(cat.cat.id)}
+														</span>
+													)}
+												</div>
+												<div className="text-sm text-slate-500">
+													{cat.event.name}
+												</div>
+											</div>
+										))}
+									</div>
+								</div>
+								<div className="p-4">
+									<h3 className="font-bold text-sm text-emerald-600 uppercase tracking-wider mb-3">
+										Track B
+									</h3>
+									<div className="flex flex-col gap-2">
+										{uberOption.trackB.length === 0 && (
+											<div className="text-sm text-slate-400 py-2">
+												No Uber cats in this track
+											</div>
+										)}
+										{uberOption.trackB.map((cat) => (
+											<div
+												key={`${cat.cat.id}-${cat.event.start_on}`}
+												className="p-3 bg-gradient-to-br from-amber-50 to-yellow-50 border border-amber-200/50 rounded-xl"
+											>
+												<div className="flex items-center gap-2 flex-wrap mb-1">
+													<span className="font-bold text-slate-800">
+														{cat.cat.name}
+													</span>
+													<RarityTag rarity={cat.cat.rarity} />
+													{getCatTierRank(cat.cat.id) && (
+														<span className="px-2 py-0.5 text-xs font-bold rounded-lg bg-indigo-100 text-indigo-700">
+															Tier {getCatTierRank(cat.cat.id)}
+														</span>
+													)}
+												</div>
+												<div className="text-sm text-slate-500">
+													{cat.event.name}
+													<span className="text-slate-400">
+														{" "}
+														· starts {cat.event.start_on}
+													</span>
+												</div>
+											</div>
+										))}
+									</div>
 								</div>
 							</div>
-							<div className="p-4">
-								<h3 className="font-bold text-sm text-emerald-600 uppercase tracking-wider mb-3">Track B</h3>
-								<div className="flex flex-col gap-2">
-									{uberOption.trackB.length === 0 && (
-										<div className="text-sm text-slate-400 py-2">
-											No Uber cats in this track
-										</div>
-									)}
-									{uberOption.trackB.map((cat) => (
-										<div
-											key={`${cat.cat.id}-${cat.event.start_on}`}
-											className="p-3 bg-gradient-to-br from-amber-50 to-yellow-50 border border-amber-200/50 rounded-xl"
-										>
-											<div className="flex items-center gap-2 flex-wrap mb-1">
-												<span className="font-bold text-slate-800">{cat.cat.name}</span>
-												<RarityTag rarity={cat.cat.rarity} />
-												{getCatTierRank(cat.cat.id) && (
-													<span className="px-2 py-0.5 text-xs font-bold rounded-lg bg-indigo-100 text-indigo-700">
-														Tier {getCatTierRank(cat.cat.id)}
-													</span>
-												)}
-											</div>
-											<div className="text-sm text-slate-500">
-												{cat.event.name}
-												<span className="text-slate-400"> · starts {cat.event.start_on}</span>
-											</div>
-										</div>
-									))}
-								</div>
-							</div>
 						</div>
-					</div>
-				))}
+					))}
 			</div>
 		</div>
 	);

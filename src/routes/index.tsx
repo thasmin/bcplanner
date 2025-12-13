@@ -11,20 +11,14 @@ import {
 	getEventOptions,
 	loadCatDatabase,
 } from "../data/gacha-data";
-import { getCatTierRank, getRarityBgClass, getRarityColors } from "../utils";
+import {
+	getCatTierRank,
+	getRarityBgClass,
+	getRarityColors,
+	useCatSeed,
+} from "../utils";
 
 export const Route = createFileRoute("/")({ component: App });
-
-const useCatSeed = () => {
-	const defaultSeedStr = localStorage.getItem("catSeed");
-	const defaultSeed = defaultSeedStr ? +defaultSeedStr : 4255329801;
-	const [seed, setSeed] = useState(defaultSeed);
-	const updateSeed = (newSeed: number) => {
-		setSeed(newSeed);
-		localStorage.setItem("catSeed", newSeed.toString());
-	};
-	return [seed, updateSeed] as const;
-};
 
 function App() {
 	const [seed, setSeed] = useCatSeed();
@@ -138,8 +132,12 @@ function App() {
 					<Cat className="w-7 h-7 text-indigo-950" />
 				</div>
 				<div>
-					<h1 className="text-2xl md:text-3xl font-bold text-slate-800">Roll Planner</h1>
-					<p className="text-sm text-slate-500">Plan your gacha rolls strategically</p>
+					<h1 className="text-2xl md:text-3xl font-bold text-slate-800">
+						Roll Planner
+					</h1>
+					<p className="text-sm text-slate-500">
+						Plan your gacha rolls strategically
+					</p>
 				</div>
 			</div>
 
@@ -199,9 +197,7 @@ function App() {
 
 			<div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-200/50 overflow-hidden">
 				<div className="px-6 py-5 bg-gradient-to-r from-slate-50 to-slate-100/50 border-b border-slate-200">
-					<h2 className="text-lg font-bold text-slate-800">
-						Next 100 Rolls
-					</h2>
+					<h2 className="text-lg font-bold text-slate-800">Next 100 Rolls</h2>
 					<p className="text-sm text-slate-500 mt-1 leading-relaxed">
 						{eventHasGuaranteedUber ? (
 							<>
@@ -268,7 +264,10 @@ function App() {
 						<tbody className="divide-y divide-slate-100">
 							{trackRolls.map((tr, ndx) => {
 								return (
-									<tr key={trackRolls[ndx].index} className="hover:bg-slate-50/50 transition-colors">
+									<tr
+										key={trackRolls[ndx].index}
+										className="hover:bg-slate-50/50 transition-colors"
+									>
 										<td className="px-3 py-3 whitespace-nowrap text-sm font-bold text-slate-400">
 											{ndx + 1}
 										</td>
