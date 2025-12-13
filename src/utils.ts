@@ -140,3 +140,30 @@ export const tierList = [
 		cats: [495, 712, 589, 243, 244, 439, 565, 547],
 	},
 ];
+
+export const evaTierList = [
+	{
+		rank: "S",
+		cats: [548, 710, 415],
+	},
+	{
+		rank: "A",
+		cats: [413, 414, 489],
+	},
+	{
+		rank: "B",
+		cats: [416, 815, 552],
+	},
+	{
+		rank: "C",
+		cats: [488, 711, 551],
+	},
+	{
+		rank: "D",
+		cats: [549, 417],
+	},
+	{
+		rank: "F",
+		cats: [],
+	},
+];

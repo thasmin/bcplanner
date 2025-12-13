@@ -3,7 +3,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { CatDialog, type CatWithId } from "@/components/CatDialog";
 import { type CatDatabase, loadCatDatabase } from "@/data/gacha-data";
-import { getCatStageImagePath, tierList } from "@/utils";
+import { evaTierList, getCatStageImagePath, tierList } from "@/utils";
 
 export const Route = createFileRoute("/tierlist")({
 	component: RouteComponent,
@@ -35,31 +35,31 @@ const TierCat: React.FC<{
 	return null;
 };
 
-function RouteComponent() {
-	const [selectedCat, setSelectedCat] = useState<CatWithId | null>(null);
-
-	// Load cat database
+const TierList: React.FC<{
+	tierList: typeof tierList;
+	onSelectCat: (cat: CatWithId) => void;
+}> = ({ tierList, onSelectCat }) => {
 	const catDatabaseQuery = useQuery({
 		queryKey: ["catDatabase"],
 		queryFn: loadCatDatabase,
-		staleTime: Infinity, // Never refetch
+		staleTime: Infinity,
 	});
 	const catDatabase = catDatabaseQuery.data;
 
 	return (
-		<div className="p-4 max-w-7xl mx-auto">
-			<h1 className="text-4xl my-4">Tier list</h1>
-			<table className="w-full border-collapse border border-gray-400">
-				<thead>
-					<tr>
-						<th className="border border-gray-400 px-4 py-2">Rank</th>
-						<th className="border border-gray-400 px-4 py-2">Cats</th>
-					</tr>
-				</thead>
-				<tbody>
-					{tierList.map((tier) => (
+		<table className="w-full border-collapse border border-gray-400">
+			<thead>
+				<tr>
+					<th className="border border-gray-400 px-4 py-2 w-10">Rank</th>
+					<th className="border border-gray-400 px-4 py-2">Cats</th>
+				</tr>
+			</thead>
+			<tbody>
+				{tierList
+					.filter((tier) => tier.cats.length > 0)
+					.map((tier) => (
 						<tr key={tier.rank}>
-							<td className="border border-gray-400 px-4 py-2 align-top font-bold">
+							<td className="border border-gray-400 px-4 py-2 align-middle text-center font-bold">
 								{tier.rank}
 							</td>
 							<td className="border border-gray-400 px-4 py-2">
@@ -73,7 +73,7 @@ function RouteComponent() {
 													catId={catId}
 													onClick={() => {
 														if (catFromDb) {
-															setSelectedCat({
+															onSelectCat({
 																id: catId,
 																name: catFromDb.name,
 																desc: catFromDb.desc,
@@ -89,9 +89,25 @@ function RouteComponent() {
 							</td>
 						</tr>
 					))}
-				</tbody>
-			</table>
+			</tbody>
+		</table>
+	);
+};
 
+function RouteComponent() {
+	const [selectedCat, setSelectedCat] = useState<CatWithId | null>(null);
+
+	return (
+		<div className="p-4 max-w-7xl mx-auto">
+			<h1 className="text-4xl my-4">EVANGELION Collab Tier list</h1>
+			<TierList tierList={evaTierList} onSelectCat={setSelectedCat} />
+			<CatDialog
+				selectedCat={selectedCat}
+				onClose={() => setSelectedCat(null)}
+			/>
+
+			<h1 className="text-4xl my-4">Tier list</h1>
+			<TierList tierList={tierList} onSelectCat={setSelectedCat} />
 			<CatDialog
 				selectedCat={selectedCat}
 				onClose={() => setSelectedCat(null)}
