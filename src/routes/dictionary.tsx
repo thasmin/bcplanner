@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import { BookOpen } from "lucide-react";
 import { useId, useState } from "react";
-import { CatDialog, type CatWithId } from "@/components/CatDialog";
+import { CatDialog } from "@/components/CatDialog";
 
 export const Route = createFileRoute("/dictionary")({ component: Dictionary });
 
@@ -51,7 +51,7 @@ async function loadCatImages(): Promise<CatImage[]> {
 function Dictionary() {
 	const [searchTerm, setSearchTerm] = useState("");
 	const [rarityFilter, setRarityFilter] = useState<number | "all">("all");
-	const [selectedCat, setSelectedCat] = useState<CatWithId | null>(null);
+	const [selectedCatId, setSelectedCatId] = useState<number | undefined>();
 	const searchInputId = useId();
 	const rarityInputId = useId();
 
@@ -98,7 +98,7 @@ function Dictionary() {
 
 	// Convert cats object to array with IDs
 	const catsArray = Object.entries(catDatabase.cats).map(([id, cat]) => ({
-		id,
+		id: +id,
 		...cat,
 	}));
 
@@ -106,7 +106,7 @@ function Dictionary() {
 	const filteredCats = catsArray.filter((cat) => {
 		const matchesSearch =
 			searchTerm === "" ||
-			cat.id === searchTerm ||
+			cat.id.toString() === searchTerm ||
 			cat.name.some((name) =>
 				name.toLowerCase().includes(searchTerm.toLowerCase()),
 			);
@@ -121,7 +121,9 @@ function Dictionary() {
 					<BookOpen className="w-7 h-7 text-emerald-950" />
 				</div>
 				<div>
-					<h1 className="text-2xl md:text-3xl font-bold text-slate-800">Cat Dictionary</h1>
+					<h1 className="text-2xl md:text-3xl font-bold text-slate-800">
+						Cat Dictionary
+					</h1>
 					<p className="text-sm text-slate-500">Browse and discover all cats</p>
 				</div>
 			</div>
@@ -174,7 +176,9 @@ function Dictionary() {
 				</div>
 
 				<div className="mt-4 flex items-center gap-2 text-sm text-slate-500">
-					<span className="px-2 py-1 bg-slate-100 rounded-lg font-medium">{filteredCats.length}</span>
+					<span className="px-2 py-1 bg-slate-100 rounded-lg font-medium">
+						{filteredCats.length}
+					</span>
 					<span>of {catsArray.length} cats</span>
 				</div>
 			</div>
@@ -187,7 +191,7 @@ function Dictionary() {
 							type="button"
 							key={cat.id}
 							className="text-left bg-white/80 backdrop-blur-sm rounded-2xl shadow-md border border-slate-200/50 overflow-hidden hover:shadow-xl hover:scale-[1.02] hover:border-slate-300/50 transition-all duration-200 cursor-pointer group"
-							onClick={() => setSelectedCat(cat)}
+							onClick={() => setSelectedCatId(cat.id)}
 						>
 							<div className="flex items-start p-4">
 								<div className="flex-shrink-0 w-24 h-24 bg-gradient-to-br from-slate-50 to-slate-100 rounded-xl flex items-center justify-center mr-4 group-hover:from-amber-50 group-hover:to-orange-50 transition-all duration-200">
@@ -242,7 +246,10 @@ function Dictionary() {
 				</div>
 			)}
 
-			<CatDialog selectedCat={selectedCat} onClose={() => setSelectedCat(null)} />
+			<CatDialog
+				catId={selectedCatId}
+				onClose={() => setSelectedCatId(undefined)}
+			/>
 		</div>
 	);
 }

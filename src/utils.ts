@@ -1,3 +1,4 @@
+import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { Rarity } from "./data/battle-cats-gacha";
 import type { CatDatabase, CatInfo } from "./data/gacha-data";
@@ -63,6 +64,18 @@ export function lookupCat(
 		name: cat.name[0],
 	};
 }
+
+export const useCatDatabase = () => {
+	const catDatabaseQuery = useQuery({
+		queryKey: ["catDatabase"],
+		queryFn: async () => {
+			const response = await fetch("/data/bc-en.json");
+			return response.json() as Promise<CatDatabase>;
+		},
+		staleTime: Infinity, // Never refetch
+	});
+	return catDatabaseQuery;
+};
 
 export const useCatSeed = () => {
 	const defaultSeedStr = localStorage.getItem("catSeed");

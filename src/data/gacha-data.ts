@@ -54,14 +54,6 @@ export interface EventOption {
 }
 
 /**
- * Load cat database from JSON
- */
-export async function loadCatDatabase(): Promise<CatDatabase> {
-	const response = await fetch("/data/bc-en.json");
-	return response.json() as Promise<CatDatabase>;
-}
-
-/**
  * Create a GachaEvent from event data and cat database
  */
 export function createGachaEvent(

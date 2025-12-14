@@ -1,65 +1,124 @@
-import { useQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import clsx from "clsx";
 import { Cat, Dices } from "lucide-react";
 import { useEffect, useId, useState } from "react";
+import { CatDialog } from "@/components/CatDialog";
 import RarityTag from "@/components/RarityTag";
 import { Rarity, rollTracks } from "../data/battle-cats-gacha";
-import {
-	type CatInfo,
-	createGachaEvent,
-	getEventOptions,
-	loadCatDatabase,
-} from "../data/gacha-data";
+import { createGachaEvent, getEventOptions } from "../data/gacha-data";
 import {
 	getCatTierRank,
 	getRarityBgClass,
 	getRarityColors,
+	lookupCat,
+	useCatDatabase,
 	useCatSeed,
 } from "../utils";
 
 export const Route = createFileRoute("/")({ component: App });
 
+interface CatColumnsData {
+	score: number;
+	nextSeed: number;
+	cat: { id: number; name: string; rarity: Rarity };
+	switchedFromCat?: { id: number; name: string; rarity: Rarity };
+	guaranteedUber?: { id: number; name: string };
+	nextAfterGuaranteed?: string;
+}
+
+const CatColumns: React.FC<{
+	track: "A" | "B";
+	rowNum: number;
+	roll: CatColumnsData;
+	onSelectCatId: (id: number) => void;
+	onRoll: (nextSeed: number) => void;
+}> = ({ track, rowNum, roll, onSelectCatId, onRoll }) => {
+	return (
+		<>
+			<td
+				className={clsx(
+					"px-2 py-3 whitespace-nowrap text-sm text-gray-900 border-l border-gray-200",
+					getRarityBgClass(roll.cat.rarity),
+				)}
+			>
+				<div className="flex items-center gap-2">
+					<button
+						type="button"
+						onClick={() => onSelectCatId(roll.cat.id)}
+						className="p-1 border rounded cursor-pointer hover:bg-purple-100"
+					>
+						{roll.cat.name}
+					</button>
+					{getCatTierRank(roll.cat.id) && (
+						<span className="px-1.5 py-0.5 text-xs font-semibold rounded bg-indigo-100 text-indigo-800">
+							{getCatTierRank(roll.cat.id)}
+						</span>
+					)}
+				</div>
+				{roll.switchedFromCat && (
+					<div className="text-xs text-orange-600">
+						Rerolled from {roll.switchedFromCat.name}
+						<div>→ {track === "A" ? `${rowNum + 2}B` : `${rowNum + 3}A`}</div>
+					</div>
+				)}
+			</td>
+			<td
+				className={clsx(
+					"px-2 py-3 whitespace-nowrap text-sm",
+					getRarityBgClass(roll.cat.rarity),
+				)}
+			>
+				<RarityTag rarity={roll.cat.rarity} />
+				{roll.score > 9300 && (
+					<span
+						className={`ml-2 px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${getRarityColors(Rarity.Uber)}`}
+					>
+						FEST UBER
+					</span>
+				)}
+			</td>
+			{roll.guaranteedUber && (
+				<td
+					className={clsx(
+						"px-2 py-3 whitespace-nowrap text-xs text-gray-700",
+						getRarityBgClass(Rarity.Uber),
+					)}
+				>
+					<div className="font-medium text-amber-700">
+						{roll.guaranteedUber.name}
+					</div>
+					<div className="text-gray-500 mt-1">→ {roll.nextAfterGuaranteed}</div>
+				</td>
+			)}
+			<td
+				className={clsx(
+					"px-2 py-3 whitespace-nowrap text-xs text-gray-700",
+					getRarityBgClass(roll.cat.rarity),
+				)}
+			>
+				<button
+					type="button"
+					onClick={() => onRoll(roll.nextSeed)}
+					className="p-1.5 text-slate-400 hover:text-amber-600 hover:bg-amber-50 rounded-lg transition-all duration-200"
+					title="Jump to this seed"
+				>
+					<Dices size={18} />
+				</button>
+			</td>
+		</>
+	);
+};
+
 function App() {
+	const [selectedCatId, setSelectedCatId] = useState<number | undefined>();
 	const [seed, setSeed] = useCatSeed();
 	const [selectedEvent, setSelectedEvent] = useState("");
 
-	// Load cat database
-	const catDatabaseQuery = useQuery({
-		queryKey: ["catDatabase"],
-		queryFn: loadCatDatabase,
-		staleTime: Infinity, // Never refetch
-	});
-
-	interface CatRowData {
-		id: number;
-		rarity: number;
-		name: string;
-	}
-
-	function lookupCat(catId: number): CatRowData;
-	function lookupCat(catId: number | undefined): CatRowData | undefined;
-	function lookupCat(catId: number | undefined): CatRowData | undefined {
-		if (!catId) return undefined;
-		const cat =
-			catDatabaseQuery.data?.cats[catId] ||
-			({
-				id: catId,
-				name: ["Unknown"],
-				desc: [],
-				rarity: 0,
-				max_level: 0,
-			} as CatInfo);
-		return {
-			id: catId,
-			rarity: cat.rarity,
-			name: cat.name[0],
-		};
-	}
+	const catDatabase = useCatDatabase();
 
 	// Set default event when events load
-	const eventOptions = catDatabaseQuery.data
-		? getEventOptions(catDatabaseQuery.data.events)
+	const eventOptions = catDatabase.data
+		? getEventOptions(catDatabase.data.events)
 		: [];
 
 	useEffect(() => {
@@ -74,52 +133,59 @@ function App() {
 		trackA: [],
 		trackB: [],
 	});
-	const trackRolls = tracks.trackA.map((rollA, index) => {
-		const rollB = tracks.trackB[index];
-		return {
-			index,
-			trackA: {
-				score: rollA.score,
-				nextSeed: rollA.nextSeed,
-				cat: lookupCat(rollA.catId),
-				guaranteedUberId: lookupCat(rollA.guaranteedUberId),
-				switchedFromCatId: lookupCat(rollA.switchedFromCatId),
-				nextAfterGuaranteed: rollA.nextAfterGuaranteed,
-			},
-			trackB: {
-				score: rollB.score,
-				nextSeed: rollB.nextSeed,
-				cat: lookupCat(rollB.catId),
-				guaranteedUber: lookupCat(rollB.guaranteedUberId),
-				switchedFromCat: lookupCat(rollB.switchedFromCatId),
-				nextAfterGuaranteed: rollB.nextAfterGuaranteed,
-			},
-		};
-	});
+	const trackRolls = catDatabase.data
+		? tracks.trackA.map((rollA, index) => {
+				const rollB = tracks.trackB[index];
+				return {
+					index,
+					trackA: {
+						score: rollA.score,
+						nextSeed: rollA.nextSeed,
+						cat: lookupCat(catDatabase.data, rollA.catId),
+						guaranteedUber: lookupCat(catDatabase.data, rollA.guaranteedUberId),
+						switchedFromCat: lookupCat(
+							catDatabase.data,
+							rollA.switchedFromCatId,
+						),
+						nextAfterGuaranteed: rollA.nextAfterGuaranteed,
+					},
+					trackB: {
+						score: rollB.score,
+						nextSeed: rollB.nextSeed,
+						cat: lookupCat(catDatabase.data, rollB.catId),
+						guaranteedUber: lookupCat(catDatabase.data, rollB.guaranteedUberId),
+						switchedFromCat: lookupCat(
+							catDatabase.data,
+							rollB.switchedFromCatId,
+						),
+						nextAfterGuaranteed: rollB.nextAfterGuaranteed,
+					},
+				};
+			})
+		: [];
 
-	const eventData = catDatabaseQuery.data?.events[selectedEvent];
+	const eventData = catDatabase.data?.events[selectedEvent];
 	const eventHasGuaranteedUber = eventData?.step_up || eventData?.guaranteed;
 
 	// Calculate rolls when seed or event changes
 	useEffect(() => {
-		if (!catDatabaseQuery.data || !selectedEvent) return;
+		if (!catDatabase.data || !selectedEvent) return;
 
-		const catDatabase = catDatabaseQuery.data;
-		const eventData = catDatabase.events[selectedEvent];
+		const eventData = catDatabase.data.events[selectedEvent];
 
 		if (!eventData) {
 			console.error(`Event ${selectedEvent} not found`);
 			return;
 		}
 
-		const event = createGachaEvent(eventData, catDatabase);
+		const event = createGachaEvent(eventData, catDatabase.data);
 		setTracks(rollTracks(event, seed, 100));
-	}, [seed, selectedEvent, catDatabaseQuery.data]);
+	}, [seed, selectedEvent, catDatabase.data]);
 
 	// Derive isStepUp from current event data
 	const isStepUp =
-		catDatabaseQuery.data && selectedEvent
-			? !!catDatabaseQuery.data.events[selectedEvent]?.step_up
+		catDatabase.data && selectedEvent
+			? !!catDatabase.data.events[selectedEvent]?.step_up
 			: false;
 
 	const seedInputId = useId();
@@ -127,6 +193,10 @@ function App() {
 
 	return (
 		<div className="p-4 md:p-6 max-w-7xl mx-auto">
+			<CatDialog
+				catId={selectedCatId}
+				onClose={() => setSelectedCatId(undefined)}
+			/>
 			<div className="flex items-center gap-3 mb-8">
 				<div className="p-3 bg-gradient-to-br from-amber-400 to-orange-500 rounded-2xl shadow-lg shadow-amber-500/20">
 					<Cat className="w-7 h-7 text-indigo-950" />
@@ -141,7 +211,7 @@ function App() {
 				</div>
 			</div>
 
-			{catDatabaseQuery.isLoading && (
+			{catDatabase.isLoading && (
 				<div className="flex items-center gap-3 p-4 bg-amber-50 border border-amber-200 rounded-xl text-amber-700">
 					<div className="animate-spin w-5 h-5 border-2 border-amber-500 border-t-transparent rounded-full" />
 					Loading cat database...
@@ -265,154 +335,26 @@ function App() {
 							{trackRolls.map((tr, ndx) => {
 								return (
 									<tr
-										key={trackRolls[ndx].index}
+										key={tr.index}
 										className="hover:bg-slate-50/50 transition-colors"
 									>
 										<td className="px-3 py-3 whitespace-nowrap text-sm font-bold text-slate-400">
 											{ndx + 1}
 										</td>
-										<td
-											className={clsx(
-												"px-2 py-3 whitespace-nowrap text-sm text-gray-900 border-l border-gray-200",
-												getRarityBgClass(tr.trackA.cat.rarity),
-											)}
-										>
-											<div className="flex items-center gap-2">
-												<span>{tr.trackA.cat.name}</span>
-												{getCatTierRank(tr.trackA.cat.id) && (
-													<span className="px-1.5 py-0.5 text-xs font-semibold rounded bg-indigo-100 text-indigo-800">
-														{getCatTierRank(tr.trackA.cat.id)}
-													</span>
-												)}
-											</div>
-											{tr.trackA.switchedFromCatId && (
-												<div className="text-xs text-orange-600">
-													Rerolled from {tr.trackA.switchedFromCatId.name}
-													<div>→ {ndx + 2}B</div>
-												</div>
-											)}
-										</td>
-										<td
-											className={clsx(
-												"px-2 py-3 whitespace-nowrap text-sm",
-												getRarityBgClass(tr.trackA.cat.rarity),
-											)}
-										>
-											<RarityTag rarity={tr.trackA.cat.rarity} />
-											{tr.trackA.score > 9300 && (
-												<span
-													className={`ml-2 px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${getRarityColors(Rarity.Uber)}`}
-												>
-													FEST UBER
-												</span>
-											)}
-										</td>
-										{eventHasGuaranteedUber && (
-											<td
-												className={clsx(
-													"px-2 py-3 whitespace-nowrap text-xs text-gray-700",
-													getRarityBgClass(Rarity.Uber),
-												)}
-											>
-												{tr.trackA.guaranteedUberId && (
-													<>
-														<div className="font-medium text-amber-700">
-															{tr.trackA.guaranteedUberId.name}
-														</div>
-														<div className="text-gray-500 mt-1">
-															→ {tr.trackA.nextAfterGuaranteed}
-														</div>
-													</>
-												)}
-											</td>
-										)}
-										<td
-											className={clsx(
-												"px-2 py-3 whitespace-nowrap text-xs text-gray-700",
-												getRarityBgClass(tr.trackA.cat.rarity),
-											)}
-										>
-											<button
-												type="button"
-												onClick={() => setSeed(tr.trackA.nextSeed)}
-												className="p-1.5 text-slate-400 hover:text-amber-600 hover:bg-amber-50 rounded-lg transition-all duration-200"
-												title="Jump to this seed"
-											>
-												<Dices size={18} />
-											</button>
-										</td>
-
-										<td
-											className={clsx(
-												"px-2 py-3 whitespace-nowrap text-sm text-gray-900 border-l border-gray-300",
-												getRarityBgClass(tr.trackB.cat.rarity),
-											)}
-										>
-											<div className="flex items-center gap-2">
-												<span>{tr.trackB.cat.name}</span>
-												{getCatTierRank(tr.trackB.cat.id) && (
-													<span className="px-1.5 py-0.5 text-xs font-semibold rounded bg-indigo-100 text-indigo-800">
-														{getCatTierRank(tr.trackB.cat.id)}
-													</span>
-												)}
-											</div>
-											{tr.trackB.switchedFromCat && (
-												<div className="text-xs text-orange-600">
-													Rerolled from {tr.trackB.switchedFromCat.name}
-													<div>→ {tr.index + 2}A</div>
-												</div>
-											)}
-										</td>
-										<td
-											className={clsx(
-												"px-2 py-3 whitespace-nowrap text-sm",
-												getRarityBgClass(tr.trackB.cat.rarity),
-											)}
-										>
-											<RarityTag rarity={tr.trackB.cat.rarity} />
-											{tr.trackB.score > 9300 && (
-												<span
-													className={`ml-2 px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${getRarityColors(Rarity.Uber)}`}
-												>
-													FEST UBER
-												</span>
-											)}
-										</td>
-										{eventHasGuaranteedUber && (
-											<td
-												className={clsx(
-													"px-2 py-3 whitespace-nowrap text-xs text-gray-700",
-													getRarityBgClass(Rarity.Uber),
-												)}
-											>
-												{tr.trackB.guaranteedUber && (
-													<>
-														<div className="font-medium text-amber-700">
-															{tr.trackB.guaranteedUber.name} (
-															{tr.trackB.guaranteedUber.id})
-														</div>
-														<div className="text-gray-500 mt-1">
-															→ {tr.trackB.nextAfterGuaranteed}
-														</div>
-													</>
-												)}
-											</td>
-										)}
-										<td
-											className={clsx(
-												"px-2 py-3 whitespace-nowrap text-xs text-gray-700",
-												getRarityBgClass(tr.trackB.cat.rarity),
-											)}
-										>
-											<button
-												type="button"
-												onClick={() => setSeed(tr.trackB.nextSeed)}
-												className="p-1.5 text-slate-400 hover:text-amber-600 hover:bg-amber-50 rounded-lg transition-all duration-200"
-												title="Jump to this seed"
-											>
-												<Dices size={18} />
-											</button>
-										</td>
+										<CatColumns
+											track="A"
+											rowNum={ndx}
+											roll={tr.trackA}
+											onSelectCatId={setSelectedCatId}
+											onRoll={setSeed}
+										/>
+										<CatColumns
+											track="B"
+											rowNum={ndx}
+											roll={tr.trackB}
+											onSelectCatId={setSelectedCatId}
+											onRoll={setSeed}
+										/>
 									</tr>
 								);
 							})}

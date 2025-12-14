@@ -1,15 +1,15 @@
-import { useQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import { Crown, Sparkles } from "lucide-react";
 import { useEffect, useId, useState } from "react";
 import RarityTag from "@/components/RarityTag";
 import { Rarity, rollTracks } from "../data/battle-cats-gacha";
+import { type CatDatabase, createGachaEvent } from "../data/gacha-data";
 import {
-	type CatDatabase,
-	createGachaEvent,
-	loadCatDatabase,
-} from "../data/gacha-data";
-import { getCatTierRank, lookupCat, useCatSeed } from "../utils";
+	getCatTierRank,
+	lookupCat,
+	useCatDatabase,
+	useCatSeed,
+} from "../utils";
 
 export const Route = createFileRoute("/uber-planner")({ component: App });
 
@@ -42,23 +42,17 @@ type UberOptions = Record<
 
 function App() {
 	const [seed, setSeed] = useCatSeed();
-
-	// Load cat database
-	const catDatabaseQuery = useQuery({
-		queryKey: ["catDatabase"],
-		queryFn: loadCatDatabase,
-		staleTime: Infinity, // Never refetch
-	});
+	const catDatabase = useCatDatabase();
 
 	const [uberOptions, setUberOptions] = useState<
 		{ index: number; trackA: UberRoll[]; trackB: UberRoll[] }[]
 	>([]);
 
 	useEffect(() => {
-		if (!catDatabaseQuery.data) return;
+		if (!catDatabase.data) return;
 		// Find relevant events
 		const today = new Date().toISOString().split("T")[0]; // YYYY-MM-DD format
-		const eventOptions = Object.entries(catDatabaseQuery.data?.events || {});
+		const eventOptions = Object.entries(catDatabase.data?.events || {});
 		const regularEvents = eventOptions
 			.filter(([_code, ev]) => !!ev.guaranteed || !!ev.step_up)
 			.map(([code, ev]) => ({ code, ...ev }))
@@ -66,8 +60,8 @@ function App() {
 		const rolls = regularEvents.map((event) => ({
 			event,
 			...extractUbers(
-				catDatabaseQuery.data,
-				rollTracks(createGachaEvent(event, catDatabaseQuery.data), seed, 100),
+				catDatabase.data,
+				rollTracks(createGachaEvent(event, catDatabase.data), seed, 100),
 			),
 		}));
 		const ubersByIndexAndTrack = rolls.flatMap((roll) =>
@@ -84,7 +78,7 @@ function App() {
 		);
 		const uberRolls = ubersByIndexAndTrack.reduce((acc, curr) => {
 			acc[curr.index] = acc[curr.index] || { trackA: [], trackB: [] };
-			const cat = lookupCat(catDatabaseQuery.data, curr.cat.catId);
+			const cat = lookupCat(catDatabase.data, curr.cat.catId);
 			if (!cat) return acc;
 			const entry = {
 				index: curr.cat.index,
@@ -102,7 +96,7 @@ function App() {
 			}))
 			.toSorted((a, b) => a.index - b.index);
 		setUberOptions(uberOptions);
-	}, [catDatabaseQuery.data, seed]);
+	}, [catDatabase.data, seed]);
 
 	const seedInputId = useId();
 
@@ -122,7 +116,7 @@ function App() {
 				</div>
 			</div>
 
-			{catDatabaseQuery.isLoading && (
+			{catDatabase.isLoading && (
 				<div className="flex items-center gap-3 p-4 bg-amber-50 border border-amber-200 rounded-xl text-amber-700">
 					<div className="animate-spin w-5 h-5 border-2 border-amber-500 border-t-transparent rounded-full" />
 					Loading cat database...
@@ -152,7 +146,7 @@ function App() {
 			</div>
 
 			<div className="space-y-4">
-				{catDatabaseQuery.data && uberOptions.length === 0 && (
+				{catDatabase.data && uberOptions.length === 0 && (
 					<div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-200/50 p-8 text-center">
 						<Sparkles className="w-12 h-12 text-slate-300 mx-auto mb-3" />
 						<p className="text-slate-500">
@@ -160,7 +154,7 @@ function App() {
 						</p>
 					</div>
 				)}
-				{catDatabaseQuery.data &&
+				{catDatabase.data &&
 					uberOptions.map((uberOption) => (
 						<div
 							key={uberOption.index}

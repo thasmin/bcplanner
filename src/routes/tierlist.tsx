@@ -1,10 +1,14 @@
-import { useQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import { ListOrdered } from "lucide-react";
 import { useState } from "react";
-import { CatDialog, type CatWithId } from "@/components/CatDialog";
-import { type CatDatabase, loadCatDatabase } from "@/data/gacha-data";
-import { evaTierList, getCatStageImagePath, tierList } from "@/utils";
+import { CatDialog } from "@/components/CatDialog";
+import type { CatDatabase } from "@/data/gacha-data";
+import {
+	evaTierList,
+	getCatStageImagePath,
+	tierList,
+	useCatDatabase,
+} from "@/utils";
 
 export const Route = createFileRoute("/tierlist")({
 	component: RouteComponent,
@@ -12,17 +16,17 @@ export const Route = createFileRoute("/tierlist")({
 
 function getTierClass(rank: string): string {
 	const tierMap: Record<string, string> = {
-		"SS": "tier-ss",
+		SS: "tier-ss",
 		"S+": "tier-s-plus",
-		"S": "tier-s",
+		S: "tier-s",
 		"A+": "tier-a-plus",
-		"A": "tier-a",
+		A: "tier-a",
 		"B+": "tier-b-plus",
-		"B": "tier-b",
+		B: "tier-b",
 		"C+": "tier-c-plus",
-		"C": "tier-c",
-		"D": "tier-d",
-		"F": "tier-f",
+		C: "tier-c",
+		D: "tier-d",
+		F: "tier-f",
 	};
 	return tierMap[rank] || "bg-slate-200 text-slate-700";
 }
@@ -57,43 +61,36 @@ const TierCat: React.FC<{
 
 const TierListTable: React.FC<{
 	tierList: typeof tierList;
-	onSelectCat: (cat: CatWithId) => void;
-}> = ({ tierList, onSelectCat }) => {
-	const catDatabaseQuery = useQuery({
-		queryKey: ["catDatabase"],
-		queryFn: loadCatDatabase,
-		staleTime: Infinity,
-	});
-	const catDatabase = catDatabaseQuery.data;
+	onSelectCatId: (catId: number) => void;
+}> = ({ tierList, onSelectCatId }) => {
+	const catDatabase = useCatDatabase();
 
 	return (
 		<div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-200/50 overflow-hidden">
 			{tierList
 				.filter((tier) => tier.cats.length > 0)
 				.map((tier) => (
-					<div key={tier.rank} className="flex border-b border-slate-100 last:border-b-0">
-						<div className={`w-20 flex-shrink-0 flex items-center justify-center ${getTierClass(tier.rank)}`}>
-							<span className="text-2xl font-black tracking-tight">{tier.rank}</span>
+					<div
+						key={tier.rank}
+						className="flex border-b border-slate-100 last:border-b-0"
+					>
+						<div
+							className={`w-20 flex-shrink-0 flex items-center justify-center ${getTierClass(tier.rank)}`}
+						>
+							<span className="text-2xl font-black tracking-tight">
+								{tier.rank}
+							</span>
 						</div>
 						<div className="flex-1 p-4 bg-slate-50/30">
 							<ul className="flex flex-wrap gap-3">
 								{tier.cats.map((catId) => {
-									const catFromDb = catDatabase?.cats[catId];
+									const catFromDb = catDatabase.data?.cats[catId];
 									return (
 										<li key={catId}>
 											<TierCat
-												catDatabase={catDatabase}
+												catDatabase={catDatabase.data}
 												catId={catId}
-												onClick={() => {
-													if (catFromDb) {
-														onSelectCat({
-															id: catId,
-															name: catFromDb.name,
-															desc: catFromDb.desc,
-															rarity: catFromDb.rarity,
-														});
-													}
-												}}
+												onClick={() => catFromDb && onSelectCatId(catId)}
 											/>
 										</li>
 									);
@@ -107,7 +104,7 @@ const TierListTable: React.FC<{
 };
 
 function RouteComponent() {
-	const [selectedCat, setSelectedCat] = useState<CatWithId | null>(null);
+	const [selectedCatId, setSelectedCatId] = useState<number | undefined>();
 
 	return (
 		<div className="p-4 md:p-6 max-w-7xl mx-auto">
@@ -116,27 +113,40 @@ function RouteComponent() {
 					<ListOrdered className="w-7 h-7 text-violet-950" />
 				</div>
 				<div>
-					<h1 className="text-2xl md:text-3xl font-bold text-slate-800">Tier Lists</h1>
-					<p className="text-sm text-slate-500">Cat rankings for strategic planning</p>
+					<h1 className="text-2xl md:text-3xl font-bold text-slate-800">
+						Tier Lists
+					</h1>
+					<p className="text-sm text-slate-500">
+						Cat rankings for strategic planning
+					</p>
 				</div>
 			</div>
 
 			<section className="mb-10">
 				<div className="flex items-center gap-3 mb-4">
-					<h2 className="text-xl font-bold text-slate-700">EVANGELION Collab</h2>
-					<span className="px-2 py-0.5 text-xs font-bold bg-red-100 text-red-700 rounded-lg">Limited</span>
+					<h2 className="text-xl font-bold text-slate-700">
+						EVANGELION Collab
+					</h2>
+					<span className="px-2 py-0.5 text-xs font-bold bg-red-100 text-red-700 rounded-lg">
+						Limited
+					</span>
 				</div>
-				<TierListTable tierList={evaTierList} onSelectCat={setSelectedCat} />
+				<TierListTable
+					tierList={evaTierList}
+					onSelectCatId={setSelectedCatId}
+				/>
 			</section>
 
 			<section>
-				<h2 className="text-xl font-bold text-slate-700 mb-4">General Tier List</h2>
-				<TierListTable tierList={tierList} onSelectCat={setSelectedCat} />
+				<h2 className="text-xl font-bold text-slate-700 mb-4">
+					General Tier List
+				</h2>
+				<TierListTable tierList={tierList} onSelectCatId={setSelectedCatId} />
 			</section>
 
 			<CatDialog
-				selectedCat={selectedCat}
-				onClose={() => setSelectedCat(null)}
+				catId={selectedCatId}
+				onClose={() => setSelectedCatId(undefined)}
 			/>
 		</div>
 	);

@@ -1,6 +1,6 @@
 import { X } from "lucide-react";
 import { useEffect, useRef } from "react";
-import { getCatStageImagePath } from "@/utils";
+import { getCatStageImagePath, useCatDatabase } from "@/utils";
 
 export interface CatWithId {
 	id: string | number;
@@ -17,10 +17,14 @@ function rarityName(rarity: number) {
 }
 
 function getRarityColors(rarity: number) {
-	if (rarity === 4) return "bg-gradient-to-r from-amber-100 to-yellow-100 text-amber-800 border-amber-300";
-	if (rarity === 5) return "bg-gradient-to-r from-purple-100 to-violet-100 text-purple-800 border-purple-300";
-	if (rarity === 3) return "bg-gradient-to-r from-blue-100 to-sky-100 text-blue-800 border-blue-300";
-	if (rarity === 2) return "bg-gradient-to-r from-green-100 to-emerald-100 text-green-800 border-green-300";
+	if (rarity === 4)
+		return "bg-gradient-to-r from-amber-100 to-yellow-100 text-amber-800 border-amber-300";
+	if (rarity === 5)
+		return "bg-gradient-to-r from-purple-100 to-violet-100 text-purple-800 border-purple-300";
+	if (rarity === 3)
+		return "bg-gradient-to-r from-blue-100 to-sky-100 text-blue-800 border-blue-300";
+	if (rarity === 2)
+		return "bg-gradient-to-r from-green-100 to-emerald-100 text-green-800 border-green-300";
 	return "bg-gradient-to-r from-slate-100 to-gray-100 text-slate-700 border-slate-300";
 }
 
@@ -33,19 +37,22 @@ function getHeaderGradient(rarity: number) {
 }
 
 interface CatDialogProps {
-	selectedCat: CatWithId | null;
+	catId?: number;
 	onClose: () => void;
 }
 
-export function CatDialog({ selectedCat, onClose }: CatDialogProps) {
+export function CatDialog({ catId, onClose }: CatDialogProps) {
 	const dialogRef = useRef<HTMLDialogElement>(null);
+
+	const catDatabase = useCatDatabase();
+	const selectedCat = catId ? catDatabase.data?.cats[catId] : null;
 
 	useEffect(() => {
 		const dialog = dialogRef.current;
 		if (!dialog) return;
-		if (selectedCat) dialog.showModal();
+		if (catId) dialog.showModal();
 		else dialog.close();
-	}, [selectedCat]);
+	}, [catId]);
 
 	return (
 		<dialog
@@ -56,7 +63,9 @@ export function CatDialog({ selectedCat, onClose }: CatDialogProps) {
 		>
 			{selectedCat && (
 				<>
-					<div className={`sticky top-0 bg-gradient-to-r ${getHeaderGradient(selectedCat.rarity)} px-6 py-4 flex justify-between items-center`}>
+					<div
+						className={`sticky top-0 bg-gradient-to-r ${getHeaderGradient(selectedCat.rarity)} px-6 py-4 flex justify-between items-center`}
+					>
 						<div className="flex items-center gap-4">
 							<h2 className="text-2xl font-bold text-white drop-shadow-sm">
 								{selectedCat.name[0]}
@@ -85,54 +94,52 @@ export function CatDialog({ selectedCat, onClose }: CatDialogProps) {
 						</h3>
 
 						<div className="flex flex-col gap-4">
-							{selectedCat.name.map((_name, stageIndex) => {
-								const imagePath = getCatStageImagePath(
-									selectedCat.id,
-									stageIndex,
-								);
-								const stageName =
-									selectedCat.name[stageIndex] || `Stage ${stageIndex}`;
-								const stageDesc = selectedCat.desc[stageIndex];
+							{catId &&
+								selectedCat.name.map((_name, stageIndex) => {
+									const imagePath = getCatStageImagePath(catId, stageIndex);
+									const stageName =
+										selectedCat.name[stageIndex] || `Stage ${stageIndex}`;
+									const stageDesc = selectedCat.desc[stageIndex];
 
-								return (
-									<div
-										key={_name}
-										className="bg-gradient-to-br from-slate-50 to-slate-100/50 rounded-xl px-5 py-4 flex gap-5 border border-slate-100"
-									>
-										<div className="flex-shrink-0 w-24 h-24 bg-white rounded-xl flex items-center justify-center overflow-hidden shadow-sm border border-slate-100">
-											<img
-												src={imagePath}
-												alt={stageName}
-												className="max-w-full max-h-full object-contain"
-												onError={(e) => {
-													const target = e.target as HTMLImageElement;
-													target.style.display = "none";
-													const parent = target.parentElement;
-													if (parent) {
-														parent.innerHTML =
-															'<div class="text-slate-300 text-xs">No image</div>';
-													}
-												}}
-											/>
-										</div>
-										<div className="flex-1 min-w-0">
-											<div className="flex items-center gap-2 mb-2">
-												<span className="px-2 py-0.5 text-xs font-bold bg-slate-200 text-slate-600 rounded-md">
-													Stage {stageIndex + 1}
-												</span>
+									return (
+										<div
+											key={_name}
+											className="bg-gradient-to-br from-slate-50 to-slate-100/50 rounded-xl px-5 py-4 flex gap-5 border border-slate-100"
+										>
+											<div className="flex-shrink-0 w-24 h-24 bg-white rounded-xl flex items-center justify-center overflow-hidden shadow-sm border border-slate-100">
+												<img
+													src={imagePath}
+													alt={stageName}
+													className="max-w-full max-h-full object-contain"
+													onError={(e) => {
+														const target = e.target as HTMLImageElement;
+														target.style.display = "none";
+														const parent = target.parentElement;
+														if (parent) {
+															parent.innerHTML =
+																'<div class="text-slate-300 text-xs">No image</div>';
+														}
+													}}
+												/>
 											</div>
-											<h4 className="text-lg font-bold text-slate-800 mb-2">
-												{stageName}
-											</h4>
-											{stageDesc && (
-												<p className="text-sm text-slate-500 leading-relaxed">
-													{stageDesc}
-												</p>
-											)}
+											<div className="flex-1 min-w-0">
+												<div className="flex items-center gap-2 mb-2">
+													<span className="px-2 py-0.5 text-xs font-bold bg-slate-200 text-slate-600 rounded-md">
+														Stage {stageIndex + 1}
+													</span>
+												</div>
+												<h4 className="text-lg font-bold text-slate-800 mb-2">
+													{stageName}
+												</h4>
+												{stageDesc && (
+													<p className="text-sm text-slate-500 leading-relaxed">
+														{stageDesc}
+													</p>
+												)}
+											</div>
 										</div>
-									</div>
-								);
-							})}
+									);
+								})}
 						</div>
 					</div>
 				</>
