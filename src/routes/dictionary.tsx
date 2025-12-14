@@ -121,19 +121,19 @@ function Dictionary() {
 					<BookOpen className="w-7 h-7 text-emerald-950" />
 				</div>
 				<div>
-					<h1 className="text-2xl md:text-3xl font-bold text-slate-800">
+					<h1 className="text-2xl md:text-3xl font-bold text-slate-800 dark:text-slate-100">
 						Cat Dictionary
 					</h1>
 					<p className="text-sm text-slate-500">Browse and discover all cats</p>
 				</div>
 			</div>
 
-			<div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-200/50 p-6 mb-6">
+			<div className="bg-white/80 dark:bg-slate-800 backdrop-blur-sm rounded-2xl shadow-lg shadow-slate-200/50 dark:shadow-slate-700/50 border border-slate-200/50 p-6 mb-6">
 				<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 					<div>
 						<label
 							htmlFor={searchInputId}
-							className="block text-sm font-semibold text-slate-700 mb-2"
+							className="block text-sm font-semibold text-slate-700 dark:text-slate-200 mb-2"
 						>
 							Search
 						</label>
@@ -142,7 +142,7 @@ function Dictionary() {
 							id={searchInputId}
 							value={searchTerm}
 							onChange={(e) => setSearchTerm(e.target.value)}
-							className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder:text-slate-400 transition-all duration-200 hover:border-slate-300"
+							className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-xl text-slate-800 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500 transition-all duration-200 hover:border-slate-300 dark:hover:border-slate-500"
 							placeholder="Search by name or ID..."
 						/>
 					</div>
@@ -150,7 +150,7 @@ function Dictionary() {
 					<div>
 						<label
 							htmlFor={rarityInputId}
-							className="block text-sm font-semibold text-slate-700 mb-2"
+							className="block text-sm font-semibold text-slate-700 dark:text-slate-200 mb-2"
 						>
 							Rarity Filter
 						</label>
@@ -162,7 +162,7 @@ function Dictionary() {
 									e.target.value === "all" ? "all" : Number(e.target.value),
 								)
 							}
-							className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 transition-all duration-200 hover:border-slate-300 cursor-pointer"
+							className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-xl text-slate-800 dark:text-slate-100 transition-all duration-200 hover:border-slate-300 dark:hover:border-slate-500 cursor-pointer"
 						>
 							<option value="all">All Rarities</option>
 							<option value="0">Normal</option>
@@ -175,8 +175,8 @@ function Dictionary() {
 					</div>
 				</div>
 
-				<div className="mt-4 flex items-center gap-2 text-sm text-slate-500">
-					<span className="px-2 py-1 bg-slate-100 rounded-lg font-medium">
+				<div className="mt-4 flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
+					<span className="px-2 py-1 text-slate-800 dark:text-slate-100 bg-slate-100 dark:bg-slate-700 rounded-lg font-medium">
 						{filteredCats.length}
 					</span>
 					<span>of {catsArray.length} cats</span>
@@ -190,7 +190,7 @@ function Dictionary() {
 						<button
 							type="button"
 							key={cat.id}
-							className="text-left bg-white/80 backdrop-blur-sm rounded-2xl shadow-md border border-slate-200/50 overflow-hidden hover:shadow-xl hover:scale-[1.02] hover:border-slate-300/50 transition-all duration-200 cursor-pointer group"
+							className="text-left bg-white/80 dark:bg-slate-800 backdrop-blur-sm rounded-2xl shadow-md border border-slate-200/50 overflow-hidden hover:shadow-xl hover:scale-[1.02] hover:border-slate-300/50 transition-all duration-200 cursor-pointer group"
 							onClick={() => setSelectedCatId(cat.id)}
 						>
 							<div className="flex items-start p-4">
@@ -202,7 +202,7 @@ function Dictionary() {
 											className="max-w-full max-h-full object-contain group-hover:scale-110 transition-transform duration-200"
 										/>
 									) : (
-										<div className="text-slate-300 text-xs text-center">
+										<div className="text-slate-300 dark:text-slate-500 text-xs text-center">
 											No image
 										</div>
 									)}
@@ -210,10 +210,10 @@ function Dictionary() {
 
 								<div className="flex-1 min-w-0">
 									<div className="flex items-start justify-between mb-2">
-										<h3 className="text-lg font-bold text-slate-800 truncate">
+										<h3 className="text-lg font-bold text-slate-800 dark:text-slate-100 truncate">
 											{cat.name[0]}
 										</h3>
-										<span className="ml-2 text-xs text-slate-400 flex-shrink-0 font-mono">
+										<span className="ml-2 text-xs text-slate-400 dark:text-slate-500 flex-shrink-0 font-mono">
 											#{cat.id}
 										</span>
 									</div>
@@ -227,7 +227,7 @@ function Dictionary() {
 									</span>
 
 									{cat.desc[0] && (
-										<p className="text-sm text-slate-500 line-clamp-2">
+										<p className="text-sm text-slate-500 dark:text-slate-400 line-clamp-2">
 											{cat.desc[0]}
 										</p>
 									)}

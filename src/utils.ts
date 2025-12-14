@@ -20,17 +20,17 @@ export function rarityName(rarity: number) {
 
 export function getRarityBgClass(rarity?: number) {
 	if (rarity === undefined) return "";
-	if (rarity === Rarity.SuperRare) return "bg-blue-50";
-	if (rarity === Rarity.Uber) return "bg-yellow-50";
-	if (rarity === Rarity.Legend) return "bg-purple-50";
+	if (rarity === Rarity.SuperRare) return "bg-blue-50 dark:bg-blue-950";
+	if (rarity === Rarity.Uber) return "bg-yellow-50 dark:bg-yellow-950";
+	if (rarity === Rarity.Legend) return "bg-purple-50 dark:bg-purple-950";
 	return "";
 }
 
 export function getRarityColors(rarity: number) {
-	if (rarity === Rarity.SuperRare) return "bg-blue-100 text-blue-800";
-	if (rarity === Rarity.Uber) return "bg-yellow-100 text-yellow-800";
-	if (rarity === Rarity.Legend) return "bg-purple-100 text-purple-800";
-	return "bg-gray-100 text-gray-800";
+	if (rarity === Rarity.SuperRare) return "bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200";
+	if (rarity === Rarity.Uber) return "bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200";
+	if (rarity === Rarity.Legend) return "bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200";
+	return "bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200";
 }
 
 export interface CatRowData {

@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { Info, Mail, MessageCircle } from "lucide-react";
 
 export const Route = createFileRoute("/about")({ component: About });
@@ -11,34 +11,36 @@ function About() {
 					<Info className="w-7 h-7 text-indigo-950" />
 				</div>
 				<div>
-					<h1 className="text-2xl md:text-3xl font-bold text-slate-800">
+					<h1 className="text-2xl md:text-3xl font-bold text-slate-800 dark:text-slate-100">
 						About CatPlanner
 					</h1>
-					<p className="text-sm text-slate-500">
+					<p className="text-sm text-slate-500 dark:text-slate-400">
 						Strategic planning for The Battle Cats
 					</p>
 				</div>
 			</div>
 
-			<div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-200/50 p-6 md:p-8 space-y-6">
-				<p className="text-slate-700 text-lg leading-relaxed">
+			<div className="bg-white/80 dark:bg-slate-800 backdrop-blur-sm rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-200/50 p-6 md:p-8 space-y-6">
+				<p className="text-slate-700 dark:text-slate-100 text-lg leading-relaxed">
 					A strategic planning tool for{" "}
-					<span className="font-semibold text-indigo-700">The Battle Cats</span>{" "}
+					<span className="font-semibold text-indigo-700 dark:text-indigo-300">
+						The Battle Cats
+					</span>{" "}
 					mobile game. Plan your gacha rolls, discover upcoming Uber cats,
 					browse the complete cat encyclopedia, and view tier rankings - all
 					with a beautiful, modern interface.
 				</p>
 
 				<div>
-					<h2 className="text-xl font-bold text-slate-800 mb-3">
+					<h2 className="text-xl font-bold text-slate-800 dark:text-slate-50 mb-3">
 						What is Battle Cats?
 					</h2>
-					<p className="text-slate-700 leading-relaxed">
+					<p className="text-slate-700 dark:text-slate-100 leading-relaxed">
 						<a
 							href="https://en.wikipedia.org/wiki/The_Battle_Cats"
 							target="_blank"
 							rel="noopener noreferrer"
-							className="text-indigo-600 hover:text-indigo-700 underline font-medium"
+							className="text-indigo-600 dark:text-indigo-300 hover:text-indigo-700 dark:hover:text-indigo-400 underline font-medium"
 						>
 							The Battle Cats
 						</a>{" "}
@@ -50,17 +52,21 @@ function About() {
 				</div>
 			</div>
 
-			<div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-200/50 p-6 md:p-8">
-				<h2 className="text-xl font-bold text-slate-800 mb-4">Features</h2>
+			<div className="bg-white/80 dark:bg-slate-800 backdrop-blur-sm rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-200/50 p-6 md:p-8">
+				<h2 className="text-xl font-bold text-slate-800 dark:text-slate-50 mb-4">
+					Features
+				</h2>
 
 				<div className="space-y-4">
 					<div className="border-l-4 border-blue-400 pl-4">
-						<h3 className="font-bold text-slate-800 mb-2">🎲 Roll Planner</h3>
-						<p className="text-slate-700 leading-relaxed mb-2">
+						<h3 className="font-bold text-slate-800 dark:text-slate-50 mb-2">
+							🎲 Roll Planner
+						</h3>
+						<p className="text-slate-700 dark:text-slate-100 leading-relaxed mb-2">
 							Predict your next 100 gacha rolls based on your seed number. The
 							planner shows:
 						</p>
-						<ul className="list-disc list-inside text-slate-600 space-y-1 ml-4">
+						<ul className="list-disc list-inside text-slate-600 dark:text-slate-300 space-y-1 ml-4">
 							<li>Dual-track (A/B) roll predictions</li>
 							<li>Cat names and rarities with color coding</li>
 							<li>Guaranteed Uber mechanics for eligible events</li>
@@ -70,12 +76,14 @@ function About() {
 					</div>
 
 					<div className="border-l-4 border-amber-400 pl-4">
-						<h3 className="font-bold text-slate-800 mb-2">👑 Uber Planner</h3>
-						<p className="text-slate-700 leading-relaxed mb-2">
+						<h3 className="font-bold text-slate-800 dark:text-slate-50 mb-2">
+							👑 Uber Planner
+						</h3>
+						<p className="text-slate-700 dark:text-slate-100 leading-relaxed mb-2">
 							Find the best opportunities to get Uber-rarity cats across all
 							active events. This strategic tool:
 						</p>
-						<ul className="list-disc list-inside text-slate-600 space-y-1 ml-4">
+						<ul className="list-disc list-inside text-slate-600 dark:text-slate-300 space-y-1 ml-4">
 							<li>Scans all current guaranteed Uber events</li>
 							<li>Shows which rolls will give you Ubers on each track</li>
 							<li>Helps optimize your cat food spending</li>
@@ -84,11 +92,13 @@ function About() {
 					</div>
 
 					<div className="border-l-4 border-emerald-400 pl-4">
-						<h3 className="font-bold text-slate-800 mb-2">📖 Cat Dictionary</h3>
-						<p className="text-slate-700 leading-relaxed mb-2">
+						<h3 className="font-bold text-slate-800 dark:text-slate-50 mb-2">
+							📖 Cat Dictionary
+						</h3>
+						<p className="text-slate-700 dark:text-slate-100 leading-relaxed mb-2">
 							Browse and search the complete database of Battle Cats units:
 						</p>
-						<ul className="list-disc list-inside text-slate-600 space-y-1 ml-4">
+						<ul className="list-disc list-inside text-slate-600 dark:text-slate-300 space-y-1 ml-4">
 							<li>800+ cats with images, descriptions, and stats</li>
 							<li>
 								Filter by rarity (Normal, Special, Rare, Super Rare, Uber,
@@ -100,11 +110,13 @@ function About() {
 					</div>
 
 					<div className="border-l-4 border-purple-400 pl-4">
-						<h3 className="font-bold text-slate-800 mb-2">🏆 Tier Lists</h3>
-						<p className="text-slate-700 leading-relaxed mb-2">
+						<h3 className="font-bold text-slate-800 dark:text-slate-50 mb-2">
+							🏆 Tier Lists
+						</h3>
+						<p className="text-slate-700 dark:text-slate-100 leading-relaxed mb-2">
 							View community-curated tier rankings for strategic planning:
 						</p>
-						<ul className="list-disc list-inside text-slate-600 space-y-1 ml-4">
+						<ul className="list-disc list-inside text-slate-600 dark:text-slate-300 space-y-1 ml-4">
 							<li>General tier list for standard gameplay</li>
 							<li>Special event tier lists (e.g., EVANGELION collab)</li>
 							<li>Visual rankings from SS to F tier</li>
@@ -114,9 +126,11 @@ function About() {
 				</div>
 			</div>
 
-			<div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-200/50 p-6 md:p-8">
-				<h2 className="text-xl font-bold text-slate-800 mb-4">Roadmap</h2>
-				<ul className="list-disc list-inside text-slate-600 space-y-2 ml-4">
+			<div className="bg-white/80 dark:bg-slate-800 backdrop-blur-sm rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-200/50 p-6 md:p-8">
+				<h2 className="text-xl font-bold text-slate-800 dark:text-slate-50 mb-4">
+					Roadmap
+				</h2>
+				<ul className="list-disc list-inside text-slate-600 dark:text-slate-300 space-y-2 ml-4">
 					<li>
 						Improve game data source. Right now it uses weekly drops from
 						battle-cats-rolls project
@@ -136,7 +150,6 @@ function About() {
 					<li>
 						Better explanation of how things work and how to switch tracks
 					</li>
-					<li>Dark mode</li>
 					<li>Better mobile responsiveness</li>
 					<li>Track which cats you already have</li>
 					<li>Cat comparison tool</li>
@@ -145,16 +158,18 @@ function About() {
 				</ul>
 			</div>
 
-			<div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-200/50 p-6 md:p-8">
-				<h2 className="text-xl font-bold text-slate-800 mb-4">Credits</h2>
-				<div className="space-y-3 text-slate-700 leading-relaxed">
+			<div className="bg-white/80 dark:bg-slate-800 backdrop-blur-sm rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-200/50 p-6 md:p-8">
+				<h2 className="text-xl font-bold text-slate-800 dark:text-slate-50 mb-4">
+					Credits
+				</h2>
+				<div className="space-y-3 text-slate-700 dark:text-slate-100 leading-relaxed">
 					<p>
 						Special thanks to{" "}
 						<a
 							href="https://bc.godfat.org"
 							target="_blank"
 							rel="noopener noreferrer"
-							className="text-indigo-600 hover:text-indigo-700 underline font-medium"
+							className="text-indigo-600 dark:text-indigo-300 hover:text-indigo-700 dark:hover:text-indigo-400 underline font-medium"
 						>
 							Lin Jen-Shin
 						</a>{" "}
@@ -164,7 +179,7 @@ function About() {
 							href="https://gitlab.com/godfat/battle-cats-rolls"
 							target="_blank"
 							rel="noopener noreferrer"
-							className="text-indigo-600 hover:text-indigo-700 underline font-medium"
+							className="text-indigo-600 dark:text-indigo-300 hover:text-indigo-700 dark:hover:text-indigo-400 underline font-medium"
 						>
 							battle-cats-rolls
 						</a>
@@ -181,12 +196,12 @@ function About() {
 				</div>
 			</div>
 
-			<div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-200/50 p-6 md:p-8">
-				<h2 className="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">
+			<div className="bg-white/80 dark:bg-slate-800 backdrop-blur-sm rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-200/50 p-6 md:p-8">
+				<h2 className="text-xl font-bold text-slate-800 dark:text-slate-50 mb-4 flex items-center gap-2">
 					<MessageCircle className="w-5 h-5" />
 					Contact
 				</h2>
-				<p className="text-slate-700 leading-relaxed mb-4">
+				<p className="text-slate-700 dark:text-slate-100 leading-relaxed mb-4">
 					Have questions, feedback, or suggestions? Feel free to reach out!
 				</p>
 				<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -194,9 +209,9 @@ function About() {
 						href="https://x.com/thasmin"
 						target="_blank"
 						rel="noopener noreferrer"
-						className="flex items-start gap-3 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 hover:from-blue-100 hover:to-indigo-100 rounded-xl border border-blue-200 transition-all duration-200"
+						className="flex items-start gap-3 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-800 dark:to-indigo-800 hover:from-blue-100 hover:to-indigo-100 dark:hover:from-blue-600 dark:hover:to-indigo-600 rounded-xl border border-blue-200 dark:border-blue-700 transition-all duration-200"
 					>
-						<div className="p-2 bg-blue-500 rounded-lg text-white mt-0.5">
+						<div className="p-2 bg-blue-500 dark:bg-blue-800 rounded-lg text-white mt-0.5">
 							<svg
 								className="w-4 h-4"
 								fill="currentColor"
@@ -207,10 +222,12 @@ function About() {
 							</svg>
 						</div>
 						<div className="flex-1">
-							<div className="font-semibold text-slate-800 text-sm">
+							<div className="font-semibold text-slate-800 dark:text-slate-100 text-sm">
 								X (Twitter)
 							</div>
-							<div className="text-blue-600 font-medium">@thasmin</div>
+							<div className="text-blue-600 dark:text-blue-400 font-medium">
+								@thasmin
+							</div>
 						</div>
 					</a>
 
@@ -218,9 +235,9 @@ function About() {
 						href="https://reddit.com/user/thasmin"
 						target="_blank"
 						rel="noopener noreferrer"
-						className="flex items-start gap-3 p-4 bg-gradient-to-r from-orange-50 to-red-50 hover:from-orange-100 hover:to-red-100 rounded-xl border border-orange-200 transition-all duration-200"
+						className="flex items-start gap-3 p-4 bg-gradient-to-r from-orange-50 to-red-50 dark:from-orange-800 dark:to-red-800 hover:from-orange-100 hover:to-red-100 dark:hover:from-orange-600 dark:hover:to-red-600 rounded-xl border border-orange-200 dark:border-orange-700 transition-all duration-200"
 					>
-						<div className="p-2 bg-orange-500 rounded-lg text-white mt-0.5">
+						<div className="p-2 bg-orange-500 dark:bg-orange-800 rounded-lg text-white mt-0.5">
 							<svg
 								className="w-4 h-4"
 								fill="currentColor"
@@ -231,29 +248,39 @@ function About() {
 							</svg>
 						</div>
 						<div className="flex-1">
-							<div className="font-semibold text-slate-800 text-sm">Reddit</div>
-							<div className="text-orange-600 font-medium">u/thasmin</div>
+							<div className="font-semibold text-slate-800 dark:text-slate-100 text-sm">
+								Reddit
+							</div>
+							<div className="text-orange-600 dark:text-orange-400 font-medium">
+								u/thasmin
+							</div>
 						</div>
 					</a>
 
 					<a
 						href="mailto:dan@axelby.com"
-						className="flex items-start gap-3 p-4 bg-gradient-to-r from-purple-50 to-pink-50 hover:from-purple-100 hover:to-pink-100 rounded-xl border border-purple-200 transition-all duration-200"
+						className="flex items-start gap-3 p-4 bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-800 dark:to-pink-800 hover:from-purple-100 hover:to-pink-100 dark:hover:from-purple-600 dark:hover:to-pink-600 rounded-xl border border-purple-200 dark:border-purple-700 transition-all duration-200"
 					>
-						<div className="p-2 bg-purple-500 rounded-lg text-white mt-0.5">
+						<div className="p-2 bg-purple-500 dark:bg-purple-800 rounded-lg text-white mt-0.5">
 							<Mail className="w-4 h-4" />
 						</div>
 						<div className="flex-1">
-							<div className="font-semibold text-slate-800 text-sm">Email</div>
-							<div className="text-purple-600 font-medium">dan@axelby.com</div>
+							<div className="font-semibold text-slate-800 dark:text-slate-100 text-sm">
+								Email
+							</div>
+							<div className="text-purple-600 dark:text-purple-400 font-medium">
+								dan@axelby.com
+							</div>
 						</div>
 					</a>
 				</div>
 			</div>
 
-			<div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-200/50 p-6 md:p-8">
-				<h2 className="text-xl font-bold text-slate-800 mb-3">Open Source</h2>
-				<p className="text-slate-700 leading-relaxed">
+			<div className="bg-white/80 dark:bg-slate-800 backdrop-blur-sm rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-200/50 p-6 md:p-8">
+				<h2 className="text-xl font-bold text-slate-800 dark:text-slate-50 mb-3">
+					Open Source
+				</h2>
+				<p className="text-slate-700 dark:text-slate-200 leading-relaxed">
 					This project is open source and available on GitHub. Feel free to
 					contribute, report issues, or fork the project for your own use.
 				</p>
@@ -261,7 +288,7 @@ function About() {
 					href="https://github.com/thasmin/bcplanner"
 					target="_blank"
 					rel="noopener noreferrer"
-					className="inline-flex items-center gap-2 mt-3 px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-lg transition-colors font-medium"
+					className="inline-flex items-center gap-2 mt-3 px-4 py-2 bg-slate-800 dark:bg-slate-500 hover:bg-slate-700 text-white rounded-lg transition-colors font-medium"
 				>
 					<svg
 						className="w-5 h-5"
@@ -279,8 +306,8 @@ function About() {
 				</a>
 			</div>
 
-			<div className="bg-slate-50 rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-200/50 p-4 md:p-6">
-				<p className="text-sm text-slate-600 text-center">
+			<div className="bg-slate-50 dark:bg-slate-800 rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-200/50 p-4 md:p-6">
+				<p className="text-sm text-slate-600 dark:text-slate-300 text-center">
 					This is a fan-made tool and is not affiliated with or endorsed by
 					PONOS.
 					<br />

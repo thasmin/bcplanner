@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --color-cat-yellow: #fbbf24;
   --color-cat-orange: #f97316;
@@ -7,7 +9,7 @@
 }
 
 body {
-  @apply m-0 bg-gradient-to-br from-slate-50 via-amber-50/30 to-orange-50/40 min-h-screen;
+  @apply m-0 min-h-screen;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -30,11 +32,18 @@ code {
   @apply bg-slate-100 rounded-full;
 }
 
+.dark ::-webkit-scrollbar-track {
+  @apply bg-slate-800 rounded-full;
+}
+
 ::-webkit-scrollbar-thumb {
   @apply bg-slate-300 rounded-full hover:bg-slate-400;
 }
 
-/* Better focus states */
+.dark ::-webkit-scrollbar-thumb {
+  @apply bg-slate-600 rounded-full hover:bg-slate-500;
+}
+
 input:focus, select:focus, button:focus-visible {
   @apply outline-none ring-2 ring-amber-400/50 ring-offset-1;
 }

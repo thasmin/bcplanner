@@ -46,7 +46,6 @@ View community-curated tier rankings for strategic planning:
 - More filters to the Dictionary
 - Figure out your seed based on rolls
 - Better explanation of how things work and how to switch tracks
-- Dark mode
 - Better mobile responsiveness
 - Track which cats you already have
 - Cat comparison tool

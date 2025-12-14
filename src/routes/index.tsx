@@ -37,7 +37,7 @@ const CatColumns: React.FC<{
 		<>
 			<td
 				className={clsx(
-					"px-2 py-3 whitespace-nowrap text-sm text-gray-900 border-l border-gray-200",
+					"px-2 py-3 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100 border-l border-gray-200 dark:border-gray-700",
 					getRarityBgClass(roll.cat.rarity),
 				)}
 			>
@@ -45,18 +45,18 @@ const CatColumns: React.FC<{
 					<button
 						type="button"
 						onClick={() => onSelectCatId(roll.cat.id)}
-						className="p-1 border rounded cursor-pointer hover:bg-purple-100"
+						className="p-1 border rounded cursor-pointer hover:bg-purple-100 dark:hover:bg-purple-900"
 					>
 						{roll.cat.name}
 					</button>
 					{getCatTierRank(roll.cat.id) && (
-						<span className="px-1.5 py-0.5 text-xs font-semibold rounded bg-indigo-100 text-indigo-800">
+						<span className="px-1.5 py-0.5 text-xs font-semibold rounded bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200">
 							{getCatTierRank(roll.cat.id)}
 						</span>
 					)}
 				</div>
 				{roll.switchedFromCat && (
-					<div className="text-xs text-orange-600">
+					<div className="text-xs text-orange-600 dark:text-orange-400">
 						Rerolled from {roll.switchedFromCat.name}
 						<div>→ {track === "A" ? `${rowNum + 2}B` : `${rowNum + 3}A`}</div>
 					</div>
@@ -80,26 +80,26 @@ const CatColumns: React.FC<{
 			{roll.guaranteedUber && (
 				<td
 					className={clsx(
-						"px-2 py-3 whitespace-nowrap text-xs text-gray-700",
+						"px-2 py-3 whitespace-nowrap text-xs text-gray-700 dark:text-gray-200",
 						getRarityBgClass(Rarity.Uber),
 					)}
 				>
-					<div className="font-medium text-amber-700">
+					<div className="font-medium text-amber-700 dark:text-amber-300">
 						{roll.guaranteedUber.name}
 					</div>
-					<div className="text-gray-500 mt-1">→ {roll.nextAfterGuaranteed}</div>
+					<div className="text-gray-500 dark:text-gray-400 mt-1">→ {roll.nextAfterGuaranteed}</div>
 				</td>
 			)}
 			<td
 				className={clsx(
-					"px-2 py-3 whitespace-nowrap text-xs text-gray-700",
+					"px-2 py-3 whitespace-nowrap text-xs text-gray-700 dark:text-gray-200",
 					getRarityBgClass(roll.cat.rarity),
 				)}
 			>
 				<button
 					type="button"
 					onClick={() => onRoll(roll.nextSeed)}
-					className="p-1.5 text-slate-400 hover:text-amber-600 hover:bg-amber-50 rounded-lg transition-all duration-200"
+					className="p-1.5 text-slate-400 hover:text-amber-600 hover:bg-amber-50 dark:hover:bg-amber-950 rounded-lg transition-all duration-200"
 					title="Jump to this seed"
 				>
 					<Dices size={18} />
@@ -202,28 +202,28 @@ function App() {
 					<Cat className="w-7 h-7 text-indigo-950" />
 				</div>
 				<div>
-					<h1 className="text-2xl md:text-3xl font-bold text-slate-800">
+					<h1 className="text-2xl md:text-3xl font-bold text-slate-800 dark:text-slate-100">
 						Roll Planner
 					</h1>
-					<p className="text-sm text-slate-500">
+					<p className="text-sm text-slate-500 dark:text-slate-400">
 						Plan your gacha rolls strategically
 					</p>
 				</div>
 			</div>
 
 			{catDatabase.isLoading && (
-				<div className="flex items-center gap-3 p-4 bg-amber-50 border border-amber-200 rounded-xl text-amber-700">
+				<div className="flex items-center gap-3 p-4 bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-xl text-amber-700">
 					<div className="animate-spin w-5 h-5 border-2 border-amber-500 border-t-transparent rounded-full" />
 					Loading cat database...
 				</div>
 			)}
 
-			<div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-200/50 p-6 mb-6">
+			<div className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-2xl shadow-lg shadow-slate-200/50 dark:shadow-slate-950/50 border border-slate-200/50 dark:border-slate-700/50 p-6 mb-6">
 				<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 					<div>
 						<label
 							htmlFor={seedInputId}
-							className="block text-sm font-semibold text-slate-700 mb-2"
+							className="block text-sm font-semibold text-slate-700 dark:text-slate-200 mb-2"
 						>
 							Your Seed
 						</label>
@@ -235,7 +235,7 @@ function App() {
 							onChange={(e) =>
 								setSeed(+(e.target.value.match(/\d+/g)?.join("") ?? 0))
 							}
-							className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder:text-slate-400 transition-all duration-200 hover:border-slate-300"
+							className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-800 dark:text-slate-100 placeholder:text-slate-400 transition-all duration-200 hover:border-slate-300 dark:hover:border-slate-600"
 							placeholder="Enter seed number"
 						/>
 					</div>
@@ -243,7 +243,7 @@ function App() {
 					<div>
 						<label
 							htmlFor={eventInputId}
-							className="block text-sm font-semibold text-slate-700 mb-2"
+							className="block text-sm font-semibold text-slate-700 dark:text-slate-200 mb-2"
 						>
 							Gacha Event
 						</label>
@@ -252,7 +252,7 @@ function App() {
 							id={eventInputId}
 							name="event-select"
 							onChange={(e) => setSelectedEvent(e.target.value)}
-							className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 transition-all duration-200 hover:border-slate-300 cursor-pointer"
+							className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-800 dark:text-slate-100 transition-all duration-200 hover:border-slate-300 dark:hover:border-slate-600 cursor-pointer"
 							disabled={eventOptions.length === 0}
 						>
 							{eventOptions.map((event) => (
@@ -265,10 +265,10 @@ function App() {
 				</div>
 			</div>
 
-			<div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-200/50 overflow-hidden">
-				<div className="px-6 py-5 bg-gradient-to-r from-slate-50 to-slate-100/50 border-b border-slate-200">
-					<h2 className="text-lg font-bold text-slate-800">Next 100 Rolls</h2>
-					<p className="text-sm text-slate-500 mt-1 leading-relaxed">
+			<div className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-2xl shadow-lg shadow-slate-200/50 dark:shadow-slate-950/50 border border-slate-200/50 dark:border-slate-700/50 overflow-hidden">
+				<div className="px-6 py-5 bg-gradient-to-r from-slate-50 dark:from-slate-900 to-slate-100/50 dark:to-slate-800/50 border-b border-slate-200 dark:border-slate-700">
+					<h2 className="text-lg font-bold text-slate-800 dark:text-slate-100">Next 100 Rolls</h2>
+					<p className="text-sm text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
 						{eventHasGuaranteedUber ? (
 							<>
 								Guaranteed Uber rolls available. Using a guaranteed roll
@@ -285,60 +285,60 @@ function App() {
 				<div className="overflow-x-auto">
 					<table className="min-w-full">
 						<thead>
-							<tr className="bg-slate-50/80">
-								<th className="px-3 py-3 text-left text-xs font-bold text-slate-500 uppercase tracking-wider">
+							<tr className="bg-slate-50/80 dark:bg-slate-800/80">
+								<th className="px-3 py-3 text-left text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
 									#
 								</th>
 								<th
 									colSpan={eventHasGuaranteedUber ? 4 : 3}
-									className="px-3 py-3 text-center text-xs font-bold text-blue-700 uppercase tracking-wider border-l border-slate-200 bg-blue-50/50"
+									className="px-3 py-3 text-center text-xs font-bold text-blue-700 uppercase tracking-wider border-l border-slate-200 dark:border-slate-700 bg-blue-50/50 dark:bg-blue-950/50"
 								>
 									Track A
 								</th>
 								<th
 									colSpan={eventHasGuaranteedUber ? 4 : 3}
-									className="px-3 py-3 text-center text-xs font-bold text-emerald-700 uppercase tracking-wider border-l border-slate-200 bg-emerald-50/50"
+									className="px-3 py-3 text-center text-xs font-bold text-emerald-700 uppercase tracking-wider border-l border-slate-200 dark:border-slate-700 bg-emerald-50/50 dark:bg-emerald-950/50"
 								>
 									Track B
 								</th>
 							</tr>
-							<tr className="bg-slate-50/50 border-b border-slate-200">
+							<tr className="bg-slate-50/50 dark:bg-slate-800/50 border-b border-slate-200 dark:border-slate-700">
 								<th className="px-3 py-2"></th>
-								<th className="px-2 py-2 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider border-l border-slate-200">
+								<th className="px-2 py-2 text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider border-l border-slate-200 dark:border-slate-700">
 									Cat
 								</th>
-								<th className="px-2 py-2 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">
+								<th className="px-2 py-2 text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
 									Rarity
 								</th>
 								{eventHasGuaranteedUber && (
-									<th className="px-2 py-2 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">
+									<th className="px-2 py-2 text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
 										Guaranteed
 									</th>
 								)}
 								<th></th>
 
-								<th className="px-2 py-2 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider border-l border-slate-200">
+								<th className="px-2 py-2 text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider border-l border-slate-200 dark:border-slate-700">
 									Cat
 								</th>
-								<th className="px-2 py-2 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">
+								<th className="px-2 py-2 text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
 									Rarity
 								</th>
 								{eventHasGuaranteedUber && (
-									<th className="px-2 py-2 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">
+									<th className="px-2 py-2 text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
 										Guaranteed
 									</th>
 								)}
 								<th></th>
 							</tr>
 						</thead>
-						<tbody className="divide-y divide-slate-100">
+						<tbody className="divide-y divide-slate-100 dark:divide-slate-700">
 							{trackRolls.map((tr, ndx) => {
 								return (
 									<tr
 										key={tr.index}
-										className="hover:bg-slate-50/50 transition-colors"
+										className="hover:bg-slate-50/50 dark:hover:bg-slate-700/50 transition-colors"
 									>
-										<td className="px-3 py-3 whitespace-nowrap text-sm font-bold text-slate-400">
+										<td className="px-3 py-3 whitespace-nowrap text-sm font-bold text-slate-400 dark:text-slate-500">
 											{ndx + 1}
 										</td>
 										<CatColumns

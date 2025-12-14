@@ -18,14 +18,14 @@ function rarityName(rarity: number) {
 
 function getRarityColors(rarity: number) {
 	if (rarity === 4)
-		return "bg-gradient-to-r from-amber-100 to-yellow-100 text-amber-800 border-amber-300";
+		return "bg-gradient-to-r from-amber-100 dark:from-amber-900 to-yellow-100 dark:to-yellow-900 text-amber-800 dark:text-amber-200 border-amber-300 dark:border-amber-700";
 	if (rarity === 5)
-		return "bg-gradient-to-r from-purple-100 to-violet-100 text-purple-800 border-purple-300";
+		return "bg-gradient-to-r from-purple-100 dark:from-purple-900 to-violet-100 dark:to-violet-900 text-purple-800 dark:text-purple-200 border-purple-300 dark:border-purple-700";
 	if (rarity === 3)
-		return "bg-gradient-to-r from-blue-100 to-sky-100 text-blue-800 border-blue-300";
+		return "bg-gradient-to-r from-blue-100 dark:from-blue-900 to-sky-100 dark:to-sky-900 text-blue-800 dark:text-blue-200 border-blue-300 dark:border-blue-700";
 	if (rarity === 2)
-		return "bg-gradient-to-r from-green-100 to-emerald-100 text-green-800 border-green-300";
-	return "bg-gradient-to-r from-slate-100 to-gray-100 text-slate-700 border-slate-300";
+		return "bg-gradient-to-r from-green-100 dark:from-green-900 to-emerald-100 dark:to-emerald-900 text-green-800 dark:text-green-200 border-green-300 dark:border-green-700";
+	return "bg-gradient-to-r from-slate-100 dark:from-slate-800 to-gray-100 dark:to-gray-800 text-slate-700 dark:text-slate-200 border-slate-300 dark:border-slate-600";
 }
 
 function getHeaderGradient(rarity: number) {
@@ -58,7 +58,7 @@ export function CatDialog({ catId, onClose }: CatDialogProps) {
 		<dialog
 			ref={dialogRef}
 			closedby="any"
-			className="backdrop:bg-black/70 backdrop:backdrop-blur-sm bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-auto p-0 m-auto border-0"
+			className="backdrop:bg-black/70 dark:backdrop:bg-black/80 backdrop:backdrop-blur-sm bg-white dark:bg-slate-800 rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-auto p-0 m-auto border-0"
 			onClose={onClose}
 		>
 			{selectedCat && (
@@ -89,7 +89,7 @@ export function CatDialog({ catId, onClose }: CatDialogProps) {
 					</div>
 
 					<div className="p-6">
-						<h3 className="text-sm font-bold text-slate-500 uppercase tracking-wider mb-4">
+						<h3 className="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-4">
 							Evolution Stages
 						</h3>
 
@@ -104,9 +104,9 @@ export function CatDialog({ catId, onClose }: CatDialogProps) {
 									return (
 										<div
 											key={_name}
-											className="bg-gradient-to-br from-slate-50 to-slate-100/50 rounded-xl px-5 py-4 flex gap-5 border border-slate-100"
+											className="bg-gradient-to-br from-slate-50 dark:from-slate-900 to-slate-100/50 dark:to-slate-800/50 rounded-xl px-5 py-4 flex gap-5 border border-slate-100 dark:border-slate-700"
 										>
-											<div className="flex-shrink-0 w-24 h-24 bg-white rounded-xl flex items-center justify-center overflow-hidden shadow-sm border border-slate-100">
+											<div className="flex-shrink-0 w-24 h-24 bg-white dark:bg-slate-700 rounded-xl flex items-center justify-center overflow-hidden shadow-sm border border-slate-100 dark:border-slate-600">
 												<img
 													src={imagePath}
 													alt={stageName}
@@ -124,15 +124,15 @@ export function CatDialog({ catId, onClose }: CatDialogProps) {
 											</div>
 											<div className="flex-1 min-w-0">
 												<div className="flex items-center gap-2 mb-2">
-													<span className="px-2 py-0.5 text-xs font-bold bg-slate-200 text-slate-600 rounded-md">
+													<span className="px-2 py-0.5 text-xs font-bold bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded-md">
 														Stage {stageIndex + 1}
 													</span>
 												</div>
-												<h4 className="text-lg font-bold text-slate-800 mb-2">
+												<h4 className="text-lg font-bold text-slate-800 dark:text-slate-100 mb-2">
 													{stageName}
 												</h4>
 												{stageDesc && (
-													<p className="text-sm text-slate-500 leading-relaxed">
+													<p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
 														{stageDesc}
 													</p>
 												)}

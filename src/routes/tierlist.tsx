@@ -45,7 +45,7 @@ const TierCat: React.FC<{
 				className="cursor-pointer group"
 				title={catFromDb.name[0]}
 			>
-				<div className="w-16 h-16 bg-white/60 rounded-xl flex items-center justify-center group-hover:bg-amber-50 group-hover:scale-110 group-hover:shadow-lg transition-all duration-200">
+				<div className="w-16 h-16 bg-white/60 dark:bg-slate-800/80 rounded-xl flex items-center justify-center group-hover:bg-amber-50 dark:group-hover:bg-amber-950 group-hover:scale-110 group-hover:shadow-lg transition-all duration-200">
 					<img
 						alt={catFromDb.name[0]}
 						src={getCatStageImagePath(catId, catFromDb.name.length - 1)}
@@ -66,13 +66,13 @@ const TierListTable: React.FC<{
 	const catDatabase = useCatDatabase();
 
 	return (
-		<div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-200/50 overflow-hidden">
+		<div className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-2xl shadow-lg shadow-slate-200/50 dark:shadow-slate-950/50 border border-slate-200/50 dark:border-slate-700/50 overflow-hidden">
 			{tierList
 				.filter((tier) => tier.cats.length > 0)
 				.map((tier) => (
 					<div
 						key={tier.rank}
-						className="flex border-b border-slate-100 last:border-b-0"
+						className="flex border-b border-slate-100 dark:border-slate-700 last:border-b-0"
 					>
 						<div
 							className={`w-20 flex-shrink-0 flex items-center justify-center ${getTierClass(tier.rank)}`}
@@ -81,7 +81,7 @@ const TierListTable: React.FC<{
 								{tier.rank}
 							</span>
 						</div>
-						<div className="flex-1 p-4 bg-slate-50/30">
+						<div className="flex-1 p-4 bg-slate-50/30 dark:bg-slate-900/90">
 							<ul className="flex flex-wrap gap-3">
 								{tier.cats.map((catId) => {
 									const catFromDb = catDatabase.data?.cats[catId];
@@ -113,10 +113,10 @@ function RouteComponent() {
 					<ListOrdered className="w-7 h-7 text-violet-950" />
 				</div>
 				<div>
-					<h1 className="text-2xl md:text-3xl font-bold text-slate-800">
+					<h1 className="text-2xl md:text-3xl font-bold text-slate-800 dark:text-slate-100">
 						Tier Lists
 					</h1>
-					<p className="text-sm text-slate-500">
+					<p className="text-sm text-slate-500 dark:text-slate-400">
 						Cat rankings for strategic planning
 					</p>
 				</div>
@@ -124,10 +124,10 @@ function RouteComponent() {
 
 			<section className="mb-10">
 				<div className="flex items-center gap-3 mb-4">
-					<h2 className="text-xl font-bold text-slate-700">
+					<h2 className="text-xl font-bold text-slate-700 dark:text-slate-200">
 						EVANGELION Collab
 					</h2>
-					<span className="px-2 py-0.5 text-xs font-bold bg-red-100 text-red-700 rounded-lg">
+					<span className="px-2 py-0.5 text-xs font-bold bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-200 rounded-lg">
 						Limited
 					</span>
 				</div>
@@ -138,7 +138,7 @@ function RouteComponent() {
 			</section>
 
 			<section>
-				<h2 className="text-xl font-bold text-slate-700 mb-4">
+				<h2 className="text-xl font-bold text-slate-700 dark:text-slate-200 mb-4">
 					General Tier List
 				</h2>
 				<TierListTable tierList={tierList} onSelectCatId={setSelectedCatId} />
