@@ -37,6 +37,23 @@ View community-curated tier rankings for strategic planning:
 - Visual rankings from SS to F tier
 - Click any cat for detailed information
 
+## Roadmap
+- Improve game data source. Right now it uses weekly drops from battle-cats-rolls project
+- Add the event's uber pool name (like Elemental Pixies)
+- Improve the planner to consolidate the same cats from different events
+- Improve the planner so it produces a list of steps of when to use rare tickets and cat food for different events
+- Add stats to the cat popup dialog
+- More filters to the Dictionary
+- Figure out your seed based on rolls
+- Better explanation of how things work and how to switch tracks
+- Dark mode
+- Better mobile responsiveness
+- Track which cats you already have
+- Cat comparison tool
+- Platinum/Legend ticket helper
+- Sharing
+
+
 ## How It Works
 
 The Battle Cats uses a deterministic **XORShift32** random number generator for its gacha system. This means that if you know your seed, you can predict every future roll with 100% accuracy.
