@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Crown, Sparkles } from "lucide-react";
 import { useEffect, useId, useState } from "react";
+import { CatDialog } from "@/components/CatDialog";
 import RarityTag from "@/components/RarityTag";
 import { Rarity, rollTracks } from "../data/battle-cats-gacha";
 import { type CatDatabase, createGachaEvent } from "../data/gacha-data";
@@ -43,6 +44,8 @@ type UberOptions = Record<
 function App() {
 	const [seed, setSeed] = useCatSeed();
 	const catDatabase = useCatDatabase();
+
+	const [selectedCatId, setSelectedCatId] = useState<number | undefined>();
 
 	const [uberOptions, setUberOptions] = useState<
 		{ index: number; trackA: UberRoll[]; trackB: UberRoll[] }[]
@@ -102,6 +105,11 @@ function App() {
 
 	return (
 		<div className="p-4 md:p-6 max-w-7xl mx-auto">
+			<CatDialog
+				catId={selectedCatId}
+				onClose={() => setSelectedCatId(undefined)}
+			/>
+
 			<div className="flex items-center gap-3 mb-8">
 				<div className="p-3 bg-gradient-to-br from-yellow-400 to-amber-500 rounded-2xl shadow-lg shadow-yellow-500/20">
 					<Crown className="w-7 h-7 text-yellow-950" />
@@ -179,9 +187,11 @@ function App() {
 											</div>
 										)}
 										{uberOption.trackA.map((cat) => (
-											<div
+											<button
+												type="button"
 												key={`${cat.cat.id}-${cat.event.start_on}`}
-												className="p-3 bg-gradient-to-br from-amber-50 to-yellow-50 border border-amber-200/50 rounded-xl"
+												className="p-3 bg-gradient-to-br from-amber-50 to-yellow-50 border border-amber-200/50 rounded-xl cursor-pointer text-left"
+												onClick={() => setSelectedCatId(cat.cat.id)}
 											>
 												<div className="flex items-center gap-2 flex-wrap mb-1">
 													<span className="font-bold text-slate-800">
@@ -197,7 +207,7 @@ function App() {
 												<div className="text-sm text-slate-500">
 													{cat.event.name}
 												</div>
-											</div>
+											</button>
 										))}
 									</div>
 								</div>
@@ -212,9 +222,11 @@ function App() {
 											</div>
 										)}
 										{uberOption.trackB.map((cat) => (
-											<div
+											<button
+												type="button"
 												key={`${cat.cat.id}-${cat.event.start_on}`}
-												className="p-3 bg-gradient-to-br from-amber-50 to-yellow-50 border border-amber-200/50 rounded-xl"
+												className="p-3 bg-gradient-to-br from-amber-50 to-yellow-50 border border-amber-200/50 rounded-xl cursor-pointer text-left"
+												onClick={() => setSelectedCatId(cat.cat.id)}
 											>
 												<div className="flex items-center gap-2 flex-wrap mb-1">
 													<span className="font-bold text-slate-800">
@@ -234,7 +246,7 @@ function App() {
 														· starts {cat.event.start_on}
 													</span>
 												</div>
-											</div>
+											</button>
 										))}
 									</div>
 								</div>
