@@ -1,7 +1,0 @@
-name = "catplanner"
-compatibility_date = "2025-12-13"
-
-pages_build_output_dir = "dist"
-
-[site]
-bucket = "dist"
