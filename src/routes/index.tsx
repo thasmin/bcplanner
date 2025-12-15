@@ -2,9 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import clsx from "clsx";
 import { Bookmark, Cat, Dices } from "lucide-react";
 import { useEffect, useId, useState } from "react";
-import { BookmarkManager } from "@/components/BookmarkManager";
-import { CatDialog } from "@/components/CatDialog";
 import RarityTag from "@/components/RarityTag";
+import { useDialogs } from "@/contexts/DialogContext";
 import { Rarity, rollTracks } from "../data/battle-cats-gacha";
 import { createGachaEvent, getEventOptions } from "../data/gacha-data";
 import {
@@ -111,10 +110,9 @@ const CatColumns: React.FC<{
 };
 
 function App() {
-	const [selectedCatId, setSelectedCatId] = useState<number | undefined>();
 	const [seed, setSeed] = useCatSeed();
 	const [selectedEvent, setSelectedEvent] = useState("");
-	const [showBookmarkManager, setShowBookmarkManager] = useState(false);
+	const { openCatDialog, openBookmarkManager } = useDialogs();
 
 	const catDatabase = useCatDatabase();
 
@@ -195,16 +193,6 @@ function App() {
 
 	return (
 		<div className="p-4 md:p-6 max-w-7xl mx-auto">
-			<CatDialog
-				catId={selectedCatId}
-				onClose={() => setSelectedCatId(undefined)}
-			/>
-			<BookmarkManager
-				isOpen={showBookmarkManager}
-				onClose={() => setShowBookmarkManager(false)}
-				currentSeed={seed}
-				onSeedChange={setSeed}
-			/>
 			<div className="flex items-center gap-3 mb-8">
 				<div className="p-3 bg-gradient-to-br from-amber-400 to-orange-500 rounded-2xl shadow-lg shadow-amber-500/20">
 					<Cat className="w-7 h-7 text-indigo-950" />
@@ -249,7 +237,7 @@ function App() {
 							/>
 							<button
 								type="button"
-								onClick={() => setShowBookmarkManager(true)}
+								onClick={openBookmarkManager}
 								className="px-4 py-3 bg-indigo-500 hover:bg-indigo-600 text-white rounded-xl transition-all duration-200 flex items-center gap-2 font-medium"
 								title="Manage bookmarks"
 							>
@@ -363,14 +351,14 @@ function App() {
 											track="A"
 											rowNum={ndx}
 											roll={tr.trackA}
-											onSelectCatId={setSelectedCatId}
+											onSelectCatId={openCatDialog}
 											onRoll={setSeed}
 										/>
 										<CatColumns
 											track="B"
 											rowNum={ndx}
 											roll={tr.trackB}
-											onSelectCatId={setSelectedCatId}
+											onSelectCatId={openCatDialog}
 											onRoll={setSeed}
 										/>
 									</tr>

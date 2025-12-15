@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import { BookOpen } from "lucide-react";
 import { useId, useState } from "react";
-import { CatDialog } from "@/components/CatDialog";
+import { useDialogs } from "@/contexts/DialogContext";
 
 export const Route = createFileRoute("/dictionary")({ component: Dictionary });
 
@@ -51,7 +51,7 @@ async function loadCatImages(): Promise<CatImage[]> {
 function Dictionary() {
 	const [searchTerm, setSearchTerm] = useState("");
 	const [rarityFilter, setRarityFilter] = useState<number | "all">("all");
-	const [selectedCatId, setSelectedCatId] = useState<number | undefined>();
+	const { openCatDialog } = useDialogs();
 	const searchInputId = useId();
 	const rarityInputId = useId();
 
@@ -191,7 +191,7 @@ function Dictionary() {
 							type="button"
 							key={cat.id}
 							className="text-left bg-white/80 dark:bg-slate-800 backdrop-blur-sm rounded-2xl shadow-md border border-slate-200/50 overflow-hidden hover:shadow-xl hover:scale-[1.02] hover:border-slate-300/50 transition-all duration-200 cursor-pointer group"
-							onClick={() => setSelectedCatId(cat.id)}
+							onClick={() => openCatDialog(cat.id)}
 						>
 							<div className="flex items-start p-4">
 								<div className="flex-shrink-0 w-24 h-24 bg-gradient-to-br from-slate-50 to-slate-100 rounded-xl flex items-center justify-center mr-4 group-hover:from-amber-50 group-hover:to-orange-50 transition-all duration-200">
@@ -245,11 +245,6 @@ function Dictionary() {
 					<p className="text-sm">Try adjusting your search or filter</p>
 				</div>
 			)}
-
-			<CatDialog
-				catId={selectedCatId}
-				onClose={() => setSelectedCatId(undefined)}
-			/>
 		</div>
 	);
 }

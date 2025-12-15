@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ListOrdered } from "lucide-react";
-import { useState } from "react";
-import { CatDialog } from "@/components/CatDialog";
+import { useDialogs } from "@/contexts/DialogContext";
 import type { CatDatabase } from "@/data/gacha-data";
 import {
 	evaTierList,
@@ -104,7 +103,7 @@ const TierListTable: React.FC<{
 };
 
 function RouteComponent() {
-	const [selectedCatId, setSelectedCatId] = useState<number | undefined>();
+	const { openCatDialog } = useDialogs();
 
 	return (
 		<div className="p-4 md:p-6 max-w-7xl mx-auto">
@@ -133,7 +132,7 @@ function RouteComponent() {
 				</div>
 				<TierListTable
 					tierList={evaTierList}
-					onSelectCatId={setSelectedCatId}
+					onSelectCatId={openCatDialog}
 				/>
 			</section>
 
@@ -141,13 +140,8 @@ function RouteComponent() {
 				<h2 className="text-xl font-bold text-slate-700 dark:text-slate-200 mb-4">
 					General Tier List
 				</h2>
-				<TierListTable tierList={tierList} onSelectCatId={setSelectedCatId} />
+				<TierListTable tierList={tierList} onSelectCatId={openCatDialog} />
 			</section>
-
-			<CatDialog
-				catId={selectedCatId}
-				onClose={() => setSelectedCatId(undefined)}
-			/>
 		</div>
 	);
 }

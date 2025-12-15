@@ -3,6 +3,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { createRootRoute, Outlet } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import Header from "../components/Header";
+import { DialogProvider } from "../contexts/DialogContext";
 import { ThemeProvider } from "../contexts/ThemeContext";
 import "../styles.css";
 
@@ -17,7 +18,9 @@ function RootComponent() {
 		<ThemeProvider>
 			<Header />
 			<QueryClientProvider client={queryClient}>
-				<Outlet />
+				<DialogProvider>
+					<Outlet />
+				</DialogProvider>
 			</QueryClientProvider>
 			<TanStackDevtools
 				plugins={[

@@ -1,9 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Bookmark, Crown, Sparkles } from "lucide-react";
 import { useEffect, useId, useState } from "react";
-import { BookmarkManager } from "@/components/BookmarkManager";
-import { CatDialog } from "@/components/CatDialog";
 import RarityTag from "@/components/RarityTag";
+import { useDialogs } from "@/contexts/DialogContext";
 import { Rarity, rollTracks } from "../data/battle-cats-gacha";
 import { type CatDatabase, createGachaEvent } from "../data/gacha-data";
 import {
@@ -45,9 +44,7 @@ type UberOptions = Record<
 function App() {
 	const [seed, setSeed] = useCatSeed();
 	const catDatabase = useCatDatabase();
-
-	const [selectedCatId, setSelectedCatId] = useState<number | undefined>();
-	const [showBookmarkManager, setShowBookmarkManager] = useState(false);
+	const { openCatDialog, openBookmarkManager } = useDialogs();
 
 	const [uberOptions, setUberOptions] = useState<
 		{ index: number; trackA: UberRoll[]; trackB: UberRoll[] }[]
@@ -107,17 +104,6 @@ function App() {
 
 	return (
 		<div className="p-4 md:p-6 max-w-7xl mx-auto">
-			<CatDialog
-				catId={selectedCatId}
-				onClose={() => setSelectedCatId(undefined)}
-			/>
-			<BookmarkManager
-				isOpen={showBookmarkManager}
-				onClose={() => setShowBookmarkManager(false)}
-				currentSeed={seed}
-				onSeedChange={setSeed}
-			/>
-
 			<div className="flex items-center gap-3 mb-8">
 				<div className="p-3 bg-gradient-to-br from-yellow-400 to-purple-500 rounded-2xl shadow-lg shadow-yellow-500/20">
 					<Crown className="w-7 h-7 text-yellow-950" />
@@ -161,7 +147,7 @@ function App() {
 						/>
 						<button
 							type="button"
-							onClick={() => setShowBookmarkManager(true)}
+							onClick={openBookmarkManager}
 							className="px-4 py-3 bg-indigo-500 hover:bg-indigo-600 text-white rounded-xl transition-all duration-200 flex items-center gap-2 font-medium"
 							title="Manage bookmarks"
 						>
@@ -209,7 +195,7 @@ function App() {
 												type="button"
 												key={`${cat.cat.id}-${cat.event.start_on}`}
 												className="p-3 bg-gradient-to-br from-purple-50 dark:from-purple-950 to-yellow-50 dark:to-fuchsia-950 border border-purple-200/50 dark:border-purple-900/50 rounded-xl cursor-pointer text-left"
-												onClick={() => setSelectedCatId(cat.cat.id)}
+												onClick={() => openCatDialog(cat.cat.id)}
 											>
 												<div className="flex items-center gap-2 flex-wrap mb-1">
 													<span className="font-bold text-slate-800 dark:text-slate-100">
@@ -244,7 +230,7 @@ function App() {
 												type="button"
 												key={`${cat.cat.id}-${cat.event.start_on}`}
 												className="p-3 bg-gradient-to-br from-purple-50 dark:from-purple-950 to-yellow-50 dark:to-fuchsia-950 border border-purple-200/50 dark:border-purple-900/50 rounded-xl cursor-pointer text-left"
-												onClick={() => setSelectedCatId(cat.cat.id)}
+												onClick={() => openCatDialog(cat.cat.id)}
 											>
 												<div className="flex items-center gap-2 flex-wrap mb-1">
 													<span className="font-bold text-slate-800 dark:text-slate-100">
