@@ -175,13 +175,21 @@ function rollTrack(
 		if (catId === rolls.at(-1)?.catId) {
 			const score = seeds[ndx] % BASE;
 			const rarity = determineRarity(score, event.rates);
-			const pool = event.slots[rarity] || [];
-			const slot = seeds[ndx + 1] % pool.length;
-			const rerolledCat = rerollCat(seeds[ndx + 1], catId, slot, rarity, event);
-			if (rerolledCat) {
-				switchedFromCatId = catId;
-				catId = rerolledCat.catId;
-				rerolled.set(i, rerolledCat.seed);
+			if (rarity === Rarity.Rare) {
+				const pool = event.slots[rarity] || [];
+				const slot = seeds[ndx + 1] % pool.length;
+				const rerolledCat = rerollCat(
+					seeds[ndx + 1],
+					catId,
+					slot,
+					rarity,
+					event,
+				);
+				if (rerolledCat) {
+					switchedFromCatId = catId;
+					catId = rerolledCat.catId;
+					rerolled.set(i, rerolledCat.seed);
+				}
 			}
 		}
 		rolls.push({
