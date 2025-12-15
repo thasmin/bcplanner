@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Crown, Sparkles } from "lucide-react";
+import { Bookmark, Crown, Sparkles } from "lucide-react";
 import { useEffect, useId, useState } from "react";
+import { BookmarkManager } from "@/components/BookmarkManager";
 import { CatDialog } from "@/components/CatDialog";
 import RarityTag from "@/components/RarityTag";
 import { Rarity, rollTracks } from "../data/battle-cats-gacha";
@@ -46,6 +47,7 @@ function App() {
 	const catDatabase = useCatDatabase();
 
 	const [selectedCatId, setSelectedCatId] = useState<number | undefined>();
+	const [showBookmarkManager, setShowBookmarkManager] = useState(false);
 
 	const [uberOptions, setUberOptions] = useState<
 		{ index: number; trackA: UberRoll[]; trackB: UberRoll[] }[]
@@ -109,6 +111,12 @@ function App() {
 				catId={selectedCatId}
 				onClose={() => setSelectedCatId(undefined)}
 			/>
+			<BookmarkManager
+				isOpen={showBookmarkManager}
+				onClose={() => setShowBookmarkManager(false)}
+				currentSeed={seed}
+				onSeedChange={setSeed}
+			/>
 
 			<div className="flex items-center gap-3 mb-8">
 				<div className="p-3 bg-gradient-to-br from-yellow-400 to-purple-500 rounded-2xl shadow-lg shadow-yellow-500/20">
@@ -139,17 +147,27 @@ function App() {
 					>
 						Your Seed
 					</label>
-					<input
-						type="text"
-						id={seedInputId}
-						name="seed-input"
-						value={seed}
-						onChange={(e) =>
-							setSeed(+(e.target.value.match(/\d+/g)?.join("") ?? 0))
-						}
-						className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-800 dark:text-slate-100 placeholder:text-slate-400 transition-all duration-200 hover:border-slate-300 dark:hover:border-slate-600"
-						placeholder="Enter seed number"
-					/>
+					<div className="flex gap-2">
+						<input
+							type="text"
+							id={seedInputId}
+							name="seed-input"
+							value={seed}
+							onChange={(e) =>
+								setSeed(+(e.target.value.match(/\d+/g)?.join("") ?? 0))
+							}
+							className="flex-1 px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-800 dark:text-slate-100 placeholder:text-slate-400 transition-all duration-200 hover:border-slate-300 dark:hover:border-slate-600"
+							placeholder="Enter seed number"
+						/>
+						<button
+							type="button"
+							onClick={() => setShowBookmarkManager(true)}
+							className="px-4 py-3 bg-indigo-500 hover:bg-indigo-600 text-white rounded-xl transition-all duration-200 flex items-center gap-2 font-medium"
+							title="Manage bookmarks"
+						>
+							<Bookmark className="w-5 h-5" />
+						</button>
+					</div>
 				</div>
 			</div>
 

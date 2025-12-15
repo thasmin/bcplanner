@@ -88,6 +88,60 @@ export const useCatSeed = () => {
 	return [seed, updateSeed] as const;
 };
 
+export interface SeedBookmark {
+	name: string;
+	seed: number;
+}
+
+interface BookmarkState {
+	master: number | null;
+	bookmarks: SeedBookmark[];
+}
+
+export const useSeedBookmarks = () => {
+	const getInitialState = (): BookmarkState => {
+		const stored = localStorage.getItem("seedBookmarks");
+		if (stored) {
+			try {
+				return JSON.parse(stored);
+			} catch {
+				return { master: null, bookmarks: [] };
+			}
+		}
+		return { master: null, bookmarks: [] };
+	};
+
+	const [state, setState] = useState<BookmarkState>(getInitialState);
+
+	const saveState = (newState: BookmarkState) => {
+		setState(newState);
+		localStorage.setItem("seedBookmarks", JSON.stringify(newState));
+	};
+
+	const setMasterBookmark = (seed: number) => {
+		saveState({ ...state, master: seed });
+	};
+
+	const addBookmark = (name: string, seed: number) => {
+		const newBookmark: SeedBookmark = { name, seed };
+		const bookmarks = [...state.bookmarks, newBookmark];
+		saveState({ ...state, bookmarks });
+	};
+
+	const deleteBookmark = (name: string) => {
+		const bookmarks = state.bookmarks.filter((b) => b.name !== name);
+		saveState({ ...state, bookmarks });
+	};
+
+	return {
+		masterBookmark: state.master,
+		bookmarks: state.bookmarks,
+		setMasterBookmark,
+		addBookmark,
+		deleteBookmark,
+	};
+};
+
 export function getCatTierRank(catId: number): string | undefined {
 	for (const tier of tierList) {
 		if (tier.cats.includes(catId)) {
