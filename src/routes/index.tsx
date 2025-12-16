@@ -69,7 +69,7 @@ const CatColumns: React.FC<{
 				)}
 			>
 				<RarityTag rarity={roll.cat.rarity} />
-				{roll.score > 9300 && (
+				{roll.cat.rarity !== Rarity.Uber && roll.score > 9300 && (
 					<span
 						className={`ml-2 px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${getRarityColors(Rarity.Uber)}`}
 					>
@@ -87,7 +87,9 @@ const CatColumns: React.FC<{
 					<div className="font-medium text-amber-700 dark:text-amber-300">
 						{roll.guaranteedUber.name}
 					</div>
-					<div className="text-gray-500 dark:text-gray-400 mt-1">→ {roll.nextAfterGuaranteed}</div>
+					<div className="text-gray-500 dark:text-gray-400 mt-1">
+						→ {roll.nextAfterGuaranteed}
+					</div>
 				</td>
 			)}
 			<td
@@ -273,7 +275,9 @@ function App() {
 
 			<div className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-2xl shadow-lg shadow-slate-200/50 dark:shadow-slate-950/50 border border-slate-200/50 dark:border-slate-700/50 overflow-hidden">
 				<div className="px-6 py-5 bg-gradient-to-r from-slate-50 dark:from-slate-900 to-slate-100/50 dark:to-slate-800/50 border-b border-slate-200 dark:border-slate-700">
-					<h2 className="text-lg font-bold text-slate-800 dark:text-slate-100">Next 100 Rolls</h2>
+					<h2 className="text-lg font-bold text-slate-800 dark:text-slate-100">
+						Next 100 Rolls
+					</h2>
 					<p className="text-sm text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
 						{eventHasGuaranteedUber ? (
 							<>
