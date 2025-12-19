@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { BookOpen, Cat, Crown, Home, Info, ListOrdered, Menu, Moon, Sun, X } from "lucide-react";
+import { BookOpen, Cat, Crown, Home, Info, ListOrdered, Menu, Moon, Sun, Sparkles, X } from "lucide-react";
 import { useState } from "react";
 import { useTheme } from "../contexts/ThemeContext";
 
@@ -86,6 +86,18 @@ export default function Header() {
 					>
 						<Crown size={18} />
 						<span className="font-semibold">Uber Planner</span>
+					</Link>
+
+					<Link
+						to="/seed-finder"
+						className="flex items-center gap-2 px-4 py-2 rounded-xl hover:bg-white/10 transition-all duration-200"
+						activeProps={{
+							className:
+								"flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-indigo-950 shadow-lg shadow-amber-500/25 transition-all duration-200",
+						}}
+					>
+						<Sparkles size={18} />
+						<span className="font-semibold">Seed Finder</span>
 					</Link>
 
 					<Link
@@ -194,6 +206,19 @@ export default function Header() {
 					>
 						<Crown size={20} />
 						<span className="font-semibold">Uber Planner</span>
+					</Link>
+
+					<Link
+						to="/seed-finder"
+						onClick={() => setIsOpen(false)}
+						className="flex items-center gap-3 p-3 rounded-xl hover:bg-white/10 transition-all duration-200"
+						activeProps={{
+							className:
+								"flex items-center gap-3 p-3 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-indigo-950 shadow-lg transition-all duration-200",
+						}}
+					>
+						<Sparkles size={20} />
+						<span className="font-semibold">Seed Finder</span>
 					</Link>
 
 					<Link

@@ -19,7 +19,9 @@ function RootComponent() {
 			<Header />
 			<QueryClientProvider client={queryClient}>
 				<DialogProvider>
-					<Outlet />
+					<div className="root">
+						<Outlet />
+					</div>
 				</DialogProvider>
 			</QueryClientProvider>
 			<TanStackDevtools

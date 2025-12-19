@@ -44,13 +44,13 @@ export interface GachaEvent {
 // XORShift32 Random Number Generator
 // ============================================================================
 
-const UINT32_MAX = 0x100000000;
+export const UINT32_MAX = 0x100000000;
 
 /**
  * Advances the seed using XORShift32 algorithm
  * This is the core RNG used by Battle Cats
  */
-function advanceSeed(seed: number): number {
+export function advanceSeed(seed: number): number {
 	seed = xorShift(seed, "<<", 13);
 	seed = xorShift(seed, ">>", 17);
 	seed = xorShift(seed, "<<", 15);
@@ -60,7 +60,7 @@ function advanceSeed(seed: number): number {
 /**
  * XOR shift operation with modulo to keep within 32-bit unsigned range
  */
-function xorShift(seed: number, direction: "<<" | ">>", bits: number): number {
+export function xorShift(seed: number, direction: "<<" | ">>", bits: number): number {
 	const shifted = direction === "<<" ? seed << bits : seed >>> bits;
 	return ((seed ^ shifted) >>> 0) % UINT32_MAX;
 }
@@ -82,12 +82,12 @@ export function retreatSeed(seed: number): number {
 // Rarity Calculation
 // ============================================================================
 
-const BASE = 10000;
+export const BASE = 10000;
 
 /**
  * Determines rarity based on score and event rates
  */
-function determineRarity(score: number, rates: GachaEvent["rates"]): Rarity {
+export function determineRarity(score: number, rates: GachaEvent["rates"]): Rarity {
 	const { rare, supa, uber } = rates;
 	if (score < rare) return Rarity.Rare;
 	if (score < rare + supa) return Rarity.SuperRare;
@@ -127,7 +127,7 @@ function rerollCat(
 // Main Gacha Roll Function
 // ============================================================================
 
-function createCat(event: GachaEvent, raritySeed: number, slotSeed: number) {
+export function createCat(event: GachaEvent, raritySeed: number, slotSeed: number) {
 	const score = raritySeed % BASE;
 	const rarity = determineRarity(score, event.rates);
 	const pool = event.slots[rarity];
@@ -156,7 +156,7 @@ function otherTrack(track: "A" | "B"): "A" | "B" {
 	return track === "A" ? "B" : "A";
 }
 
-function rollTrack(
+export function rollTrack(
 	event: GachaEvent,
 	initialSeed: number,
 	count: number,

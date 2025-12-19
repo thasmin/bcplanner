@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as UberPlannerRouteImport } from './routes/uber-planner'
 import { Route as TierlistRouteImport } from './routes/tierlist'
+import { Route as SeedFinderRouteImport } from './routes/seed-finder'
 import { Route as DictionaryRouteImport } from './routes/dictionary'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
@@ -24,6 +25,11 @@ const UberPlannerRoute = UberPlannerRouteImport.update({
 const TierlistRoute = TierlistRouteImport.update({
   id: '/tierlist',
   path: '/tierlist',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SeedFinderRoute = SeedFinderRouteImport.update({
+  id: '/seed-finder',
+  path: '/seed-finder',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DictionaryRoute = DictionaryRouteImport.update({
@@ -52,6 +58,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/dictionary': typeof DictionaryRoute
+  '/seed-finder': typeof SeedFinderRoute
   '/tierlist': typeof TierlistRoute
   '/uber-planner': typeof UberPlannerRoute
 }
@@ -60,6 +67,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/dictionary': typeof DictionaryRoute
+  '/seed-finder': typeof SeedFinderRoute
   '/tierlist': typeof TierlistRoute
   '/uber-planner': typeof UberPlannerRoute
 }
@@ -69,6 +77,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/dictionary': typeof DictionaryRoute
+  '/seed-finder': typeof SeedFinderRoute
   '/tierlist': typeof TierlistRoute
   '/uber-planner': typeof UberPlannerRoute
 }
@@ -79,6 +88,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/contact'
     | '/dictionary'
+    | '/seed-finder'
     | '/tierlist'
     | '/uber-planner'
   fileRoutesByTo: FileRoutesByTo
@@ -87,6 +97,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/contact'
     | '/dictionary'
+    | '/seed-finder'
     | '/tierlist'
     | '/uber-planner'
   id:
@@ -95,6 +106,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/contact'
     | '/dictionary'
+    | '/seed-finder'
     | '/tierlist'
     | '/uber-planner'
   fileRoutesById: FileRoutesById
@@ -104,6 +116,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
   DictionaryRoute: typeof DictionaryRoute
+  SeedFinderRoute: typeof SeedFinderRoute
   TierlistRoute: typeof TierlistRoute
   UberPlannerRoute: typeof UberPlannerRoute
 }
@@ -122,6 +135,13 @@ declare module '@tanstack/react-router' {
       path: '/tierlist'
       fullPath: '/tierlist'
       preLoaderRoute: typeof TierlistRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/seed-finder': {
+      id: '/seed-finder'
+      path: '/seed-finder'
+      fullPath: '/seed-finder'
+      preLoaderRoute: typeof SeedFinderRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/dictionary': {
@@ -160,6 +180,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
   DictionaryRoute: DictionaryRoute,
+  SeedFinderRoute: SeedFinderRoute,
   TierlistRoute: TierlistRoute,
   UberPlannerRoute: UberPlannerRoute,
 }
