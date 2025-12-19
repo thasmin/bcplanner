@@ -158,7 +158,10 @@ export function getCatTierRank(catId: number): string | undefined {
 }
 
 export const banners: Array<[string, number[]]> = [
-	["Dynamites", [43, 44, 45, 58, 60, 144, 428, 520, 618, 669, 764, 456]],
+	[
+		"Dynamites",
+		[42, 43, 44, 45, 57, 58, 60, 144, 428, 520, 618, 669, 764, 456],
+	],
 	["Vajiras", [72, 73, 74, 125, 126, 159, 339, 497, 619, 650, 755, 449]],
 	[
 		"Galaxy Gals",
@@ -170,13 +173,41 @@ export const banners: Array<[string, number[]]> = [
 	["Almighties", [258, 259, 260, 272, 273, 317, 440, 535, 643, 724, 812, 494]],
 	["Iron Legion", [305, 306, 307, 356, 418, 595, 633, 675, 716, 800, 464]],
 	["Elemental Pixies", [360, 361, 362, 402, 570, 632, 656, 720, 818, 479]],
+	["Girls & Monsters", [335, 336, 358, 359, 608, 726, 337, 825]],
+	["Bikkuriman", [468, 469, 470, 471, 472, 556]],
+	["Crash Fever", [327, 328]],
 	[
 		"Evangelion",
-		[548, 710, 415, 413, 414, 489, 416, 815, 552, 488, 711, 551, 549, 417],
+		[548, 710, 415, 413, 414, 489, 416, 815, 552, 488, 711, 551, 549, 417, 550],
 	],
+	["Fate/Stay Night: Heaven's Feel", [363, 364, 365, 366, 367, 368, 369, 457]],
+	["Hatsune Miku", [536, 537, 538, 561, 583, 584, 591, 723]],
+	["Merc Storia", [347, 507]],
+	["Metal Slug", [727, 222, 223, 224, 225, 226, 728]],
+	["Mola", [175]],
+	["Merc Storia", [186, 187, 188, 189, 120, 769, 506, 346]],
+	["Power Pro Baseball", [394, 395, 396]],
+	["Puella Magi Madoka Magica", [289, 290, 291, 292, 293, 441]],
+	["Princess Punt Sweets", [162, 530, 485, 338, 67, 486, 531]],
+	["Puella Magi", [779]],
+	["Ranma 1/2", [597, 598, 599, 600, 601, 672]],
+	["River City Ransom", [625, 722]],
+	["Rurouni Kenshin", [747, 748, 749, 750]],
+	[
+		"Street Fighter",
+		[
+			512, 513, 514, 515, 516, 517, 518, 572, 573, 574, 575, 576, 827, 828, 681,
+			682,
+		],
+	],
+	["Shoumetsu Toshi", [270, 483]],
+	["Tower of Saviors", [742]],
+	["Baki", [790, 791, 792, 793, 794, 795]],
+	["Sonic the Hedgehog", [804, 805, 806, 807]],
+	["Best of the Best", [759, 811, 784]],
 	["Nekolugas", [35, 169, 170, 171, 172, 241, 437, 547, 626, 713, 782, 462]],
 	["Li'l Valkyries", [436, 485]],
-	["Busters", []],
+	["Busters", [284, 287, 398, 560, 687]],
 	[
 		"Dynasty Fest",
 		[
@@ -191,11 +222,12 @@ export const banners: Array<[string, number[]]> = [
 	],
 	["Uberfest", [270, 319, 381, 530, 586, 642, 691, 780, 732]],
 	["Epicfest", [334, 379, 442, 544, 610, 658, 706, 788, 739]],
+	["Unobtainable", [54, 181, 271, 342, 674]],
 ];
 
 export const findBanner = (catId: number): string | undefined => {
 	return banners.find(([_, catIds]) => catIds.includes(catId))?.[0];
-}
+};
 
 export const tierList = [
 	{
@@ -277,7 +309,7 @@ export const evaTierList = [
 	},
 	{
 		rank: "B",
-		cats: [416, 815, 552],
+		cats: [416, 815, 552, 550],
 	},
 	{
 		rank: "C",
