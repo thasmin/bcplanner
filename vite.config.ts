@@ -7,7 +7,7 @@ import tailwindcss from '@tailwindcss/vite'
 
 const config = defineConfig({
   plugins: [
-    tanstackRouter(),
+    tanstackRouter({ autoCodeSplitting: true }),
     devtools({
       enhancedLogs: { enabled: false },
     }),
