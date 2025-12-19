@@ -87,12 +87,59 @@ interface SearchState {
 	searchDuration: number;
 }
 
+function SeedBookmarkButtons({
+	seed,
+	size = "large",
+}: {
+	seed: number;
+	size?: "large" | "small";
+}) {
+	const { setMasterBookmark, addBookmark } = useSeedBookmarks();
+
+	const handleSetMaster = () => setMasterBookmark(seed);
+	const handleAddBookmark = () => {
+		const name = prompt("Enter bookmark name:");
+		if (name?.trim()) addBookmark(name.trim(), seed);
+	};
+
+	const buttonClass =
+		size === "small"
+			? "p-1.5 rounded"
+			: "px-4 py-2 rounded-lg flex items-center gap-2 font-medium";
+
+	return (
+		<div
+			className={
+				size === "small"
+					? "flex gap-1 flex-shrink-0"
+					: "flex gap-2 justify-center"
+			}
+		>
+			<button
+				type="button"
+				onClick={handleSetMaster}
+				className={`bg-amber-500 hover:bg-amber-600 text-white transition-colors ${buttonClass}`}
+				title="Set as Master"
+			>
+				<Star size={size === "small" ? 14 : 18} />
+				{size === "large" && <span>Set as Master</span>}
+			</button>
+			<button
+				type="button"
+				onClick={handleAddBookmark}
+				className={`bg-indigo-500 hover:bg-indigo-600 text-white transition-colors ${buttonClass}`}
+				title="Add Bookmark"
+			>
+				<Bookmark size={size === "small" ? 14 : 18} />
+				{size === "large" && <span>Add Bookmark</span>}
+			</button>
+		</div>
+	);
+}
+
 function SeedFinder() {
 	const catDatabase = useCatDatabase();
-	const { setMasterBookmark, addBookmark } = useSeedBookmarks();
-	const [selectedCats, setSelectedCats] = useState<number[]>([
-		41, 308, 523, 146, 49,
-	]);
+	const [selectedCats, setSelectedCats] = useState<number[]>([]);
 	const [searchInput, setSearchInput] = useState("");
 	const [searchState, setSearchState] = useState<SearchState>({
 		status: "idle",
@@ -106,17 +153,6 @@ function SeedFinder() {
 	const workersRef = useRef<Worker[]>([]);
 
 	const searchId = useId();
-
-	const handleSetMasterBookmark = (seed: number) => {
-		setMasterBookmark(seed);
-	};
-
-	const handleAddNamedBookmark = (seed: number) => {
-		const name = prompt("Enter bookmark name:");
-		if (name?.trim()) {
-			addBookmark(name.trim(), seed);
-		}
-	};
 
 	const startSearch = () => {
 		if (!catDatabase.data) return;
@@ -695,27 +731,8 @@ function SeedFinder() {
 											{searchState.totalSeedsChecked.toLocaleString()}
 										</div>
 									</div>
-									<div className="mt-4 flex gap-2 justify-center">
-										<button
-											type="button"
-											onClick={() =>
-												handleSetMasterBookmark(searchState.matchingSeeds[0])
-											}
-											className="px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white rounded-lg transition-colors flex items-center gap-2 font-medium"
-										>
-											<Star size={18} />
-											Set as Master
-										</button>
-										<button
-											type="button"
-											onClick={() =>
-												handleAddNamedBookmark(searchState.matchingSeeds[0])
-											}
-											className="px-4 py-2 bg-indigo-500 hover:bg-indigo-600 text-white rounded-lg transition-colors flex items-center gap-2 font-medium"
-										>
-											<Bookmark size={18} />
-											Add Bookmark
-										</button>
+									<div className="mt-4">
+										<SeedBookmarkButtons seed={searchState.matchingSeeds[0]} />
 									</div>
 								</div>
 							) : (
@@ -752,24 +769,7 @@ function SeedFinder() {
 														<span className="font-mono font-semibold text-slate-800 dark:text-slate-100 flex-1">
 															{seed}
 														</span>
-														<div className="flex gap-1 flex-shrink-0">
-															<button
-																type="button"
-																onClick={() => handleSetMasterBookmark(seed)}
-																className="p-1.5 bg-amber-500 hover:bg-amber-600 text-white rounded transition-colors"
-																title="Set as Master"
-															>
-																<Star size={14} />
-															</button>
-															<button
-																type="button"
-																onClick={() => handleAddNamedBookmark(seed)}
-																className="p-1.5 bg-indigo-500 hover:bg-indigo-600 text-white rounded transition-colors"
-																title="Add Bookmark"
-															>
-																<Bookmark size={14} />
-															</button>
-														</div>
+														<SeedBookmarkButtons seed={seed} size="small" />
 													</div>
 												))}
 											</div>
