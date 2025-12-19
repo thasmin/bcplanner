@@ -27,9 +27,12 @@ export function getRarityBgClass(rarity?: number) {
 }
 
 export function getRarityColors(rarity: number) {
-	if (rarity === Rarity.SuperRare) return "bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200";
-	if (rarity === Rarity.Uber) return "bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200";
-	if (rarity === Rarity.Legend) return "bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200";
+	if (rarity === Rarity.SuperRare)
+		return "bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200";
+	if (rarity === Rarity.Uber)
+		return "bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200";
+	if (rarity === Rarity.Legend)
+		return "bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200";
 	return "bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200";
 }
 
@@ -152,6 +155,46 @@ export function getCatTierRank(catId: number): string | undefined {
 		if (tier.cats.includes(catId)) return tier.rank;
 	}
 	return undefined;
+}
+
+export const banners: Array<[string, number[]]> = [
+	["Dynamites", [43, 44, 45, 58, 60, 144, 428, 520, 618, 669, 764, 456]],
+	["Vajiras", [72, 73, 74, 125, 126, 159, 339, 497, 619, 650, 755, 449]],
+	[
+		"Galaxy Gals",
+		[76, 77, 106, 107, 108, 160, 352, 503, 620, 648, 734, 831, 450],
+	],
+	["Dragon Emperors", [84, 85, 86, 87, 88, 178, 397, 506, 621, 661, 761, 451]],
+	["Ultra Souls", [135, 136, 137, 138, 139, 204, 323, 526, 634, 693, 770, 452]],
+	["Dark Heroes", [195, 196, 197, 213, 227, 262, 432, 534, 635, 699, 775, 482]],
+	["Almighties", [258, 259, 260, 272, 273, 317, 440, 535, 643, 724, 812, 494]],
+	["Iron Legion", [305, 306, 307, 356, 418, 595, 633, 675, 716, 800, 464]],
+	["Elemental Pixies", [360, 361, 362, 402, 570, 632, 656, 720, 818, 479]],
+	[
+		"Evangelion",
+		[548, 710, 415, 413, 414, 489, 416, 815, 552, 488, 711, 551, 549, 417],
+	],
+	["Nekolugas", [35, 169, 170, 171, 172, 241, 437, 547, 626, 713, 782, 462]],
+	["Li'l Valkyries", [436, 485]],
+	["Busters", []],
+	[
+		"Dynasty Fest",
+		[
+			230, 231, 242, 243, 244, 275, 276, 303, 311, 331, 332, 355, 439, 495, 527,
+			564, 565, 571, 585, 588, 589, 596, 615, 645, 649, 662, 667, 684, 688, 694,
+			700, 712, 715, 737, 738, 757, 760, 773, 778, 787, 821, 587,
+		],
+	],
+	[
+		"RoyalFest",
+		[613, 144, 213, 272, 303, 331, 497, 620, 634, 645, 662, 683, 688, 715],
+	],
+	["Uberfest", [270, 319, 381, 530, 586, 642, 691, 780, 732]],
+	["Epicfest", [334, 379, 442, 544, 610, 658, 706, 788, 739]],
+];
+
+export const findBanner = (catId: number): string | undefined => {
+	return banners.find(([_, catIds]) => catIds.includes(catId))?.[0];
 }
 
 export const tierList = [

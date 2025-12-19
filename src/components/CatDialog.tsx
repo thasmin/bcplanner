@@ -1,6 +1,6 @@
 import { X } from "lucide-react";
 import { useEffect, useRef } from "react";
-import { getCatStageImagePath, useCatDatabase } from "@/utils";
+import { findBanner, getCatStageImagePath, useCatDatabase } from "@/utils";
 
 export interface CatWithId {
 	id: string | number;
@@ -46,6 +46,7 @@ export function CatDialog({ catId, onClose }: CatDialogProps) {
 
 	const catDatabase = useCatDatabase();
 	const selectedCat = catId ? catDatabase.data?.cats[catId] : null;
+	const banner = catId ? findBanner(catId) : undefined;
 
 	useEffect(() => {
 		const dialog = dialogRef.current;
@@ -76,6 +77,9 @@ export function CatDialog({ catId, onClose }: CatDialogProps) {
 								)}`}
 							>
 								{rarityName(selectedCat.rarity)}
+							</span>
+							<span className="inline-block px-3 py-1 text-xs font-medium bg-indigo-900 text-white rounded-lg border border-indigo-900/30 shadow-sm">
+								{banner ? `Banner: ${banner}` : "No Banner"}
 							</span>
 						</div>
 						<button
