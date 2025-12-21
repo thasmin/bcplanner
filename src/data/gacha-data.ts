@@ -124,18 +124,13 @@ export function getEventOptions(eventsData: EventsData) {
 	const today = new Date().toISOString().split("T")[0]; // YYYY-MM-DD format
 
 	const events = Object.entries(eventsData)
-		.map(([key, event]) => ({ ...event, key }))
-		.filter((event) => event.end_on >= today) // Only active or future events
-		.sort((a, b) => a.start_on.localeCompare(b.start_on)) // Latest first
-		.map((event) => ({
-			key: event.key,
-			id: event.id,
-			name: event.name,
-			platinum: event.platinum,
+		.map(([key, event]) => ({
+			...event,
+			key,
 			displayName: `${event.start_on} - ${event.end_on}:${getEventSuffix(event)} ${event.name}`,
-			startDate: event.start_on,
-			endDate: event.end_on,
-		}));
+		}))
+		.filter((event) => event.end_on >= today) // Only active or future events
+		.sort((a, b) => a.start_on.localeCompare(b.start_on)); // Latest first
 	// remove all but the most recent platinum/legend events
 	return events.filter((event, index) => {
 		if (!event.platinum) return true;

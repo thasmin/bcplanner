@@ -78,9 +78,11 @@ export function CatDialog({ catId, onClose }: CatDialogProps) {
 							>
 								{rarityName(selectedCat.rarity)}
 							</span>
-							<span className="inline-block px-3 py-1 text-xs font-medium bg-indigo-900 text-white rounded-lg border border-indigo-900/30 shadow-sm">
-								{banner ? `Banner: ${banner}` : "No Banner"}
-							</span>
+							{banner && (
+								<span className="inline-block px-3 py-1 text-xs font-medium bg-indigo-900 text-white rounded-lg border border-indigo-900/30 shadow-sm">
+									Banner: {banner}
+								</span>
+							)}
 						</div>
 						<button
 							type="button"
