@@ -144153,8 +144153,7 @@
       ],
       "series_id": 27,
       "name": "Limited unit Netherworld Nymph Lunacia added! ★Tap for details!",
-      "rate": "uberfest_legend",
-      "similarity": 99
+      "rate": "uberfest_legend"
     },
     "1008": {
       "cats": [
@@ -144580,8 +144579,7 @@
         31
       ],
       "series_id": 70,
-      "name": "Limited Uber Rare unit Koneko added! 100M DL Special Capsules!",
-      "similarity": 66
+      "name": "Limited Uber Rare unit Koneko added! 110M DL Special Capsules!"
     },
     "1012": {
       "cats": [
@@ -166866,6 +166864,106 @@
       "rare": 7000,
       "supa": 2500,
       "uber": 500
+    },
+    "2025-12-22_940": {
+      "start_on": "2025-12-22",
+      "end_on": "2025-12-29",
+      "version": "150000",
+      "name": "Winter ladies, here for a limited time! ★ Get the Xmas Gals, only now!",
+      "id": 940,
+      "rare": 7000,
+      "supa": 2500,
+      "uber": 500,
+      "guaranteed": true
+    },
+    "2025-12-22_943": {
+      "start_on": "2025-12-22",
+      "end_on": "2025-12-25",
+      "version": "150000",
+      "name": "Conjure spirits with new hero Akechi Mitsuhide! Tap banner for info!",
+      "id": 943,
+      "rare": 6970,
+      "supa": 2500,
+      "uber": 500,
+      "guaranteed": true,
+      "legend": 30
+    },
+    "2025-12-22_986": {
+      "start_on": "2025-12-22",
+      "end_on": "2025-12-25",
+      "version": "150000",
+      "name": "Mystery creature Mamoluga awaits your summoning! ★ Tap banner for info!",
+      "id": 986,
+      "rare": 6970,
+      "supa": 2500,
+      "uber": 500,
+      "guaranteed": true,
+      "legend": 30
+    },
+    "2025-12-25_1007": {
+      "start_on": "2025-12-25",
+      "end_on": "2025-12-29",
+      "version": "150000",
+      "name": "Limited unit Netherworld Nymph Lunacia added! ★Tap for details!",
+      "id": 1007,
+      "rare": 6470,
+      "supa": 2600,
+      "uber": 900,
+      "legend": 30
+    },
+    "2025-12-25_940": {
+      "start_on": "2025-12-25",
+      "end_on": "2025-12-29",
+      "version": "150000",
+      "name": "Winter ladies, here for a limited time! ★ Get the Xmas Gals, only now!",
+      "id": 940,
+      "rare": 7000,
+      "supa": 2500,
+      "uber": 500
+    },
+    "2025-12-25_944": {
+      "start_on": "2025-12-25",
+      "end_on": "2025-12-29",
+      "version": "150000",
+      "name": "Pegasa joins the Galaxy Girls with the power of Conjury! ★ Tap banner for info!",
+      "id": 944,
+      "rare": 6970,
+      "supa": 2500,
+      "uber": 500,
+      "legend": 30
+    },
+    "2025-12-29_1011": {
+      "start_on": "2025-12-29",
+      "end_on": "2026-01-09",
+      "version": "150000",
+      "name": "Limited Uber Rare unit Koneko added! 110M DL Special Capsules!",
+      "id": 1011,
+      "rare": 6930,
+      "supa": 2500,
+      "uber": 500,
+      "legend": 70
+    },
+    "2025-12-29_950": {
+      "start_on": "2025-12-29",
+      "end_on": "2026-01-01",
+      "version": "150000",
+      "name": "NEW hero Ninja Girl Tomoe! Strong vs Traitless and Aku! ★ Tap banner for info!",
+      "id": 950,
+      "rare": 6970,
+      "supa": 2500,
+      "uber": 500,
+      "legend": 30
+    },
+    "2025-12-29_979": {
+      "start_on": "2025-12-29",
+      "end_on": "2026-01-01",
+      "version": "150000",
+      "name": "New Conjurer Unit Mighty Morta-Loncha, with Explosive attacks! ★Tap for details!",
+      "id": 979,
+      "rare": 6970,
+      "supa": 2500,
+      "uber": 500,
+      "legend": 30
     }
   }
 }
