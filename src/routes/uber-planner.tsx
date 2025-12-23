@@ -151,7 +151,13 @@ function App() {
 						Roll Planner
 					</h1>
 					<p className="text-sm text-slate-500 dark:text-slate-400">
-						Plan your gacha rolls strategically
+						This shows rolls for all of the current and future events in that
+						slot. Click on the events button to see which events will give you
+						that cat.
+					</p>
+					<p className="text-sm text-slate-500 dark:text-slate-400">
+						To switch tracks, use a guaranteed roll or find a switch in the
+						list.
 					</p>
 				</div>
 			</div>
