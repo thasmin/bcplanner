@@ -11,6 +11,10 @@ export function getCatStageImagePath(
 	return `/catImages/cat_${paddedId}_${stageIndex}.png`;
 }
 
+export function rarityShortName(rarity: number) {
+	return ["N", "S", "R", "SR", "U", "L"][rarity] || "?";
+}
+
 export function rarityName(rarity: number) {
 	return (
 		["Normal", "Special", "Rare", "Super Rare", "Uber", "Legend"][rarity] ||

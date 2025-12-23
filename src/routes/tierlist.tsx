@@ -41,7 +41,7 @@ const TierCat: React.FC<{
 			<button
 				type="button"
 				onClick={onClick}
-				className="cursor-pointer group"
+				className="group"
 				title={catFromDb.name[0]}
 			>
 				<div className="w-16 h-16 bg-white/60 dark:bg-slate-800/80 rounded-xl flex items-center justify-center group-hover:bg-amber-50 dark:group-hover:bg-amber-950 group-hover:scale-110 group-hover:shadow-lg transition-all duration-200">
@@ -130,10 +130,7 @@ function RouteComponent() {
 						Limited
 					</span>
 				</div>
-				<TierListTable
-					tierList={evaTierList}
-					onSelectCatId={openCatDialog}
-				/>
+				<TierListTable tierList={evaTierList} onSelectCatId={openCatDialog} />
 			</section>
 
 			<section>

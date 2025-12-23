@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Bookmark, Cat } from "lucide-react";
+import { Bookmark, Cat, Dices } from "lucide-react";
 import { useId, useState } from "react";
 import EventDetailsDialog from "@/components/EventDetailsDialog";
 import RarityTag from "@/components/RarityTag";
@@ -10,7 +10,7 @@ import {
 	createGachaEvent,
 	getEventOptions,
 } from "../data/gacha-data";
-import { getCatTierRank, useCatDatabase, useCatSeed } from "../utils";
+import { useCatDatabase, useCatSeed } from "../utils";
 
 export const Route = createFileRoute("/uber-planner")({
 	component: App,
@@ -21,7 +21,6 @@ export const Route = createFileRoute("/uber-planner")({
 
 interface CatColumnDataProps {
 	cat: CatInfo & { id: number };
-	eventCodes: string[];
 	isGuaranteed?: boolean;
 	onOpenCatDialog: () => void;
 	onShowEvents: () => void;
@@ -29,7 +28,6 @@ interface CatColumnDataProps {
 
 const CatColumnData: React.FC<CatColumnDataProps> = ({
 	cat,
-	eventCodes,
 	isGuaranteed = false,
 	onOpenCatDialog,
 	onShowEvents,
@@ -39,22 +37,17 @@ const CatColumnData: React.FC<CatColumnDataProps> = ({
 			<button
 				type="button"
 				onClick={() => onOpenCatDialog()}
-				className="p-1 border rounded cursor-pointer hover:bg-purple-100 dark:hover:bg-purple-900"
+				className="p-1 border rounded hover:bg-purple-100 dark:hover:bg-purple-900"
 			>
 				{cat.name[0]}
 			</button>
-			{!isGuaranteed && <RarityTag rarity={cat.rarity} />}
-			{getCatTierRank(cat.id) && (
-				<span className="px-1.5 py-0.5 text-xs font-semibold rounded bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200">
-					{getCatTierRank(cat.id)}
-				</span>
-			)}
+			{!isGuaranteed && <RarityTag catId={cat.id} rarity={cat.rarity} />}
 			<button
 				type="button"
-				className="px-2 py-1 bg-slate-100 dark:bg-slate-700 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600 transition-all duration-200"
+				className="px-2 py-1 bg-slate-100 dark:bg-slate-700 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600 transition-all duration-200 border border-slate-400 dark:border-slate-500"
 				onClick={() => onShowEvents()}
 			>
-				<div>{eventCodes.length} events</div>
+				?
 			</button>
 		</div>
 	);
@@ -64,9 +57,11 @@ interface Row {
 	row: number;
 	trackACats: Map<number, string[]>;
 	trackAGuarantees: Map<number, string[]>;
+	trackANextSeed: number;
 	canSwitchFromA: string[];
 	trackBCats: Map<number, string[]>;
 	trackBGuarantees: Map<number, string[]>;
+	trackBNextSeed: number;
 	canSwitchFromB: string[];
 }
 
@@ -81,9 +76,11 @@ function App() {
 		row: index,
 		trackACats: new Map<number, string[]>(),
 		trackAGuarantees: new Map<number, string[]>(),
+		trackANextSeed: 0,
 		canSwitchFromA: [],
 		trackBCats: new Map<number, string[]>(),
 		trackBGuarantees: new Map<number, string[]>(),
+		trackBNextSeed: 0,
 		canSwitchFromB: [],
 	}));
 	if (catDatabase.data) {
@@ -97,6 +94,7 @@ function App() {
 			);
 			const tracks = rollTracks(event, seed, 100);
 			tracks.trackA.forEach((t, index) => {
+				rollMap[index].trackANextSeed = t.nextSeed;
 				const prevCats = rollMap[index].trackACats.get(t.catId) ?? [];
 				prevCats.push(eventData.key);
 				rollMap[index].trackACats.set(t.catId, prevCats);
@@ -113,6 +111,7 @@ function App() {
 				}
 			});
 			tracks.trackB.forEach((t, index) => {
+				rollMap[index].trackBNextSeed = t.nextSeed;
 				const prevEvents = rollMap[index].trackBCats.get(t.catId) ?? [];
 				prevEvents.push(eventData.key);
 				rollMap[index].trackBCats.set(t.catId, prevEvents);
@@ -222,28 +221,31 @@ function App() {
 									#
 								</th>
 								<th
-									colSpan={2}
-									className="px-3 py-3 text-center text-xs font-bold text-blue-700 uppercase tracking-wider border-l border-slate-200 dark:border-slate-700 bg-blue-50/50 dark:bg-blue-950/50"
+									colSpan={3}
+									className="px-3 py-3 text-center text-xs font-bold text-blue-700 dark:text-blue-500 uppercase tracking-wider border-l border-slate-200 dark:border-slate-700 bg-blue-50/50 dark:bg-blue-950/50"
 								>
 									Track A
 								</th>
 								<th
-									colSpan={2}
-									className="px-3 py-3 text-center text-xs font-bold text-emerald-700 uppercase tracking-wider border-l border-slate-200 dark:border-slate-700 bg-emerald-50/50 dark:bg-emerald-950/50"
+									colSpan={3}
+									className="px-3 py-3 text-center text-xs font-bold text-emerald-700 dark:text-emerald-500 uppercase tracking-wider border-l border-slate-200 dark:border-slate-700 bg-emerald-50/50 dark:bg-emerald-950/50"
 								>
 									Track B
 								</th>
 							</tr>
 							<tr className="bg-slate-50/50 dark:bg-slate-800/50 border-b border-slate-200 dark:border-slate-700">
 								<th></th>
-								<th className="px-2 py-2 text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider border-l border-slate-200 dark:border-slate-700">
+
+								<th className="border-l border-slate-200 dark:border-slate-700"></th>
+								<th className="px-2 py-2 text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
 									Roll
 								</th>
 								<th className="px-2 py-2 text-left text-xs font-semibold text-slate-500 dark:text-slate-400 bg-amber-300/25 dark:bg-amber-900/25 uppercase tracking-wider">
 									Guaranteed
 								</th>
 
-								<th className="px-2 py-2 text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider border-l border-slate-200 dark:border-slate-700">
+								<th className="border-l border-slate-200 dark:border-slate-700"></th>
+								<th className="px-2 py-2 text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
 									Roll
 								</th>
 								<th className="px-2 py-2 text-left text-xs font-semibold text-slate-500 dark:text-slate-400 bg-amber-300/25 dark:bg-amber-900/25 uppercase tracking-wider">
@@ -263,6 +265,17 @@ function App() {
 										</td>
 
 										<td className="p-3 whitespace-nowrap text-sm text-slate-700 dark:text-slate-400 border-l border-slate-200 dark:border-slate-700">
+											<button
+												type="button"
+												onClick={() => setSeed(tr.trackANextSeed)}
+												className="p-1.5 text-slate-400 hover:text-amber-600 hover:bg-amber-50 dark:hover:bg-amber-950 rounded-lg transition-all duration-200"
+												title="Jump to this seed"
+											>
+												<Dices size={18} />
+											</button>
+										</td>
+
+										<td className="p-3 whitespace-nowrap text-sm text-slate-700 dark:text-slate-400">
 											<div className="flex flex-col gap-2">
 												{Array.from(tr.trackACats.entries()).map(
 													([catId, eventCodes]) => {
@@ -276,7 +289,6 @@ function App() {
 																<CatColumnData
 																	key={catId}
 																	cat={cat}
-																	eventCodes={eventCodes}
 																	onOpenCatDialog={() => openCatDialog(catId)}
 																	onShowEvents={() => showEvents(eventCodes)}
 																/>
@@ -293,7 +305,7 @@ function App() {
 														className="px-2 py-1 bg-slate-100 dark:bg-slate-700 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600 transition-all duration-200"
 														onClick={() => showEvents(tr.canSwitchFromA)}
 													>
-														{tr.canSwitchFromA.length} events
+														?
 													</button>
 												</div>
 											)}
@@ -313,7 +325,6 @@ function App() {
 																	key={catId}
 																	cat={cat}
 																	isGuaranteed
-																	eventCodes={eventCodes}
 																	onOpenCatDialog={() => openCatDialog(catId)}
 																	onShowEvents={() => showEvents(eventCodes)}
 																/>
@@ -325,6 +336,16 @@ function App() {
 										</td>
 
 										<td className="p-3 whitespace-nowrap text-sm text-slate-700 dark:text-slate-400 border-l border-slate-200 dark:border-slate-700">
+											<button
+												type="button"
+												onClick={() => setSeed(tr.trackBNextSeed)}
+												className="p-1.5 text-slate-400 hover:text-amber-600 hover:bg-amber-50 dark:hover:bg-amber-950 rounded-lg transition-all duration-200"
+												title="Jump to this seed"
+											>
+												<Dices size={18} />
+											</button>
+										</td>
+										<td className="p-3 whitespace-nowrap text-sm text-slate-700 dark:text-slate-400">
 											<div className="flex flex-col gap-2">
 												{Array.from(tr.trackBCats.entries()).map(
 													([catId, eventCodes]) => {
@@ -338,7 +359,6 @@ function App() {
 																<CatColumnData
 																	key={catId}
 																	cat={cat}
-																	eventCodes={eventCodes}
 																	onOpenCatDialog={() => openCatDialog(catId)}
 																	onShowEvents={() => showEvents(eventCodes)}
 																/>
@@ -355,7 +375,7 @@ function App() {
 														className="px-2 py-1 bg-slate-100 dark:bg-slate-700 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600 transition-all duration-200"
 														onClick={() => showEvents(tr.canSwitchFromB)}
 													>
-														{tr.canSwitchFromB.length} events
+														?
 													</button>
 												</div>
 											)}
@@ -375,7 +395,6 @@ function App() {
 																	key={catId}
 																	cat={cat}
 																	isGuaranteed
-																	eventCodes={eventCodes}
 																	onOpenCatDialog={() => openCatDialog(catId)}
 																	onShowEvents={() => showEvents(eventCodes)}
 																/>

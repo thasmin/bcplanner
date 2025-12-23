@@ -1,11 +1,13 @@
-import { getRarityColors, rarityName } from "@/utils";
+import { getCatTierRank, getRarityColors, rarityShortName } from "@/utils";
 
-function RarityTag({ rarity }: { rarity: number }) {
+function RarityTag({ catId, rarity }: { catId: number; rarity: number }) {
+	const tier = getCatTierRank(catId);
 	return (
 		<span
-			className={`px-2 py-0.5 inline-flex text-xs leading-5 font-bold rounded-lg ${getRarityColors(rarity)}`}
+			className={`px-2 py-0.5 inline-flex items-baseline text-xs leading-5 font-bold rounded-lg ${getRarityColors(rarity)}`}
 		>
-			{rarityName(rarity)}
+			<span>{rarityShortName(rarity)}</span>
+			{tier && <span className="ml-0.5"> - {tier} </span>}
 		</span>
 	);
 }

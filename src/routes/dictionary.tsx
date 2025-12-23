@@ -190,7 +190,7 @@ function Dictionary() {
 						<button
 							type="button"
 							key={cat.id}
-							className="text-left bg-white/80 dark:bg-slate-800 backdrop-blur-sm rounded-2xl shadow-md border border-slate-200/50 overflow-hidden hover:shadow-xl hover:scale-[1.02] hover:border-slate-300/50 transition-all duration-200 cursor-pointer group"
+							className="text-left bg-white/80 dark:bg-slate-800 backdrop-blur-sm rounded-2xl shadow-md border border-slate-200/50 overflow-hidden hover:shadow-xl hover:scale-[1.02] hover:border-slate-300/50 transition-all duration-200 group"
 							onClick={() => openCatDialog(cat.id)}
 						>
 							<div className="flex items-start p-4">

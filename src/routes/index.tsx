@@ -7,7 +7,6 @@ import { useDialogs } from "@/contexts/DialogContext";
 import { Rarity, rollTracks } from "../data/battle-cats-gacha";
 import { createGachaEvent, getEventOptions } from "../data/gacha-data";
 import {
-	getCatTierRank,
 	getRarityBgClass,
 	getRarityColors,
 	lookupCat,
@@ -50,15 +49,10 @@ const CatColumns: React.FC<{
 					<button
 						type="button"
 						onClick={() => onSelectCatId(roll.cat.id)}
-						className="p-1 border rounded cursor-pointer hover:bg-purple-100 dark:hover:bg-purple-900"
+						className="p-1 border rounded hover:bg-purple-100 dark:hover:bg-purple-900"
 					>
 						{roll.cat.name}
 					</button>
-					{getCatTierRank(roll.cat.id) && (
-						<span className="px-1.5 py-0.5 text-xs font-semibold rounded bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200">
-							{getCatTierRank(roll.cat.id)}
-						</span>
-					)}
 				</div>
 				{roll.switchedFromCat && (
 					<div className="text-xs text-orange-600 dark:text-orange-400">
@@ -73,7 +67,7 @@ const CatColumns: React.FC<{
 					getRarityBgClass(roll.cat.rarity),
 				)}
 			>
-				<RarityTag rarity={roll.cat.rarity} />
+				<RarityTag catId={roll.cat.id} rarity={roll.cat.rarity} />
 				{roll.cat.rarity !== Rarity.Uber && roll.score > 9300 && (
 					<span
 						className={`ml-2 px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${getRarityColors(Rarity.Uber)}`}
