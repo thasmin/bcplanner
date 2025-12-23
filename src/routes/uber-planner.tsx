@@ -239,14 +239,14 @@ function App() {
 								<th className="px-2 py-2 text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider border-l border-slate-200 dark:border-slate-700">
 									Roll
 								</th>
-								<th className="px-2 py-2 text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+								<th className="px-2 py-2 text-left text-xs font-semibold text-slate-500 dark:text-slate-400 bg-amber-300/25 dark:bg-amber-900/25 uppercase tracking-wider">
 									Guaranteed
 								</th>
 
 								<th className="px-2 py-2 text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider border-l border-slate-200 dark:border-slate-700">
 									Roll
 								</th>
-								<th className="px-2 py-2 text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+								<th className="px-2 py-2 text-left text-xs font-semibold text-slate-500 dark:text-slate-400 bg-amber-300/25 dark:bg-amber-900/25 uppercase tracking-wider">
 									Guaranteed
 								</th>
 							</tr>
@@ -256,13 +256,13 @@ function App() {
 								return (
 									<tr
 										key={tr.row}
-										className="hover:bg-slate-50/50 dark:hover:bg-slate-700/50 transition-colors border-b border-slate-200 dark:border-slate-700"
+										className="hover:bg-slate-50/25 dark:hover:bg-slate-700/25 transition-colors border-b border-slate-200 dark:border-slate-700"
 									>
 										<td className="px-3 py-3 whitespace-nowrap text-sm font-bold text-slate-400 dark:text-slate-500">
 											{ndx + 1}
 										</td>
 
-										<td className="p-3 whitespace-nowrap text-sm text-slate-400 dark:text-slate-500 border-l border-slate-200 dark:border-slate-700">
+										<td className="p-3 whitespace-nowrap text-sm text-slate-700 dark:text-slate-400 border-l border-slate-200 dark:border-slate-700">
 											<div className="flex flex-col gap-2">
 												{Array.from(tr.trackACats.entries()).map(
 													([catId, eventCodes]) => {
@@ -298,7 +298,7 @@ function App() {
 												</div>
 											)}
 										</td>
-										<td className="p-3 whitespace-nowrap text-sm text-slate-400 dark:text-slate-500">
+										<td className="p-3 whitespace-nowrap text-sm text-slate-700 dark:text-slate-400 bg-amber-300/25 dark:bg-amber-900/25">
 											<div className="flex flex-col gap-2">
 												{Array.from(tr.trackAGuarantees.entries()).map(
 													([catId, eventCodes]) => {
@@ -324,7 +324,7 @@ function App() {
 											</div>
 										</td>
 
-										<td className="p-3 whitespace-nowrap text-sm text-slate-400 dark:text-slate-500 border-l border-slate-200 dark:border-slate-700">
+										<td className="p-3 whitespace-nowrap text-sm text-slate-700 dark:text-slate-400 border-l border-slate-200 dark:border-slate-700">
 											<div className="flex flex-col gap-2">
 												{Array.from(tr.trackBCats.entries()).map(
 													([catId, eventCodes]) => {
@@ -360,7 +360,7 @@ function App() {
 												</div>
 											)}
 										</td>
-										<td className="p-3 whitespace-nowrap text-sm text-slate-400 dark:text-slate-500">
+										<td className="p-3 whitespace-nowrap text-sm text-slate-700 dark:text-slate-400 bg-amber-300/25 dark:bg-amber-900/25">
 											<div className="flex flex-col gap-2">
 												{Array.from(tr.trackBGuarantees.entries()).map(
 													([catId, eventCodes]) => {
