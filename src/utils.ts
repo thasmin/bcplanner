@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Rarity } from "./data/battle-cats-gacha";
 import type { CatDatabase, CatInfo } from "./data/gacha-data";
 
@@ -87,7 +87,23 @@ export const useCatSeed = (requestedSeed?: number) => {
 	const updateSeed = (newSeed: number) => {
 		setSeed(newSeed);
 		localStorage.setItem("catSeed", newSeed.toString());
+		window.dispatchEvent(
+			new StorageEvent("storage", {
+				key: "catSeed",
+				oldValue: seed.toString(),
+				newValue: newSeed.toString(),
+				storageArea: localStorage,
+				url: window.location.href,
+			}),
+		);
 	};
+	useEffect(() => {
+		function handleStorageChange(event: StorageEvent) {
+			if (event.key === "catSeed" && event.newValue) setSeed(+event.newValue);
+		}
+		window.addEventListener("storage", handleStorageChange);
+		return () => window.removeEventListener("storage", handleStorageChange);
+	}, []);
 	return [seed, updateSeed] as const;
 };
 
