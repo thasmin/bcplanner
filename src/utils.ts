@@ -80,10 +80,10 @@ export const useCatDatabase = () => {
 	return catDatabaseQuery;
 };
 
-export const useCatSeed = () => {
+export const useCatSeed = (requestedSeed?: number) => {
 	const defaultSeedStr = localStorage.getItem("catSeed");
 	const defaultSeed = defaultSeedStr ? +defaultSeedStr : 4255329801;
-	const [seed, setSeed] = useState(defaultSeed);
+	const [seed, setSeed] = useState(requestedSeed ?? defaultSeed);
 	const updateSeed = (newSeed: number) => {
 		setSeed(newSeed);
 		localStorage.setItem("catSeed", newSeed.toString());

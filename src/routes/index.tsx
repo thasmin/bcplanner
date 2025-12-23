@@ -15,7 +15,12 @@ import {
 	useCatSeed,
 } from "../utils";
 
-export const Route = createFileRoute("/")({ component: App });
+export const Route = createFileRoute("/")({
+	component: App,
+	validateSearch: (search) => {
+		return { seed: typeof search.seed === "number" ? search.seed : undefined };
+	},
+});
 
 interface CatColumnsData {
 	score: number;
@@ -112,7 +117,8 @@ const CatColumns: React.FC<{
 };
 
 function App() {
-	const [seed, setSeed] = useCatSeed();
+	const { seed: requestedSeed } = Route.useSearch();
+	const [seed, setSeed] = useCatSeed(requestedSeed);
 	const [selectedEvent, setSelectedEvent] = useState("");
 	const { openCatDialog, openBookmarkManager } = useDialogs();
 

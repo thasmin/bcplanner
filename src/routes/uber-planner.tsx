@@ -12,7 +12,12 @@ import {
 } from "../data/gacha-data";
 import { getCatTierRank, useCatDatabase, useCatSeed } from "../utils";
 
-export const Route = createFileRoute("/uber-planner")({ component: App });
+export const Route = createFileRoute("/uber-planner")({
+	component: App,
+	validateSearch: (search) => {
+		return { seed: typeof search.seed === "number" ? search.seed : undefined };
+	},
+});
 
 interface CatColumnDataProps {
 	cat: CatInfo & { id: number };
@@ -66,7 +71,8 @@ interface Row {
 }
 
 function App() {
-	const [seed, setSeed] = useCatSeed();
+	const { seed: requestedSeed } = Route.useSearch();
+	const [seed, setSeed] = useCatSeed(requestedSeed);
 	const { openCatDialog, openBookmarkManager } = useDialogs();
 
 	const catDatabase = useCatDatabase();
