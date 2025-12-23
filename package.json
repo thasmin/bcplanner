@@ -10,7 +10,7 @@
     "format": "biome format",
     "lint": "biome lint",
     "check": "biome check",
-    "update-data": "yq -o=json eval ../battle-cats-rolls/build/bc-en.yaml > public/data/bc-en.json && bun run src/scraper/grabCatImages.ts",
+    "update-data": "curl -s 'https://gitlab.com/godfat/battle-cats-rolls/-/raw/master/build/bc-en.yaml?ref_type=heads' | yq -o=json eval > public/data/bc-en.json && bun run src/scraper/grabCatImages.ts",
     "deploy": "bun run --bun build && bunx --bun wrangler pages deploy dist --project-name=catplanner"
   },
   "dependencies": {
