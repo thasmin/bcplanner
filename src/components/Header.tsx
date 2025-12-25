@@ -1,15 +1,36 @@
 import { Link } from "@tanstack/react-router";
-import { BookOpen, Cat, Crown, Home, Info, ListOrdered, Menu, Moon, Sun, Sparkles, X } from "lucide-react";
+import {
+	BookOpen,
+	Cat,
+	Crown,
+	Database,
+	Home,
+	Info,
+	ListOrdered,
+	Menu,
+	Moon,
+	Sparkles,
+	Sun,
+	X,
+} from "lucide-react";
 import { useState } from "react";
 import { useTheme } from "../contexts/ThemeContext";
+import { CatCollectionDialog } from "./CatCollectionDialog";
 
 export default function Header() {
 	const [isOpen, setIsOpen] = useState(false);
 	const { theme, toggleTheme } = useTheme();
 
+	const [showCatCollection, setShowCatCollection] = useState(false);
+
 	return (
 		<>
 			<header className="px-4 py-3 flex items-center justify-between bg-gradient-to-r from-indigo-900 via-purple-900 to-indigo-900 text-white shadow-xl border-b border-amber-400/20">
+				<CatCollectionDialog
+					isOpen={showCatCollection}
+					onClose={() => setShowCatCollection(false)}
+				/>
+
 				<div className="flex items-center">
 					<button
 						type="button"
@@ -40,6 +61,7 @@ export default function Header() {
 					>
 						{theme === "light" ? <Moon size={18} /> : <Sun size={18} />}
 					</button>
+
 					<Link
 						to="/"
 						className="flex items-center gap-2 px-4 py-2 rounded-xl hover:bg-white/10 transition-all duration-200"
@@ -51,6 +73,16 @@ export default function Header() {
 						<Home size={18} />
 						<span className="font-semibold">Home</span>
 					</Link>
+
+					<button
+						type="button"
+						onClick={() => setShowCatCollection(true)}
+						className="flex items-center gap-2 px-4 py-2 rounded-xl hover:bg-white/10 transition-all duration-200"
+						aria-label="Cat Collection"
+					>
+						<Database size={18} />
+						<span className="font-semibold">Collection</span>
+					</button>
 
 					<Link
 						to="/dictionary"
@@ -154,8 +186,11 @@ export default function Header() {
 						className="flex items-center gap-3 p-3 rounded-xl hover:bg-white/10 transition-all duration-200 w-full"
 					>
 						{theme === "light" ? <Moon size={20} /> : <Sun size={20} />}
-						<span className="font-semibold">{theme === "light" ? "Dark" : "Light"} Mode</span>
+						<span className="font-semibold">
+							{theme === "light" ? "Dark" : "Light"} Mode
+						</span>
 					</button>
+
 					<Link
 						to="/"
 						onClick={() => setIsOpen(false)}
@@ -168,6 +203,18 @@ export default function Header() {
 						<Home size={20} />
 						<span className="font-semibold">Home</span>
 					</Link>
+
+					<button
+						type="button"
+						onClick={() => {
+							setShowCatCollection(true);
+							setIsOpen(false);
+						}}
+						className="flex items-center gap-3 p-3 rounded-xl hover:bg-white/10 transition-all duration-200 w-full"
+					>
+						<Database size={20} />
+						<span className="font-semibold">Cat Collection</span>
+					</button>
 
 					<Link
 						to="/dictionary"

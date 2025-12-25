@@ -1,6 +1,6 @@
-import { X } from "lucide-react";
+import { Check, X } from "lucide-react";
 import { useEffect, useRef } from "react";
-import { findBanner, getCatStageImagePath, useCatDatabase } from "@/utils";
+import { findBanner, getCatStageImagePath, useCatDatabase, useOwnedCats } from "@/utils";
 
 export interface CatWithId {
 	id: string | number;
@@ -45,8 +45,10 @@ export function CatDialog({ catId, onClose }: CatDialogProps) {
 	const dialogRef = useRef<HTMLDialogElement>(null);
 
 	const catDatabase = useCatDatabase();
+	const { ownedCats, toggleCat } = useOwnedCats();
 	const selectedCat = catId ? catDatabase.data?.cats[catId] : null;
 	const banner = catId ? findBanner(catId) : undefined;
+	const isOwned = catId ? ownedCats.has(catId) : false;
 
 	useEffect(() => {
 		const dialog = dialogRef.current;
@@ -84,14 +86,39 @@ export function CatDialog({ catId, onClose }: CatDialogProps) {
 								</span>
 							)}
 						</div>
-						<button
-							type="button"
-							onClick={onClose}
-							className="p-2 hover:bg-white/20 rounded-xl transition-colors text-white/90 hover:text-white"
-							aria-label="Close"
-						>
-							<X className="w-6 h-6" />
-						</button>
+						<div className="flex items-center gap-2">
+							<button
+								type="button"
+								onClick={() => catId && toggleCat(catId)}
+								className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all border-2 shadow-lg ${
+									isOwned
+										? "bg-emerald-500 border-emerald-600 text-white hover:bg-emerald-600"
+										: "bg-slate-800 border-slate-700 text-white hover:bg-slate-700"
+								}`}
+								aria-label={isOwned ? "Mark as not owned" : "Mark as owned"}
+							>
+								<div
+									className={`w-5 h-5 rounded flex items-center justify-center border-2 transition-all ${
+										isOwned
+											? "bg-white border-white"
+											: "bg-transparent border-white"
+									}`}
+								>
+									{isOwned && <Check className="w-4 h-4 text-emerald-600" />}
+								</div>
+								<span className="text-sm font-bold">
+									{isOwned ? "Owned" : "Not Owned"}
+								</span>
+							</button>
+							<button
+								type="button"
+								onClick={onClose}
+								className="p-2 hover:bg-white/20 rounded-xl transition-colors text-white/90 hover:text-white"
+								aria-label="Close"
+							>
+								<X className="w-6 h-6" />
+							</button>
+						</div>
 					</div>
 
 					<div className="p-6">

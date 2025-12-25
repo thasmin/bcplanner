@@ -12,6 +12,7 @@ import {
 	lookupCat,
 	useCatDatabase,
 	useCatSeed,
+	useOwnedCats,
 } from "../utils";
 
 export const Route = createFileRoute("/")({
@@ -37,6 +38,10 @@ const CatColumns: React.FC<{
 	onSelectCatId: (id: number) => void;
 	onRoll: (nextSeed: number) => void;
 }> = ({ track, rowNum, roll, onSelectCatId, onRoll }) => {
+	const { ownedCats } = useOwnedCats();
+	const isUberOrLegend =
+		roll.cat.rarity === Rarity.Uber || roll.cat.rarity === Rarity.Legend;
+	const isUnowned = !ownedCats.has(roll.cat.id);
 	return (
 		<>
 			<td
@@ -49,7 +54,12 @@ const CatColumns: React.FC<{
 					<button
 						type="button"
 						onClick={() => onSelectCatId(roll.cat.id)}
-						className="p-1 border rounded hover:bg-purple-100 dark:hover:bg-purple-900"
+						className={clsx(
+							"p-1 border rounded hover:bg-purple-100 dark:hover:bg-purple-900",
+							isUberOrLegend &&
+								isUnowned &&
+								"font-bold border-2 border-emerald-500 dark:border-emerald-400 bg-emerald-50 dark:bg-emerald-950",
+						)}
 					>
 						{roll.cat.name}
 					</button>
@@ -81,9 +91,16 @@ const CatColumns: React.FC<{
 					className={clsx(
 						"px-2 py-3 whitespace-nowrap text-xs text-gray-700 dark:text-gray-200",
 						getRarityBgClass(Rarity.Uber),
+						!ownedCats.has(roll.guaranteedUber.id) &&
+							"ring-2 ring-inset ring-emerald-400 dark:ring-emerald-500",
 					)}
 				>
-					<div className="font-medium text-amber-700 dark:text-amber-300">
+					<div
+						className={clsx(
+							"font-medium text-amber-700 dark:text-amber-300",
+							!ownedCats.has(roll.guaranteedUber.id) && "font-bold",
+						)}
+					>
 						{roll.guaranteedUber.name}
 					</div>
 					<div className="text-gray-500 dark:text-gray-400 mt-1">
@@ -289,8 +306,54 @@ function App() {
 							</>
 						) : (
 							"Track A and Track B show alternate timelines. Duplicate cats are automatically rerolled and switch tracks."
-						)}
+						)}{" "}
+						Cats with a{" "}
+						<span className="ring-2 ring-inset ring-emerald-400 dark:ring-emerald-500 p-1 rounded">
+							green outline
+						</span>{" "}
+						are Uber or Legend rarity cats that are not in your collection.
 					</p>
+					<div className="mt-3 flex flex-wrap gap-3 text-xs">
+						<div className="flex items-center gap-2">
+							<span className="font-semibold text-slate-600 dark:text-slate-300">
+								Legend:
+							</span>
+						</div>
+						<div className="flex items-center gap-1.5">
+							<span className="px-2 py-0.5 bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 rounded font-bold border border-green-300 dark:border-green-700">
+								R
+							</span>
+							<span className="text-slate-600 dark:text-slate-400">Rare</span>
+						</div>
+						<div className="flex items-center gap-1.5">
+							<span className="px-2 py-0.5 bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 rounded font-bold border border-blue-300 dark:border-blue-700">
+								SR
+							</span>
+							<span className="text-slate-600 dark:text-slate-400">
+								Super Rare
+							</span>
+						</div>
+						<div className="flex items-center gap-1.5">
+							<span className="px-2 py-0.5 bg-amber-100 dark:bg-amber-900 text-amber-700 dark:text-amber-300 rounded font-bold border border-amber-300 dark:border-amber-700">
+								U
+							</span>
+							<span className="text-slate-600 dark:text-slate-400">
+								Uber Rare
+							</span>
+						</div>
+						<div className="flex items-center gap-1.5">
+							<span className="px-2 py-0.5 bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-300 rounded font-bold border border-purple-300 dark:border-purple-700">
+								L
+							</span>
+							<span className="text-slate-600 dark:text-slate-400">Legend</span>
+						</div>
+						<div className="flex items-center gap-1.5">
+							<span className="text-slate-500 dark:text-slate-400">•</span>
+							<span className="text-slate-600 dark:text-slate-400">
+								Tier ratings (e.g., U-B+) show cat strength
+							</span>
+						</div>
+					</div>
 				</div>
 				<div className="overflow-x-auto">
 					<table className="min-w-full">

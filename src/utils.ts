@@ -111,6 +111,71 @@ export const useCatSeed = (requestedSeed?: number) => {
 	return [seed, updateSeed] as const;
 };
 
+export const useOwnedCats = () => {
+	const getOwnedCats = (): Set<number> => {
+		const ownedCatsStr = localStorage.getItem("ownedCats");
+		return ownedCatsStr ? new Set(JSON.parse(ownedCatsStr)) : new Set();
+	};
+
+	const [ownedCats, setOwnedCats] = useState<Set<number>>(getOwnedCats());
+
+	const toggleCat = (catId: number) => {
+		const oldValue = JSON.stringify([...ownedCats]);
+		const newOwnedCats = new Set(ownedCats);
+		if (newOwnedCats.has(catId)) {
+			newOwnedCats.delete(catId);
+		} else {
+			newOwnedCats.add(catId);
+		}
+		const newValue = JSON.stringify([...newOwnedCats]);
+		setOwnedCats(newOwnedCats);
+		localStorage.setItem("ownedCats", newValue);
+		window.dispatchEvent(
+			new StorageEvent("storage", {
+				key: "ownedCats",
+				oldValue,
+				newValue,
+				storageArea: localStorage,
+				url: window.location.href,
+			}),
+		);
+	};
+
+	const setCatOwned = (catId: number, owned: boolean) => {
+		const oldValue = JSON.stringify([...ownedCats]);
+		const newOwnedCats = new Set(ownedCats);
+		if (owned) {
+			newOwnedCats.add(catId);
+		} else {
+			newOwnedCats.delete(catId);
+		}
+		const newValue = JSON.stringify([...newOwnedCats]);
+		setOwnedCats(newOwnedCats);
+		localStorage.setItem("ownedCats", newValue);
+		window.dispatchEvent(
+			new StorageEvent("storage", {
+				key: "ownedCats",
+				oldValue,
+				newValue,
+				storageArea: localStorage,
+				url: window.location.href,
+			}),
+		);
+	};
+
+	useEffect(() => {
+		function handleStorageChange(event: StorageEvent) {
+			if (event.key === "ownedCats" && event.newValue) {
+				setOwnedCats(new Set(JSON.parse(event.newValue)));
+			}
+		}
+		window.addEventListener("storage", handleStorageChange);
+		return () => window.removeEventListener("storage", handleStorageChange);
+	}, []);
+
+	return { ownedCats, toggleCat, setCatOwned };
+};
+
 export interface SeedBookmark {
 	name: string;
 	seed: number;
@@ -178,10 +243,7 @@ export function getCatTierRank(catId: number): string | undefined {
 }
 
 export const banners: Array<[string, number[]]> = [
-	[
-		"Dynamites",
-		[42, 43, 44, 45, 57, 58, 60, 144, 428, 520, 618, 669, 764, 456],
-	],
+	["Dynamites", [43, 44, 45, 58, 60, 144, 428, 520, 618, 669, 764, 456]],
 	["Vajiras", [72, 73, 74, 125, 126, 159, 339, 497, 619, 650, 755, 449]],
 	[
 		"Galaxy Gals",
@@ -202,13 +264,12 @@ export const banners: Array<[string, number[]]> = [
 	],
 	["Fate/Stay Night: Heaven's Feel", [363, 364, 365, 366, 367, 368, 369, 457]],
 	["Hatsune Miku", [536, 537, 538, 561, 583, 584, 591, 723]],
-	["Merc Storia", [347, 507]],
 	["Metal Slug", [727, 222, 223, 224, 225, 226, 728]],
 	["Mola", [175]],
-	["Merc Storia", [186, 187, 188, 189, 120, 769, 506, 346]],
+	["Merc Storia", [186, 187, 188, 189, 120, 769, 506, 346, 347, 507]],
 	["Power Pro Baseball", [394, 395, 396]],
 	["Puella Magi Madoka Magica", [289, 290, 291, 292, 293, 441]],
-	["Princess Punt Sweets", [162, 530, 485, 338, 67, 486, 531]],
+	["Princess Punt Sweets", [162, 485, 338, 67, 486, 531]],
 	["Puella Magi", [779]],
 	["Ranma 1/2", [597, 598, 599, 600, 601, 672]],
 	["River City Ransom", [625, 722]],

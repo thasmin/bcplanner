@@ -54,80 +54,6 @@ function About() {
 
 			<div className="bg-white/80 dark:bg-slate-800 backdrop-blur-sm rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-200/50 p-6 md:p-8">
 				<h2 className="text-xl font-bold text-slate-800 dark:text-slate-50 mb-4">
-					Features
-				</h2>
-
-				<div className="space-y-4">
-					<div className="border-l-4 border-blue-400 pl-4">
-						<h3 className="font-bold text-slate-800 dark:text-slate-50 mb-2">
-							🎲 Roll Planner
-						</h3>
-						<p className="text-slate-700 dark:text-slate-100 leading-relaxed mb-2">
-							Predict your next 100 gacha rolls based on your seed number. The
-							planner shows:
-						</p>
-						<ul className="list-disc list-inside text-slate-600 dark:text-slate-300 space-y-1 ml-4">
-							<li>Dual-track (A/B) roll predictions</li>
-							<li>Cat names and rarities with color coding</li>
-							<li>Guaranteed Uber mechanics for eligible events</li>
-							<li>Duplicate reroll detection and track switching</li>
-							<li>Quick seed navigation to jump to any roll</li>
-						</ul>
-					</div>
-
-					<div className="border-l-4 border-amber-400 pl-4">
-						<h3 className="font-bold text-slate-800 dark:text-slate-50 mb-2">
-							👑 Uber Planner
-						</h3>
-						<p className="text-slate-700 dark:text-slate-100 leading-relaxed mb-2">
-							Find the best opportunities to get Uber-rarity cats across all
-							active events. This strategic tool:
-						</p>
-						<ul className="list-disc list-inside text-slate-600 dark:text-slate-300 space-y-1 ml-4">
-							<li>Scans all current guaranteed Uber events</li>
-							<li>Shows which rolls will give you Ubers on each track</li>
-							<li>Helps optimize your cat food spending</li>
-							<li>Displays tier rankings to prioritize the best cats</li>
-						</ul>
-					</div>
-
-					<div className="border-l-4 border-emerald-400 pl-4">
-						<h3 className="font-bold text-slate-800 dark:text-slate-50 mb-2">
-							📖 Cat Dictionary
-						</h3>
-						<p className="text-slate-700 dark:text-slate-100 leading-relaxed mb-2">
-							Browse and search the complete database of Battle Cats units:
-						</p>
-						<ul className="list-disc list-inside text-slate-600 dark:text-slate-300 space-y-1 ml-4">
-							<li>800+ cats with images, descriptions, and stats</li>
-							<li>
-								Filter by rarity (Normal, Special, Rare, Super Rare, Uber,
-								Legend)
-							</li>
-							<li>Search by name or ID</li>
-							<li>Detailed cat information in interactive dialogs</li>
-						</ul>
-					</div>
-
-					<div className="border-l-4 border-purple-400 pl-4">
-						<h3 className="font-bold text-slate-800 dark:text-slate-50 mb-2">
-							🏆 Tier Lists
-						</h3>
-						<p className="text-slate-700 dark:text-slate-100 leading-relaxed mb-2">
-							View community-curated tier rankings for strategic planning:
-						</p>
-						<ul className="list-disc list-inside text-slate-600 dark:text-slate-300 space-y-1 ml-4">
-							<li>General tier list for standard gameplay</li>
-							<li>Special event tier lists (e.g., EVANGELION collab)</li>
-							<li>Visual rankings from SS to F tier</li>
-							<li>Click any cat for detailed information</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-
-			<div className="bg-white/80 dark:bg-slate-800 backdrop-blur-sm rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-200/50 p-6 md:p-8">
-				<h2 className="text-xl font-bold text-slate-800 dark:text-slate-50 mb-4">
 					Roadmap
 				</h2>
 				<ul className="list-disc list-inside text-slate-600 dark:text-slate-300 space-y-2 ml-4">
@@ -135,23 +61,16 @@ function About() {
 						Improve game data source. Right now it uses weekly drops from
 						battle-cats-rolls project
 					</li>
-					<li>Add the event's uber pool name (like Elemental Pixies)</li>
-					<li>
-						Improve the planner to consolidate the same cats from different
-						events
-					</li>
 					<li>
 						Improve the planner so it produces a list of steps of when to use
 						rare tickets and cat food for different events
 					</li>
 					<li>Add stats to the cat popup dialog</li>
 					<li>More filters to the Dictionary</li>
-					<li>Figure out your seed based on rolls</li>
 					<li>
 						Better explanation of how things work and how to switch tracks
 					</li>
 					<li>Better mobile responsiveness</li>
-					<li>Track which cats you already have</li>
 					<li>Cat comparison tool</li>
 					<li>Platinum/Legend ticket helper</li>
 					<li>Sharing</li>

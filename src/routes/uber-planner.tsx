@@ -10,7 +10,7 @@ import {
 	createGachaEvent,
 	getEventOptions,
 } from "../data/gacha-data";
-import { useCatDatabase, useCatSeed } from "../utils";
+import { useCatDatabase, useCatSeed, useOwnedCats } from "../utils";
 
 export const Route = createFileRoute("/uber-planner")({
 	component: App,
@@ -32,12 +32,20 @@ const CatColumnData: React.FC<CatColumnDataProps> = ({
 	onOpenCatDialog,
 	onShowEvents,
 }) => {
+	const { ownedCats } = useOwnedCats();
+	const isUberOrLegend = cat.rarity === 4 || cat.rarity === 5;
+	const shouldHighlight = isUberOrLegend && !ownedCats.has(cat.id);
+
 	return (
 		<div className="flex items-center gap-2">
 			<button
 				type="button"
 				onClick={() => onOpenCatDialog()}
-				className="p-1 border rounded hover:bg-purple-100 dark:hover:bg-purple-900"
+				className={`p-1 border rounded hover:bg-purple-100 dark:hover:bg-purple-900 ${
+					shouldHighlight
+						? "font-bold border-2 border-emerald-500 dark:border-emerald-400 bg-emerald-50 dark:bg-emerald-950"
+						: ""
+				}`}
 			>
 				{cat.name[0]}
 			</button>
@@ -153,17 +161,62 @@ function App() {
 				</div>
 				<div>
 					<h1 className="text-2xl md:text-3xl font-bold text-slate-800 dark:text-slate-100">
-						Roll Planner
+						Uber Planner
 					</h1>
 					<p className="text-sm text-slate-500 dark:text-slate-400">
 						This shows rolls for all of the current and future events in that
 						slot. Click on the events button to see which events will give you
-						that cat.
+						that cat. Cats with a{" "}
+						<span className="ring-2 ring-inset ring-emerald-400 dark:ring-emerald-500 p-1 rounded">
+							green outline
+						</span>{" "}
+						are Uber or Legend rarity cats that are not in your collection.
 					</p>
 					<p className="text-sm text-slate-500 dark:text-slate-400">
 						To switch tracks, use a guaranteed roll or find a switch in the
 						list.
 					</p>
+					<div className="mt-3 flex flex-wrap gap-3 text-xs">
+						<div className="flex items-center gap-2">
+							<span className="font-semibold text-slate-600 dark:text-slate-300">
+								Legend:
+							</span>
+						</div>
+						<div className="flex items-center gap-1.5">
+							<span className="px-2 py-0.5 bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 rounded font-bold border border-green-300 dark:border-green-700">
+								R
+							</span>
+							<span className="text-slate-600 dark:text-slate-400">Rare</span>
+						</div>
+						<div className="flex items-center gap-1.5">
+							<span className="px-2 py-0.5 bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 rounded font-bold border border-blue-300 dark:border-blue-700">
+								SR
+							</span>
+							<span className="text-slate-600 dark:text-slate-400">
+								Super Rare
+							</span>
+						</div>
+						<div className="flex items-center gap-1.5">
+							<span className="px-2 py-0.5 bg-amber-100 dark:bg-amber-900 text-amber-700 dark:text-amber-300 rounded font-bold border border-amber-300 dark:border-amber-700">
+								U
+							</span>
+							<span className="text-slate-600 dark:text-slate-400">
+								Uber Rare
+							</span>
+						</div>
+						<div className="flex items-center gap-1.5">
+							<span className="px-2 py-0.5 bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-300 rounded font-bold border border-purple-300 dark:border-purple-700">
+								L
+							</span>
+							<span className="text-slate-600 dark:text-slate-400">Legend</span>
+						</div>
+						<div className="flex items-center gap-1.5">
+							<span className="text-slate-500 dark:text-slate-400">•</span>
+							<span className="text-slate-600 dark:text-slate-400">
+								Tier ratings (e.g., U-B+) show cat strength
+							</span>
+						</div>
+					</div>
 				</div>
 			</div>
 			{catDatabase.isLoading && (

@@ -16,9 +16,9 @@ export const Route = createRootRoute({
 function RootComponent() {
 	return (
 		<ThemeProvider>
-			<Header />
 			<QueryClientProvider client={queryClient}>
 				<DialogProvider>
+					<Header />
 					<div className="root">
 						<Outlet />
 					</div>
