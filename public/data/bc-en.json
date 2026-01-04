@@ -143987,8 +143987,7 @@
       ],
       "series_id": 19,
       "name": "Limited unit Celestial Child Luna added! ★Uber Rare drop rate UP!",
-      "rate": "uberfest_legend",
-      "similarity": 99
+      "rate": "uberfest_legend"
     },
     "1007": {
       "cats": [
@@ -166960,6 +166959,72 @@
       "version": "150000",
       "name": "New Conjurer Unit Mighty Morta-Loncha, with Explosive attacks! ★Tap for details!",
       "id": 979,
+      "rare": 6970,
+      "supa": 2500,
+      "uber": 500,
+      "legend": 30
+    },
+    "2026-01-01_1006": {
+      "start_on": "2026-01-01",
+      "end_on": "2026-01-06",
+      "version": "150000",
+      "name": "Limited unit Celestial Child Luna added! ★Uber Rare drop rate UP!",
+      "id": 1006,
+      "rare": 6470,
+      "supa": 2600,
+      "uber": 900,
+      "legend": 30
+    },
+    "2026-01-01_1011": {
+      "start_on": "2026-01-01",
+      "end_on": "2026-01-09",
+      "version": "150000",
+      "name": "Limited Uber Rare unit Koneko added! 110M DL Special Capsules!",
+      "id": 1011,
+      "rare": 6930,
+      "supa": 2500,
+      "uber": 500,
+      "legend": 70
+    },
+    "2026-01-01_947": {
+      "start_on": "2026-01-01",
+      "end_on": "2026-01-06",
+      "version": "150000",
+      "name": "Command mighty Conjurer Mech Patrol Axel! ★Tap banner for info!",
+      "id": 947,
+      "rare": 6970,
+      "supa": 2500,
+      "uber": 500,
+      "legend": 30
+    },
+    "2026-01-06_1011": {
+      "start_on": "2026-01-06",
+      "end_on": "2026-01-09",
+      "version": "150000",
+      "name": "Limited Uber Rare unit Koneko added! 110M DL Special Capsules!",
+      "id": 1011,
+      "rare": 6930,
+      "supa": 2500,
+      "uber": 500,
+      "legend": 70
+    },
+    "2026-01-06_945": {
+      "start_on": "2026-01-06",
+      "end_on": "2026-01-09",
+      "version": "150000",
+      "name": "Conjure spirits with new hero Gunduros! Tap banner for info!",
+      "id": 945,
+      "rare": 6970,
+      "supa": 2500,
+      "uber": 500,
+      "legend": 30
+    },
+    "2026-01-06_991": {
+      "start_on": "2026-01-06",
+      "end_on": "2026-01-09",
+      "version": "150000",
+      "name": "The Almighties, supreme beings of Catkind! ★ Tap banner for info!",
+      "id": 991,
       "rare": 6970,
       "supa": 2500,
       "uber": 500,
