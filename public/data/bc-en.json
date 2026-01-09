@@ -144979,9 +144979,8 @@
         31
       ],
       "series_id": 28,
-      "name": "NEW hero Ninja Girl Tomoe! Strong vs Traitless and Aku! ★ Tap banner for info!",
-      "rate": "regular",
-      "similarity": 98
+      "name": "New unit Sorceress Sidmi added! Spooky beauties from beyond!",
+      "rate": "regular"
     },
     "1016": {
       "cats": [
@@ -145051,9 +145050,8 @@
         31
       ],
       "series_id": 28,
-      "name": "NEW hero Ninja Girl Tomoe! Strong vs Traitless and Aku! ★ Tap banner for info!",
-      "rate": "regular",
-      "similarity": 98
+      "name": "New unit Sorceress Sidmi added! Spooky beauties from beyond!",
+      "rate": "regular"
     },
     "1017": {
       "cats": [
@@ -145128,9 +145126,8 @@
         31
       ],
       "series_id": 54,
-      "name": "Sakura joins from STREET FIGHTER V CHAMPION EDITION! Tap for info!",
-      "rate": "regular",
-      "similarity": 82
+      "name": "Juri joins from Street Fighter 6! Tap for info!",
+      "rate": "regular"
     },
     "1018": {
       "cats": [
@@ -145205,9 +145202,8 @@
         31
       ],
       "series_id": 55,
-      "name": "Luke joins from STREET FIGHTER V CHAMPION EDITION! Tap for info!",
-      "rate": "regular",
-      "similarity": 82
+      "name": "Cammy joins from Street Fighter 6! Tap for info!",
+      "rate": "regular"
     },
     "1019": {
       "cats": [
@@ -146316,9 +146312,8 @@
         31
       ],
       "series_id": 54,
-      "name": "Sakura joins from STREET FIGHTER V CHAMPION EDITION! Tap for info!",
-      "rate": "regular",
-      "similarity": 82
+      "name": "Juri joins from Street Fighter 6! Tap for info!",
+      "rate": "regular"
     },
     "1032": {
       "cats": [
@@ -146382,9 +146377,8 @@
         31
       ],
       "series_id": 55,
-      "name": "Luke joins from STREET FIGHTER V CHAMPION EDITION! Tap for info!",
-      "rate": "regular",
-      "similarity": 82
+      "name": "Cammy joins from Street Fighter 6! Tap for info!",
+      "rate": "regular"
     }
   },
   "events": {
@@ -167025,6 +167019,188 @@
       "version": "150000",
       "name": "The Almighties, supreme beings of Catkind! ★ Tap banner for info!",
       "id": 991,
+      "rare": 6970,
+      "supa": 2500,
+      "uber": 500,
+      "legend": 30
+    },
+    "2026-01-09_1031": {
+      "start_on": "2026-01-09",
+      "end_on": "2026-01-26",
+      "version": "150002",
+      "name": "Juri joins from Street Fighter 6! Tap for info!",
+      "id": 1031,
+      "rare": 6970,
+      "supa": 2500,
+      "uber": 500,
+      "legend": 30
+    },
+    "2026-01-09_1032": {
+      "start_on": "2026-01-09",
+      "end_on": "2026-01-26",
+      "version": "150002",
+      "name": "Cammy joins from Street Fighter 6! Tap for info!",
+      "id": 1032,
+      "rare": 6970,
+      "supa": 2500,
+      "uber": 500,
+      "legend": 30
+    },
+    "2026-01-09_946": {
+      "start_on": "2026-01-09",
+      "end_on": "2026-01-13",
+      "version": "150002",
+      "name": "Hanasaka Cat with Conjurer evolved form joins! ★Tap banner for info!",
+      "id": 946,
+      "rare": 6970,
+      "supa": 2500,
+      "uber": 500,
+      "legend": 30
+    },
+    "2026-01-13_942": {
+      "start_on": "2026-01-13",
+      "end_on": "2026-01-16",
+      "version": "150002",
+      "name": "Conjurer Dynasaurus Cat joins the fight! ★Tap banner for info!",
+      "id": 942,
+      "rare": 6970,
+      "supa": 2500,
+      "uber": 500,
+      "legend": 30
+    },
+    "2026-01-16_1007": {
+      "start_on": "2026-01-16",
+      "end_on": "2026-01-19",
+      "version": "150002",
+      "name": "Limited unit Netherworld Nymph Lunacia added! ★Tap for details!",
+      "id": 1007,
+      "rare": 6470,
+      "supa": 2600,
+      "uber": 900,
+      "legend": 30
+    },
+    "2026-01-16_1031": {
+      "start_on": "2026-01-16",
+      "end_on": "2026-01-26",
+      "version": "150002",
+      "name": "Juri joins from Street Fighter 6! Tap for info!",
+      "id": 1031,
+      "rare": 6970,
+      "supa": 2500,
+      "uber": 500,
+      "legend": 30
+    },
+    "2026-01-16_1032": {
+      "start_on": "2026-01-16",
+      "end_on": "2026-01-26",
+      "version": "150002",
+      "name": "Cammy joins from Street Fighter 6! Tap for info!",
+      "id": 1032,
+      "rare": 6970,
+      "supa": 2500,
+      "uber": 500,
+      "legend": 30
+    },
+    "2026-01-19_1004": {
+      "start_on": "2026-01-19",
+      "end_on": "2026-01-23",
+      "version": "150002",
+      "name": "Conjurer hero Komori joins the fight! ★Tap for details!",
+      "id": 1004,
+      "rare": 6970,
+      "supa": 2500,
+      "uber": 500,
+      "guaranteed": true,
+      "legend": 30
+    },
+    "2026-01-19_1031": {
+      "start_on": "2026-01-19",
+      "end_on": "2026-01-26",
+      "version": "150002",
+      "name": "Juri joins from Street Fighter 6! Tap for info!",
+      "id": 1031,
+      "rare": 6970,
+      "supa": 2500,
+      "uber": 500,
+      "guaranteed": true,
+      "legend": 30
+    },
+    "2026-01-19_1032": {
+      "start_on": "2026-01-19",
+      "end_on": "2026-01-26",
+      "version": "150002",
+      "name": "Cammy joins from Street Fighter 6! Tap for info!",
+      "id": 1032,
+      "rare": 6970,
+      "supa": 2500,
+      "uber": 500,
+      "guaranteed": true,
+      "legend": 30
+    },
+    "2026-01-23_1016": {
+      "start_on": "2026-01-23",
+      "end_on": "2026-01-26",
+      "version": "150002",
+      "name": "New unit Sorceress Sidmi added! Spooky beauties from beyond!",
+      "id": 1016,
+      "rare": 6970,
+      "supa": 2500,
+      "uber": 500,
+      "guaranteed": true,
+      "legend": 30
+    },
+    "2026-01-23_1031": {
+      "start_on": "2026-01-23",
+      "end_on": "2026-01-26",
+      "version": "150002",
+      "name": "Juri joins from Street Fighter 6! Tap for info!",
+      "id": 1031,
+      "rare": 6970,
+      "supa": 2500,
+      "uber": 500,
+      "guaranteed": true,
+      "legend": 30
+    },
+    "2026-01-23_1032": {
+      "start_on": "2026-01-23",
+      "end_on": "2026-01-26",
+      "version": "150002",
+      "name": "Cammy joins from Street Fighter 6! Tap for info!",
+      "id": 1032,
+      "rare": 6970,
+      "supa": 2500,
+      "uber": 500,
+      "guaranteed": true,
+      "legend": 30
+    },
+    "2026-01-26_943": {
+      "start_on": "2026-01-26",
+      "end_on": "2026-01-30",
+      "version": "150002",
+      "name": "Conjure spirits with new hero Akechi Mitsuhide! Tap banner for info!",
+      "id": 943,
+      "rare": 6970,
+      "supa": 2500,
+      "uber": 500,
+      "legend": 30
+    },
+    "2026-01-26_979": {
+      "start_on": "2026-01-26",
+      "end_on": "2026-01-30",
+      "version": "150002",
+      "name": "New Conjurer Unit Mighty Morta-Loncha, with Explosive attacks! ★Tap for details!",
+      "id": 979,
+      "rare": 6970,
+      "supa": 2500,
+      "uber": 500,
+      "legend": 30
+    },
+    "2026-01-26_986": {
+      "start_on": "2026-01-26",
+      "end_on": "2026-01-30",
+      "version": "150002",
+      "name": "Mystery creature Mamoluga awaits your summoning! ★ Tap banner for info!",
+      "id": 986,
       "rare": 6970,
       "supa": 2500,
       "uber": 500,
