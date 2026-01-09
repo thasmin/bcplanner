@@ -239,6 +239,9 @@ export function getCatTierRank(catId: number): string | undefined {
 	for (const tier of evaTierList) {
 		if (tier.cats.includes(catId)) return tier.rank;
 	}
+	for (const tier of sfTierList) {
+		if (tier.cats.includes(catId)) return tier.rank;
+	}
 	return undefined;
 }
 
@@ -403,5 +406,32 @@ export const evaTierList = [
 	{
 		rank: "F",
 		cats: [],
+	},
+];
+
+export const sfTierList = [
+	{
+		rank: "S",
+		cats: [828],
+	},
+	{
+		rank: "A",
+		cats: [511, 516, 513],
+	},
+	{
+		rank: "B",
+		cats: [682, 518, 827, 681],
+	},
+	{
+		rank: "C",
+		cats: [576, 573, 512, 574, 514],
+	},
+	{
+		rank: "D",
+		cats: [575, 515],
+	},
+	{
+		rank: "F",
+		cats: [517, 572],
 	},
 ];

@@ -5,6 +5,7 @@ import type { CatDatabase } from "@/data/gacha-data";
 import {
 	evaTierList,
 	getCatStageImagePath,
+	sfTierList,
 	tierList,
 	useCatDatabase,
 } from "@/utils";
@@ -124,13 +125,13 @@ function RouteComponent() {
 			<section className="mb-10">
 				<div className="flex items-center gap-3 mb-4">
 					<h2 className="text-xl font-bold text-slate-700 dark:text-slate-200">
-						EVANGELION Collab
+						STREET FIGHTER Collab
 					</h2>
 					<span className="px-2 py-0.5 text-xs font-bold bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-200 rounded-lg">
 						Limited
 					</span>
 				</div>
-				<TierListTable tierList={evaTierList} onSelectCatId={openCatDialog} />
+				<TierListTable tierList={sfTierList} onSelectCatId={openCatDialog} />
 			</section>
 
 			<section>
@@ -138,6 +139,18 @@ function RouteComponent() {
 					General Tier List
 				</h2>
 				<TierListTable tierList={tierList} onSelectCatId={openCatDialog} />
+			</section>
+
+			<section className="mb-10">
+				<div className="flex items-center gap-3 mb-4">
+					<h2 className="text-xl font-bold text-slate-700 dark:text-slate-200">
+						EVANGELION Collab
+					</h2>
+					<span className="px-2 py-0.5 text-xs font-bold bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-200 rounded-lg">
+						Limited
+					</span>
+				</div>
+				<TierListTable tierList={evaTierList} onSelectCatId={openCatDialog} />
 			</section>
 		</div>
 	);
