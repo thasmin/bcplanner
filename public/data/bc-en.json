@@ -146286,9 +146286,8 @@
         31
       ],
       "series_id": 35,
-      "name": "New unit Trixi joins the 10th anniversary Capsules! ★Check banner for details!",
-      "rate": "no_legend",
-      "similarity": 72
+      "name": "Lunar New Year Capsules full of popular units! Tap the banner for details!",
+      "rate": "no_legend"
     },
     "1027": {
       "cats": [
@@ -146351,8 +146350,7 @@
       ],
       "series_id": 39,
       "name": "Lunar New Year Capsules full of popular units! Tap the banner for details!",
-      "rate": "no_legend",
-      "similarity": 70
+      "rate": "no_legend"
     },
     "1028": {
       "cats": [
@@ -146412,8 +146410,7 @@
       ],
       "series_id": 66,
       "name": "Lunar New Year Capsules full of appreciation! Tap the banner for details!",
-      "rate": "regular",
-      "similarity": 74
+      "rate": "regular"
     },
     "1029": {
       "cats": [
@@ -146473,8 +146470,7 @@
       ],
       "series_id": 67,
       "name": "Lunar New Year Capsules full of appreciation! Tap the banner for details!",
-      "rate": "regular",
-      "similarity": 81
+      "rate": "regular"
     },
     "1030": {
       "cats": [
@@ -168895,6 +168891,92 @@
       "version": "150002",
       "name": "Mystery creature Mamoluga awaits your summoning! ★ Tap banner for info!",
       "id": 986,
+      "rare": 6970,
+      "supa": 2500,
+      "uber": 500,
+      "legend": 30
+    },
+    "2026-01-30_1006": {
+      "start_on": "2026-01-30",
+      "end_on": "2026-02-05",
+      "version": "150100",
+      "name": "Limited unit Celestial Child Luna added! ★Uber Rare drop rate UP!",
+      "id": 1006,
+      "rare": 6470,
+      "supa": 2600,
+      "uber": 900,
+      "legend": 30
+    },
+    "2026-01-30_696": {
+      "start_on": "2026-01-30",
+      "end_on": "2026-02-21",
+      "version": "150100",
+      "name": "Leave those Red nasties to the RED BUSTERS! Tap banner for info!",
+      "id": 696,
+      "rare": 7000,
+      "supa": 2500,
+      "uber": 500,
+      "step_up": true
+    },
+    "2026-01-30_947": {
+      "start_on": "2026-01-30",
+      "end_on": "2026-02-02",
+      "version": "150100",
+      "name": "Command mighty Conjurer Mech Patrol Axel! ★Tap banner for info!",
+      "id": 947,
+      "rare": 6970,
+      "supa": 2500,
+      "uber": 500,
+      "legend": 30
+    },
+    "2026-02-02_944": {
+      "start_on": "2026-02-02",
+      "end_on": "2026-02-05",
+      "version": "150100",
+      "name": "Pegasa joins the Galaxy Girls with the power of Conjury! ★ Tap banner for info!",
+      "id": 944,
+      "rare": 6970,
+      "supa": 2500,
+      "uber": 500,
+      "legend": 30
+    },
+    "2026-02-05_1026": {
+      "start_on": "2026-02-05",
+      "end_on": "2026-02-10",
+      "version": "150100",
+      "name": "Lunar New Year Capsules full of popular units! Tap the banner for details!",
+      "id": 1026,
+      "rare": 7000,
+      "supa": 2500,
+      "uber": 500
+    },
+    "2026-02-05_1027": {
+      "start_on": "2026-02-05",
+      "end_on": "2026-02-10",
+      "version": "150100",
+      "name": "Lunar New Year Capsules full of popular units! Tap the banner for details!",
+      "id": 1027,
+      "rare": 7000,
+      "supa": 2500,
+      "uber": 500
+    },
+    "2026-02-10_1028": {
+      "start_on": "2026-02-10",
+      "end_on": "2026-02-13",
+      "version": "150100",
+      "name": "Lunar New Year Capsules full of appreciation! Tap the banner for details!",
+      "id": 1028,
+      "rare": 6970,
+      "supa": 2500,
+      "uber": 500,
+      "legend": 30
+    },
+    "2026-02-10_1029": {
+      "start_on": "2026-02-10",
+      "end_on": "2026-02-13",
+      "version": "150100",
+      "name": "Lunar New Year Capsules full of appreciation! Tap the banner for details!",
+      "id": 1029,
       "rare": 6970,
       "supa": 2500,
       "uber": 500,
