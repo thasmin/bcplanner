@@ -1,0 +1,37 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches: [main, build-from-bcdata]
+  schedule:
+    # Check for game updates daily at 6am UTC
+    - cron: '0 6 * * *'
+  workflow_dispatch: # Manual trigger
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v1
+
+      - name: Clone BCData
+        run: git clone --depth 1 https://git.battlecatsmodding.org/fieryhenry/BCData.git
+
+      - name: Install dependencies
+        run: bun install
+
+      - name: Build game data
+        run: bun run scripts/game-data/build.ts BCData public/data/bc-en.json en
+
+      - name: Build site
+        run: bun run build
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: catplanner
+          directory: dist

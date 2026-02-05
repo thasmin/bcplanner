@@ -134,7 +134,7 @@ export function getEventOptions(eventsData: EventsData) {
 	// remove all but the most recent platinum/legend events
 	return events.filter((event, index) => {
 		if (!event.platinum) return true;
-		if (events[index + 2].platinum) return false;
+		if (events[index + 2]?.platinum) return false;
 		return true;
 	});
 }

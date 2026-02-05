@@ -11,6 +11,7 @@
     "lint": "biome lint",
     "check": "biome check",
     "update-data": "curl -s 'https://gitlab.com/godfat/battle-cats-rolls/-/raw/master/build/bc-en.yaml?ref_type=heads' | yq -o=json eval > public/data/bc-en.json && bun run src/scraper/grabCatImages.ts",
+    "build-data": "bun run scripts/game-data/build.ts ../BCData public/data/bc-en.json en",
     "deploy": "bun run --bun build && bunx --bun wrangler pages deploy dist --project-name=catplanner"
   },
   "dependencies": {

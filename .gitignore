@@ -11,3 +11,7 @@ count.txt
 .output
 .vinxi
 todos.json
+
+# Game data build files
+scripts/game-data/BCData/
+scripts/game-data/input/
