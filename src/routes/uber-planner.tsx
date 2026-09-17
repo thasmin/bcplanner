@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Bookmark, Cat, Dices } from "lucide-react";
 import { useId, useState } from "react";
 import EventDetailsDialog from "@/components/EventDetailsDialog";
+import { PageHeader } from "@/components/PageHeader";
 import RarityTag from "@/components/RarityTag";
 import { useDialogs } from "@/contexts/DialogContext";
 import { rollTracks } from "../data/battle-cats-gacha";
@@ -150,21 +151,18 @@ function App() {
 	};
 
 	return (
-		<div className="p-4 md:p-6 max-w-7xl mx-auto">
+		<div className="page-shell">
 			<EventDetailsDialog
 				isOpen={dialogEventCodes.length > 0}
 				eventCodes={dialogEventCodes}
 				onClose={hideEvents}
 			/>
-			<div className="flex items-center gap-3 mb-8">
-				<div className="p-3 bg-gradient-to-br from-amber-400 to-orange-500 rounded-2xl shadow-lg shadow-amber-500/20">
-					<Cat className="w-7 h-7 text-indigo-950" />
-				</div>
-				<div>
-					<h1 className="text-2xl md:text-3xl font-bold text-slate-800 dark:text-slate-100">
-						Uber Planner
-					</h1>
-					<p className="text-sm text-slate-500 dark:text-slate-400">
+			<PageHeader
+				icon={Cat}
+				title="Uber Planner"
+				tone="coral"
+				description={
+					<>
 						This shows rolls for all of the current and future events in that
 						slot. Click on the events button to see which events will give you
 						that cat. Cats with a{" "}
@@ -172,52 +170,47 @@ function App() {
 							green outline
 						</span>{" "}
 						are Uber or Legend rarity cats that are not in your collection.
-					</p>
-					<p className="text-sm text-slate-500 dark:text-slate-400">
+						<br />
 						To switch tracks, use a guaranteed roll or find a switch in the
 						list.
-					</p>
-					<div className="mt-3 flex flex-wrap gap-3 text-xs">
-						<div className="flex items-center gap-2">
-							<span className="font-semibold text-slate-600 dark:text-slate-300">
-								Legend:
-							</span>
-						</div>
-						<div className="flex items-center gap-1.5">
-							<span className="px-2 py-0.5 bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 rounded font-bold border border-green-300 dark:border-green-700">
-								R
-							</span>
-							<span className="text-slate-600 dark:text-slate-400">Rare</span>
-						</div>
-						<div className="flex items-center gap-1.5">
-							<span className="px-2 py-0.5 bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 rounded font-bold border border-blue-300 dark:border-blue-700">
-								SR
-							</span>
-							<span className="text-slate-600 dark:text-slate-400">
-								Super Rare
-							</span>
-						</div>
-						<div className="flex items-center gap-1.5">
-							<span className="px-2 py-0.5 bg-amber-100 dark:bg-amber-900 text-amber-700 dark:text-amber-300 rounded font-bold border border-amber-300 dark:border-amber-700">
-								U
-							</span>
-							<span className="text-slate-600 dark:text-slate-400">
-								Uber Rare
-							</span>
-						</div>
-						<div className="flex items-center gap-1.5">
-							<span className="px-2 py-0.5 bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-300 rounded font-bold border border-purple-300 dark:border-purple-700">
-								L
-							</span>
-							<span className="text-slate-600 dark:text-slate-400">Legend</span>
-						</div>
-						<div className="flex items-center gap-1.5">
-							<span className="text-slate-500 dark:text-slate-400">•</span>
-							<span className="text-slate-600 dark:text-slate-400">
-								Tier ratings (e.g., U-B+) show cat strength
-							</span>
-						</div>
-					</div>
+					</>
+				}
+			/>
+			<div className="mb-6 flex flex-wrap gap-3 text-xs">
+				<div className="flex items-center gap-2">
+					<span className="font-semibold text-slate-600 dark:text-slate-300">
+						Legend:
+					</span>
+				</div>
+				<div className="flex items-center gap-1.5">
+					<span className="px-2 py-0.5 bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 rounded font-bold border border-green-300 dark:border-green-700">
+						R
+					</span>
+					<span className="text-slate-600 dark:text-slate-400">Rare</span>
+				</div>
+				<div className="flex items-center gap-1.5">
+					<span className="px-2 py-0.5 bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 rounded font-bold border border-blue-300 dark:border-blue-700">
+						SR
+					</span>
+					<span className="text-slate-600 dark:text-slate-400">Super Rare</span>
+				</div>
+				<div className="flex items-center gap-1.5">
+					<span className="px-2 py-0.5 bg-amber-100 dark:bg-amber-900 text-amber-700 dark:text-amber-300 rounded font-bold border border-amber-300 dark:border-amber-700">
+						U
+					</span>
+					<span className="text-slate-600 dark:text-slate-400">Uber Rare</span>
+				</div>
+				<div className="flex items-center gap-1.5">
+					<span className="px-2 py-0.5 bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-300 rounded font-bold border border-purple-300 dark:border-purple-700">
+						L
+					</span>
+					<span className="text-slate-600 dark:text-slate-400">Legend</span>
+				</div>
+				<div className="flex items-center gap-1.5">
+					<span className="text-slate-500 dark:text-slate-400">•</span>
+					<span className="text-slate-600 dark:text-slate-400">
+						Tier ratings (e.g., U-B+) show cat strength
+					</span>
 				</div>
 			</div>
 			{catDatabase.isLoading && (
@@ -226,7 +219,7 @@ function App() {
 					Loading cat database...
 				</div>
 			)}
-			<div className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-2xl shadow-lg shadow-slate-200/50 dark:shadow-slate-950/50 border border-slate-200/50 dark:border-slate-700/50 p-6 mb-6">
+			<div className="app-panel mb-6">
 				<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 					<div>
 						<label
@@ -244,13 +237,13 @@ function App() {
 								onChange={(e) =>
 									setSeed(+(e.target.value.match(/\d+/g)?.join("") ?? 0))
 								}
-								className="flex-1 px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-800 dark:text-slate-100 placeholder:text-slate-400 transition-all duration-200 hover:border-slate-300 dark:hover:border-slate-600"
+								className="control flex-1"
 								placeholder="Enter seed number"
 							/>
 							<button
 								type="button"
 								onClick={openBookmarkManager}
-								className="px-4 py-3 bg-indigo-500 hover:bg-indigo-600 text-white rounded-xl transition-all duration-200 flex items-center gap-2 font-medium"
+								className="primary-button"
 								title="Manage bookmarks"
 							>
 								<Bookmark className="w-5 h-5" />
@@ -261,8 +254,8 @@ function App() {
 			</div>
 
 			{/* map table */}
-			<div className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-2xl shadow-lg shadow-slate-200/50 dark:shadow-slate-950/50 border border-slate-200/50 dark:border-slate-700/50 overflow-hidden">
-				<div className="px-6 py-5 bg-gradient-to-r from-slate-50 dark:from-slate-900 to-slate-100/50 dark:to-slate-800/50 border-b border-slate-200 dark:border-slate-700">
+			<div className="app-table">
+				<div className="app-table-header">
 					<h2 className="text-lg font-bold text-slate-800 dark:text-slate-100">
 						Next 100 Rolls
 					</h2>

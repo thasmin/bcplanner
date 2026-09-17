@@ -11,6 +11,7 @@ import {
 	X,
 } from "lucide-react";
 import { useId, useRef, useState } from "react";
+import { PageHeader } from "@/components/PageHeader";
 import RarityTag from "@/components/RarityTag";
 import SeedFinderWorker from "@/data/find-seed?worker";
 import {
@@ -358,7 +359,7 @@ function SeedFinder() {
 
 	if (catDatabase.isLoading) {
 		return (
-			<div className="min-h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 dark:from-slate-900 dark:via-indigo-950 dark:to-slate-900 p-4 md:p-8">
+			<div className="page-shell page-shell-narrow">
 				<div className="max-w-4xl mx-auto">
 					<div className="text-center text-slate-600 dark:text-slate-400">
 						Loading cat database...
@@ -370,7 +371,7 @@ function SeedFinder() {
 
 	if (catDatabase.error) {
 		return (
-			<div className="min-h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 dark:from-slate-900 dark:via-indigo-950 dark:to-slate-900 p-4 md:p-8">
+			<div className="page-shell page-shell-narrow">
 				<div className="max-w-4xl mx-auto">
 					<div className="text-center text-red-600 dark:text-red-400">
 						Error loading cat database
@@ -381,35 +382,34 @@ function SeedFinder() {
 	}
 
 	return (
-		<div className="min-h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 dark:from-slate-900 dark:via-indigo-950 dark:to-slate-900 p-4 md:p-8">
-			<div className="max-w-4xl mx-auto flex flex-col gap-6">
+		<div className="page-shell page-shell-narrow">
+			<div className="flex flex-col gap-6">
 				{/* Header */}
-				<div className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-2xl shadow-lg shadow-slate-200/50 dark:shadow-slate-950/50 border border-slate-200/50 dark:border-slate-700/50 p-6">
-					<div className="flex items-center gap-3 mb-2">
-						<Sparkles className="text-amber-500" size={28} />
-						<h1 className="text-3xl font-bold text-slate-800 dark:text-slate-100">
-							Seed Finder
-						</h1>
-					</div>
-					<p className="text-slate-600 dark:text-slate-400">
-						Use 5 rare tickets and enter the cats that you get into this tool.
-						It will look at every seed to find the one that matches your cat
-						sequence. If it found more than one seed, roll another cat and try
-						again. If it can't find your seed after 7 or 8 cats, try{" "}
-						<a
-							href="https://bc-seek.godfat.org/seek"
-							target="_blank"
-							rel="noopener"
-							className="text-indigo-600 dark:text-indigo-400 underline"
-						>
-							Godfat
-						</a>{" "}
-						instead and send me a note so I can fix it.
-					</p>
-				</div>
+				<PageHeader
+					icon={Sparkles}
+					title="Seed Finder"
+					tone="sky"
+					description={
+						<>
+							Use 5 rare tickets and enter the cats that you get into this tool.
+							It will look at every seed to find the one that matches your cat
+							sequence. If it found more than one seed, roll another cat and try
+							again. If it can't find your seed after 7 or 8 cats, try{" "}
+							<a
+								href="https://bc-seek.godfat.org/seek"
+								target="_blank"
+								rel="noopener"
+								className="text-indigo-600 dark:text-indigo-400 underline"
+							>
+								Godfat
+							</a>{" "}
+							instead and send me a note so I can fix it.
+						</>
+					}
+				/>
 
 				{/* Autocomplete Input */}
-				<div className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-2xl shadow-lg shadow-slate-200/50 dark:shadow-slate-950/50 border border-slate-200/50 dark:border-slate-700/50 p-6">
+				<div className="app-panel">
 					<div className="mb-4">
 						<Autocomplete.Root
 							filteredItems={autocompleteItems}
@@ -550,7 +550,7 @@ function SeedFinder() {
 				</div>
 
 				{/* Search Controls & Results */}
-				<div className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-2xl shadow-lg shadow-slate-200/50 dark:shadow-slate-950/50 border border-slate-200/50 dark:border-slate-700/50 p-6">
+				<div className="app-panel">
 					<div className="flex items-center justify-between mb-6">
 						<h2 className="text-xl font-bold text-slate-800 dark:text-slate-100">
 							Seed Search

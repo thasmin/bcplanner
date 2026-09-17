@@ -1,26 +1,19 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Info, Mail, MessageCircle } from "lucide-react";
+import { PageHeader } from "@/components/PageHeader";
 
 export const Route = createFileRoute("/about")({ component: About });
 
 function About() {
 	return (
-		<div className="p-4 md:p-6 max-w-4xl mx-auto space-y-6">
-			<div className="flex items-center gap-3">
-				<div className="p-3 bg-gradient-to-br from-amber-400 to-orange-500 rounded-2xl shadow-lg shadow-amber-500/20">
-					<Info className="w-7 h-7 text-indigo-950" />
-				</div>
-				<div>
-					<h1 className="text-2xl md:text-3xl font-bold text-slate-800 dark:text-slate-100">
-						About CatPlanner
-					</h1>
-					<p className="text-sm text-slate-500 dark:text-slate-400">
-						Strategic planning for The Battle Cats
-					</p>
-				</div>
-			</div>
+		<div className="page-shell page-shell-narrow space-y-6">
+			<PageHeader
+				icon={Info}
+				title="About CatPlanner"
+				description="A focused roll-planning companion for The Battle Cats."
+			/>
 
-			<div className="bg-white/80 dark:bg-slate-800 backdrop-blur-sm rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-200/50 p-6 md:p-8 space-y-6">
+			<div className="app-panel space-y-6">
 				<p className="text-slate-700 dark:text-slate-100 text-lg leading-relaxed">
 					A strategic planning tool for{" "}
 					<span className="font-semibold text-indigo-700 dark:text-indigo-300">
@@ -52,7 +45,7 @@ function About() {
 				</div>
 			</div>
 
-			<div className="bg-white/80 dark:bg-slate-800 backdrop-blur-sm rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-200/50 p-6 md:p-8">
+			<div className="app-panel">
 				<h2 className="text-xl font-bold text-slate-800 dark:text-slate-50 mb-4">
 					Roadmap
 				</h2>
@@ -77,7 +70,7 @@ function About() {
 				</ul>
 			</div>
 
-			<div className="bg-white/80 dark:bg-slate-800 backdrop-blur-sm rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-200/50 p-6 md:p-8">
+			<div className="app-panel">
 				<h2 className="text-xl font-bold text-slate-800 dark:text-slate-50 mb-4">
 					Credits
 				</h2>
@@ -115,7 +108,7 @@ function About() {
 				</div>
 			</div>
 
-			<div className="bg-white/80 dark:bg-slate-800 backdrop-blur-sm rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-200/50 p-6 md:p-8">
+			<div className="app-panel">
 				<h2 className="text-xl font-bold text-slate-800 dark:text-slate-50 mb-4 flex items-center gap-2">
 					<MessageCircle className="w-5 h-5" />
 					Contact
@@ -195,7 +188,7 @@ function About() {
 				</div>
 			</div>
 
-			<div className="bg-white/80 dark:bg-slate-800 backdrop-blur-sm rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-200/50 p-6 md:p-8">
+			<div className="app-panel">
 				<h2 className="text-xl font-bold text-slate-800 dark:text-slate-50 mb-3">
 					Open Source
 				</h2>

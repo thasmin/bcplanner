@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import clsx from "clsx";
 import { Bookmark, Cat, Dices } from "lucide-react";
 import { useEffect, useId, useState } from "react";
+import { PageHeader } from "@/components/PageHeader";
 import RarityTag from "@/components/RarityTag";
 import { useDialogs } from "@/contexts/DialogContext";
 import { Rarity, rollTracks } from "../data/battle-cats-gacha";
@@ -211,20 +212,12 @@ function App() {
 	const eventInputId = useId();
 
 	return (
-		<div className="p-4 md:p-6 max-w-7xl mx-auto">
-			<div className="flex items-center gap-3 mb-8">
-				<div className="p-3 bg-gradient-to-br from-amber-400 to-orange-500 rounded-2xl shadow-lg shadow-amber-500/20">
-					<Cat className="w-7 h-7 text-indigo-950" />
-				</div>
-				<div>
-					<h1 className="text-2xl md:text-3xl font-bold text-slate-800 dark:text-slate-100">
-						Roll Planner
-					</h1>
-					<p className="text-sm text-slate-500 dark:text-slate-400">
-						Plan your gacha rolls strategically
-					</p>
-				</div>
-			</div>
+		<div className="page-shell">
+			<PageHeader
+				icon={Cat}
+				title="Roll Planner"
+				description="Compare both tracks and plan your next rolls."
+			/>
 
 			{catDatabase.isLoading && (
 				<div className="flex items-center gap-3 p-4 bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-xl text-amber-700">
@@ -233,7 +226,7 @@ function App() {
 				</div>
 			)}
 
-			<div className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-2xl shadow-lg shadow-slate-200/50 dark:shadow-slate-950/50 border border-slate-200/50 dark:border-slate-700/50 p-6 mb-6">
+			<div className="app-panel mb-6">
 				<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 					<div>
 						<label
@@ -251,13 +244,13 @@ function App() {
 								onChange={(e) =>
 									setSeed(+(e.target.value.match(/\d+/g)?.join("") ?? 0))
 								}
-								className="flex-1 px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-800 dark:text-slate-100 placeholder:text-slate-400 transition-all duration-200 hover:border-slate-300 dark:hover:border-slate-600"
+								className="control flex-1"
 								placeholder="Enter seed number"
 							/>
 							<button
 								type="button"
 								onClick={openBookmarkManager}
-								className="px-4 py-3 bg-indigo-500 hover:bg-indigo-600 text-white rounded-xl transition-all duration-200 flex items-center gap-2 font-medium"
+								className="primary-button"
 								title="Manage bookmarks"
 							>
 								<Bookmark className="w-5 h-5" />
@@ -277,7 +270,7 @@ function App() {
 							id={eventInputId}
 							name="event-select"
 							onChange={(e) => setSelectedEvent(e.target.value)}
-							className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-800 dark:text-slate-100 transition-all duration-200 hover:border-slate-300 dark:hover:border-slate-600 cursor-pointer"
+							className="control cursor-pointer"
 							disabled={eventOptions.length === 0}
 						>
 							{eventOptions.map((event) => (
@@ -290,8 +283,8 @@ function App() {
 				</div>
 			</div>
 
-			<div className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-2xl shadow-lg shadow-slate-200/50 dark:shadow-slate-950/50 border border-slate-200/50 dark:border-slate-700/50 overflow-hidden">
-				<div className="px-6 py-5 bg-gradient-to-r from-slate-50 dark:from-slate-900 to-slate-100/50 dark:to-slate-800/50 border-b border-slate-200 dark:border-slate-700">
+			<div className="app-table">
+				<div className="app-table-header">
 					<h2 className="text-lg font-bold text-slate-800 dark:text-slate-100">
 						Next 100 Rolls
 					</h2>

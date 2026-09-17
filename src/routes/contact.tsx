@@ -1,24 +1,20 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Mail, MessageCircle } from "lucide-react";
+import { PageHeader } from "@/components/PageHeader";
 
 export const Route = createFileRoute("/contact")({ component: Contact });
 
 function Contact() {
 	return (
-		<div className="p-4 md:p-6 max-w-3xl mx-auto">
-			<div className="flex items-center gap-3 mb-8">
-				<div className="p-3 bg-gradient-to-br from-amber-400 to-orange-500 rounded-2xl shadow-lg shadow-amber-500/20">
-					<MessageCircle className="w-7 h-7 text-indigo-950" />
-				</div>
-				<div>
-					<h1 className="text-2xl md:text-3xl font-bold text-slate-800">
-						Contact
-					</h1>
-					<p className="text-sm text-slate-500">Get in touch</p>
-				</div>
-			</div>
+		<div className="page-shell page-shell-narrow">
+			<PageHeader
+				icon={MessageCircle}
+				title="Contact"
+				tone="sky"
+				description="Questions, feedback, or a result that looks wrong? Get in touch."
+			/>
 
-			<div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-200/50 p-6 md:p-8 space-y-6">
+			<div className="app-panel space-y-6">
 				<section>
 					<p className="text-slate-700 text-lg leading-relaxed mb-6">
 						Have questions, feedback, or suggestions? Feel free to reach out!
@@ -74,8 +70,8 @@ function Contact() {
 					</h2>
 					<p className="text-slate-600 leading-relaxed">
 						CatPlanner was created by Dan to help Battle Cats players make the
-						most of their gacha rolls. The gacha algorithm was reverse-engineered
-						from{" "}
+						most of their gacha rolls. The gacha algorithm was
+						reverse-engineered from{" "}
 						<a
 							href="https://github.com/godfat/battle-cats-rolls"
 							target="_blank"

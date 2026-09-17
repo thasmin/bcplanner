@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ListOrdered } from "lucide-react";
+import { PageHeader } from "@/components/PageHeader";
 import { useDialogs } from "@/contexts/DialogContext";
 import type { CatDatabase } from "@/data/gacha-data";
 import {
@@ -66,7 +67,7 @@ const TierListTable: React.FC<{
 	const catDatabase = useCatDatabase();
 
 	return (
-		<div className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-2xl shadow-lg shadow-slate-200/50 dark:shadow-slate-950/50 border border-slate-200/50 dark:border-slate-700/50 overflow-hidden">
+		<div className="app-table">
 			{tierList
 				.filter((tier) => tier.cats.length > 0)
 				.map((tier) => (
@@ -107,20 +108,13 @@ function RouteComponent() {
 	const { openCatDialog } = useDialogs();
 
 	return (
-		<div className="p-4 md:p-6 max-w-7xl mx-auto">
-			<div className="flex items-center gap-3 mb-8">
-				<div className="p-3 bg-gradient-to-br from-violet-400 to-purple-500 rounded-2xl shadow-lg shadow-violet-500/20">
-					<ListOrdered className="w-7 h-7 text-violet-950" />
-				</div>
-				<div>
-					<h1 className="text-2xl md:text-3xl font-bold text-slate-800 dark:text-slate-100">
-						Tier Lists
-					</h1>
-					<p className="text-sm text-slate-500 dark:text-slate-400">
-						Cat rankings for strategic planning
-					</p>
-				</div>
-			</div>
+		<div className="page-shell">
+			<PageHeader
+				icon={ListOrdered}
+				title="Tier Lists"
+				tone="violet"
+				description="Community rankings for general and collaboration cats."
+			/>
 
 			<section className="mb-10">
 				<div className="flex items-center gap-3 mb-4">

@@ -17,269 +17,143 @@ import { useState } from "react";
 import { useTheme } from "../contexts/ThemeContext";
 import { CatCollectionDialog } from "./CatCollectionDialog";
 
+const navItems = [
+	{ to: "/", label: "Planner", icon: Home, tone: "gold" },
+	{ to: "/uber-planner", label: "Ubers", icon: Crown, tone: "coral" },
+	{ to: "/dictionary", label: "Dictionary", icon: BookOpen, tone: "teal" },
+	{ to: "/tierlist", label: "Tiers", icon: ListOrdered, tone: "violet" },
+	{ to: "/seed-finder", label: "Find seed", icon: Sparkles, tone: "sky" },
+	{ to: "/about", label: "About", icon: Info, tone: "gold" },
+] as const;
+
 export default function Header() {
 	const [isOpen, setIsOpen] = useState(false);
-	const { theme, toggleTheme } = useTheme();
-
 	const [showCatCollection, setShowCatCollection] = useState(false);
+	const { theme, toggleTheme } = useTheme();
 
 	return (
 		<>
-			<header className="px-4 py-3 flex items-center justify-between bg-gradient-to-r from-indigo-900 via-purple-900 to-indigo-900 text-white shadow-xl border-b border-amber-400/20">
-				<CatCollectionDialog
-					isOpen={showCatCollection}
-					onClose={() => setShowCatCollection(false)}
-				/>
-
-				<div className="flex items-center">
+			<CatCollectionDialog
+				isOpen={showCatCollection}
+				onClose={() => setShowCatCollection(false)}
+			/>
+			<header className="site-header">
+				<div className="site-header-inner">
 					<button
 						type="button"
 						onClick={() => setIsOpen(true)}
-						className="p-2 hover:bg-white/10 rounded-xl transition-all duration-200 md:hidden"
+						className="icon-button md:hidden"
 						aria-label="Open menu"
 					>
-						<Menu size={24} />
+						<Menu size={21} />
 					</button>
-					<div className="ml-4 md:ml-0 flex items-center gap-3">
-						<div className="p-2 bg-gradient-to-br from-amber-400 to-orange-500 rounded-xl shadow-lg shadow-amber-500/25">
-							<Cat size={24} className="text-indigo-950" />
-						</div>
-						<h1 className="text-xl font-bold tracking-tight">
-							<span className="text-amber-400">Battle Cats</span>
-							<span className="text-white/90"> Planner</span>
-						</h1>
+
+					<Link to="/" className="site-brand">
+						<span className="site-brand-mark">
+							<Cat size={22} strokeWidth={2.4} />
+						</span>
+						<span>
+							<strong>CatPlanner</strong>
+							<small>Battle Cats roll guide</small>
+						</span>
+					</Link>
+
+					<nav
+						className="site-nav hidden md:flex"
+						aria-label="Primary navigation"
+					>
+						{navItems.map(({ to, label, icon: Icon, tone }) => (
+							<Link
+								key={to}
+								to={to}
+								className="site-nav-link"
+								data-tone={tone}
+								activeProps={{
+									className: "site-nav-link site-nav-link-active",
+								}}
+							>
+								<Icon size={16} />
+								<span>{label}</span>
+							</Link>
+						))}
+					</nav>
+
+					<div className="site-actions">
+						<button
+							type="button"
+							onClick={() => setShowCatCollection(true)}
+							className="site-collection hidden lg:flex"
+						>
+							<Database size={16} />
+							Collection
+						</button>
+						<button
+							type="button"
+							onClick={toggleTheme}
+							className="icon-button"
+							aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
+						>
+							{theme === "light" ? <Moon size={18} /> : <Sun size={18} />}
+						</button>
 					</div>
 				</div>
-
-				{/* Desktop Navigation */}
-				<nav className="hidden md:flex items-center gap-1">
-					<button
-						type="button"
-						onClick={toggleTheme}
-						className="flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-white/10 transition-all duration-200"
-						aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
-					>
-						{theme === "light" ? <Moon size={18} /> : <Sun size={18} />}
-					</button>
-
-					<Link
-						to="/"
-						className="flex items-center gap-2 px-4 py-2 rounded-xl hover:bg-white/10 transition-all duration-200"
-						activeProps={{
-							className:
-								"flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-indigo-950 shadow-lg shadow-amber-500/25 transition-all duration-200",
-						}}
-					>
-						<Home size={18} />
-						<span className="font-semibold">Home</span>
-					</Link>
-
-					<button
-						type="button"
-						onClick={() => setShowCatCollection(true)}
-						className="flex items-center gap-2 px-4 py-2 rounded-xl hover:bg-white/10 transition-all duration-200"
-						aria-label="Cat Collection"
-					>
-						<Database size={18} />
-						<span className="font-semibold">Collection</span>
-					</button>
-
-					<Link
-						to="/dictionary"
-						className="flex items-center gap-2 px-4 py-2 rounded-xl hover:bg-white/10 transition-all duration-200"
-						activeProps={{
-							className:
-								"flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-indigo-950 shadow-lg shadow-amber-500/25 transition-all duration-200",
-						}}
-					>
-						<BookOpen size={18} />
-						<span className="font-semibold">Dictionary</span>
-					</Link>
-
-					<Link
-						to="/tierlist"
-						className="flex items-center gap-2 px-4 py-2 rounded-xl hover:bg-white/10 transition-all duration-200"
-						activeProps={{
-							className:
-								"flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-indigo-950 shadow-lg shadow-amber-500/25 transition-all duration-200",
-						}}
-					>
-						<ListOrdered size={18} />
-						<span className="font-semibold">Tier List</span>
-					</Link>
-
-					<Link
-						to="/uber-planner"
-						className="flex items-center gap-2 px-4 py-2 rounded-xl hover:bg-white/10 transition-all duration-200"
-						activeProps={{
-							className:
-								"flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-indigo-950 shadow-lg shadow-amber-500/25 transition-all duration-200",
-						}}
-					>
-						<Crown size={18} />
-						<span className="font-semibold">Uber Planner</span>
-					</Link>
-
-					<Link
-						to="/seed-finder"
-						className="flex items-center gap-2 px-4 py-2 rounded-xl hover:bg-white/10 transition-all duration-200"
-						activeProps={{
-							className:
-								"flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-indigo-950 shadow-lg shadow-amber-500/25 transition-all duration-200",
-						}}
-					>
-						<Sparkles size={18} />
-						<span className="font-semibold">Seed Finder</span>
-					</Link>
-
-					<Link
-						to="/about"
-						className="flex items-center gap-2 px-4 py-2 rounded-xl hover:bg-white/10 transition-all duration-200"
-						activeProps={{
-							className:
-								"flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-indigo-950 shadow-lg shadow-amber-500/25 transition-all duration-200",
-						}}
-					>
-						<Info size={18} />
-						<span className="font-semibold">About</span>
-					</Link>
-				</nav>
 			</header>
 
-			{/* Mobile Sidebar Overlay */}
 			{isOpen && (
 				<button
 					type="button"
-					className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 md:hidden"
+					className="mobile-menu-scrim md:hidden"
 					onClick={() => setIsOpen(false)}
-					onKeyDown={(e) => e.key === "Escape" && setIsOpen(false)}
+					aria-label="Close menu"
 				/>
 			)}
 
-			{/* Mobile Sidebar */}
 			<aside
-				className={`fixed top-0 left-0 h-full w-80 bg-gradient-to-b from-indigo-950 to-purple-950 text-white shadow-2xl z-50 transform transition-transform duration-300 ease-out flex flex-col md:hidden ${
-					isOpen ? "translate-x-0" : "-translate-x-full"
-				}`}
+				className={`mobile-menu md:hidden ${isOpen ? "mobile-menu-open" : ""}`}
+				aria-hidden={!isOpen}
+				inert={!isOpen}
 			>
-				<div className="flex items-center justify-between p-4 border-b border-white/10">
-					<div className="flex items-center gap-3">
-						<div className="p-2 bg-gradient-to-br from-amber-400 to-orange-500 rounded-xl">
-							<Cat size={20} className="text-indigo-950" />
-						</div>
-						<h2 className="text-lg font-bold text-amber-400">Menu</h2>
-					</div>
+				<div className="mobile-menu-header">
+					<span className="site-brand-mark">
+						<Cat size={20} />
+					</span>
+					<strong>CatPlanner</strong>
 					<button
 						type="button"
 						onClick={() => setIsOpen(false)}
-						className="p-2 hover:bg-white/10 rounded-xl transition-colors"
+						className="icon-button ml-auto"
 						aria-label="Close menu"
 					>
-						<X size={24} />
+						<X size={21} />
 					</button>
 				</div>
-
-				<nav className="flex-1 p-4 overflow-y-auto space-y-2">
-					<button
-						type="button"
-						onClick={toggleTheme}
-						className="flex items-center gap-3 p-3 rounded-xl hover:bg-white/10 transition-all duration-200 w-full"
-					>
-						{theme === "light" ? <Moon size={20} /> : <Sun size={20} />}
-						<span className="font-semibold">
-							{theme === "light" ? "Dark" : "Light"} Mode
-						</span>
-					</button>
-
-					<Link
-						to="/"
-						onClick={() => setIsOpen(false)}
-						className="flex items-center gap-3 p-3 rounded-xl hover:bg-white/10 transition-all duration-200"
-						activeProps={{
-							className:
-								"flex items-center gap-3 p-3 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-indigo-950 shadow-lg transition-all duration-200",
-						}}
-					>
-						<Home size={20} />
-						<span className="font-semibold">Home</span>
-					</Link>
-
+				<nav className="mobile-nav" aria-label="Mobile navigation">
+					{navItems.map(({ to, label, icon: Icon, tone }) => (
+						<Link
+							key={to}
+							to={to}
+							onClick={() => setIsOpen(false)}
+							className="mobile-nav-link"
+							data-tone={tone}
+							activeProps={{
+								className: "mobile-nav-link mobile-nav-link-active",
+							}}
+						>
+							<Icon size={19} />
+							{label}
+						</Link>
+					))}
 					<button
 						type="button"
 						onClick={() => {
 							setShowCatCollection(true);
 							setIsOpen(false);
 						}}
-						className="flex items-center gap-3 p-3 rounded-xl hover:bg-white/10 transition-all duration-200 w-full"
+						className="mobile-nav-link"
 					>
-						<Database size={20} />
-						<span className="font-semibold">Cat Collection</span>
+						<Database size={19} />
+						Collection
 					</button>
-
-					<Link
-						to="/dictionary"
-						onClick={() => setIsOpen(false)}
-						className="flex items-center gap-3 p-3 rounded-xl hover:bg-white/10 transition-all duration-200"
-						activeProps={{
-							className:
-								"flex items-center gap-3 p-3 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-indigo-950 shadow-lg transition-all duration-200",
-						}}
-					>
-						<BookOpen size={20} />
-						<span className="font-semibold">Cat Dictionary</span>
-					</Link>
-
-					<Link
-						to="/tierlist"
-						onClick={() => setIsOpen(false)}
-						className="flex items-center gap-3 p-3 rounded-xl hover:bg-white/10 transition-all duration-200"
-						activeProps={{
-							className:
-								"flex items-center gap-3 p-3 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-indigo-950 shadow-lg transition-all duration-200",
-						}}
-					>
-						<ListOrdered size={20} />
-						<span className="font-semibold">Tier List</span>
-					</Link>
-
-					<Link
-						to="/uber-planner"
-						onClick={() => setIsOpen(false)}
-						className="flex items-center gap-3 p-3 rounded-xl hover:bg-white/10 transition-all duration-200"
-						activeProps={{
-							className:
-								"flex items-center gap-3 p-3 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-indigo-950 shadow-lg transition-all duration-200",
-						}}
-					>
-						<Crown size={20} />
-						<span className="font-semibold">Uber Planner</span>
-					</Link>
-
-					<Link
-						to="/seed-finder"
-						onClick={() => setIsOpen(false)}
-						className="flex items-center gap-3 p-3 rounded-xl hover:bg-white/10 transition-all duration-200"
-						activeProps={{
-							className:
-								"flex items-center gap-3 p-3 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-indigo-950 shadow-lg transition-all duration-200",
-						}}
-					>
-						<Sparkles size={20} />
-						<span className="font-semibold">Seed Finder</span>
-					</Link>
-
-					<Link
-						to="/about"
-						onClick={() => setIsOpen(false)}
-						className="flex items-center gap-3 p-3 rounded-xl hover:bg-white/10 transition-all duration-200"
-						activeProps={{
-							className:
-								"flex items-center gap-3 p-3 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-indigo-950 shadow-lg transition-all duration-200",
-						}}
-					>
-						<Info size={20} />
-						<span className="font-semibold">About</span>
-					</Link>
 				</nav>
 			</aside>
 		</>

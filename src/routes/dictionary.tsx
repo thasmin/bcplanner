@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import { BookOpen } from "lucide-react";
 import { useId, useState } from "react";
+import { PageHeader } from "@/components/PageHeader";
 import { useDialogs } from "@/contexts/DialogContext";
 
 export const Route = createFileRoute("/dictionary")({ component: Dictionary });
@@ -115,20 +116,15 @@ function Dictionary() {
 	});
 
 	return (
-		<div className="p-4 md:p-6 max-w-7xl mx-auto">
-			<div className="flex items-center gap-3 mb-8">
-				<div className="p-3 bg-gradient-to-br from-emerald-400 to-teal-500 rounded-2xl shadow-lg shadow-emerald-500/20">
-					<BookOpen className="w-7 h-7 text-emerald-950" />
-				</div>
-				<div>
-					<h1 className="text-2xl md:text-3xl font-bold text-slate-800 dark:text-slate-100">
-						Cat Dictionary
-					</h1>
-					<p className="text-sm text-slate-500">Browse and discover all cats</p>
-				</div>
-			</div>
+		<div className="page-shell">
+			<PageHeader
+				icon={BookOpen}
+				title="Cat Dictionary"
+				tone="teal"
+				description="Browse every cat by name, number, or rarity."
+			/>
 
-			<div className="bg-white/80 dark:bg-slate-800 backdrop-blur-sm rounded-2xl shadow-lg shadow-slate-200/50 dark:shadow-slate-700/50 border border-slate-200/50 p-6 mb-6">
+			<div className="app-panel mb-6">
 				<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 					<div>
 						<label
@@ -142,7 +138,7 @@ function Dictionary() {
 							id={searchInputId}
 							value={searchTerm}
 							onChange={(e) => setSearchTerm(e.target.value)}
-							className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-xl text-slate-800 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500 transition-all duration-200 hover:border-slate-300 dark:hover:border-slate-500"
+							className="control"
 							placeholder="Search by name or ID..."
 						/>
 					</div>
@@ -162,7 +158,7 @@ function Dictionary() {
 									e.target.value === "all" ? "all" : Number(e.target.value),
 								)
 							}
-							className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-xl text-slate-800 dark:text-slate-100 transition-all duration-200 hover:border-slate-300 dark:hover:border-slate-500 cursor-pointer"
+							className="control cursor-pointer"
 						>
 							<option value="all">All Rarities</option>
 							<option value="0">Normal</option>
@@ -183,23 +179,23 @@ function Dictionary() {
 				</div>
 			</div>
 
-			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
 				{filteredCats.map((cat) => {
 					const imageUrl = imageMap.get(cat.name[0]);
 					return (
 						<button
 							type="button"
 							key={cat.id}
-							className="text-left bg-white/80 dark:bg-slate-800 backdrop-blur-sm rounded-2xl shadow-md border border-slate-200/50 overflow-hidden hover:shadow-xl hover:scale-[1.02] hover:border-slate-300/50 transition-all duration-200 group"
+							className="app-panel text-left overflow-hidden hover:border-slate-400 dark:hover:border-slate-500 transition-colors group"
 							onClick={() => openCatDialog(cat.id)}
 						>
 							<div className="flex items-start p-4">
-								<div className="flex-shrink-0 w-24 h-24 bg-gradient-to-br from-slate-50 to-slate-100 rounded-xl flex items-center justify-center mr-4 group-hover:from-amber-50 group-hover:to-orange-50 transition-all duration-200">
+								<div className="cat-image-well flex-shrink-0 w-24 h-24 rounded-md flex items-center justify-center mr-4">
 									{imageUrl ? (
 										<img
 											src={imageUrl}
 											alt={cat.name[0]}
-											className="max-w-full max-h-full object-contain group-hover:scale-110 transition-transform duration-200"
+											className="max-w-full max-h-full object-contain"
 										/>
 									) : (
 										<div className="text-slate-300 dark:text-slate-500 text-xs text-center">
