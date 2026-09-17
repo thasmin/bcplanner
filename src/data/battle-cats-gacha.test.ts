@@ -1,22 +1,51 @@
-import { describe, expect, test } from "bun:test";
-import path from "node:path";
+import { readFile } from "node:fs/promises";
+import { describe, expect, test } from "vitest";
 import { rollTracks } from "./battle-cats-gacha";
-import { type CatDatabase, createGachaEvent } from "./gacha-data";
+import {
+	type CatDatabase,
+	createGachaEvent,
+	getEventOptions,
+} from "./gacha-data";
 
 async function loadCatDatabaseForTest(): Promise<CatDatabase> {
-	const filePath = path.join(import.meta.dir, "../../public/data/bc-en.json");
-	const file = Bun.file(filePath);
-	return await file.json();
+	const fileUrl = new URL("../../public/data/bc-en.json", import.meta.url);
+	return JSON.parse(await readFile(fileUrl, "utf8")) as CatDatabase;
 }
 
 describe("Battle Cats Gacha", () => {
+	test("excludes events without a gacha pool", () => {
+		const event = {
+			id: 1081,
+			start_on: "2026-09-18",
+			end_on: "9999-12-31",
+			name: "Unavailable event",
+			rare: 7000,
+			supa: 2500,
+			uber: 500,
+			legend: 0,
+			step_up: false,
+		};
+
+		expect(getEventOptions({ "2026-09-18_1081": event }, {})).toEqual([]);
+		expect(
+			getEventOptions({ "2026-09-18_1081": event }, { 1081: { cats: [1] } }),
+		).toHaveLength(1);
+	});
+
 	test("rollTracks", async () => {
 		const catDatabase = await loadCatDatabaseForTest();
-		const eventData = catDatabase.events["2025-12-09_1020"];
-
-		if (!eventData) {
-			throw new Error("Event 2025-12-09_1020 not found");
-		}
+		const eventData = {
+			id: 1020,
+			start_on: "2025-12-09",
+			end_on: "2025-12-22",
+			name: "EVANGELION 2nd Strike Collab Capsules",
+			rare: 6970,
+			supa: 2500,
+			uber: 500,
+			legend: 30,
+			guaranteed: true,
+			step_up: false,
+		};
 
 		const event = createGachaEvent(eventData, catDatabase);
 		const seed = 2428617162;

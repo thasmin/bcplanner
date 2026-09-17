@@ -92,9 +92,10 @@ function App() {
 		canSwitchFromB: [],
 	}));
 	if (catDatabase.data) {
-		const eventOptions = getEventOptions(catDatabase.data.events).filter(
-			(ev) => !ev.platinum,
-		);
+		const eventOptions = getEventOptions(
+			catDatabase.data.events,
+			catDatabase.data.gacha,
+		).filter((ev) => !ev.platinum);
 		eventOptions.forEach((eventData) => {
 			const event = createGachaEvent(
 				catDatabase.data.events[eventData.key],

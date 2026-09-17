@@ -120,7 +120,10 @@ function getEventSuffix(event: EventData): string {
 /**
  * Get list of events for dropdown (active or future events only)
  */
-export function getEventOptions(eventsData: EventsData) {
+export function getEventOptions(
+	eventsData: EventsData,
+	gachaData: CatDatabase["gacha"],
+) {
 	const today = new Date().toISOString().split("T")[0]; // YYYY-MM-DD format
 
 	const events = Object.entries(eventsData)
@@ -129,7 +132,9 @@ export function getEventOptions(eventsData: EventsData) {
 			key,
 			displayName: `${event.start_on} - ${event.end_on}:${getEventSuffix(event)} ${event.name}`,
 		}))
-		.filter((event) => event.end_on >= today) // Only active or future events
+		.filter(
+			(event) => event.end_on >= today && gachaData[event.id] !== undefined,
+		) // Only usable active or future events
 		.sort((a, b) => a.start_on.localeCompare(b.start_on)); // Latest first
 	// remove all but the most recent platinum/legend events
 	return events.filter((event, index) => {

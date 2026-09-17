@@ -74,7 +74,10 @@ self.onmessage = async (
 		.map(([code, event]) => ({ code, ...event }))
 		.filter(
 			(event) =>
-				!event.platinum && event.start_on <= today && event.end_on >= today,
+				!event.platinum &&
+				catDatabase.gacha[event.id] !== undefined &&
+				event.start_on <= today &&
+				event.end_on >= today,
 		);
 
 	// Remove duplicate events

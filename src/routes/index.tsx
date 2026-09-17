@@ -137,7 +137,7 @@ function App() {
 
 	// Set default event when events load
 	const eventOptions = catDatabase.data
-		? getEventOptions(catDatabase.data.events)
+		? getEventOptions(catDatabase.data.events, catDatabase.data.gacha)
 		: [];
 
 	useEffect(() => {
