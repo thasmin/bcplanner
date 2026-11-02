@@ -28,7 +28,7 @@ interface CatColumnsData {
 	nextSeed: number;
 	cat: { id: number; name: string; rarity: Rarity };
 	switchedFromCat?: { id: number; name: string; rarity: Rarity };
-	guaranteedUber?: { id: number; name: string };
+	guaranteedUber?: { id: number; name: string; rarity: Rarity };
 	nextAfterGuaranteed?: string;
 }
 
@@ -103,6 +103,12 @@ const CatColumns: React.FC<{
 						)}
 					>
 						{roll.guaranteedUber.name}
+					</div>
+					<div className="mt-1">
+						<RarityTag
+							catId={roll.guaranteedUber.id}
+							rarity={roll.guaranteedUber.rarity}
+						/>
 					</div>
 					<div className="text-gray-500 dark:text-gray-400 mt-1">
 						→ {roll.nextAfterGuaranteed}

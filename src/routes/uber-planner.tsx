@@ -22,12 +22,14 @@ export const Route = createFileRoute("/uber-planner")({
 
 interface CatColumnDataProps {
 	cat: CatInfo & { id: number };
+	next?: string;
 	onOpenCatDialog: () => void;
 	onShowEvents: () => void;
 }
 
 const CatColumnData: React.FC<CatColumnDataProps> = ({
 	cat,
+	next,
 	onOpenCatDialog,
 	onShowEvents,
 }) => {
@@ -56,18 +58,42 @@ const CatColumnData: React.FC<CatColumnDataProps> = ({
 			>
 				?
 			</button>
+			{next && (
+				<span className="text-xs text-slate-500 dark:text-slate-400">
+					→ {next}
+				</span>
+			)}
 		</div>
 	);
 };
 
+interface Guarantee {
+	catId: number;
+	next: string;
+	eventCodes: string[];
+}
+
+// keyed by `${catId}-${next}` since events with different step counts land on different rolls
+function addGuarantee(
+	guarantees: Map<string, Guarantee>,
+	catId: number,
+	next: string,
+	eventCode: string,
+) {
+	const key = `${catId}-${next}`;
+	const existing = guarantees.get(key);
+	if (existing) existing.eventCodes.push(eventCode);
+	else guarantees.set(key, { catId, next, eventCodes: [eventCode] });
+}
+
 interface Row {
 	row: number;
 	trackACats: Map<number, string[]>;
-	trackAGuarantees: Map<number, string[]>;
+	trackAGuarantees: Map<string, Guarantee>;
 	trackANextSeed: number;
 	canSwitchFromA: string[];
 	trackBCats: Map<number, string[]>;
-	trackBGuarantees: Map<number, string[]>;
+	trackBGuarantees: Map<string, Guarantee>;
 	trackBNextSeed: number;
 	canSwitchFromB: string[];
 }
@@ -82,11 +108,11 @@ function App() {
 	const rollMap: Row[] = Array.from({ length: 100 }, (_, index) => ({
 		row: index,
 		trackACats: new Map<number, string[]>(),
-		trackAGuarantees: new Map<number, string[]>(),
+		trackAGuarantees: new Map<string, Guarantee>(),
 		trackANextSeed: 0,
 		canSwitchFromA: [],
 		trackBCats: new Map<number, string[]>(),
-		trackBGuarantees: new Map<number, string[]>(),
+		trackBGuarantees: new Map<string, Guarantee>(),
 		trackBNextSeed: 0,
 		canSwitchFromB: [],
 	}));
@@ -108,15 +134,13 @@ function App() {
 				rollMap[index].trackACats.set(t.catId, prevCats);
 				if (t.switchedFromCatId)
 					rollMap[index].canSwitchFromA.push(eventData.key);
-				if (t.guaranteedUberId) {
-					const prevGuarantees =
-						rollMap[index].trackAGuarantees.get(t.guaranteedUberId) ?? [];
-					prevGuarantees.push(eventData.key);
-					rollMap[index].trackAGuarantees.set(
+				if (t.guaranteedUberId && t.nextAfterGuaranteed)
+					addGuarantee(
+						rollMap[index].trackAGuarantees,
 						t.guaranteedUberId,
-						prevGuarantees,
+						t.nextAfterGuaranteed,
+						eventData.key,
 					);
-				}
 			});
 			tracks.trackB.forEach((t, index) => {
 				rollMap[index].trackBNextSeed = t.nextSeed;
@@ -125,15 +149,13 @@ function App() {
 				rollMap[index].trackBCats.set(t.catId, prevEvents);
 				if (t.switchedFromCatId)
 					rollMap[index].canSwitchFromB.push(eventData.key);
-				if (t.guaranteedUberId) {
-					const prevGuarantees =
-						rollMap[index].trackBGuarantees.get(t.guaranteedUberId) ?? [];
-					prevGuarantees.push(eventData.key);
-					rollMap[index].trackBGuarantees.set(
+				if (t.guaranteedUberId && t.nextAfterGuaranteed)
+					addGuarantee(
+						rollMap[index].trackBGuarantees,
 						t.guaranteedUberId,
-						prevGuarantees,
+						t.nextAfterGuaranteed,
+						eventData.key,
 					);
-				}
 			});
 		});
 	}
@@ -358,7 +380,7 @@ function App() {
 										<td className="p-3 whitespace-nowrap text-sm text-slate-700 dark:text-slate-400 bg-amber-300/25 dark:bg-amber-900/25">
 											<div className="flex flex-col gap-2">
 												{Array.from(tr.trackAGuarantees.entries()).map(
-													([catId, eventCodes]) => {
+													([key, { catId, next, eventCodes }]) => {
 														if (!catDatabase.data) return null;
 														const cat = {
 															...catDatabase.data.cats[catId],
@@ -367,8 +389,9 @@ function App() {
 														return (
 															cat && (
 																<CatColumnData
-																	key={catId}
+																	key={key}
 																	cat={cat}
+																	next={next}
 																	onOpenCatDialog={() => openCatDialog(catId)}
 																	onShowEvents={() => showEvents(eventCodes)}
 																/>
@@ -427,7 +450,7 @@ function App() {
 										<td className="p-3 whitespace-nowrap text-sm text-slate-700 dark:text-slate-400 bg-amber-300/25 dark:bg-amber-900/25">
 											<div className="flex flex-col gap-2">
 												{Array.from(tr.trackBGuarantees.entries()).map(
-													([catId, eventCodes]) => {
+													([key, { catId, next, eventCodes }]) => {
 														if (!catDatabase.data) return null;
 														const cat = {
 															...catDatabase.data.cats[catId],
@@ -436,8 +459,9 @@ function App() {
 														return (
 															cat && (
 																<CatColumnData
-																	key={catId}
+																	key={key}
 																	cat={cat}
+																	next={next}
 																	onOpenCatDialog={() => openCatDialog(catId)}
 																	onShowEvents={() => showEvents(eventCodes)}
 																/>
