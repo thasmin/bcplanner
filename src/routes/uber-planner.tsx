@@ -22,14 +22,12 @@ export const Route = createFileRoute("/uber-planner")({
 
 interface CatColumnDataProps {
 	cat: CatInfo & { id: number };
-	isGuaranteed?: boolean;
 	onOpenCatDialog: () => void;
 	onShowEvents: () => void;
 }
 
 const CatColumnData: React.FC<CatColumnDataProps> = ({
 	cat,
-	isGuaranteed = false,
 	onOpenCatDialog,
 	onShowEvents,
 }) => {
@@ -50,7 +48,7 @@ const CatColumnData: React.FC<CatColumnDataProps> = ({
 			>
 				{cat.name[0]}
 			</button>
-			{!isGuaranteed && <RarityTag catId={cat.id} rarity={cat.rarity} />}
+			<RarityTag catId={cat.id} rarity={cat.rarity} />
 			<button
 				type="button"
 				className="px-2 py-1 bg-slate-100 dark:bg-slate-700 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600 transition-all duration-200 border border-slate-400 dark:border-slate-500"
@@ -371,7 +369,6 @@ function App() {
 																<CatColumnData
 																	key={catId}
 																	cat={cat}
-																	isGuaranteed
 																	onOpenCatDialog={() => openCatDialog(catId)}
 																	onShowEvents={() => showEvents(eventCodes)}
 																/>
@@ -441,7 +438,6 @@ function App() {
 																<CatColumnData
 																	key={catId}
 																	cat={cat}
-																	isGuaranteed
 																	onOpenCatDialog={() => openCatDialog(catId)}
 																	onShowEvents={() => showEvents(eventCodes)}
 																/>
