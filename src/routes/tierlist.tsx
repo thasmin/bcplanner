@@ -17,17 +17,29 @@ export const Route = createFileRoute("/tierlist")({
 
 function getTierClass(rank: string): string {
 	const tierMap: Record<string, string> = {
+		SSS: "tier-sss",
 		SS: "tier-ss",
 		"S+": "tier-s-plus",
 		S: "tier-s",
+		"S-": "tier-s-minus",
 		"A+": "tier-a-plus",
 		A: "tier-a",
+		"A-": "tier-a-minus",
 		"B+": "tier-b-plus",
 		B: "tier-b",
+		"B-": "tier-b-minus",
 		"C+": "tier-c-plus",
 		C: "tier-c",
+		"C-": "tier-c-minus",
+		"D+": "tier-d-plus",
 		D: "tier-d",
+		"D-": "tier-d-minus",
+		"E+": "tier-e-plus",
+		E: "tier-e",
+		"E-": "tier-e-minus",
+		"F+": "tier-f-plus",
 		F: "tier-f",
+		"F-": "tier-f-minus",
 	};
 	return tierMap[rank] || "bg-slate-200 text-slate-700";
 }
