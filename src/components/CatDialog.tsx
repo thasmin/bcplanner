@@ -1,6 +1,11 @@
-import { Check, X } from "lucide-react";
+import { Check, ExternalLink, X } from "lucide-react";
 import { useEffect, useRef } from "react";
-import { findBanner, getCatStageImagePath, useCatDatabase, useOwnedCats } from "@/utils";
+import {
+	findBanner,
+	getCatStageImagePath,
+	useCatDatabase,
+	useOwnedCats,
+} from "@/utils";
 
 export interface CatWithId {
 	id: string | number;
@@ -14,6 +19,24 @@ function rarityName(rarity: number) {
 		["Normal", "Special", "Rare", "Super Rare", "Uber", "Legend"][rarity] ||
 		"Unknown"
 	);
+}
+
+function wikiUrl(name: string, rarity: number) {
+	// Cats without an English name have placeholders like "730_1" or Japanese text
+	if (/^\d+[-_]\d+$/.test(name) || /[぀-ヿ一-鿿]/.test(name)) return undefined;
+	const rarityLabel =
+		[
+			"Normal Cat",
+			"Special Cat",
+			"Rare Cat",
+			"Super Rare Cat",
+			"Uber Rare Cat",
+			"Legend Rare Cat",
+		][rarity] ?? "Cat";
+	const title = `${name} (${rarityLabel})`
+		.replace(/＆/g, "&")
+		.replace(/ /g, "_");
+	return `https://battlecats.miraheze.org/wiki/${encodeURIComponent(title).replace(/%28/g, "(").replace(/%29/g, ")")}`;
 }
 
 function getRarityColors(rarity: number) {
@@ -122,9 +145,22 @@ export function CatDialog({ catId, onClose }: CatDialogProps) {
 					</div>
 
 					<div className="p-6">
-						<h3 className="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-4">
-							Evolution Stages
-						</h3>
+						<div className="flex items-center justify-between mb-4">
+							<h3 className="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+								Evolution Stages
+							</h3>
+							{wikiUrl(selectedCat.name[0], selectedCat.rarity) && (
+								<a
+									href={wikiUrl(selectedCat.name[0], selectedCat.rarity)}
+									target="_blank"
+									rel="noopener noreferrer"
+									className="flex items-center gap-1 text-sm font-medium text-indigo-600 dark:text-indigo-400 hover:underline"
+								>
+									View on Wiki
+									<ExternalLink className="w-4 h-4" />
+								</a>
+							)}
+						</div>
 
 						<div className="flex flex-col gap-4">
 							{catId &&
