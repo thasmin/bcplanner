@@ -89,6 +89,7 @@ const CatColumnData: React.FC<CatColumnDataProps> = ({
 interface Guarantee {
 	catId: number;
 	next: string;
+	nextSeed: number;
 	eventCodes: string[];
 }
 
@@ -97,13 +98,63 @@ function addGuarantee(
 	guarantees: Map<string, Guarantee>,
 	catId: number,
 	next: string,
+	nextSeed: number,
 	eventCode: string,
 ) {
 	const key = `${catId}-${next}`;
 	const existing = guarantees.get(key);
 	if (existing) existing.eventCodes.push(eventCode);
-	else guarantees.set(key, { catId, next, eventCodes: [eventCode] });
+	else guarantees.set(key, { catId, next, nextSeed, eventCodes: [eventCode] });
 }
+
+const GuaranteeCell: React.FC<{
+	track: "A" | "B";
+	row: number;
+	guarantees: Map<string, Guarantee>;
+	onRoll: (seed: number) => void;
+	onOpenCatDialog: (catId: number) => void;
+	onShowEvents: (eventCodes: string[]) => void;
+}> = ({ track, row, guarantees, onRoll, onOpenCatDialog, onShowEvents }) => {
+	const catDatabase = useCatDatabase();
+	if (!catDatabase.data || guarantees.size === 0) return null;
+	const cats = catDatabase.data.cats;
+	// events normally all land on the same slot, giving one roll button; group
+	// by destination so each button sits beside the cats it applies to
+	const groups = new Map<string, Guarantee[]>();
+	for (const g of guarantees.values())
+		groups.set(g.next, [...(groups.get(g.next) ?? []), g]);
+	return (
+		<div className="flex flex-col gap-3">
+			{Array.from(groups.entries()).map(([next, group]) => {
+				const label = `Use guaranteed roll from ${row + 1}${track} and jump to ${next}`;
+				return (
+					<div key={next} className="flex items-start gap-1">
+						<button
+							type="button"
+							onClick={() => onRoll(group[0].nextSeed)}
+							className="p-1.5 text-slate-400 hover:text-amber-600 hover:bg-amber-50 dark:hover:bg-amber-950 rounded-lg transition-all duration-200"
+							title={label}
+							aria-label={label}
+						>
+							<Dices size={18} />
+						</button>
+						<div className="flex flex-col gap-2">
+							{group.map(({ catId, eventCodes }) => (
+								<CatColumnData
+									key={catId}
+									cat={{ ...cats[catId], id: catId }}
+									next={next}
+									onOpenCatDialog={() => onOpenCatDialog(catId)}
+									onShowEvents={() => onShowEvents(eventCodes)}
+								/>
+							))}
+						</div>
+					</div>
+				);
+			})}
+		</div>
+	);
+};
 
 interface Row {
 	row: number;
@@ -158,6 +209,7 @@ function App() {
 						rollMap[index].trackAGuarantees,
 						t.guaranteedUberId,
 						t.nextAfterGuaranteed,
+						t.nextSeedAfterGuaranteed ?? 0,
 						eventData.key,
 					);
 			});
@@ -173,6 +225,7 @@ function App() {
 						rollMap[index].trackBGuarantees,
 						t.guaranteedUberId,
 						t.nextAfterGuaranteed,
+						t.nextSeedAfterGuaranteed ?? 0,
 						eventData.key,
 					);
 			});
@@ -400,28 +453,14 @@ function App() {
 											</div>
 										</td>
 										<td className="px-2 py-2 whitespace-nowrap text-sm text-slate-700 dark:text-slate-400 bg-amber-300/25 dark:bg-amber-900/25">
-											<div className="flex flex-col gap-2">
-												{Array.from(tr.trackAGuarantees.entries()).map(
-													([key, { catId, next, eventCodes }]) => {
-														if (!catDatabase.data) return null;
-														const cat = {
-															...catDatabase.data.cats[catId],
-															id: catId,
-														};
-														return (
-															cat && (
-																<CatColumnData
-																	key={key}
-																	cat={cat}
-																	next={next}
-																	onOpenCatDialog={() => openCatDialog(catId)}
-																	onShowEvents={() => showEvents(eventCodes)}
-																/>
-															)
-														);
-													},
-												)}
-											</div>
+											<GuaranteeCell
+												track="A"
+												row={tr.row}
+												guarantees={tr.trackAGuarantees}
+												onRoll={setSeed}
+												onOpenCatDialog={openCatDialog}
+												onShowEvents={showEvents}
+											/>
 										</td>
 
 										<td className="px-2 py-2 whitespace-nowrap text-sm text-slate-700 dark:text-slate-400 border-l border-slate-200 dark:border-slate-700">
@@ -476,28 +515,14 @@ function App() {
 											</div>
 										</td>
 										<td className="px-2 py-2 whitespace-nowrap text-sm text-slate-700 dark:text-slate-400 bg-amber-300/25 dark:bg-amber-900/25">
-											<div className="flex flex-col gap-2">
-												{Array.from(tr.trackBGuarantees.entries()).map(
-													([key, { catId, next, eventCodes }]) => {
-														if (!catDatabase.data) return null;
-														const cat = {
-															...catDatabase.data.cats[catId],
-															id: catId,
-														};
-														return (
-															cat && (
-																<CatColumnData
-																	key={key}
-																	cat={cat}
-																	next={next}
-																	onOpenCatDialog={() => openCatDialog(catId)}
-																	onShowEvents={() => showEvents(eventCodes)}
-																/>
-															)
-														);
-													},
-												)}
-											</div>
+											<GuaranteeCell
+												track="B"
+												row={tr.row}
+												guarantees={tr.trackBGuarantees}
+												onRoll={setSeed}
+												onOpenCatDialog={openCatDialog}
+												onShowEvents={showEvents}
+											/>
 										</td>
 									</tr>
 								);
