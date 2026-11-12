@@ -60,7 +60,11 @@ export function advanceSeed(seed: number): number {
 /**
  * XOR shift operation with modulo to keep within 32-bit unsigned range
  */
-export function xorShift(seed: number, direction: "<<" | ">>", bits: number): number {
+export function xorShift(
+	seed: number,
+	direction: "<<" | ">>",
+	bits: number,
+): number {
 	const shifted = direction === "<<" ? seed << bits : seed >>> bits;
 	return ((seed ^ shifted) >>> 0) % UINT32_MAX;
 }
@@ -87,7 +91,10 @@ export const BASE = 10000;
 /**
  * Determines rarity based on score and event rates
  */
-export function determineRarity(score: number, rates: GachaEvent["rates"]): Rarity {
+export function determineRarity(
+	score: number,
+	rates: GachaEvent["rates"],
+): Rarity {
 	const { rare, supa, uber } = rates;
 	if (score < rare) return Rarity.Rare;
 	if (score < rare + supa) return Rarity.SuperRare;
@@ -127,7 +134,11 @@ function rerollCat(
 // Main Gacha Roll Function
 // ============================================================================
 
-export function createCat(event: GachaEvent, raritySeed: number, slotSeed: number) {
+export function createCat(
+	event: GachaEvent,
+	raritySeed: number,
+	slotSeed: number,
+) {
 	const score = raritySeed % BASE;
 	const rarity = determineRarity(score, event.rates);
 	const pool = event.slots[rarity];
@@ -150,10 +161,8 @@ export interface TrackRolls {
 	switchedFromCatId?: number;
 	guaranteedUberId?: number;
 	nextAfterGuaranteed?: string;
-}
-
-function otherTrack(track: "A" | "B"): "A" | "B" {
-	return track === "A" ? "B" : "A";
+	/** Seed to jump to after using the guaranteed roll (next roll lands on nextAfterGuaranteed) */
+	nextSeedAfterGuaranteed?: number;
 }
 
 export function rollTrack(
@@ -202,13 +211,11 @@ export function rollTrack(
 
 	if (event.guaranteedUberRolls) {
 		for (let i = 0; i < count; i++) {
-			// go forward 10 rolls accounting for switches
-			let switches = 0;
+			// go forward 10 rolls accounting for rerolls
 			let seedIndex = i * 2;
 			// If this position had a reroll, start from the next seed
 			if (rerolled.has(i)) {
 				seedIndex += 1;
-				switches += 1;
 			}
 			let lastCatId = createCat(event, seeds[seedIndex], seeds[seedIndex + 1]);
 			for (let j = 0; j < event.guaranteedUberRolls; j++) {
@@ -220,15 +227,18 @@ export function rollTrack(
 				);
 				if (lastCatId === nextCatId) {
 					seedIndex += 1;
-					switches += 1;
 				}
 				lastCatId = nextCatId;
 			}
 			rolls[i].guaranteedUberId = createUberCat(event, seeds[seedIndex]);
-			rolls[i].nextAfterGuaranteed =
-				`${i + Math.ceil((event.guaranteedUberRolls * 2 + switches) / 2) + 1}${
-					switches % 2 === 0 ? otherTrack(track) : track
-				}`;
+			rolls[i].nextSeedAfterGuaranteed = seeds[seedIndex];
+			// Next roll starts on the seed after the one the uber consumed. Track B's
+			// seeds are offset by one from track A's, so convert to track A's
+			// indexing: even index = track A row, odd = track B row.
+			const nextIndexA = seedIndex + (track === "A" ? 1 : 2);
+			rolls[i].nextAfterGuaranteed = `${Math.floor(nextIndexA / 2) + 1}${
+				nextIndexA % 2 === 0 ? "A" : "B"
+			}`;
 		}
 	}
 	return rolls;

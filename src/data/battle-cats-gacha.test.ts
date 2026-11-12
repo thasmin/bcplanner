@@ -66,6 +66,10 @@ describe("Battle Cats Gacha", () => {
 		expect(trackA[7].catId).toBe(38);
 		expect(trackA[7].guaranteedUberId).toBe(549);
 		expect(trackA[7].nextAfterGuaranteed).toBe("19A");
+		// Jumping to the post-guarantee seed puts the next roll at 1A, which must
+		// match the cat originally shown at nextAfterGuaranteed (19A)
+		const jumped = rollTracks(event, trackA[7].nextSeedAfterGuaranteed ?? 0, 1);
+		expect(jumped.trackA[0].catId).toBe(trackA[18].catId);
 		expect(trackA[15].catId).toBe(147);
 		expect(trackA[15].guaranteedUberId).toBe(415);
 		expect(trackA[15].nextAfterGuaranteed).toBe("27A");
@@ -83,5 +87,18 @@ describe("Battle Cats Gacha", () => {
 		expect(trackB[15].catId).toBe(57);
 		expect(trackB[15].guaranteedUberId).toBe(711);
 		expect(trackB[15].nextAfterGuaranteed).toBe("27B");
+
+		// Jumping to nextSeedAfterGuaranteed lands 1A on the slot nextAfterGuaranteed names
+		const long = rollTracks(event, seed, 40);
+		for (const roll of [
+			...long.trackA.slice(0, 20),
+			...long.trackB.slice(0, 20),
+		]) {
+			const [, row, track] =
+				roll.nextAfterGuaranteed?.match(/^(\d+)([AB])$/) ?? [];
+			const expected = (track === "A" ? long.trackA : long.trackB)[+row - 1];
+			const after = rollTracks(event, roll.nextSeedAfterGuaranteed ?? 0, 1);
+			expect(after.trackA[0].score).toBe(expected.score);
+		}
 	});
 });

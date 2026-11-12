@@ -30,7 +30,24 @@ interface CatColumnsData {
 	switchedFromCat?: { id: number; name: string; rarity: Rarity };
 	guaranteedUber?: { id: number; name: string; rarity: Rarity };
 	nextAfterGuaranteed?: string;
+	nextSeedAfterGuaranteed?: number;
 }
+
+const RollButton: React.FC<{
+	onClick: () => void;
+	title: string;
+	size?: number;
+}> = ({ onClick, title, size = 18 }) => (
+	<button
+		type="button"
+		onClick={onClick}
+		className="p-1.5 text-slate-400 hover:text-amber-600 hover:bg-amber-50 dark:hover:bg-amber-950 rounded-lg transition-all duration-200"
+		title={title}
+		aria-label={title}
+	>
+		<Dices size={size} />
+	</button>
+);
 
 const CatColumns: React.FC<{
 	track: "A" | "B";
@@ -47,7 +64,18 @@ const CatColumns: React.FC<{
 		<>
 			<td
 				className={clsx(
-					"px-2 py-3 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100 border-l border-gray-200 dark:border-gray-700",
+					"pl-2 py-3 whitespace-nowrap text-xs text-gray-700 dark:text-gray-200 border-l border-gray-200 dark:border-gray-700",
+					getRarityBgClass(roll.cat.rarity),
+				)}
+			>
+				<RollButton
+					onClick={() => onRoll(roll.nextSeed)}
+					title={`Roll ${rowNum + 1}${track} and jump to the next seed`}
+				/>
+			</td>
+			<td
+				className={clsx(
+					"px-2 py-3 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100",
 					getRarityBgClass(roll.cat.rarity),
 				)}
 			>
@@ -110,26 +138,18 @@ const CatColumns: React.FC<{
 							rarity={roll.guaranteedUber.rarity}
 						/>
 					</div>
-					<div className="text-gray-500 dark:text-gray-400 mt-1">
+					<div className="flex items-center gap-1 text-gray-500 dark:text-gray-400 mt-1">
 						→ {roll.nextAfterGuaranteed}
+						{roll.nextSeedAfterGuaranteed !== undefined && (
+							<RollButton
+								size={16}
+								onClick={() => onRoll(roll.nextSeedAfterGuaranteed ?? 0)}
+								title={`Use guaranteed roll from ${rowNum + 1}${track} and jump to ${roll.nextAfterGuaranteed}`}
+							/>
+						)}
 					</div>
 				</td>
 			)}
-			<td
-				className={clsx(
-					"px-2 py-3 whitespace-nowrap text-xs text-gray-700 dark:text-gray-200",
-					getRarityBgClass(roll.cat.rarity),
-				)}
-			>
-				<button
-					type="button"
-					onClick={() => onRoll(roll.nextSeed)}
-					className="p-1.5 text-slate-400 hover:text-amber-600 hover:bg-amber-50 dark:hover:bg-amber-950 rounded-lg transition-all duration-200"
-					title="Jump to this seed"
-				>
-					<Dices size={18} />
-				</button>
-			</td>
 		</>
 	);
 };
@@ -174,6 +194,7 @@ function App() {
 							rollA.switchedFromCatId,
 						),
 						nextAfterGuaranteed: rollA.nextAfterGuaranteed,
+						nextSeedAfterGuaranteed: rollA.nextSeedAfterGuaranteed,
 					},
 					trackB: {
 						score: rollB.score,
@@ -185,6 +206,7 @@ function App() {
 							rollB.switchedFromCatId,
 						),
 						nextAfterGuaranteed: rollB.nextAfterGuaranteed,
+						nextSeedAfterGuaranteed: rollB.nextSeedAfterGuaranteed,
 					},
 				};
 			})
@@ -376,7 +398,8 @@ function App() {
 							</tr>
 							<tr className="bg-slate-50/50 dark:bg-slate-800/50 border-b border-slate-200 dark:border-slate-700">
 								<th className="px-3 py-2"></th>
-								<th className="px-2 py-2 text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider border-l border-slate-200 dark:border-slate-700">
+								<th className="border-l border-slate-200 dark:border-slate-700"></th>
+								<th className="px-2 py-2 text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
 									Cat
 								</th>
 								<th className="px-2 py-2 text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
@@ -387,9 +410,9 @@ function App() {
 										Guaranteed
 									</th>
 								)}
-								<th></th>
 
-								<th className="px-2 py-2 text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider border-l border-slate-200 dark:border-slate-700">
+								<th className="border-l border-slate-200 dark:border-slate-700"></th>
+								<th className="px-2 py-2 text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
 									Cat
 								</th>
 								<th className="px-2 py-2 text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
@@ -400,7 +423,6 @@ function App() {
 										Guaranteed
 									</th>
 								)}
-								<th></th>
 							</tr>
 						</thead>
 						<tbody className="divide-y divide-slate-100 dark:divide-slate-700">
